@@ -19,7 +19,7 @@ const Footer = () => (
   <React.Fragment>
     <footer className="bg-slate-50">
       <div className="custom-screen ">
-        <div className="mt-10 py-12  items-center justify-between flex">
+        <div className="mt-10 py-16  items-center justify-between flex">
           <MKWEbLogo />
           <div className="">
             <p className="text-gray-600 font-bold text-lg">Liens</p>
@@ -64,7 +64,7 @@ const Footer = () => (
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="mailto:contact@mkweb.fr"
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out flex items-center gap-2"
                 >
                   <Mail size={16} />

@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const navigation = [
     // { title: 'Testimonials', path: '#testimonials' },
-    { title: 'Homepage', path: '/' },
+    { title: 'Accueil', path: '/' },
   ];
 
   const pathname = usePathname();
