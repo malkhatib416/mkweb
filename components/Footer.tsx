@@ -19,7 +19,7 @@ const Footer = () => (
   <React.Fragment>
     <footer className="bg-slate-50">
       <div className="custom-screen ">
-        <div className="mt-10 py-16  items-center justify-between flex">
+        <div className="mt-10 py-16 items-center justify-between flex">
           <MKWEbLogo />
           <div className="">
             <p className="text-gray-600 font-bold text-lg">Liens</p>

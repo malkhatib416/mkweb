@@ -6,18 +6,19 @@ import NavLink from './NavLink';
 export default function Hero() {
   return (
     <section>
-      <div className="custom-screen pt-28 text-gray-600">
+      <div className="custom-screen pt-28 text-gray-600 h-[85vh] flex items-center justify-center">
         <div className="space-y-5 max-w-4xl mx-auto text-center">
           <h1 className="text-4xl text-gray-800 font-extrabold mx-auto sm:text-6xl">
             Transformez Vos Idées En Expériences Exceptionnelles !
           </h1>
           <p className="max-w-xl mx-auto">
-            QRGPT makes it simple for you to generate cool looking AI QR codes
-            in seconds, completely for free.
+            J&apos;accompagne les entreprises dans la création,
+            l&apos;optimisation et la maintenance de leurs sites web et
+            applications
           </p>
           <div className="flex items-center justify-center gap-x-3 font-medium text-sm">
             <NavLink
-              href="/start"
+              href="/nous-contacter "
               className="text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100 "
             >
               Nous contacter

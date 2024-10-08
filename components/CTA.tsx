@@ -35,7 +35,7 @@ const CTA = () => (
 );
 
 const SectionWrapper = ({ children, ...props }: any) => (
-  <section {...props} className={`py-16 ${props.className || ''}`}>
+  <section {...props} className={`pt-8 pb-20 ${props.className || ''}`}>
     {children}
   </section>
 );
