@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import NavLink from './NavLink';
-import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
+import MKWEbLogo from './Icons/MKWebLogo';
 
 const Navbar = () => {
   const [state, setState] = useState(false);
@@ -41,10 +41,7 @@ const Navbar = () => {
       >
         <div className="custom-screen items-center mx-auto md:flex">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link href="/" className="flex items-center gap-3">
-              <Image src="/box.svg" alt="logo" width={30} height={30} />
-              <div className="font-bold text-lg">QrGPT</div>
-            </Link>
+            <MKWEbLogo />
             <div className="md:hidden">
               <button
                 role="button"
@@ -102,9 +99,9 @@ const Navbar = () => {
               <li>
                 <NavLink
                   href="/start"
-                  className="block font-medium text-sm text-white bg-gray-800 hover:bg-gray-600 active:bg-gray-900 md:inline"
+                  className="block font-medium text-sm text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100-900 md:inline"
                 >
-                  Generate your QR Code
+                  Nous Contacter
                 </NavLink>
               </li>
             </ul>

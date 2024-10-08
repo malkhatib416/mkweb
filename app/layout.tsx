@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <PlausibleProvider domain="qrgpt.io" />
+        <PlausibleProvider domain="mkweb.fr" />
       </head>
       <body className={inter.className}>
         <Navbar />
