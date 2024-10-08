@@ -8,6 +8,7 @@ import PlausibleProvider from 'next-plausible';
 import GradientWrapper from '@/components/GradientWrapper';
 import { useEffect, useState } from 'react';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
+import Transition from '@/components/Transition';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -53,7 +54,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Navbar />
-        <main>{children}</main>
+        <Transition>
+          <main>{children}</main>
+        </Transition>
         <ScrollToTopButton />
         <Analytics />
         <Footer />
