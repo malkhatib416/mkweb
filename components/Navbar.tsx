@@ -33,14 +33,14 @@ const Navbar = () => {
   };
 
   return (
-    <header>
+    <header className="fixed top w-full shadow-sm">
       <nav
-        className={`bg-white w-full md:static md:text-sm ${
+        className={`bg-white w-full md:static md:text-sm  ${
           state ? 'fixed z-10 h-full' : ''
         }`}
       >
-        <div className="custom-screen items-center mx-auto md:flex">
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
+        <div className=" items-center mx-auto md:flex   custom-screen">
+          <div className="flex items-center justify-between py-3 md:py-5 md:block ">
             <MKWEbLogo />
             <div className="md:hidden">
               <button

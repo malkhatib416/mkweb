@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import PlausibleProvider from 'next-plausible';
 import GradientWrapper from '@/components/GradientWrapper';
+import { useEffect, useState } from 'react';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -52,6 +54,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         <main>{children}</main>
+        <ScrollToTopButton />
         <Analytics />
         <Footer />
       </body>

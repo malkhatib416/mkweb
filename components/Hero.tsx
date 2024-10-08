@@ -6,7 +6,7 @@ import NavLink from './NavLink';
 export default function Hero() {
   return (
     <section>
-      <div className="custom-screen pt-28 text-gray-600 h-[85vh] flex items-center justify-center">
+      <div className="custom-screen pt-28 text-gray-600 h-screen flex items-center justify-center">
         <div className="space-y-5 max-w-4xl mx-auto text-center">
           <h1 className="text-4xl text-gray-800 font-extrabold mx-auto sm:text-6xl">
             Transformez Vos Idées En Expériences Exceptionnelles !
