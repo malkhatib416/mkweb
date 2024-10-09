@@ -15,21 +15,30 @@ const About = () => {
             />
           </div>
           <div className="md:w-2/3 md:pl-8">
-            <p>
-              Freelance basé à Chartres, j'accompagne les entreprises dans la
-              création, l'optimisation et la maintenance de leurs sites web et
-              applications.
+            <p className="mb-4">
+              Freelance basé à <strong className="font-bold">Chartres</strong>,
+              j'accompagne les entreprises dans la{' '}
+              <strong className="font-bold">création</strong>, l'
+              <strong className="font-bold">optimisation</strong> et la{' '}
+              <strong className="font-bold">maintenance</strong> de leurs sites
+              web et applications.
             </p>
-
-            <p>
-              Mon objectif est de fournir des solutions sur mesure qui répondent
-              parfaitement à vos besoins spécifiques.
+            <p className="mb-4">
+              Mon objectif est de fournir des{' '}
+              <strong className="font-bold">solutions sur mesure</strong> qui
+              répondent parfaitement à vos{' '}
+              <strong className="font-bold">besoins spécifiques</strong>.
             </p>
-
             <p>
-              Que ce soit pour l'intégration de nouvelles fonctionnalités ou la
-              conception d'expériences utilisateurs fluides, je m'assure
-              d'offrir des performances optimales et une gestion efficace de vos
+              Que ce soit pour l'intégration de{' '}
+              <strong className="font-bold">nouvelles fonctionnalités</strong>{' '}
+              ou la{' '}
+              <strong className="font-bold">
+                conception d'expériences utilisateurs fluides
+              </strong>
+              , je m'assure d'offrir des{' '}
+              <strong className="font-bold">performances optimales</strong> et
+              une <strong className="font-bold">gestion efficace</strong> de vos
               projets.
             </p>
           </div>

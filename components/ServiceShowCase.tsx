@@ -49,7 +49,10 @@ export default function ServiceShowCase() {
   ];
 
   return (
-    <section className="custom-screen flex flex-col lg:flex-row items-start justify-between text-gray-600">
+    <section
+      className="custom-screen flex flex-col lg:flex-row items-start justify-between text-gray-600"
+      id="services"
+    >
       <div className="mb-8 pr-8 w-3/4">
         <h1 className="text-4xl font-bold mb-4">
           Découvrez l&apos;ensemble de nos expertises

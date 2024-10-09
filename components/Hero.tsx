@@ -1,15 +1,15 @@
 'use client';
 
-import Image from 'next/image';
 import NavLink from './NavLink';
 
 export default function Hero() {
   return (
-    <section>
-      <div className="custom-screen pt-28 text-gray-600 h-screen flex items-center justify-center">
+    <section className="hero-wrapper">
+      <div className="custom-screen pt-28 text-white h-screen flex items-center justify-center">
         <div className="space-y-5 max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl text-gray-800 font-extrabold mx-auto sm:text-6xl">
-            Transformez Vos Idées En Expériences Exceptionnelles !
+          <h1 className="text-4xl text-white font-extrabold mx-auto sm:text-6xl">
+            Transformez Vos Idées En Expériences{' '}
+            <span className="text-myorange-100">Exceptionnelles</span> !
           </h1>
           <p className="max-w-xl mx-auto">
             J&apos;accompagne les entreprises dans la création,

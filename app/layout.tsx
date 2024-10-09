@@ -5,17 +5,17 @@ import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import PlausibleProvider from 'next-plausible';
-import GradientWrapper from '@/components/GradientWrapper';
-import { useEffect, useState } from 'react';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import Transition from '@/components/Transition';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
-let title = 'QrGPT - QR Code Generator';
-let description = 'Generate your AI QR Code in seconds';
-let url = 'https://www.qrgpt.io';
-let ogimage = 'https://www.qrgpt.io/og-image.png';
+let title = 'MKWeb - Développeur Web Freelance à Chartres';
+let description =
+  'Développeur Web Freelance à Chartres. Création de sites internet, applications web, référencement et maintenance de sites web.';
+let url = 'https://www.mkweb.fr';
+let ogimage = 'https://www.mkweb.fr/og-image.png';
 let sitename = 'qrGPT.io';
 
 export const metadata: Metadata = {
@@ -31,14 +31,8 @@ export const metadata: Metadata = {
     description,
     url: url,
     siteName: sitename,
-    locale: 'en_US',
+    locale: 'fr_FR',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    images: [ogimage],
-    title,
-    description,
   },
 };
 
@@ -55,7 +49,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         <Transition>
-          <main>{children}</main>
+          <ThemeProvider>{children}</ThemeProvider>
         </Transition>
         <ScrollToTopButton />
         <Analytics />
