@@ -11,11 +11,11 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
-let title = 'MKWeb - Développeur Web Freelance à Chartres';
+let title = 'MK-Web - Développeur Web Freelance à Chartres';
 let description =
   'Développeur Web Freelance à Chartres. Création de sites internet, applications web, référencement et maintenance de sites web.';
-let url = 'https://www.mkweb.fr';
-let ogimage = 'https://www.mkweb.fr/og-image.png';
+let url = 'https://www.mk-web.fr';
+let ogimage = 'https://www.mk-web.fr/og-image.png';
 let sitename = 'qrGPT.io';
 
 export const metadata: Metadata = {
@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <PlausibleProvider domain="mkweb.fr" />
+        <PlausibleProvider domain="mk-web.fr" />
       </head>
       <body className={inter.className}>
         <Navbar />

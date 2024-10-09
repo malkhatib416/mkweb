@@ -70,11 +70,11 @@ const Footer = () => (
               </li>
               <li>
                 <Link
-                  href="mailto:contact@mkweb.fr"
+                  href="mailto:contact@mk-web.fr"
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                 >
                   <Mail size={16} />
-                  contact@mkweb.fr
+                  contact@mk-web.fr
                 </Link>
               </li>
               <li>
