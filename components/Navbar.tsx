@@ -8,31 +8,25 @@ import MKWEbLogo from './Icons/MKWebLogo';
 import useWindowSize from '@/hooks/useWindowSize';
 
 const Navbar = () => {
-  const [state, setState] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [pastHero, setPastHero] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [width, height] = useWindowSize();
+  const [width, height] = useWindowSize(); // Automatically detects window size
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const navigation = [
     { title: 'Accueil', path: '/#hero-wrapper' },
     { title: 'Services', path: '/#services' },
   ];
 
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   const handleState = () => {
     document.body.classList.remove('overflow-hidden');
-    setState(false);
+    setIsMenuOpen(false);
   };
 
   const handleScroll = () => {
-    setIsMobile(
-      window.matchMedia('(max-width: 767px)').matches ||
-        window.matchMedia('(max-width: 1024px)').matches,
-    );
-
     const heroSection = document.querySelector('.hero-wrapper');
-    // not view mobile
     if (heroSection) {
       const heroBottom = heroSection.getBoundingClientRect().bottom;
       setPastHero(heroBottom <= 0);
@@ -40,63 +34,51 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    handleState();
-    handleScroll();
-  }, []);
-
-  useEffect(() => {
-    // Add closing the navbar menu when navigating
-    handleState();
-
-    console.log({ width });
     handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname, searchParams, width]);
+  }, [width]);
+
+  useEffect(() => {
+    handleState(); // Close menu on navigation
+  }, [pathname, searchParams]);
 
   const handleNavMenu = () => {
-    setState(!state);
+    setIsMenuOpen(!isMenuOpen);
     document.body.classList.toggle('overflow-hidden');
   };
 
   const hoverColor = pastHero ? 'hover:text-black/80' : 'hover:text-white/80';
 
-  const closeMobileMenu = () => {
-    setState(false);
-    document.body.classList.remove('overflow-hidden');
+  const linkColor = (whiteOnMobile = false) => {
+    if (whiteOnMobile && !pastHero) return 'text-white hover:text-white/80';
+    if (width <= 768) return 'text-black hover:text-black/80'; // Handle mobile
+    return pastHero
+      ? 'text-black hover:text-black/80'
+      : 'text-white hover:text-white/80';
   };
 
-  const linkColor = (whiteOnMobile = false) => {
-    console.log({ whiteOnMobile, isMobile, pastHero });
-    if (whiteOnMobile && !pastHero) return 'text-white';
-
-    if (isMobile) return 'text-black';
-
-    if (!isMobile && pastHero) return 'text-black';
-    else return 'text-white';
-
-    // const linkColor = isMobile ? 'text-black' : 'text-white';
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('overflow-hidden');
   };
 
   return (
     <header className={`fixed top-0 w-full z-10 ${pastHero ? 'bg-white' : ''}`}>
-      {/* <ModeToggle /> */}
       <nav
-        className={`w-full md:static md:text-sm ${
-          state ? 'fixed z-10 h-full' : ''
-        }`}
+        className={`w-full md:static md:text-sm ${isMenuOpen ? 'fixed h-full' : ''}`}
       >
-        <div className={`items-center mx-auto md:flex custom-screen`}>
+        <div className="items-center mx-auto md:flex custom-screen">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <MKWEbLogo />
             <div className="md:hidden">
               <button
                 role="button"
-                aria-label="Open the menu"
+                aria-label="Toggle menu"
                 className={`${linkColor(true)} ${hoverColor}`}
                 onClick={handleNavMenu}
               >
-                {state ? (
+                {isMenuOpen ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -112,11 +94,10 @@ const Navbar = () => {
                 ) : (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
+                    className="h-6 w-6"
                     viewBox="0 0 24 24"
-                    strokeWidth={1.5}
+                    fill="none"
                     stroke="currentColor"
-                    className="w-6 h-6"
                   >
                     <path
                       strokeLinecap="round"
@@ -131,24 +112,22 @@ const Navbar = () => {
           <div
             onClick={closeMobileMenu}
             className={`flex-1 pb-3 mt-8 md:pb-0 md:mt-0 md:block ${
-              state
-                ? 'h-screen  fixed -top-8 left-0 w-full pt-12 px-4 bg-white !text-gray-600'
+              isMenuOpen
+                ? 'h-screen fixed -top-8 left-0 w-full pt-12 px-4 bg-white text-gray-600'
                 : 'hidden'
             }`}
           >
             <ul className="justify-end items-center space-y-6 md:flex md:space-x-6 md:space-y-0 md:font-medium">
-              {navigation.map((item, idx) => {
-                return (
-                  <li
-                    key={idx}
-                    className={`duration-150 transition-all ${linkColor()} ${hoverColor}`}
-                  >
-                    <Link href={item.path} className="block">
-                      {item.title}
-                    </Link>
-                  </li>
-                );
-              })}
+              {navigation.map((item, idx) => (
+                <li
+                  key={idx}
+                  className={`duration-150 transition-all ${linkColor()} `}
+                >
+                  <Link href={item.path} className="block">
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <NavLink
                   href="/start"
