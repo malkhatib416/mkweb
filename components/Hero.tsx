@@ -4,7 +4,7 @@ import NavLink from './NavLink';
 
 export default function Hero() {
   return (
-    <section className="hero-wrapper">
+    <section className="hero-wrapper" id="hero-wrapper">
       <div className="custom-screen pt-28 text-white h-screen flex items-center justify-center">
         <div className="space-y-5 max-w-4xl mx-auto text-center">
           <h1 className="text-4xl text-white font-extrabold mx-auto sm:text-6xl">

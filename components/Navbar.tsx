@@ -5,110 +5,77 @@ import { useEffect, useState } from 'react';
 import NavLink from './NavLink';
 import { usePathname, useSearchParams } from 'next/navigation';
 import MKWEbLogo from './Icons/MKWebLogo';
-
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
-import { useTheme } from 'next-themes';
-
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { set } from 'react-hook-form';
-
-function ModeToggle() {
-  const { setTheme } = useTheme();
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
+import useWindowSize from '@/hooks/useWindowSize';
 
 const Navbar = () => {
   const [state, setState] = useState(false);
   const [pastHero, setPastHero] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [width, height] = useWindowSize();
   const navigation = [
-    { title: 'Accueil', path: '/' },
+    { title: 'Accueil', path: '/#hero-wrapper' },
     { title: 'Services', path: '/#services' },
   ];
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const handleState = () => {
+    document.body.classList.remove('overflow-hidden');
+    setState(false);
+  };
+
+  const handleScroll = () => {
+    setIsMobile(
+      window.matchMedia('(max-width: 767px)').matches ||
+        window.matchMedia('(max-width: 1024px)').matches,
+    );
+
+    const heroSection = document.querySelector('.hero-wrapper');
+    // not view mobile
+    if (heroSection) {
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+      setPastHero(heroBottom <= 0);
+    }
+  };
+
   useEffect(() => {
-    const handleState = () => {
-      document.body.classList.remove('overflow-hidden');
-      setState(false);
-    };
-
     handleState();
-
-    const handleScroll = () => {
-      const heroSection = document.querySelector('.hero-wrapper');
-      // not view mobile
-      if (heroSection) {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        setPastHero(heroBottom <= 0);
-      }
-    };
-
     handleScroll();
   }, []);
 
   useEffect(() => {
     // Add closing the navbar menu when navigating
-    const handleState = () => {
-      document.body.classList.remove('overflow-hidden');
-      setState(false);
-    };
-
     handleState();
 
-    const handleScroll = () => {
-      const heroSection = document.querySelector('.hero-wrapper');
-      // not view mobile
-      if (heroSection) {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        setPastHero(heroBottom <= 0);
-      }
-    };
-
+    console.log({ width });
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, width]);
 
   const handleNavMenu = () => {
     setState(!state);
     document.body.classList.toggle('overflow-hidden');
   };
 
-  const linkColor = pastHero ? 'text-black' : 'text-white';
   const hoverColor = pastHero ? 'hover:text-black/80' : 'hover:text-white/80';
 
   const closeMobileMenu = () => {
     setState(false);
     document.body.classList.remove('overflow-hidden');
+  };
+
+  const linkColor = (whiteOnMobile = false) => {
+    console.log({ whiteOnMobile, isMobile, pastHero });
+    if (whiteOnMobile && !pastHero) return 'text-white';
+
+    if (isMobile) return 'text-black';
+
+    if (!isMobile && pastHero) return 'text-black';
+    else return 'text-white';
+
+    // const linkColor = isMobile ? 'text-black' : 'text-white';
   };
 
   return (
@@ -126,7 +93,7 @@ const Navbar = () => {
               <button
                 role="button"
                 aria-label="Open the menu"
-                className={`${linkColor} ${hoverColor}`}
+                className={`${linkColor(true)} ${hoverColor}`}
                 onClick={handleNavMenu}
               >
                 {state ? (
@@ -174,7 +141,7 @@ const Navbar = () => {
                 return (
                   <li
                     key={idx}
-                    className={`duration-150 transition-all ${linkColor} ${hoverColor}`}
+                    className={`duration-150 transition-all ${linkColor()} ${hoverColor}`}
                   >
                     <Link href={item.path} className="block">
                       {item.title}

@@ -8,7 +8,7 @@ const CTA = () => (
           className="text-gray-800 text-3xl font-semibold sm:text-4xl"
           id="oss"
         >
-          Vous avze un projet <span className="text-myorange-100"> Web ?</span>
+          Vous avez un projet <span className="text-myorange-100"> Web ?</span>
           🚀
         </h2>
         <p className="block mt-3 text-gray-600">

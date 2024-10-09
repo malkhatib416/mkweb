@@ -98,12 +98,13 @@
 
 html{
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scroll-padding-top: 140px;
+
 }
 
 .hero-wrapper{
   position: relative;
-  background-image: url('/hero-bg.jpg');
+  background-image: url('/hero-bg.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

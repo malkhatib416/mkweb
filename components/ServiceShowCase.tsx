@@ -53,10 +53,8 @@ export default function ServiceShowCase() {
       className="custom-screen flex flex-col lg:flex-row items-start justify-between text-gray-600"
       id="services"
     >
-      <div className="mb-8 pr-8 w-3/4">
-        <h1 className="text-4xl font-bold mb-4">
-          Découvrez l&apos;ensemble de nos expertises
-        </h1>
+      <div className="mb-8 pr-8 w-full md:w-3/4">
+        <h1 className="text-4xl font-bold mb-4">Nos services</h1>
         <p className="mb-6 ">
           Que votre objectif soit de créer un site innovant, de lancer une
           boutique en ligne, d&apos;améliorer votre marketing digital ou votre
@@ -69,7 +67,7 @@ export default function ServiceShowCase() {
           stratégies SEO efficaces pour renforcer votre présence en ligne.
         </p>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {services.map((service, index) => (
           <Card key={index} className="   p-6">
             <div className="mb-4">{service.icon}</div>
