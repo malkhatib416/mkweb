@@ -22,7 +22,8 @@ const MKWEbLogo = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname, searchParams]);
 
-  const imgPath = pastHero ? '/logo.png' : '/logo-white.png';
+  const imgPath =
+    pastHero || pathname !== '/' ? '/logo.png' : '/logo-white.png';
 
   return (
     <Link href="/#hero-wrapper" className="flex items-center gap-3">

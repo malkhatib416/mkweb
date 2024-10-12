@@ -49,8 +49,10 @@ const Navbar = () => {
   };
 
   const hoverColor = pastHero ? 'hover:text-black/80' : 'hover:text-white/80';
+  const inHomePage = pathname === '/';
 
   const linkColor = (whiteOnMobile = false) => {
+    if (!inHomePage) return 'text-black hover:text-black/80'; // Handle other pages
     if (whiteOnMobile && !pastHero) return 'text-white hover:text-white/80';
     if (width <= 768) return 'text-black hover:text-black/80'; // Handle mobile
     return pastHero
@@ -130,7 +132,7 @@ const Navbar = () => {
               ))}
               <li>
                 <NavLink
-                  href="/start"
+                  href="/nous-contacter"
                   className="block font-medium text-sm text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100-900 md:inline"
                 >
                   Nous Contacter

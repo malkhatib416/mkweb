@@ -23,7 +23,7 @@ const CTA = () => (
         </p>
         <div className="mt-8">
           <NavLink
-            href="/start"
+            href="/nous-contacter"
             className="text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100 "
           >
             Nous contacter
