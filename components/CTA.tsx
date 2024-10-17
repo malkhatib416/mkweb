@@ -8,7 +8,7 @@ const CTA = () => (
           className="text-gray-800 text-3xl font-semibold sm:text-4xl"
           id="oss"
         >
-          Vous avez un projet <span className="text-myorange-200"> Web ?</span>
+          Vous avez un projet <span className="text-myorange-100"> Web ?</span>
           🚀
         </h2>
         <p className="block mt-3 text-gray-600">
@@ -16,7 +16,7 @@ const CTA = () => (
           vous
           <span className="block">
             dans{' '}
-            <span className="text-myorange-200 font-bold">
+            <span className="text-myorange-100 font-bold">
               un délai de 24h !
             </span>
           </span>
