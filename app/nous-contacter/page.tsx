@@ -11,14 +11,13 @@ import React, { useState } from 'react';
 
 const defaultData = () => {
   return {
-    nom: 'Al-Khatib',
-    prenom: 'Mohamad',
-    email: 'alkhatib.m804@gmail.com',
-    entreprise: 'MK-web form',
-    telephone: '06 46 77 78 04',
-    sujet: "Demande d'informations",
-    message:
-      'Bonjour,\nJe suis Mohamad Al-Khatib, développeur web freelance. Je vous contacte pour vous demander des informations supplémentaires sur vos services, \n\n Cordialement,',
+    nom: '',
+    prenom: '',
+    email: '',
+    entreprise: '',
+    telephone: '',
+    sujet: '',
+    message: '',
   };
 };
 
@@ -121,7 +120,7 @@ export default function NousContacterPage() {
                   id="nom"
                   placeholder="Nom"
                   defaultValue={formData.nom}
-                  onKeyDown={(e) =>
+                  onKeyDown={(e: any) =>
                     setFormData({ ...formData, nom: e.target.value })
                   }
                 />
@@ -131,7 +130,7 @@ export default function NousContacterPage() {
                   id="prenom"
                   placeholder="Prénom"
                   defaultValue={formData.prenom}
-                  onKeyDown={(e) =>
+                  onKeyDown={(e: any) =>
                     setFormData({ ...formData, prenom: e.target.value })
                   }
                 />
@@ -143,7 +142,7 @@ export default function NousContacterPage() {
                 type="email"
                 placeholder="Email"
                 defaultValue={formData.email}
-                onKeyDown={(e) =>
+                onKeyDown={(e: any) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
               />
@@ -153,7 +152,7 @@ export default function NousContacterPage() {
                 id="entreprise"
                 placeholder="Entreprise"
                 defaultValue={formData.entreprise}
-                onKeyDown={(e) =>
+                onKeyDown={(e: any) =>
                   setFormData({ ...formData, entreprise: e.target.value })
                 }
               />
@@ -164,7 +163,7 @@ export default function NousContacterPage() {
                 type="tel"
                 placeholder="Numéro de téléphone"
                 defaultValue={formData.telephone}
-                onKeyDown={(e) =>
+                onKeyDown={(e: any) =>
                   setFormData({ ...formData, telephone: e.target.value })
                 }
               />
@@ -175,7 +174,7 @@ export default function NousContacterPage() {
                 id="sujet"
                 placeholder="Sujet"
                 defaultValue={formData.sujet}
-                onKeyDown={(e) =>
+                onKeyDown={(e: any) =>
                   setFormData({ ...formData, sujet: e.target.value })
                 }
               />
@@ -186,7 +185,7 @@ export default function NousContacterPage() {
                 placeholder="Message"
                 rows={4}
                 defaultValue={formData.message}
-                onKeyDown={(e) =>
+                onKeyDown={(e: any) =>
                   setFormData({ ...formData, message: e.target.value })
                 }
               />

@@ -10,7 +10,7 @@ import useWindowSize from '@/hooks/useWindowSize';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [pastHero, setPastHero] = useState(false);
-  const [width, height] = useWindowSize(); // Automatically detects window size
+  const [width] = useWindowSize(); // Automatically detects window size
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
