@@ -11,6 +11,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Suspense } from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -61,6 +62,7 @@ export default function RootLayout({
           <Analytics />
           <Footer />
           <Toaster />
+          <GoogleAnalytics gaId="G-9NPYEM4FGH" />
         </ReCaptchaProvider>
       </body>
     </html>
