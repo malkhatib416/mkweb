@@ -10,6 +10,7 @@ import Transition from '@/components/Transition';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Suspense } from 'react';
 import { Toaster } from '@/components/ui/toaster';
+import { ReCaptchaProvider } from 'next-recaptcha-v3';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -49,16 +50,18 @@ export default function RootLayout({
         <PlausibleProvider domain="mk-web.fr" />
       </head>
       <body className={inter.className}>
-        <Suspense>
-          <Navbar />
-        </Suspense>
-        <Transition>
-          <ThemeProvider>{children}</ThemeProvider>
-        </Transition>
-        <ScrollToTopButton />
-        <Analytics />
-        <Footer />
-        <Toaster />
+        <ReCaptchaProvider>
+          <Suspense>
+            <Navbar />
+          </Suspense>
+          <Transition>
+            <ThemeProvider>{children}</ThemeProvider>
+          </Transition>
+          <ScrollToTopButton />
+          <Analytics />
+          <Footer />
+          <Toaster />
+        </ReCaptchaProvider>
       </body>
     </html>
   );

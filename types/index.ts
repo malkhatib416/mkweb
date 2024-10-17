@@ -6,4 +6,5 @@ export interface IContactForm {
   telephone: string;
   sujet: string;
   message: string;
+  recaptchaToken: string;
 }

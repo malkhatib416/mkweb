@@ -13,6 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Form, FormField } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
+import { useReCaptcha } from 'next-recaptcha-v3';
 
 const contactMail = async (formData: IContactForm) => {
   try {
@@ -20,6 +21,7 @@ const contactMail = async (formData: IContactForm) => {
       email: EMAIL!,
       subject: formData.sujet,
       text: formData.message,
+      recaptchaToken: formData.recaptchaToken,
       html: `
   <h1>Informations de contact</h1>
   <ul>
@@ -48,6 +50,7 @@ const confirmationMail = async (formData: IContactForm) => {
       email: formData.email,
       subject: 'Confirmation de réception',
       text: `Bonjour ${formData.prenom},\nNous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.\n\nCordialement,`,
+      recaptchaToken: formData.recaptchaToken,
       html: `
     <h1>Bonjour ${formData.prenom},</h1>
     <p>Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.</p>
@@ -63,6 +66,7 @@ const confirmationMail = async (formData: IContactForm) => {
 export default function NousContacterPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { executeRecaptcha } = useReCaptcha();
 
   const formSchema = z.object({
     nom: z.string(),
@@ -89,9 +93,15 @@ export default function NousContacterPage() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      const tokenContactMail = await executeRecaptcha('contact_mail');
+      const tokenConfirmationMail = await executeRecaptcha('confirmation_mail');
+
       setIsSubmitting(true);
-      await contactMail(values);
-      await confirmationMail(values);
+      await contactMail({ ...values, recaptchaToken: tokenContactMail });
+      await confirmationMail({
+        ...values,
+        recaptchaToken: tokenConfirmationMail,
+      });
       toast({
         title: 'Message envoyé !',
         description:
