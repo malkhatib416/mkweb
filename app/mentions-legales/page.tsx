@@ -24,7 +24,7 @@ const MentionLegalPage = () => {
       </div>
 
       <div>
-        <h1 className="text-xl font-bold">HEBERGEMENT</h1>
+        <h2 className="text-xl font-bold">HEBERGEMENT</h2>
         <p>
           Le site{' '}
           <a href="https://mk-web.fr/" target="_blank">
@@ -37,7 +37,7 @@ const MentionLegalPage = () => {
       </div>
 
       <div>
-        <h1 className="text-xl font-bold">CRÉATION</h1>
+        <h3 className="text-xl font-bold">CRÉATION</h3>
         <p>EI Mohamad AL-KHATIB</p>
       </div>
     </main>
