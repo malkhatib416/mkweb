@@ -9,6 +9,7 @@ import ScrollToTopButton from '@/components/ScrollToTopButton';
 import Transition from '@/components/Transition';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Suspense } from 'react';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -57,6 +58,7 @@ export default function RootLayout({
         <ScrollToTopButton />
         <Analytics />
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

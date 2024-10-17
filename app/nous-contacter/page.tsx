@@ -6,20 +6,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { IContactForm } from '@/types';
 import { ADDRESS, EMAIL, PHONE } from '@/utils/contactInfo';
 import { sendMail } from '@/utils/send-mail';
-import { Mail, Phone, Building } from 'lucide-react';
+import { Mail, Phone, Building, LoaderCircle } from 'lucide-react';
 import React, { useState } from 'react';
-
-const defaultData = () => {
-  return {
-    nom: '',
-    prenom: '',
-    email: '',
-    entreprise: '',
-    telephone: '',
-    sujet: '',
-    message: '',
-  };
-};
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { Form, FormField } from '@/components/ui/form';
+import { useToast } from '@/hooks/use-toast';
 
 const contactMail = async (formData: IContactForm) => {
   try {
@@ -45,7 +38,7 @@ const contactMail = async (formData: IContactForm) => {
   `,
     });
   } catch (error) {
-    console.error('Error sending contact mail: ', error);
+    throw new Error('Error sending contact mail');
   }
 };
 
@@ -68,19 +61,53 @@ const confirmationMail = async (formData: IContactForm) => {
 };
 
 export default function NousContacterPage() {
-  const [formData, setFormData] = useState<IContactForm>(defaultData());
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const formSchema = z.object({
+    nom: z.string(),
+    prenom: z.string(),
+    email: z.string().email(),
+    entreprise: z.string(),
+    telephone: z.string(),
+    sujet: z.string(),
+    message: z.string(),
+  });
 
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      nom: '',
+      prenom: '',
+      email: '',
+      entreprise: '',
+      telephone: '',
+      sujet: '',
+      message: '',
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await contactMail(formData);
-      await confirmationMail(formData);
+      setIsSubmitting(true);
+      await contactMail(values);
+      await confirmationMail(values);
+      toast({
+        title: 'Message envoyé !',
+        description:
+          'Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.',
+      });
+      form.reset();
     } catch (error) {
       console.error('Error sending email: ', error);
+      toast({
+        title: 'Erreur',
+        description:
+          "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer plus tard.",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setFormData(defaultData());
   };
 
   return (
@@ -113,90 +140,113 @@ export default function NousContacterPage() {
             </div>
           </div>
 
-          <form className="space-y-4" onSubmit={formHandler}>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Input
-                  id="nom"
-                  placeholder="Nom"
-                  defaultValue={formData.nom}
-                  onKeyDown={(e: any) =>
-                    setFormData({ ...formData, nom: e.target.value })
-                  }
+          <Form {...form}>
+            <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <FormField
+                  name="nom"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      className="w-full"
+                      id="nom"
+                      placeholder="Nom"
+                      {...field}
+                    />
+                  )}
                 />
-              </div>
-              <div>
-                <Input
-                  id="prenom"
-                  placeholder="Prénom"
-                  defaultValue={formData.prenom}
-                  onKeyDown={(e: any) =>
-                    setFormData({ ...formData, prenom: e.target.value })
-                  }
-                />
-              </div>
-            </div>
-            <div>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Email"
-                defaultValue={formData.email}
-                onKeyDown={(e: any) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <Input
-                id="entreprise"
-                placeholder="Entreprise"
-                defaultValue={formData.entreprise}
-                onKeyDown={(e: any) =>
-                  setFormData({ ...formData, entreprise: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <Input
-                id="telephone"
-                type="tel"
-                placeholder="Numéro de téléphone"
-                defaultValue={formData.telephone}
-                onKeyDown={(e: any) =>
-                  setFormData({ ...formData, telephone: e.target.value })
-                }
-              />
-            </div>
 
-            <div>
-              <Input
-                id="sujet"
-                placeholder="Sujet"
-                defaultValue={formData.sujet}
-                onKeyDown={(e: any) =>
-                  setFormData({ ...formData, sujet: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <Textarea
-                id="message"
-                placeholder="Message"
-                rows={4}
-                defaultValue={formData.message}
-                onKeyDown={(e: any) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full bg-gray-800 hover:bg-gray-900 text-white"
-            >
-              Envoyer
-            </Button>
-          </form>
+                <FormField
+                  name="prenom"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      id="prenom"
+                      className="w-full"
+                      placeholder="Prénom"
+                      {...field}
+                    />
+                  )}
+                />
+
+                <FormField
+                  name="email"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Email"
+                      {...field}
+                    />
+                  )}
+                />
+                <FormField
+                  name="telephone"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      id="telephone"
+                      type="tel"
+                      placeholder="Numéro de téléphone"
+                      {...field}
+                    />
+                  )}
+                />
+
+                <FormField
+                  name="entreprise"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      className="md:col-span-2"
+                      id="entreprise"
+                      placeholder="Entreprise"
+                      {...field}
+                    />
+                  )}
+                />
+
+                <FormField
+                  name="sujet"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Input
+                      id="sujet"
+                      className="md:col-span-2"
+                      placeholder="Sujet"
+                      {...field}
+                    />
+                  )}
+                />
+
+                <FormField
+                  name="message"
+                  control={form.control}
+                  render={({ field }) => (
+                    <Textarea
+                      id="message"
+                      placeholder="Message"
+                      className="md:col-span-2"
+                      rows={4}
+                      {...field}
+                    />
+                  )}
+                />
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full bg-gray-800 hover:bg-gray-900 text-white"
+              >
+                {isSubmitting ? (
+                  <LoaderCircle className="animate-spin" />
+                ) : (
+                  'Envoyer'
+                )}
+              </Button>
+            </form>
+          </Form>
         </div>
       </div>
     </main>

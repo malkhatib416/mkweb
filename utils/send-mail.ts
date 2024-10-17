@@ -26,32 +26,32 @@ export async function sendMail(params: {
 
   try {
     const isVerified = await transporter.verify();
+    console.log({ isVerified });
     if (!isVerified) {
       throw new Error("SMTP Server Not Verified");
     }
   } catch (error) {
-    console.error(
-      "Something Went Wrong",
-      SMTP_SERVER_USERNAME,
-      SMTP_SERVER_PASSWORD,
-      error
-    );
-    return;
+    console.error("Something Went Wrong", error);
+    throw new Error("SMTP Server Not Verified: " + error);
   }
-  const info = await transporter.sendMail({
-    from: {
-      name: "MK-Web Formulaire de Contact",
-      address: EMAIL,
-    },
-    to: {
-      name: "MK-Web Formulaire de Contact",
-      address: email,
-    },
-    subject: subject,
-    text: text,
-    html: html ? html : "",
-  });
-  console.log("Message Sent", info);
-  console.log("Mail sent to", SITE_MAIL_RECIEVER);
-  return info;
+  try {
+    const info = await transporter.sendMail({
+      from: {
+        name: "MK-Web Formulaire de Contact",
+        address: EMAIL,
+      },
+      to: {
+        name: "MK-Web Formulaire de Contact",
+        address: email,
+      },
+      subject: subject,
+      text: text,
+      html: html ? html : "",
+    });
+    console.log("Message Sent", info);
+    console.log("Mail sent to", SITE_MAIL_RECIEVER);
+    return info;
+  } catch (e) {
+    throw new Error("Error sending mail: " + e);
+  }
 }
