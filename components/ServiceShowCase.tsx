@@ -54,7 +54,9 @@ export default function ServiceShowCase() {
       id="services"
     >
       <div className="mb-8 pr-8 w-full md:w-3/4">
-        <h1 className="text-4xl font-bold mb-4">Nos services</h1>
+        <h1 className="text-4xl font-bold mb-4 text-myorange-200">
+          Nos services
+        </h1>
         <p className="mb-6 ">
           Que votre objectif soit de créer un site innovant, de lancer une
           boutique en ligne, d&apos;améliorer votre marketing digital ou votre

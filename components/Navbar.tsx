@@ -67,7 +67,9 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`fixed top-0 w-full z-10 ${pastHero ? 'bg-white' : ''}`}>
+    <header
+      className={`fixed top-0 w-full z-10 ${pastHero ? 'bg-white shadow-sm' : ''} ${!inHomePage ? 'shadow-sm' : ''}`}
+    >
       <nav
         className={`w-full md:static md:text-sm ${isMenuOpen ? 'fixed h-full' : ''}`}
       >

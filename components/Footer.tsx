@@ -49,7 +49,7 @@ const Footer = () => (
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/nous-contacter"
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
                 >
                   Contact
