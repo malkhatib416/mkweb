@@ -6,6 +6,7 @@ import NavLink from './NavLink';
 import { usePathname, useSearchParams } from 'next/navigation';
 import MKWEbLogo from './Icons/MKWebLogo';
 import useWindowSize from '@/hooks/useWindowSize';
+import { Suspense } from 'react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -72,7 +73,9 @@ const Navbar = () => {
       >
         <div className="items-center mx-auto md:flex custom-screen">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <MKWEbLogo />
+            <Suspense>
+              <MKWEbLogo />
+            </Suspense>
             <div className="md:hidden">
               <button
                 role="button"

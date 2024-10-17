@@ -2,6 +2,7 @@ import React from 'react';
 import MKWEbLogo from './Icons/MKWebLogo';
 import Link from 'next/link';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { Suspense } from 'react';
 
 const SubFooter = () => {
   const date = new Date();
@@ -21,7 +22,9 @@ const Footer = () => (
       <div className="custom-screen">
         <div className="mt-10 py-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4">
           <div className="w-full hidden md:block">
-            <MKWEbLogo />
+            <Suspense>
+              <MKWEbLogo />
+            </Suspense>
           </div>
           <div className="w-full  md:text-left">
             <p className="text-gray-600 font-bold text-lg mb-4 md:mb-0">

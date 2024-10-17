@@ -8,6 +8,7 @@ import PlausibleProvider from 'next-plausible';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import Transition from '@/components/Transition';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -47,7 +48,9 @@ export default function RootLayout({
         <PlausibleProvider domain="mk-web.fr" />
       </head>
       <body className={inter.className}>
-        <Navbar />
+        <Suspense>
+          <Navbar />
+        </Suspense>
         <Transition>
           <ThemeProvider>{children}</ThemeProvider>
         </Transition>
