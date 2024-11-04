@@ -1,5 +1,5 @@
-import Navbar from '@/components/Navbar';
 import './globals.css';
+import Navbar from '@/components/Navbar';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
@@ -19,8 +19,7 @@ let title = 'MK-Web - Développeur Web Freelance à Chartres';
 let description =
   'Développeur Web Freelance à Chartres. Création de sites internet, applications web, référencement et maintenance de sites web.';
 let url = 'https://www.mk-web.fr';
-let ogimage = 'https://www.mk-web.fr/og-image.png';
-let sitename = 'qrGPT.io';
+let sitename = 'MK-Web';
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
@@ -29,8 +28,28 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  robots: 'follow, index',
+  keywords: [
+    'Développeur Web',
+    'Freelance',
+    'Chartres',
+    'Création de sites internet',
+    'Applications web',
+    'Référencement',
+    'Maintenance de sites web',
+    'MK-Web',
+    'Agence Web',
+    'Webmaster Freelance',
+    'Développeur Web Freelance',
+    'Développeur Web Chartres',
+    'Création de sites internet Chartres',
+    'Applications web Chartres',
+    'Référencement Chartres',
+    'Maintenance de sites web Chartres',
+    'Agence Web Chartres',
+    'Webmaster Freelance Chartres',
+  ],
   openGraph: {
-    images: [ogimage],
     title,
     description,
     url: url,
