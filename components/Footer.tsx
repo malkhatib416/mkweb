@@ -1,7 +1,7 @@
 import React from 'react';
 import MKWEbLogo from './Icons/MKWebLogo';
 import Link from 'next/link';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { Suspense } from 'react';
 
 const SubFooter = () => {
@@ -24,6 +24,13 @@ const Footer = () => (
           <div className="w-full hidden md:block">
             <Suspense>
               <MKWEbLogo />
+              <Link
+                href="https://www.linkedin.com/in/mohamad-alkhatib416/"
+                className=" inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-1.5 rounded-md"
+                target="_blank"
+              >
+                <Linkedin />
+              </Link>
             </Suspense>
           </div>
           <div className="w-full  md:text-left">
