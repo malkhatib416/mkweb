@@ -15,9 +15,9 @@ const CTA = () => (
           Contactez-nous via notre formulaire de contact. Nous reviendrons vers
           vous
           <span className="block">
-            dans{' '}
+            {' '}
             <span className="text-myorange-100 font-bold">
-              moins de 24 heures !
+              en moins de 24 heures !
             </span>
           </span>
         </p>
