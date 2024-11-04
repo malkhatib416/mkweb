@@ -12,12 +12,12 @@ const CTA = () => (
           🚀
         </h2>
         <p className="block mt-3 text-gray-600">
-          Contactez-nous via notre formulaire de contact, nous reviendrons vers
+          Contactez-nous via notre formulaire de contact. Nous reviendrons vers
           vous
           <span className="block">
             dans{' '}
             <span className="text-myorange-100 font-bold">
-              un délai de 24h !
+              moins de 24 heures !
             </span>
           </span>
         </p>
