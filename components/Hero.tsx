@@ -21,7 +21,7 @@ export default function Hero() {
               href="/nous-contacter"
               className="text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100 "
             >
-              Nous contacter
+              Demander un devis
             </NavLink>
           </div>
           <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 pt-10"></div>
