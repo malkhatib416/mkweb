@@ -26,7 +26,7 @@ const MKWEbLogo = () => {
     pastHero || pathname !== '/' ? '/logo.png' : '/logo-white.png';
 
   return (
-    <Link href="/#hero-wrapper" className="flex items-center gap-3">
+    <Link href="/#main" className="flex items-center gap-3">
       <Image src={imgPath} alt="logo" width={120} height={120} />
     </Link>
   );

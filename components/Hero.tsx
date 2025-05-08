@@ -13,7 +13,7 @@ import NavLink from './NavLink';
 
 export default function Hero() {
   return (
-    <section className="hero-wrapper" id="hero-wrapper">
+    <section className="hero-wrapper" id="main">
       <div className="custom-screen pt-28 text-white h-screen flex items-center justify-center">
         <div className="space-y-8 max-w-4xl mx-auto text-center">
           <motion.div
@@ -57,7 +57,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             className="flex items-center justify-center gap-4 text-sm text-white/80"
           >
             <span>✓ Réponse sous 24h</span>

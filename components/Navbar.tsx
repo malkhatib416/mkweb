@@ -17,7 +17,7 @@ const Navbar = () => {
   const searchParams = useSearchParams();
 
   const navigation = [
-    { title: 'Accueil', path: '/#hero-wrapper' },
+    { title: 'Accueil', path: '/#main' },
     { title: 'Services', path: '/#services' },
   ];
 
