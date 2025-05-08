@@ -3,6 +3,7 @@ import MKWEbLogo from './Icons/MKWebLogo';
 import Link from 'next/link';
 import { Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { Suspense } from 'react';
+import Image from 'next/image';
 
 const SubFooter = () => {
   const date = new Date();
@@ -26,12 +27,21 @@ const Footer = () => (
               <MKWEbLogo />
               <Link
                 href="https://www.linkedin.com/in/mohamad-alkhatib416/"
-                className=" inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-1.5 rounded-md"
+                className=" inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-1.5 rounded-md me-2"
                 target="_blank"
               >
                 <Linkedin />
               </Link>
+
+              <Link
+                href="https://www.malt.fr/profile/mohamadalkhatib"
+                className="inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#FC5657] p-1.5 rounded-md"
+                target="_blank"
+              >
+                <Image src="/malt.svg" alt="Malt" width={24} height={24} />
+              </Link>
             </Suspense>
+
           </div>
           <div className="w-full  md:text-left">
             <p className="text-gray-600 font-bold text-lg mb-4 md:mb-0">
