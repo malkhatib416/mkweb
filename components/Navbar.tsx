@@ -19,6 +19,7 @@ const Navbar = () => {
   const navigation = [
     { title: 'Accueil', path: '/#main' },
     { title: 'Services', path: '/#services' },
+    { title: 'Blog', path: '/blog' },
   ];
 
   const handleState = () => {
