@@ -66,11 +66,7 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
         </p>
         {/* Content */}
         <div className="prose prose-lg max-w-none">
-          {post.content.split('\n\n').map((paragraph, idx) => (
-            <p key={idx} className="text-lg leading-relaxed mb-6">
-              {paragraph}
-            </p>
-          ))}
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
       </div>
     </div>
