@@ -21,7 +21,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         }`}
       >
-        All
+        Tout
       </button>
       {categories.map((category) => (
         <button
@@ -41,3 +41,16 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
 };
 
 export default CategoryFilter;
+
+// Helper to parse color string from data/index.ts
+function parseCategoryColor(colorString: string) {
+  const style: Record<string, string> = {};
+  colorString.split(';').forEach((rule) => {
+    const [key, value] = rule.split(':').map((s) => s && s.trim());
+    if (key && value) {
+      if (key === 'background') style.background = value;
+      else if (key === 'color') style.color = value;
+    }
+  });
+  return style;
+}
