@@ -3,7 +3,6 @@ import { IContactForm } from "@/types";
 class ContactService {
   async sendEmail(params: IContactForm) {
     try {
-      console.log({ params });
       const response = await fetch("/api/resend", {
         method: "POST",
         headers: {
