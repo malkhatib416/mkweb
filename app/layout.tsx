@@ -75,9 +75,7 @@ export default function RootLayout({
             <Navbar />
           </Suspense>
           <Transition>
-            <ThemeProvider>
-              <main className="sm:mt-12">{children}</main>
-            </ThemeProvider>
+            <ThemeProvider>{children}</ThemeProvider>
           </Transition>
           <ScrollToTopButton />
           <Analytics />
