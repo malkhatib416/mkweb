@@ -121,7 +121,7 @@ export default function NousContacterPage() {
   };
 
   return (
-    <main className="h-screen md:h-[73vh] sm:h-[120vh] flex justify-center items-center mt-16 sm:mt-12">
+    <main className="h-screen md:h-[73vh] flex justify-center items-center mt-16">
       <div className="max-w-7xl  px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-8 ">
