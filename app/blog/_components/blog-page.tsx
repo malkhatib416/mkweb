@@ -72,7 +72,7 @@ export default function BlogPage() {
       <main className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Sidebar: Filters */}
-          <aside className="lg:w-1/4 w-full mb-8 lg:mb-0">
+          <aside className="lg:w-1/4 w-full mb-8 sm:mb-4 sm:mt-12 lg:mb-0">
             <div className="sticky top-24 space-y-8">
               <SearchBar
                 searchTerm={searchTerm}
@@ -86,7 +86,7 @@ export default function BlogPage() {
           </aside>
 
           {/* Blog Cards */}
-          <section className="flex-1 mt-12">
+          <section className="flex-1 lg:mt-12">
             {/* Results Count */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
