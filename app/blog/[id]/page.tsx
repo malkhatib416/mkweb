@@ -24,7 +24,7 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-white lg:mt-12 sm:mt-12">
+    <div className="min-h-screen bg-white lg:mt-12 sm:mt-20">
       <div className="max-w-3xl mx-auto px-6 py-12">
         {/* Categories */}
         <div className="flex flex-wrap gap-2 mb-6">
