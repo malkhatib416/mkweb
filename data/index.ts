@@ -34,37 +34,134 @@ export const blogPosts: BlogPost[] = [
     title: "Guide simplifié : Comprendre le SEO et bien démarrer",
     description:
       "Un guide pratique pour comprendre les bases du SEO, optimiser votre site et attirer un trafic organique durable.",
-    content: `<p>Vous avez terminé votre site web, peaufiné le design et rédigé votre contenu… il est enfin temps de publier.<br>Mais ensuite ?<br>Bienvenue dans le monde du <strong>SEO</strong> — Search Engine Optimization ou référencement naturel.</p>
-<p>Ce guide simplifié vous permettra de comprendre les bases du SEO et vous donnera les clés pour positionner votre site efficacement dans les résultats de recherche.</p>
+    content: `
+<img src="/guide-seo-debutant.png" />
+<p>
+  Vous avez terminé votre site web, peaufiné le design et rédigé votre contenu…
+  il est enfin temps de publier.<br />Mais ensuite ?<br />Bienvenue dans le
+  monde du <strong>SEO</strong> — Search Engine Optimization ou référencement
+  naturel.
+</p>
+<p>
+  Ce guide simplifié vous permettra de comprendre les bases du SEO et vous
+  donnera les clés pour positionner votre site efficacement dans les résultats
+  de recherche.
+</p>
 <h3>🎯 Points clés</h3>
-<ul><li>Le SEO vise à améliorer la visibilité de votre site et à attirer du trafic organique (non payant).</li><li>Il comprend : la recherche de mots-clés, le SEO on-page, off-page et technique.</li><li>C’est un travail de long terme, qui nécessite de suivre vos performances, rester à jour et optimiser régulièrement votre contenu.</li></ul>
+<ul>
+  <li>
+    Le SEO vise à améliorer la visibilité de votre site et à attirer du trafic
+    organique (non payant).
+  </li>
+  <li>
+    Il comprend : la recherche de mots-clés, le SEO on-page, off-page et
+    technique.
+  </li>
+  <li>
+    C’est un travail de long terme, qui nécessite de suivre vos performances,
+    rester à jour et optimiser régulièrement votre contenu.
+  </li>
+</ul>
 <h3>🔍 Qu’est-ce que le SEO ?</h3>
-<p>C’est un ensemble de techniques permettant à votre site d’apparaître plus haut dans les résultats des moteurs de recherche comme Google. L’objectif : capter un maximum de trafic qualifié, gratuitement.</p>
+<p>
+  C’est un ensemble de techniques permettant à votre site d’apparaître plus haut
+  dans les résultats des moteurs de recherche comme Google. L’objectif : capter
+  un maximum de trafic qualifié, gratuitement.
+</p>
 <p>Les moteurs évaluent trois grands critères :</p>
-<ul><li>La pertinence du contenu</li><li>La crédibilité du site</li><li>L’expérience utilisateur (vitesse, accessibilité mobile…)</li></ul>
+<ul>
+  <li>La pertinence du contenu</li>
+  <li>La crédibilité du site</li>
+  <li>L’expérience utilisateur (vitesse, accessibilité mobile…)</li>
+</ul>
 <h3>📈 Pourquoi le SEO est-il important ?</h3>
-<ul><li>Générer un trafic gratuit et durable</li><li>Devenir une autorité dans votre domaine</li><li>Offrir une expérience utilisateur optimale</li><li>Devancer vos concurrents</li></ul>
+<ul>
+  <li>Générer un trafic gratuit et durable</li>
+  <li>Devenir une autorité dans votre domaine</li>
+  <li>Offrir une expérience utilisateur optimale</li>
+  <li>Devancer vos concurrents</li>
+</ul>
 <h3>🔑 Recherche de mots-clés : la base du SEO</h3>
-<p>Les mots-clés sont les expressions que vos utilisateurs tapent sur Google. Utilisez des outils comme Originality.ai, Ahrefs ou SEMrush pour :</p>
-<ul><li>Identifier les mots-clés pertinents</li><li>Analyser l’intention de recherche (informationnelle, transactionnelle, etc.)</li><li>Cibler des mots-clés de longue traîne plus précis et moins concurrentiels</li></ul>
+<p>
+  Les mots-clés sont les expressions que vos utilisateurs tapent sur Google.
+  Utilisez des outils comme Originality.ai, Ahrefs ou SEMrush pour :
+</p>
+<ul>
+  <li>Identifier les mots-clés pertinents</li>
+  <li>
+    Analyser l’intention de recherche (informationnelle, transactionnelle, etc.)
+  </li>
+  <li>
+    Cibler des mots-clés de longue traîne plus précis et moins concurrentiels
+  </li>
+</ul>
 <h3>🧱 SEO On-Page : Optimiser votre contenu</h3>
-<ul><li><strong>Titres & Méta-descriptions</strong> : incluez les mots-clés principaux dès le début</li><li><strong>Structure d’URL</strong> : claire, courte, avec des tirets</li><li><strong>Balises H1, H2, H3</strong> : pour organiser le contenu</li><li><strong>Liens internes</strong> : pour améliorer la navigation</li><li><strong>Optimisation des images</strong> : compression et balises ALT</li><li><strong>Responsive Design</strong> : indispensable pour le mobile</li></ul>
+<ul>
+  <li>
+    <strong>Titres & Méta-descriptions</strong> : incluez les mots-clés
+    principaux dès le début
+  </li>
+  <li><strong>Structure d’URL</strong> : claire, courte, avec des tirets</li>
+  <li><strong>Balises H1, H2, H3</strong> : pour organiser le contenu</li>
+  <li><strong>Liens internes</strong> : pour améliorer la navigation</li>
+  <li><strong>Optimisation des images</strong> : compression et balises ALT</li>
+  <li><strong>Responsive Design</strong> : indispensable pour le mobile</li>
+</ul>
 <h3>🔗 SEO Off-Page : Renforcer votre autorité</h3>
-<p>Le SEO off-page repose sur les backlinks — liens provenant d’autres sites crédibles :</p>
-<ul><li>Rédigez des articles invités</li><li>Collaborez avec des influenceurs ou journalistes</li><li>Créez du contenu unique à forte valeur ajoutée</li></ul>
-<p><em>Attention aux techniques de liens douteuses qui enfreignent les règles de Google.</em></p>
+<p>
+  Le SEO off-page repose sur les backlinks — liens provenant d’autres sites
+  crédibles :
+</p>
+<ul>
+  <li>Rédigez des articles invités</li>
+  <li>Collaborez avec des influenceurs ou journalistes</li>
+  <li>Créez du contenu unique à forte valeur ajoutée</li>
+</ul>
+<p>
+  <em
+    >Attention aux techniques de liens douteuses qui enfreignent les règles de
+    Google.</em
+  >
+</p>
 <h3>⚙️ SEO Technique : Optimisez les performances</h3>
-<ul><li>Vitesse de chargement : Google privilégie les sites rapides</li><li>Sitemap XML : pour faciliter l’indexation</li><li>Google Search Console : pour détecter les erreurs</li></ul>
+<ul>
+  <li>Vitesse de chargement : Google privilégie les sites rapides</li>
+  <li>Sitemap XML : pour faciliter l’indexation</li>
+  <li>Google Search Console : pour détecter les erreurs</li>
+</ul>
 <h3>📊 Suivi & Analyse</h3>
 <p>Le SEO est un processus continu. Utilisez ces outils :</p>
-<ul><li>Google Analytics : trafic, taux de rebond</li><li>Search Console : erreurs d’indexation</li><li>Originality.ai : scores d’optimisation</li><li>Ahrefs / SEMrush / Moz : suivi des mots-clés et backlinks</li></ul>
+<ul>
+  <li>Google Analytics : trafic, taux de rebond</li>
+  <li>Search Console : erreurs d’indexation</li>
+  <li>Originality.ai : scores d’optimisation</li>
+  <li>Ahrefs / SEMrush / Moz : suivi des mots-clés et backlinks</li>
+</ul>
 <p>Indicateurs importants à suivre :</p>
-<ul><li>Trafic organique</li><li>Classement des mots-clés</li><li>Taux de clics (CTR)</li><li>Taux de rebond</li><li>Autorité de domaine (DA)</li></ul>
+<ul>
+  <li>Trafic organique</li>
+  <li>Classement des mots-clés</li>
+  <li>Taux de clics (CTR)</li>
+  <li>Taux de rebond</li>
+  <li>Autorité de domaine (DA)</li>
+</ul>
 <h3>🚀 Prêt à vous lancer ?</h3>
-<p>Le SEO est un investissement sur le long terme. Les résultats ne sont pas immédiats, mais les efforts réguliers paient.</p>
-<p>Restez informé, optimisez votre contenu, et privilégiez la qualité à la quantité.<br>Continuez à apprendre sur le blog d’Originality.ai avec des articles comme :</p>
-<ul><li>Marketing de contenu B2B vs B2C</li><li>Utiliser l’IA pour le clustering de sujets</li><li>Optimisation des pages d’atterrissage</li><li>Meilleurs outils SEO basés sur l’IA</li></ul>
-<p><em>(une image sera ajoutée ici ultérieurement)</em></p>`,
+<p>
+  Le SEO est un investissement sur le long terme. Les résultats ne sont pas
+  immédiats, mais les efforts réguliers paient.
+</p>
+<p>
+  Restez informé, optimisez votre contenu, et privilégiez la qualité à la
+  quantité.<br />Continuez à apprendre sur le blog d’Originality.ai avec des
+  articles comme :
+</p>
+<ul>
+  <li>Marketing de contenu B2B vs B2C</li>
+  <li>Utiliser l’IA pour le clustering de sujets</li>
+  <li>Optimisation des pages d’atterrissage</li>
+  <li>Meilleurs outils SEO basés sur l’IA</li>
+</ul>
+`,
     categories: ["seo"],
     author: "Mohamad Al-Khatib",
     publishedAt: "2025-05-23",
