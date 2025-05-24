@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
@@ -30,7 +30,7 @@ export default function ServiceShowCase() {
       icon: <RefreshCw className="w-10 h-10 text-myorange-100" />,
       title: 'Refonte de site',
       description:
-        'Modernisation de votre site pour booster son impact, sa performance et l\'expérience utilisateur.',
+        "Modernisation de votre site pour booster son impact, sa performance et l'expérience utilisateur.",
     },
     {
       icon: <Cog className="w-10 h-10 text-myorange-100" />,
@@ -42,7 +42,7 @@ export default function ServiceShowCase() {
       icon: <Cloud className="w-10 h-10 text-myorange-100" />,
       title: 'Hébergement',
       description:
-        'Solutions d\'hébergement sécurisées et adaptées à vos besoins pour garantir la disponibilité de votre site.',
+        "Solutions d'hébergement sécurisées et adaptées à vos besoins pour garantir la disponibilité de votre site.",
     },
     {
       icon: <Lightbulb className="w-10 h-10 text-myorange-100" />,
@@ -69,7 +69,11 @@ export default function ServiceShowCase() {
             Mes Services
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Je vous accompagne à chaque étape de votre projet digital : création de site, e-commerce, refonte, maintenance, hébergement et innovation. Bénéficiez d'un accompagnement sur-mesure, de solutions fiables et d'une expertise reconnue pour booster votre présence en ligne.
+            Je vous accompagne à chaque étape de votre projet digital : création
+            de site, e-commerce, refonte, maintenance, hébergement et
+            innovation. Bénéficiez d'un accompagnement sur-mesure, de solutions
+            fiables et d'une expertise reconnue pour booster votre présence en
+            ligne.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -83,22 +87,23 @@ export default function ServiceShowCase() {
             >
               <Card className="p-8 flex flex-col items-start bg-white shadow-lg hover:shadow-xl transition-shadow h-full">
                 <div className="mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">{service.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                  {service.title}
+                </h3>
                 <p className="text-gray-600">{service.description}</p>
               </Card>
             </motion.div>
           ))}
         </div>
-        <div className="flex justify-center mt-12">
+        {/* <div className="flex justify-center mt-12">
           <NavLink
             href="/nous-contacter"
             className="text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100 "
           >
             Demander un devis
           </NavLink>
-        </div>
+        </div> */}
       </div>
     </section>
   );
 }
-
