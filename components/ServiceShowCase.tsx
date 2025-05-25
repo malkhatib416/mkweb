@@ -1,16 +1,15 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
+import { motion } from 'framer-motion';
 import {
-  Code,
-  ShoppingCart,
-  RefreshCw,
-  Cog,
   Cloud,
+  Code,
+  Cog,
   Lightbulb,
+  RefreshCw,
+  ShoppingCart,
 } from 'lucide-react';
-import NavLink from './NavLink';
 
 export default function ServiceShowCase() {
   const services = [

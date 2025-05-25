@@ -1,10 +1,10 @@
 import { blogPosts, categories } from '@/data';
 import { notFound } from 'next/navigation';
 import { User, Calendar, Clock } from 'lucide-react';
-import React from 'react';
+import React, { use } from 'react';
 
 interface BlogPostPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
@@ -12,7 +12,8 @@ export async function generateStaticParams() {
 }
 
 const BlogPostPage = ({ params }: BlogPostPageProps) => {
-  const post = blogPosts.find((p) => p.id === params.id);
+  const { id } = use(params);
+  const post = blogPosts.find((p) => p.id === id);
   if (!post) return notFound();
 
   const formatDate = (dateString: string) => {
