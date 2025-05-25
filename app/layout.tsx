@@ -65,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <head>
         <PlausibleProvider domain="mk-web.fr" />
         <GoogleTagManager gtmId="GTM-WCZ3V3QD" />
