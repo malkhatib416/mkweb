@@ -11,7 +11,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Suspense } from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -68,6 +68,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <PlausibleProvider domain="mk-web.fr" />
+        <GoogleTagManager gtmId="GTM-WCZ3V3QD" />
       </head>
       <body className={inter.className}>
         <ReCaptchaProvider>
