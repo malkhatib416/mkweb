@@ -2,6 +2,11 @@ import { BlogPost, Category } from "@/types";
 
 export const categories: Category[] = [
   { id: "seo", name: "SEO", color: "background: #FF7F50; color: #fff;" },
+  {
+    id: "refonte",
+    name: "Refonte",
+    color: "background: #4B9CD3; color: #fff;",
+  },
 ];
 
 export const blogPosts: BlogPost[] = [
@@ -166,5 +171,151 @@ export const blogPosts: BlogPost[] = [
     author: "Mohamad Al-Khatib",
     publishedAt: "2025-05-23",
     readTime: 7,
+  },
+  {
+    id: "10-erreurs-refonte-site-web",
+    title:
+      "10 erreurs courantes en refonte de site web (et comment les éviter)",
+    description:
+      "Découvrez les pièges les plus fréquents lors d’une refonte de site web et nos conseils concrets pour les prévenir.",
+    content: `
+<img src="/erreurs-refonte.png" />
+
+<p>
+  La refonte d’un site web est un projet stratégique, mais il est facile de
+  tomber dans certains pièges. Pour vous aider à mener une refonte sans
+  accrocs, voici les <strong>10 erreurs les plus courantes</strong> et
+  comment les éviter.
+</p>
+
+<h3>1. Négliger l’audit SEO avant la refonte</h3>
+<p>
+  Sans audit SEO préalable, vous risquez de perdre vos mots-clés performants,
+  vos backlinks et votre ancienneté dans les résultats de recherche. Pour
+  l’éviter :
+</p>
+<ul>
+  <li>Réalisez un audit complet du référencement actuel (pages à fort trafic, backlinks, positionnement de mots-clés).</li>
+  <li>Exportez la structure des URLs et notez leurs performances.</li>
+  <li>Prévoyez un <code>301</code> pour chaque URL modifiée afin de préserver le "jus SEO".</li>
+</ul>
+
+<h3>2. Oublier de sauvegarder et versionner l’existant</h3>
+<p>
+  Sans sauvegarde, une erreur technique peut effacer votre site actuel.
+  Sans contrôle de version, vous ne pourrez pas revenir en arrière. Pour éviter
+  ces risques :
+</p>
+<ul>
+  <li>Mettez en place un système de backup régulier (fichiers, base de données, configurations).</li>
+  <li>Utilisez Git pour versionner le code et créez une branche dédiée à la refonte.</li>
+  <li>Testez la restauration de vos sauvegardes avant la mise en production.</li>
+</ul>
+
+<h3>3. Ne pas établir d’objectifs clairs et mesurables</h3>
+<p>
+  Sans objectifs (réduction du temps de chargement, amélioration du taux de
+  conversion, hausse du trafic organique…), vous ne pourrez pas mesurer le
+  succès de la refonte. Pensez à :
+</p>
+<ul>
+  <li>Définir des KPIs précis (temps de chargement, taux de rebond, positionnement sur mots-clés).</li>
+  <li>Documenter les valeurs de référence avant la refonte (benchmarks).</li>
+  <li>Fixer des objectifs SMART (exemple : « réduire de 20 % le temps de chargement d’ici 3 mois »).</li>
+</ul>
+
+<h3>4. Modifier la structure des URLs sans plan de redirection</h3>
+<p>
+  Rouleau compresseur sur la structure d’URLs = 404 assurées pour les
+  visiteurs et Google. Pour l’éviter :
+</p>
+<ul>
+  <li>Listez toutes les URLs existantes via un crawler (Screaming Frog, etc.).</li>
+  <li>Établissez un mapping anciennes ➡ nouvelles URLs et configurez des redirections 301.</li>
+  <li>Vérifiez post-lancement qu’aucune 404 n’apparaît et que les redirections fonctionnent.</li>
+</ul>
+
+<h3>5. Ignorer l’impact sur le maillage interne et les liens externes</h3>
+<p>
+  Les changements d’URLs brisent vos liens internes et vos backlinks. Pour
+  limiter la casse :
+</p>
+<ul>
+  <li>Identifiez les pages les plus liées (audit du maillage interne).</li>
+  <li>Mettre à jour les liens internes après refonte.</li>
+  <li>Prévenez vos partenaires pour qu’ils mettent à jour les liens externes, ou configurez des 301 en dernier recours.</li>
+</ul>
+
+<h3>6. Négliger la performance (vitesse de chargement)</h3>
+<p>
+  Un site lent fait fuir les visiteurs et pénalise votre SEO. Pour garder la
+  fluidité :
+</p>
+<ul>
+  <li>Mesurez les Core Web Vitals (LCP, FID, CLS) avant et après la refonte.</li>
+  <li>Optimisez les images (compression, WebP, lazy loading).</li>
+  <li>Combinez et minifiez CSS/JS, chargez les scripts tiers en différé.</li>
+  <li>Activez un système de cache (Redis, CDN, plugins de cache CMS).</li>
+</ul>
+
+<h3>7. Omettre de tester sur différents navigateurs et appareils</h3>
+<p>
+  Un site qui fonctionne sur Chrome desktop ne l’est pas forcément sur Firefox
+  ou Safari mobile. Pour éviter les mauvaises surprises :
+</p>
+<ul>
+  <li>Définissez la liste des navigateurs et versions cibles (Chrome, Firefox, Safari, Edge, etc.).</li>
+  <li>Utilisez BrowserStack ou LambdaTest pour des tests automatisés cross-browser.</li>
+  <li>Faites des tests manuels sur smartphones et tablettes (iOS, Android).</li>
+  <li>Corrigez les préfixes CSS et ajoutez les polyfills nécessaires pour le JS moderne.</li>
+</ul>
+
+<h3>8. Sous‐estimer l’importance de l’expérience utilisateur (UX)</h3>
+<p>
+  Se concentrer uniquement sur la technologie ou le design esthétique sans se
+  mettre à la place de l’utilisateur peut générer une interface confuse. Pensez à :
+</p>
+<ul>
+  <li>Réaliser des tests utilisateurs sur une maquette interactive.</li>
+  <li>Concevoir une arborescence logique via un tri de cartes (card sorting).</li>
+  <li>Simplifier les parcours de conversion (CTA visibles, formulaires courts).</li>
+  <li>Réfléchir responsive dès la conception (touch targets, zone cliquable suffisante).</li>
+</ul>
+
+<h3>9. Ne pas impliquer toutes les parties prenantes</h3>
+<p>
+  Impliquer uniquement le chef de projet ou les devs sans consulter marketing,
+  commerciaux ou support porte le risque de ne pas répondre aux besoins métiers.
+  Pour éviter les incompréhensions :
+</p>
+<ul>
+  <li>Organisez des ateliers de cadrage avec toutes les équipes concernées.</li>
+  <li>Rédigez un cahier des charges détaillé (user stories, spécifications fonctionnelles).</li>
+  <li>Validez les wireframes/graphiques auprès des équipes avant développement.</li>
+  <li>Prévoyez une formation pour les nouveaux back-offices ou outils mis en place.</li>
+</ul>
+
+<h3>10. Oublier le suivi post-mise en ligne et la maintenance continue</h3>
+<p>
+  Lancer le site, c’est bien ; le faire évoluer et le protéger, c’est
+  indispensable. Pour une maintenance pérenne :
+</p>
+<ul>
+  <li>Activez Google Analytics, Search Console et un outil de monitoring des Core Web Vitals.</li>
+  <li>Planifiez des tests de performance réguliers (PageSpeed, GTmetrix).</li>
+  <li>Mettez en place un contrat de maintenance (mises à jour CMS/plugins, backups hors site).</li>
+  <li>Collectez les retours utilisateurs via un formulaire de feedback.</li>
+  <li>Analysez l’évolution des leads et ajustez le tunnel de conversion si nécessaire (A/B testing).</li>
+</ul>
+
+<p>
+  En évitant ces dix erreurs, vous maximisez vos chances d’obtenir une refonte
+  réussie, performante et alignée avec vos objectifs business.
+</p>
+`,
+    categories: ["refonte"],
+    author: "Mohamad Al-Khatib",
+    publishedAt: "2025-06-02",
+    readTime: 8,
   },
 ];
