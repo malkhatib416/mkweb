@@ -68,7 +68,7 @@ export default function RootLayout({
     <html lang="fr">
       <head>
         <PlausibleProvider domain="mk-web.fr" />
-        <GoogleTagManager gtmId="GTM-WCZ3V3QD" />
+        <GoogleTagManager gtmId={process.env.GTM_ID!} />
       </head>
       <body className={inter.className}>
         <ReCaptchaProvider>
