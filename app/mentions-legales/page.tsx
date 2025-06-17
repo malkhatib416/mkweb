@@ -11,8 +11,8 @@ const MentionLegalPage = () => {
   const url = 'https://alertjo.fr/';
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
+    <main className="min-h-[120vh] mt-12 ">
+      <div className="container mx-auto px-4 pt-16 pb-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">
