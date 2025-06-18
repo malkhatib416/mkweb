@@ -10,6 +10,11 @@ export const categories: Category[] = [
   { id: "tech", name: "Tech", color: "background: #6c63ff; color: #fff;" },
   { id: "nextjs", name: "Next.js", color: "background: #111827; color: #fff;" },
   {
+    id: "architecture",
+    name: "Architecture",
+    color: "background: #f59e0b; color: #fff;",
+  },
+  {
     id: "typescript",
     name: "TypeScript",
     color: "background: #007acc; color: #fff;",
@@ -426,6 +431,112 @@ export const blogPosts: BlogPost[] = [
     categories: ["tech", "nextjs", "typescript"],
     author: "Mohamad Al-Khatib",
     publishedAt: "2025-06-18",
+    readTime: 3,
+  },
+  {
+    id: "structure-nextjs-monorepo",
+    title:
+      "Structurer un projet Next.js en monorepo : bonnes pratiques et retour d’expérience",
+    description:
+      "Comment organiser un projet Next.js en architecture monorepo ? Avantages, outils, structure de dossiers, et conseils issus de mon expérience sur des applications à fort volume.",
+    content: `
+<img src="/nextjs-monorepo.png" alt="Structure monorepo Next.js" />
+
+<p>
+  Quand on développe une application Next.js qui va grandir dans le temps — avec plusieurs modules, backends, composants partagés — une architecture monorepo devient rapidement une nécessité. Après plusieurs projets, je partage ici mes bonnes pratiques pour structurer un projet Next.js en monorepo de manière propre, maintenable et scalable.
+</p>
+
+<h3>📦 Pourquoi passer au monorepo ?</h3>
+<ul>
+  <li><strong>Centraliser le front, l’API, les librairies partagées</strong></li>
+  <li><strong>Réduire la duplication de code</strong> (types, logique métier)</li>
+  <li><strong>Simplifier les mises à jour</strong> dans tous les modules</li>
+  <li><strong>Mieux gérer les permissions / CI / tests</strong></li>
+</ul>
+
+<p>Un monorepo bien structuré permet aussi de travailler à plusieurs sans écraser les autres modules.</p>
+
+<h3>🧰 Outils recommandés</h3>
+<ul>
+  <li><strong>Turborepo</strong> (ou Nx) pour le build en cache</li>
+  <li><strong>pnpm</strong> avec workspaces pour une résolution rapide des dépendances</li>
+  <li><strong>TypeScript</strong> avec <code>projectReferences</code></li>
+  <li><strong>ESLint + Prettier</strong> configurés au niveau racine</li>
+</ul>
+
+<h3>📁 Structure de base d’un monorepo Next.js</h3>
+
+<pre><code>my-app/
+├── apps/
+│   ├── web/         → l’app Next.js principale
+│   └── admin/       → interface d’administration
+├── packages/
+│   ├── ui/          → composants partagés (design system)
+│   ├── config/      → config Tailwind, ESLint, etc.
+│   └── db/          → ORM, schémas Drizzle, helpers DB
+├── .gitignore
+├── package.json
+├── turbo.json
+└── tsconfig.json
+</code></pre>
+
+<p>Chaque sous-projet peut avoir ses propres dépendances tout en accédant aux packages communs via les <code>workspaces</code>.</p>
+
+<h3>🔄 Exemple d’usage : composants partagés</h3>
+<p>
+  Le dossier <code>packages/ui</code> contient des composants comme <code>&lt;Button /&gt;</code>, <code>&lt;Card /&gt;</code>, <code>&lt;Layout /&gt;</code>, tous écrits en TypeScript et stylés avec Tailwind.
+</p>
+
+<pre><code>// packages/ui/button.tsx
+export function Button({ children }) {
+  return (
+    &lt;button className="rounded-xl px-4 py-2 bg-orange-500 text-white"&gt;
+      {children}
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+
+<p>Ensuite, tu l’importes depuis <code>apps/web</code> :</p>
+
+<pre><code>import { Button } from "@ui/button";
+</code></pre>
+
+<h3>🧪 Tests et typage partagé</h3>
+<p>
+  Dans <code>packages/types</code>, je place tous mes types partagés entre front, back et API. Ça permet d’avoir un typage strict, notamment pour les données récupérées avec Drizzle ORM.
+</p>
+
+<p>
+  Pour les tests, chaque app peut embarquer son propre Jest/Vitest, ou on peut mutualiser des helpers dans <code>packages/test-utils</code>.
+</p>
+
+<h3>🚀 Déploiement et CI/CD</h3>
+<ul>
+  <li><strong>Vercel</strong> supporte nativement Turborepo</li>
+  <li><strong>Github Actions</strong> ou <strong>Husk</strong> pour valider les PR</li>
+  <li>Déploiement par app (web, admin…) en ciblant uniquement ce qui a changé</li>
+</ul>
+
+
+<h3>🎯 Ce qu’un monorepo bien structuré change pour mes clients</h3>
+<ul>
+  <li>Maintenance facilitée, même avec plusieurs apps</li>
+  <li>Un seul point de vérité pour les types, composants, fonctions</li>
+  <li>Une cohérence visuelle et technique sur tout le produit</li>
+  <li>Une scalabilité réelle sur le long terme</li>
+</ul>
+
+<h3>📩 Tu veux une architecture propre dès le début ?</h3>
+<p>
+  J’accompagne les startups et les projets web ambitieux dans leur structuration technique, que ce soit en création ou refonte.<br />
+  👉 <a href="https://mk-web.fr#services">Voir mes services</a><br />
+  👉 <a href="mailto:mohamad@mk-web.fr">mohamad@mk-web.fr</a>
+</p>
+`,
+    categories: ["nextjs", "architecture", "typescript"],
+    author: "Mohamad Al-Khatib",
+    publishedAt: "2025-06-17",
     readTime: 3,
   },
 ];
