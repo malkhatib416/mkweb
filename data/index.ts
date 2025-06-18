@@ -1,11 +1,18 @@
 import { BlogPost, Category } from "@/types";
 
 export const categories: Category[] = [
-  { id: "seo", name: "SEO", color: "background: #FF7F50; color: #fff;" },
+  { id: "seo", name: "SEO", color: "background: #34a853; color: #fff;" },
   {
     id: "refonte",
     name: "Refonte",
-    color: "background: #4B9CD3; color: #fff;",
+    color: "background: #e67e22; color: #fff;",
+  },
+  { id: "tech", name: "Tech", color: "background: #6c63ff; color: #fff;" },
+  { id: "nextjs", name: "Next.js", color: "background: #111827; color: #fff;" },
+  {
+    id: "typescript",
+    name: "TypeScript",
+    color: "background: #007acc; color: #fff;",
   },
 ];
 
@@ -317,5 +324,108 @@ export const blogPosts: BlogPost[] = [
     author: "Mohamad Al-Khatib",
     publishedAt: "2025-06-02",
     readTime: 8,
+  },
+
+  {
+    id: "nextjs-drizzle-stack",
+    title:
+      "Pourquoi j’utilise Next.js 15 et Drizzle ORM pour créer des apps modernes",
+    description:
+      "Next.js 15 et Drizzle ORM forment une stack puissante, moderne et typée pour construire des applications web rapides, maintenables et scalables. Voici pourquoi je les utilise au quotidien.",
+    content: `
+<img src="/nextjs-drizzle.png" alt="Stack Next.js + Drizzle ORM" />
+
+<p>
+  Aujourd’hui, créer une application web performante, rapide et évolutive ne se limite plus à “faire du React”. En tant que développeur freelance spécialisé en JavaScript, j’ai testé de nombreux outils, frameworks et ORM au fil des projets. Mais depuis plusieurs mois, une combinaison s’est imposée naturellement dans mon workflow : <strong>Next.js 15 + Drizzle ORM</strong>.
+</p>
+
+<p>Dans cet article, je t’explique pourquoi ce stack me permet de livrer des applications modernes, robustes, et pourquoi c’est un vrai plus pour mes clients.</p>
+
+<h3>🚀 Next.js 15 : bien plus qu’un framework React</h3>
+<p>
+  Next.js est devenu un framework fullstack complet. Depuis la version 13, et encore plus avec la 15, il offre :
+</p>
+<ul>
+  <li><strong>App Router</strong> : architecture modulaire ultra claire</li>
+  <li><strong>Server & Client components</strong> : rendu optimisé</li>
+  <li><strong>Edge rendering & streaming</strong> : performance maximale</li>
+  <li><strong>Layouts imbriqués</strong> : pour des interfaces complexes et réactives</li>
+  <li><strong>SEO natif</strong> : gestion fine avec l’API <code>metadata.ts</code></li>
+</ul>
+<p>
+  Avec Next.js, je peux déployer une app performante dès les premiers jours, sans recoder toute l’architecture backend. C’est un vrai gain de temps.
+</p>
+
+<h3>🧩 Drizzle ORM : typage natif, requêtes claires, simplicité</h3>
+<p>
+  J’ai longtemps utilisé Prisma, Knex, Sequelize… mais Drizzle ORM a changé ma vision :
+</p>
+<ul>
+  <li><strong>Typage TypeScript natif</strong>, pas de génération de client</li>
+  <li><strong>Syntaxe proche du SQL</strong>, simple et lisible</li>
+  <li><strong>API .query</strong> très puissante pour structurer les requêtes</li>
+  <li><strong>Pas de magie noire</strong> : tout est explicite</li>
+</ul>
+
+<pre><code>const result = await db.query.users.findMany({
+  where: (u, { eq }) => eq(u.email, "client@example.com"),
+});
+</code></pre>
+
+<p>Le typage est strict mais confortable, la productivité est excellente, et surtout : <strong>le code est maintenable</strong>.</p>
+
+<h3>🔧 La puissance de la combinaison Next.js + Drizzle</h3>
+<p>
+  Ces deux outils s’intègrent parfaitement dans une architecture monorepo :
+</p>
+<ul>
+  <li>Typage TypeScript de bout en bout</li>
+  <li>Back et front dans le même repo</li>
+  <li>Performance + structure + rapidité de dev</li>
+  <li>API Routes ou Server Actions très faciles à implémenter</li>
+</ul>
+
+<p>Je peux ainsi développer une application fullstack complète, optimisée et lisible sans sacrifier la scalabilité ou la qualité du code.</p>
+
+<h3>🧪 Cas concret : AlertJO.fr</h3>
+<p>
+  Pour <a href="https://alertjo.fr" target="_blank">AlertJO.fr</a>, j’ai utilisé ce stack pour créer une app qui :
+</p>
+<ul>
+  <li>Scrape les PDF des journaux officiels</li>
+  <li>Extrait les noms et numéros de dossier</li>
+  <li>Permet une recherche rapide par numéro</li>
+  <li>Envoie des notifications email en cas de correspondance</li>
+</ul>
+
+<p>
+  Résultat : une app légère, rapide, maintenable, et un SEO bien structuré pour capter les bons utilisateurs.
+</p>
+
+<h3>🎯 Pourquoi c’est un avantage pour mes clients</h3>
+<ul>
+  <li>Des apps modernes et scalables</li>
+  <li>Un rendu rapide et fluide</li>
+  <li>Un code lisible, structuré et typé</li>
+  <li>Un gain de temps dans les évolutions futures</li>
+</ul>
+
+<p>
+  Mon objectif en tant que freelance, ce n’est pas juste d’écrire du code. C’est de livrer des solutions techniques fiables, performantes, maintenables et bien conçues.
+</p>
+
+<h3>📬 Un projet web en tête ?</h3>
+<p>
+  Je peux t’accompagner, du concept à la mise en ligne. Discutons de ton besoin :
+</p>
+<ul>
+  <li><a href="mailto:mohamad@mk-web.fr">mohamad@mk-web.fr</a></li>
+  <li><a href="https://mk-web.fr#services">Voir mes services</a></li>
+</ul>
+`,
+    categories: ["tech", "nextjs", "typescript"],
+    author: "Mohamad Al-Khatib",
+    publishedAt: "2025-06-18",
+    readTime: 3,
   },
 ];
