@@ -539,4 +539,135 @@ export function Button({ children }) {
     publishedAt: "2025-06-17",
     readTime: 3,
   },
+  {
+    id: "seo-technique-developpeur-checklist",
+    title:
+      "SEO technique pour les développeurs : 10 vérifications à intégrer dans chaque projet",
+    description:
+      "Tu es développeur web ? Voici une checklist SEO technique que j’intègre à tous mes projets pour garantir performance, indexation et visibilité sur Google.",
+    content: `
+<img src="/seo-technique-checklist.png" alt="Checklist SEO technique" />
+
+<p>
+  On parle souvent de SEO côté contenu ou marketing. Mais <strong>le SEO technique</strong>, c’est le socle. Et en tant que développeur, tu es en première ligne.
+</p>
+
+<p>Voici les <strong>10 points techniques</strong que je vérifie sur chaque projet pour garantir une base solide à la stratégie SEO.</p>
+
+<h3>1. ✅ URLs propres et lisibles</h3>
+<ul>
+  <li>Pas de paramètres inutiles ?</li>
+  <li>Structure claire avec des tirets (<code>/services/creation-site-vitrine</code>)</li>
+  <li>Slug dynamique bien généré en Next.js ou Laravel ?</li>
+</ul>
+
+<h3>2. ✅ Balises <code>&lt;title&gt;</code> et <code>meta description</code></h3>
+<ul>
+  <li>Générées dynamiquement ?</li>
+  <li>Incluent les bons mots-clés ?</li>
+  <li>Pas de duplication entre pages ?</li>
+</ul>
+
+<p>👉 Sur Next.js 13+, tu peux utiliser <code>metadata.ts</code> pour faire ça proprement.</p>
+
+<h3>3. ✅ Balises Hn bien hiérarchisées</h3>
+<ul>
+  <li>Une seule <code>&lt;h1&gt;</code> par page</li>
+  <li>Structure logique : h1 → h2 → h3</li>
+  <li>Aucun heading vide ou sauté (h2 directement après h4)</li>
+</ul>
+
+<h3>4. ✅ Sitemap.xml généré automatiquement</h3>
+<ul>
+  <li>Contient toutes les pages importantes</li>
+  <li>Mis à jour à chaque build ?</li>
+  <li>Inclut les dates de mise à jour ?</li>
+</ul>
+
+<p>👉 Outils utiles : <code>next-sitemap</code>, <code>laravel-sitemap</code></p>
+
+<h3>5. ✅ robots.txt bien configuré</h3>
+<ul>
+  <li>Bloque les pages privées (ex : <code>/admin</code>)</li>
+  <li>Permet le crawl des assets et pages publiques</li>
+  <li>Indique l’URL du sitemap</li>
+</ul>
+
+<h3>6. ✅ Performance (Core Web Vitals)</h3>
+<ul>
+  <li><strong>LCP</strong> &lt; 2.5s ?</li>
+  <li><strong>CLS</strong> &lt; 0.1 ?</li>
+  <li><strong>FID</strong> ou INP rapide ?</li>
+</ul>
+
+<p>👉 Utilise Lighthouse, PageSpeed Insights ou WebPageTest.org</p>
+
+<h3>7. ✅ Chargement optimisé des images</h3>
+<ul>
+  <li>Lazy loading activé ?</li>
+  <li>WebP ou formats modernes ?</li>
+  <li>Balises <code>alt</code> bien remplies ?</li>
+</ul>
+
+<h3>8. ✅ Liens internes et externes</h3>
+<ul>
+  <li>Liens internes cohérents entre pages ?</li>
+  <li>Attribut <code>rel="noopener noreferrer"</code> sur les liens externes ?</li>
+  <li>Pas de liens cassés (404) ?</li>
+</ul>
+
+<h3>9. ✅ Canonical tags</h3>
+<ul>
+  <li>Utile pour les pages avec contenus similaires</li>
+  <li>Géré dynamiquement si duplication potentielle</li>
+</ul>
+
+<h3>10. ✅ Données structurées (schema.org)</h3>
+<ul>
+  <li>Organisation, produit, article, FAQ...</li>
+  <li>Ajoute du contexte à tes pages</li>
+  <li>Augmente les chances d’avoir des résultats enrichis</li>
+</ul>
+
+<p>👉 Exemple (JSON-LD) à inclure dans le <code>&lt;head&gt;</code> :</p>
+
+<pre><code>
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamad Al-Khatib",
+  "url": "https://mk-web.fr"
+}
+</code></pre>
+
+<h3>📈 Bonus : outils pour tester</h3>
+<ul>
+  <li>Google Search Console</li>
+  <li>Lighthouse / PageSpeed</li>
+  <li>Screaming Frog SEO Spider</li>
+  <li>Ahrefs / SEMrush / Moz</li>
+</ul>
+
+<h3>🎯 Conclusion</h3>
+<p>
+  En appliquant cette checklist SEO technique à tous tes projets, tu :
+</p>
+<ul>
+  <li>Facilites l’indexation par Google</li>
+  <li>Boostes les performances dès le départ</li>
+  <li>Prépares une base SEO solide pour ton client ou ton propre site</li>
+</ul>
+
+<p>Tu veux un audit technique SEO de ton site ? Ou tu lances un nouveau projet et veux partir sur de bonnes bases ?</p>
+
+<p>
+👉 <a href="https://mk-web.fr#services">Découvre mes services SEO techniques</a><br />
+👉 <a href="mailto:hello@mk-web.fr">Contacte-moi directement</a>
+</p>
+`,
+    categories: ["seo", "technique"],
+    author: "Mohamad Al-Khatib",
+    publishedAt: "2025-06-14",
+    readTime: 4,
+  },
 ];
