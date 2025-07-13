@@ -64,11 +64,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const GTM_ID = process.env.GTM_ID;
+
   return (
     <html lang="fr">
       <head>
         <PlausibleProvider domain="mk-web.fr" />
-        <GoogleTagManager gtmId={process.env.GTM_ID!} />
+        {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       </head>
       <body className={inter.className}>
         <ReCaptchaProvider>
