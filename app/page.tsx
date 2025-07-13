@@ -3,6 +3,8 @@ import GradientWrapper from '@/components/GradientWrapper';
 import Hero from '@/components/Hero';
 import ServiceShowCase from '@/components/ServiceShowCase';
 import About from '@/components/About';
+import LatestProjects from '@/components/LatestProjects';
+
 export default function Home() {
   return (
     <>
@@ -10,6 +12,7 @@ export default function Home() {
       <About />
       <GradientWrapper />
       <ServiceShowCase />
+      <LatestProjects />
       <GradientWrapper />
       <CTA />
     </>
