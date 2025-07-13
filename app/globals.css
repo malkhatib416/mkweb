@@ -99,7 +99,6 @@
 html{
   scroll-behavior: smooth;
   scroll-padding-top: 140px;
-
 }
 
 .hero-wrapper{
@@ -117,9 +116,9 @@ html{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
   z-index: 1;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(2px);
 }
 
 .hero-wrapper > * {
@@ -127,6 +126,42 @@ html{
   z-index: 2;
 }
 
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
 
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
 
+/* Improved scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF4A17;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E33200;
+}
+
+/* Text selection */
+::selection {
+  background-color: #FF4A17;
+  color: white;
+}
+
+/* Focus styles */
+.focus-visible:focus {
+  outline: 2px solid #FF4A17;
+  outline-offset: 2px;
+}
