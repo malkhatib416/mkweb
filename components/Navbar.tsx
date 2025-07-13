@@ -83,7 +83,7 @@ const Navbar = () => {
               <button
                 role="button"
                 aria-label="Toggle menu"
-                className={`${linkColor(true)} ${hoverColor}`}
+                className={`${linkColor(true)} ${hoverColor} p-2 rounded-lg hover:bg-white/10 transition-all duration-200`}
                 onClick={handleNavMenu}
               >
                 {isMenuOpen ? (
@@ -129,9 +129,9 @@ const Navbar = () => {
               {navigation.map((item, idx) => (
                 <li
                   key={idx}
-                  className={`duration-150 transition-all ${linkColor()} `}
+                  className={`duration-200 transition-all ${linkColor()} hover:scale-105`}
                 >
-                  <Link href={item.path} className="block">
+                  <Link href={item.path} className="block py-2 px-4 rounded-lg hover:bg-white/10 transition-all duration-200">
                     {item.title}
                   </Link>
                 </li>
@@ -139,7 +139,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   href="/nous-contacter"
-                  className="block font-medium text-sm text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100-900 md:inline"
+                  className="block font-semibold text-sm text-white bg-gradient-to-r from-myorange-100 to-red-500 hover:from-myorange-100/90 hover:to-red-500/90 active:from-myorange-100 active:to-red-500 md:inline shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   Demander un devis
                 </NavLink>

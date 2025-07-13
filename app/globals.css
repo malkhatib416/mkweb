@@ -101,6 +101,33 @@ html{
   scroll-padding-top: 140px;
 }
 
+/* Enhanced animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 74, 23, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(255, 74, 23, 0.6); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Enhanced gradient backgrounds */
+.gradient-mesh {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 74, 23, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+}
+
 .hero-wrapper{
   position: relative;
   background-image: url('/hero-bg.webp');
@@ -124,16 +151,6 @@ html{
 .hero-wrapper > * {
   position: relative;
   z-index: 2;
-}
-
-/* Custom animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
 }
 
 /* Improved scrollbar */
@@ -164,4 +181,28 @@ html{
 .focus-visible:focus {
   outline: 2px solid #FF4A17;
   outline-offset: 2px;
+}
+
+/* Enhanced button styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-myorange-100 to-red-500 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+}
+
+.btn-secondary {
+  @apply border-2 border-gray-300 text-gray-700 font-semibold py-4 px-8 rounded-xl hover:border-myorange-100 hover:text-myorange-100 transition-all duration-300;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-2xl hover:scale-105;
+}
+
+/* Text gradient */
+.text-gradient {
+  @apply bg-gradient-to-r from-myorange-100 to-red-500 bg-clip-text text-transparent;
+}
+
+/* Glass morphism effect */
+.glass {
+  @apply bg-white/10 backdrop-blur-sm border border-white/20;
 }
