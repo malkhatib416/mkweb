@@ -21,7 +21,7 @@ const Footer = () => (
   <React.Fragment>
     <footer className="bg-slate-50">
       <div className="custom-screen">
-        <div className="mt-10 py-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4">
+        <div className="py-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4">
           <div className="w-full hidden md:block">
             <Suspense>
               <MKWEbLogo />
@@ -41,7 +41,6 @@ const Footer = () => (
                 <Image src="/malt.svg" alt="Malt" width={24} height={24} />
               </Link>
             </Suspense>
-
           </div>
           <div className="w-full  md:text-left">
             <p className="text-gray-600 font-bold text-lg mb-4 md:mb-0">

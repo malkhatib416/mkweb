@@ -1,7 +1,7 @@
 const GradientWrapper = ({ children, ...props }: any) => (
   <div
     {...props}
-    className={`relative overflow-hidden my-16 border-t sm:my-28 ${
+    className={`relative overflow-hidden my-12 border-t sm:my-20 ${
       props.className || ''
     }`}
   >
