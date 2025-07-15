@@ -18,47 +18,47 @@ export default function ServiceShowCase() {
       title: 'Création de site internet',
       description:
         'Conception de sites vitrines et corporate sur-mesure, pensés pour valoriser votre image et atteindre vos objectifs.',
-      features: ['Design responsive', 'SEO optimisé', 'Performance maximale']
+      features: ['Design responsive', 'SEO optimisé', 'Performance maximale'],
     },
     {
       icon: <ShoppingCart className="w-10 h-10 text-myorange-100" />,
       title: 'E-commerce',
       description:
         'Développement de boutiques en ligne performantes, évolutives et optimisées pour la conversion.',
-      features: ['Paiements sécurisés', 'Gestion stocks', 'Analytics avancés']
+      features: ['Paiements sécurisés', 'Gestion stocks', 'Analytics avancés'],
     },
     {
       icon: <RefreshCw className="w-10 h-10 text-myorange-100" />,
       title: 'Refonte de site',
       description:
         "Modernisation de votre site pour booster son impact, sa performance et l'expérience utilisateur.",
-      features: ['Audit complet', 'Migration sécurisée', 'Formation incluse']
+      features: ['Audit complet', 'Migration sécurisée', 'Formation incluse'],
     },
     {
       icon: <Cog className="w-10 h-10 text-myorange-100" />,
       title: 'Maintenance',
       description:
         'Surveillance proactive, mises à jour régulières et support réactif pour un site toujours opérationnel.',
-      features: ['Support 24/7', 'Sauvegardes auto', 'Mises à jour sécurité']
+      features: ['Support 24/7', 'Sauvegardes auto', 'Mises à jour sécurité'],
     },
     {
       icon: <Cloud className="w-10 h-10 text-myorange-100" />,
       title: 'Hébergement',
       description:
         "Solutions d'hébergement sécurisées et adaptées à vos besoins pour garantir la disponibilité de votre site.",
-      features: ['SSL inclus', 'CDN mondial', 'Monitoring continu']
+      features: ['SSL inclus', 'CDN mondial', 'Monitoring continu'],
     },
     {
       icon: <Lightbulb className="w-10 h-10 text-myorange-100" />,
       title: 'Innovation',
       description:
         'Intégration des dernières technologies web pour des solutions innovantes et différenciantes.',
-      features: ['IA intégrée', 'API modernes', 'Technologies émergentes']
+      features: ['IA intégrée', 'API modernes', 'Technologies émergentes'],
     },
   ];
 
   return (
-    <section className="py-24 bg-white" id="services">
+    <section className=" bg-white" id="services">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ export default function ServiceShowCase() {
             innovation.
           </p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -101,11 +101,14 @@ export default function ServiceShowCase() {
                 <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                   {service.description}
                 </p>
-                
+
                 {/* Features list */}
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center gap-2 text-sm text-gray-600">
+                    <li
+                      key={featureIndex}
+                      className="flex items-center gap-2 text-sm text-gray-600"
+                    >
                       <div className="w-1.5 h-1.5 bg-myorange-100 rounded-full"></div>
                       {feature}
                     </li>

@@ -11,6 +11,7 @@ export default function Home() {
       <About />
       <GradientWrapper />
       <ServiceShowCase />
+      <GradientWrapper />
       <LatestProjects />
       {/* <CTA /> */}
     </>

@@ -7,16 +7,16 @@ import NavLink from './NavLink';
 const benefits = [
   {
     icon: MessageCircle,
-    text: 'Réponse sous 24h'
+    text: 'Réponse sous 24h',
   },
   {
     icon: Clock,
-    text: 'Livraison rapide'
+    text: 'Livraison rapide',
   },
   {
     icon: Shield,
-    text: 'Garantie qualité'
-  }
+    text: 'Garantie qualité',
+  },
 ];
 
 const CTA = () => (
@@ -26,9 +26,9 @@ const CTA = () => (
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-myorange-100/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
     </div>
-    
+
     <div className="custom-screen relative z-10">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -39,21 +39,22 @@ const CTA = () => (
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           Prêt à démarrer
         </div>
-        
+
         <h2 className="text-white text-4xl md:text-5xl font-bold mb-6" id="oss">
           Vous avez un projet{' '}
           <span className="bg-gradient-to-r from-myorange-100 to-red-500 bg-clip-text text-transparent">
             Web ?
           </span>
         </h2>
-        
+
         <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-          Transformons ensemble vos idées en solutions web performantes. 
-          Contactez-moi pour discuter de votre projet et obtenir un devis personnalisé.
+          Transformons ensemble vos idées en solutions web performantes.
+          Contactez-moi pour discuter de votre projet et obtenir un devis
+          personnalisé.
         </p>
-        
+
         {/* Benefits */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -69,8 +70,8 @@ const CTA = () => (
             </div>
           ))}
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -84,24 +85,26 @@ const CTA = () => (
             Démarrer mon projet
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </NavLink>
-          
-          <a 
+
+          <a
             href="mailto:contact@mk-web.fr"
             className="text-white border border-white/30 hover:border-white/50 hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg backdrop-blur-sm transition-all duration-200"
           >
             Envoyer un email
           </a>
         </motion.div>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-white/70 text-sm mt-6"
         >
-          <span className="text-myorange-100 font-semibold">Réponse garantie sous 24h</span> • 
-          Devis gratuit et sans engagement
+          <span className="text-myorange-100 font-semibold">
+            Réponse garantie sous 24h
+          </span>{' '}
+          • Devis gratuit et sans engagement
         </motion.p>
       </motion.div>
     </div>
