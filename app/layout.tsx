@@ -12,6 +12,7 @@ import { Suspense } from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import WhatsAppQuickContact from '@/components/WhatsAppQuickContact';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -85,6 +86,7 @@ export default function RootLayout({
           <Footer />
           <Toaster />
           <GoogleAnalytics gaId="G-9NPYEM4FGH" />
+          <WhatsAppQuickContact />
         </ReCaptchaProvider>
       </body>
     </html>
