@@ -3,6 +3,7 @@ import MKWEbLogo from './Icons/MKWebLogo';
 import Link from 'next/link';
 import { Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { Suspense } from 'react';
+import { ADDRESS, EMAIL, PHONE } from '@/utils/contactInfo';
 import Image from 'next/image';
 
 const SubFooter = () => {
@@ -80,32 +81,29 @@ const Footer = () => (
             <ul className="text-sm mt-4 flex flex-col gap-4">
               <li>
                 <Link
-                  href="/"
+                  href={`tel:${PHONE}`}
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                 >
                   <Phone size={16} />
-                  06 46 77 78 04
+                  {PHONE}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="mailto:contact@mk-web.fr"
+                  href={`mailto:${EMAIL}`}
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                 >
                   <Mail size={16} />
-                  contact@mk-web.fr
+                  {EMAIL}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`}
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                 >
                   <MapPin size={16} />
-                  <div className="w-full  md:text-left">
-                    4 Mail des Petits Clos,
-                    <span className="block">28000 Chartres</span>
-                  </div>
+                  <div className="w-full  md:text-left">{ADDRESS}</div>
                 </Link>
               </li>
             </ul>
