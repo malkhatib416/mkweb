@@ -19,7 +19,7 @@ export default function Hero() {
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-myorange-100/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
-      
+
       <div className="custom-screen pt-32 pb-20 text-white min-h-screen flex items-center justify-center relative z-10">
         <div className="space-y-8 max-w-4xl mx-auto text-center">
           <motion.div
@@ -32,9 +32,9 @@ export default function Hero() {
               Disponible pour nouveaux projets
             </div>
             <h1 className="text-4xl text-white font-extrabold mx-auto sm:text-6xl lg:text-7xl leading-tight">
-              Transformez vos idées en{' '}
+              Développeur web freelance à Chartres —{' '}
               <span className="text-myorange-100 bg-gradient-to-r from-myorange-100 to-red-500 bg-clip-text text-transparent">
-                applications web performantes
+                sites et SaaS ultra‑performants
               </span>
             </h1>
           </motion.div>
@@ -45,8 +45,8 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="max-w-2xl mx-auto text-xl leading-relaxed text-white/90">
-              J'accompagne les startups et entreprises 
-              dans la création de solutions web sur-mesure, performantes et évolutives.
+              Je conçois, optimise et maintiens vos applications pour des
+              résultats mesurables : vitesse, SEO, conversions.
             </p>
           </motion.div>
 
@@ -65,7 +65,6 @@ export default function Hero() {
             </NavLink>
           </motion.div>
 
-         
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

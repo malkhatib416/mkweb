@@ -16,34 +16,30 @@ const About = () => {
           </div>
           <div className="md:w-2/3 md:pl-8">
             <p className="mb-4 text-lg font-semibold">
-              J'aide les entreprises à transformer leurs idées en solutions web
-              performantes et sur-mesure.
+              Je génère des leads qualifiés pour les PME de Chartres et
+              d'Eure-et-Loir grâce à des sites web ultra-performants.
             </p>
             <p className="mb-4">
-              Basé à <strong className="font-bold">Chartres</strong>,
-              j'interviens sur la{' '}
-              <strong className="font-bold">création</strong>, l'
-              <strong className="font-bold">optimisation</strong> et la{' '}
-              <strong className="font-bold">maintenance</strong> de sites web et
-              d'applications, avec une approche centrée sur l\'utilisateur et la
-              performance.
+              Basé à <strong className="font-bold">Chartres</strong>, je crée
+              des sites qui <strong className="font-bold">convertissent</strong>{' '}
+              : +35% de taux de remplissage de formulaires, temps de chargement
+              &lt; 1.2s, et référencement local optimisé.
             </p>
             <p className="mb-4">
-              Mon objectif : vous offrir des{' '}
-              <strong className="font-bold">solutions digitales uniques</strong>
-              , parfaitement adaptées à vos besoins et à vos ambitions, pour
-              booster votre présence en ligne et faciliter la gestion de vos
-              projets.
+              Mes clients gagnent en moyenne{' '}
+              <strong className="font-bold">40% de nouveaux clients</strong> en
+              6 mois grâce à une présence en ligne professionnelle et des outils
+              de gestion automatisés.
             </p>
             <p>
-              De l'intégration de{' '}
-              <strong className="font-bold">fonctionnalités innovantes</strong>{' '}
-              à la{' '}
+              De la{' '}
+              <strong className="font-bold">création de sites vitrines</strong>{' '}
+              aux{' '}
               <strong className="font-bold">
-                conception d'expériences utilisateurs fluides
+                applications métier sur-mesure
               </strong>
-              , je mets mon expertise et ma rigueur au service de votre
-              réussite.
+              , je vous accompagne avec maintenance 24/7 et support réactif pour
+              sécuriser votre croissance digitale.
             </p>
           </div>
         </div>

@@ -17,43 +17,67 @@ export default function ServiceShowCase() {
       icon: <Code className="w-10 h-10 text-myorange-100" />,
       title: 'Création de site internet',
       description:
-        'Conception de sites vitrines et corporate sur-mesure, pensés pour valoriser votre image et atteindre vos objectifs.',
-      features: ['Design responsive', 'SEO optimisé', 'Performance maximale'],
+        'Sites vitrines et corporate sur-mesure pour générer des leads qualifiés et valoriser votre expertise locale.',
+      features: [
+        'Core Web Vitals : LCP < 1.2s, CLS < 0.1 sur mobile',
+        'SEO local : +20% impressions, Next.js 15 + Edge SSR',
+        'Conversion optimisée : formulaires +35% de taux de remplissage',
+      ],
     },
     {
       icon: <ShoppingCart className="w-10 h-10 text-myorange-100" />,
       title: 'E-commerce',
       description:
-        'Développement de boutiques en ligne performantes, évolutives et optimisées pour la conversion.',
-      features: ['Paiements sécurisés', 'Gestion stocks', 'Analytics avancés'],
+        'Boutiques en ligne sécurisées avec tunnel de conversion optimisé pour maximiser vos ventes.',
+      features: [
+        'Paiements 3D Secure + Stripe : 0% de fraude',
+        'Temps de chargement < 2s : +40% de conversions',
+        'Analytics e-commerce : suivi ROI en temps réel',
+      ],
     },
     {
       icon: <RefreshCw className="w-10 h-10 text-myorange-100" />,
       title: 'Refonte de site',
       description:
-        "Modernisation de votre site pour booster son impact, sa performance et l'expérience utilisateur.",
-      features: ['Audit complet', 'Migration sécurisée', 'Formation incluse'],
+        'Migration sécurisée vers des technologies modernes pour améliorer performance et conversions.',
+      features: [
+        'Audit technique : rapport détaillé + roadmap',
+        'Migration 0 downtime : sauvegardes automatiques',
+        'Formation équipe : 2h de formation incluse',
+      ],
     },
     {
       icon: <Cog className="w-10 h-10 text-myorange-100" />,
       title: 'Maintenance',
       description:
-        'Surveillance proactive, mises à jour régulières et support réactif pour un site toujours opérationnel.',
-      features: ['Support 24/7', 'Sauvegardes auto', 'Mises à jour sécurité'],
+        'Surveillance proactive 24/7 avec SLA garantis pour maintenir votre site opérationnel et sécurisé.',
+      features: [
+        'SLA : Réponse < 2h, résolution < 24h',
+        'Sauvegardes quotidiennes : 30 jours de rétention',
+        'Mises à jour sécurité : patchs critiques < 4h',
+      ],
     },
     {
       icon: <Cloud className="w-10 h-10 text-myorange-100" />,
       title: 'Hébergement',
       description:
-        "Solutions d'hébergement sécurisées et adaptées à vos besoins pour garantir la disponibilité de votre site.",
-      features: ['SSL inclus', 'CDN mondial', 'Monitoring continu'],
+        "Infrastructure cloud haute disponibilité avec monitoring 24/7 pour garantir 99.9% d'uptime.",
+      features: [
+        "SSL Let's Encrypt : renouvellement automatique",
+        'CDN Cloudflare : 200+ points de présence',
+        'Monitoring : alertes temps réel + métriques détaillées',
+      ],
     },
     {
       icon: <Lightbulb className="w-10 h-10 text-myorange-100" />,
       title: 'Innovation',
       description:
-        'Intégration des dernières technologies web pour des solutions innovantes et différenciantes.',
-      features: ['IA intégrée', 'API modernes', 'Technologies émergentes'],
+        "Intégration d'IA et technologies émergentes pour automatiser vos processus et différencier votre offre.",
+      features: [
+        'IA conversationnelle : chatbots + assistants virtuels',
+        'API REST/GraphQL : intégrations tierces sécurisées',
+        'PWA : applications web natives cross-platform',
+      ],
     },
   ];
 

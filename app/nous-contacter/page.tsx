@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { IContactForm } from '@/types';
 import { ADDRESS, EMAIL, PHONE } from '@/utils/contactInfo';
 import { sendMail } from '@/utils/send-mail';
-import { Mail, Phone, Building, LoaderCircle } from 'lucide-react';
+import { Mail, Phone, Building, LoaderCircle, Clock, Shield, CheckCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -19,21 +19,15 @@ const contactMail = async (formData: IContactForm) => {
   try {
     await sendMail({
       email: EMAIL!,
-      subject: formData.sujet,
+      subject: 'Nouveau message de contact - ' + formData.nom,
       text: formData.message,
       recaptchaToken: formData.recaptchaToken,
       html: `
-  <h1>Informations de contact</h1>
+  <h1>Nouveau message de contact</h1>
   <ul>
     <li><strong>Nom:</strong> ${formData.nom}</li>
-    <li><strong>Prénom:</strong> ${formData.prenom}</li>
     <li><strong>Email:</strong> ${formData.email}</li>
-    <li><strong>Entreprise:</strong> ${formData.entreprise}</li>
-    <li><strong>Téléphone:</strong> ${formData.telephone}</li>
   </ul>
-
-  <h2>Sujet:</h2>
-  <p>${formData.sujet}</p>
 
   <h2>Message:</h2>
   <p>${formData.message}</p>
@@ -49,10 +43,10 @@ const confirmationMail = async (formData: IContactForm) => {
     await sendMail({
       email: formData.email,
       subject: 'Confirmation de réception',
-      text: `Bonjour ${formData.prenom},\nNous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.\n\nCordialement,`,
+      text: `Bonjour ${formData.nom},\nNous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.\n\nCordialement,`,
       recaptchaToken: formData.recaptchaToken,
       html: `
-    <h1>Bonjour ${formData.prenom},</h1>
+    <h1>Bonjour ${formData.nom},</h1>
     <p>Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.</p>
     <p>Cordialement,</p>
     <p>L'équipe de MK-Web</p>
@@ -69,25 +63,19 @@ export default function NousContacterPage() {
   const { executeRecaptcha } = useReCaptcha();
 
   const formSchema = z.object({
-    nom: z.string(),
-    prenom: z.string(),
-    email: z.string().email(),
-    entreprise: z.string(),
-    telephone: z.string(),
-    sujet: z.string(),
-    message: z.string(),
+    nom: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
+    email: z.string().email('Adresse email invalide'),
+    message: z.string().min(10, 'Le message doit contenir au moins 10 caractères'),
+    rgpd: z.boolean().refine(val => val === true, 'Vous devez accepter les conditions'),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       nom: '',
-      prenom: '',
       email: '',
-      entreprise: '',
-      telephone: '',
-      sujet: '',
       message: '',
+      rgpd: false,
     },
   });
 
@@ -105,7 +93,7 @@ export default function NousContacterPage() {
       toast({
         title: 'Message envoyé !',
         description:
-          'Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.',
+          'Nous avons bien reçu votre message et nous vous répondrons sous 24h.',
       });
       form.reset();
     } catch (error) {
@@ -127,12 +115,31 @@ export default function NousContacterPage() {
           <div className="space-y-8 ">
             <div>
               <h1 className="text-4xl font-bold mb-4 text-myorange-200">
-                Contactez-nous
+                Discutons de votre projet
               </h1>
-              <p className="text-lg text-gray-600">
-                Nous sommes là pour répondre à toutes vos questions. N'hésitez
-                pas à nous contacter !
+              <p className="text-lg text-gray-600 mb-6">
+                Génération de leads, rapidité, sécurité, maintenance proactive. 
+                Obtenez des résultats mesurables dès le premier mois.
               </p>
+              
+              {/* SLA Section */}
+              <div className="bg-gradient-to-r from-myorange-100/10 to-red-500/10 rounded-xl p-6 mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Nos engagements</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-myorange-100" />
+                    <span className="text-sm font-medium">Réponse < 24h</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span className="text-sm font-medium">Kickoff en 7 jours</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Shield className="w-5 h-5 text-blue-500" />
+                    <span className="text-sm font-medium">Maintenance 24/7</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="space-y-4">
               <div className="flex items-center">
@@ -152,7 +159,7 @@ export default function NousContacterPage() {
 
           <Form {...form}>
             <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="space-y-4 mb-6">
                 <FormField
                   name="nom"
                   control={form.control}
@@ -160,20 +167,7 @@ export default function NousContacterPage() {
                     <Input
                       className="w-full"
                       id="nom"
-                      placeholder="Nom"
-                      {...field}
-                    />
-                  )}
-                />
-
-                <FormField
-                  name="prenom"
-                  control={form.control}
-                  render={({ field }) => (
-                    <Input
-                      id="prenom"
-                      className="w-full"
-                      placeholder="Prénom"
+                      placeholder="Votre nom"
                       {...field}
                     />
                   )}
@@ -186,45 +180,7 @@ export default function NousContacterPage() {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="Email"
-                      {...field}
-                    />
-                  )}
-                />
-                <FormField
-                  name="telephone"
-                  control={form.control}
-                  render={({ field }) => (
-                    <Input
-                      id="telephone"
-                      type="tel"
-                      placeholder="Numéro de téléphone"
-                      {...field}
-                    />
-                  )}
-                />
-
-                <FormField
-                  name="entreprise"
-                  control={form.control}
-                  render={({ field }) => (
-                    <Input
-                      className="md:col-span-2"
-                      id="entreprise"
-                      placeholder="Entreprise"
-                      {...field}
-                    />
-                  )}
-                />
-
-                <FormField
-                  name="sujet"
-                  control={form.control}
-                  render={({ field }) => (
-                    <Input
-                      id="sujet"
-                      className="md:col-span-2"
-                      placeholder="Sujet"
+                      placeholder="Votre email"
                       {...field}
                     />
                   )}
@@ -236,24 +192,49 @@ export default function NousContacterPage() {
                   render={({ field }) => (
                     <Textarea
                       id="message"
-                      placeholder="Message"
-                      className="md:col-span-2"
-                      rows={4}
+                      placeholder="Décrivez votre projet en quelques mots..."
+                      className="w-full"
+                      rows={5}
                       {...field}
                     />
                   )}
                 />
               </div>
 
+              {/* RGPD Checkbox */}
+              <div className="mb-6">
+                <FormField
+                  name="rgpd"
+                  control={form.control}
+                  render={({ field }) => (
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="rgpd"
+                        checked={field.value}
+                        onChange={field.onChange}
+                        className="mt-1 w-4 h-4 text-myorange-100 border-gray-300 rounded focus:ring-myorange-100"
+                      />
+                      <label htmlFor="rgpd" className="text-sm text-gray-600">
+                        J'accepte que mes données soient utilisées pour répondre à ma demande. 
+                        <a href="/mentions-legales" className="text-myorange-100 hover:underline ml-1">
+                          Voir les conditions
+                        </a>
+                      </label>
+                    </div>
+                  )}
+                />
+              </div>
+
               <Button
                 type="submit"
-                className="w-full bg-gray-800 hover:bg-gray-900 text-white"
+                className="w-full bg-myorange-100 hover:bg-myorange-100/90 text-white font-semibold py-3"
+                disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  <LoaderCircle className="animate-spin" />
-                ) : (
-                  'Envoyer'
-                )}
+                  <LoaderCircle className="animate-spin mr-2" />
+                ) : null}
+                {isSubmitting ? 'Envoi en cours...' : 'Discutons de votre projet'}
               </Button>
             </form>
           </Form>

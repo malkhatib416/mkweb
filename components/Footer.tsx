@@ -49,10 +49,26 @@ const Footer = () => (
             <ul className="text-sm mt-4 flex flex-col gap-4">
               <li>
                 <Link
-                  href="/"
+                  href="/#services"
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
                 >
-                  Accueil
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#projects"
+                  className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
+                >
+                  Projets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
+                >
+                  Blog
                 </Link>
               </li>
               <li>
@@ -61,14 +77,6 @@ const Footer = () => (
                   className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
                 >
                   Mentions légales
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/nous-contacter"
-                  className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
-                >
-                  Contact
                 </Link>
               </li>
             </ul>

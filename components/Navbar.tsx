@@ -17,9 +17,10 @@ const Navbar = () => {
   const searchParams = useSearchParams();
 
   const navigation = [
-    { title: 'Accueil', path: '/#main' },
     { title: 'Services', path: '/#services' },
+    { title: 'Projets', path: '/#projects' },
     { title: 'Blog', path: '/blog' },
+    { title: 'Contact', path: '/nous-contacter' },
   ];
 
   const handleState = () => {
@@ -141,7 +142,7 @@ const Navbar = () => {
                   href="/nous-contacter"
                   className="block font-medium text-sm text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100-900 md:inline"
                 >
-                  Demander un devis
+                  Discutons de votre projet
                 </NavLink>
               </li>
             </ul>

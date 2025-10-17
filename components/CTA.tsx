@@ -7,15 +7,15 @@ import NavLink from './NavLink';
 const benefits = [
   {
     icon: MessageCircle,
-    text: 'Réponse sous 24h',
+    text: 'Réponse < 24h',
   },
   {
     icon: Clock,
-    text: 'Livraison rapide',
+    text: 'Kickoff en 7 jours',
   },
   {
     icon: Shield,
-    text: 'Garantie qualité',
+    text: 'Maintenance 24/7',
   },
 ];
 
@@ -41,16 +41,16 @@ const CTA = () => (
         </div>
 
         <h2 className="text-white text-4xl md:text-5xl font-bold mb-6" id="oss">
-          Vous avez un projet{' '}
+          Prêt à{' '}
           <span className="bg-gradient-to-r from-myorange-100 to-red-500 bg-clip-text text-transparent">
-            Web ?
+            booster votre business ?
           </span>
         </h2>
 
         <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-          Transformons ensemble vos idées en solutions web performantes.
-          Contactez-moi pour discuter de votre projet et obtenir un devis
-          personnalisé.
+          Génération de leads, rapidité, sécurité, maintenance proactive.
+          Discutons de votre projet pour des résultats mesurables dès le premier
+          mois.
         </p>
 
         {/* Benefits */}
@@ -82,7 +82,7 @@ const CTA = () => (
             href="/nous-contacter"
             className="text-gray-900 bg-white hover:bg-gray-100 active:bg-gray-200 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center gap-2 group"
           >
-            Démarrer mon projet
+            Discutons de votre projet
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </NavLink>
 

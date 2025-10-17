@@ -15,9 +15,10 @@ import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-let title = 'MK-Web - Développeur Web Freelance à Chartres';
+let title =
+  'Développeur web freelance à Chartres — sites et SaaS ultra‑performants | MK-Web';
 let description =
-  'Développeur Web Freelance à Chartres. Création de sites internet, applications web, référencement et maintenance de sites web.';
+  'Je conçois, optimise et maintiens vos applications pour des résultats mesurables : vitesse, SEO, conversions. Génération de leads, rapidité, sécurité, maintenance proactive.';
 let url = 'https://www.mk-web.fr';
 let sitename = 'MK-Web';
 

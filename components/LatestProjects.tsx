@@ -14,6 +14,10 @@ const projects = [
       'Application de surveillance des journaux officiels avec scraping automatisé et notifications email en temps réel.',
     longDescription:
       'Plateforme complète permettant de surveiller les publications du Journal Officiel français. Extraction automatique des données PDF, recherche avancée et système de notifications personnalisées.',
+    objective:
+      "Automatiser la surveillance des publications JO pour gagner du temps et ne rien manquer d'important.",
+    impact:
+      "Temps de traitement réduit de 5 minutes à 30 secondes, +200% d'utilisateurs actifs en 6 mois.",
     technologies: [
       'Next.js',
       'TypeScript',
@@ -33,9 +37,13 @@ const projects = [
     id: 2,
     title: 'PCMGE.fr',
     description:
-      'Migration et refonte d’un site vitrine en CRM interne sur mesure pour une PME.',
+      "Migration et refonte d'un site vitrine en CRM interne sur mesure pour une PME.",
     longDescription:
-      'Projet de migration d’un site existant réalisé en PHP vers Laravel. Développement d’un CRM interne pour gérer les clients et les contacts. Intégration de Bootstrap pour une interface claire et responsive.',
+      "Projet de migration d'un site existant réalisé en PHP vers Laravel. Développement d'un CRM interne pour gérer les clients et les contacts. Intégration de Bootstrap pour une interface claire et responsive.",
+    objective:
+      "Moderniser l'outil de gestion client et améliorer la visibilité locale de l'entreprise.",
+    impact:
+      '+40% de nouveaux clients en 6 mois, temps de chargement réduit de 2.1s à 0.8s.',
     technologies: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
     image: '/projects/pcmge.png',
     // github: 'https://github.com/mohamad-alkhatib/pcmge',
@@ -65,7 +73,10 @@ const projects = [
 
 export default function LatestProjects() {
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <section
+      id="projects"
+      className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -152,25 +163,45 @@ export default function LatestProjects() {
                     </span>
                   </div>
 
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-gray-600 mb-4 leading-relaxed">
                     {project.longDescription}
                   </p>
 
+                  {/* Objective & Impact */}
+                  <div className="bg-gray-50 rounded-xl p-4 mb-6">
+                    <div className="mb-3">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                        Objectif
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        {project.objective}
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                        Impact
+                      </h4>
+                      <p className="text-sm text-myorange-100 font-medium">
+                        {project.impact}
+                      </p>
+                    </div>
+                  </div>
+
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-myorange-100/10 hover:text-myorange-100 transition-colors"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded-lg text-sm">
-                        +{project.technologies.length - 4}
-                      </span>
-                    )}
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-3">
+                      Stack Technique
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-3 py-2 bg-gradient-to-r from-gray-100 to-gray-50 text-gray-700 rounded-lg text-sm font-medium border border-gray-200 hover:border-myorange-100 hover:bg-myorange-100/5 hover:text-myorange-100 transition-all duration-200"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Action Buttons */}
