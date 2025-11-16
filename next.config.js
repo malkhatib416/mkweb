@@ -4,7 +4,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  pageExtensions: ['js', 'md', 'mdx', 'ts', 'tsx'],
+  pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
   images: {
     remotePatterns: [
       {
