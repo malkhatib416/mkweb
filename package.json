@@ -1,6 +1,6 @@
 {
-  "name": "MKWeb",
-  "version": "0.1.0",
+  "name": "MK-Web",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
