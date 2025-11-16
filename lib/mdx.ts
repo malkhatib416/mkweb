@@ -2,10 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { BlogPost } from '@/types';
+import { Locale } from '@/locales/i18n';
 
-const postsDirectory = path.join(process.cwd(), 'content/blog');
+const contentDirectory = path.join(process.cwd(), 'content/blog');
 
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
+export async function getAllBlogPosts(locale: Locale): Promise<BlogPost[]> {
+  const postsDirectory = path.join(contentDirectory, locale);
+
+  // Check if directory exists
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
+
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
     .filter((fileName) => fileName.endsWith('.mdx'))
@@ -38,9 +46,11 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 }
 
 export async function getBlogPostById(
-  id: string
+  id: string,
+  locale: Locale
 ): Promise<BlogPost | null> {
   try {
+    const postsDirectory = path.join(contentDirectory, locale);
     const fullPath = path.join(postsDirectory, `${id}.mdx`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
@@ -57,12 +67,19 @@ export async function getBlogPostById(
       image: data.image,
     };
   } catch (error) {
-    console.error(`Error loading blog post ${id}:`, error);
+    console.error(`Error loading blog post ${id} for locale ${locale}:`, error);
     return null;
   }
 }
 
-export async function getBlogPostSlugs(): Promise<string[]> {
+export async function getBlogPostSlugs(locale: Locale): Promise<string[]> {
+  const postsDirectory = path.join(contentDirectory, locale);
+
+  // Check if directory exists
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
+
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames
     .filter((fileName) => fileName.endsWith('.mdx'))

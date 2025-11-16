@@ -1,0 +1,111 @@
+---
+title: "Technical SEO for Developers: 10 Checks to Integrate in Every Project"
+description: "Are you a web developer? Here's a technical SEO checklist I integrate into all my projects to guarantee performance, indexing, and Google visibility."
+categories: ["seo", "technique"]
+author: "Mohamad Al-Khatib"
+publishedAt: "2025-06-14"
+readTime: 4
+image: "/seo-technique-checklist.png"
+---
+
+![Technical SEO Checklist](/seo-technique-checklist.png)
+
+We often talk about SEO from the content or marketing side. But **technical SEO** is the foundation. And as a developer, you're on the front line.
+
+Here are the **10 technical points** I check on every project to guarantee a solid foundation for the SEO strategy.
+
+### 1. ✅ Clean and Readable URLs
+
+- No unnecessary parameters?
+- Clear structure with hyphens (`/services/website-creation`)
+- Dynamic slug properly generated in Next.js or Laravel?
+
+### 2. ✅ `<title>` and `meta description` Tags
+
+- Dynamically generated?
+- Include the right keywords?
+- No duplication between pages?
+
+👉 On Next.js 13+, you can use `metadata.ts` to do this properly.
+
+### 3. ✅ Well-Hierarchized Hn Tags
+
+- Only one `<h1>` per page
+- Logical structure: h1 → h2 → h3
+- No empty or skipped heading (h2 directly after h4)
+
+### 4. ✅ Automatically Generated Sitemap.xml
+
+- Contains all important pages
+- Updated with each build?
+- Includes update dates?
+
+👉 Useful tools: `next-sitemap`, `laravel-sitemap`
+
+### 5. ✅ Well-Configured robots.txt
+
+- Blocks private pages (e.g., `/admin`)
+- Allows crawling of assets and public pages
+- Indicates sitemap URL
+
+### 6. ✅ Performance (Core Web Vitals)
+
+- **LCP** < 2.5s?
+- **CLS** < 0.1?
+- **FID** or INP fast?
+
+👉 Use Lighthouse, PageSpeed Insights, or WebPageTest.org
+
+### 7. ✅ Optimized Image Loading
+
+- Lazy loading activated?
+- WebP or modern formats?
+- `alt` tags properly filled?
+
+### 8. ✅ Internal and External Links
+
+- Consistent internal links between pages?
+- `rel="noopener noreferrer"` attribute on external links?
+- No broken links (404)?
+
+### 9. ✅ Canonical Tags
+
+- Useful for pages with similar content
+- Managed dynamically if potential duplication
+
+### 10. ✅ Structured Data (schema.org)
+
+- Organization, product, article, FAQ...
+- Adds context to your pages
+- Increases chances of rich results
+
+👉 Example (JSON-LD) to include in the `<head>`:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamad Al-Khatib",
+  "url": "https://mk-web.fr"
+}
+```
+
+### 📈 Bonus: Testing Tools
+
+- Google Search Console
+- Lighthouse / PageSpeed
+- Screaming Frog SEO Spider
+- Ahrefs / SEMrush / Moz
+
+### 🎯 Conclusion
+
+By applying this technical SEO checklist to all your projects, you:
+
+- Facilitate Google indexing
+- Boost performance from the start
+- Prepare a solid SEO foundation for your client or your own site
+
+Want a technical SEO audit of your site? Or launching a new project and want to start on the right foot?
+
+👉 [Discover my technical SEO services](https://mk-web.fr#services)
+👉 [Contact me directly](mailto:hello@mk-web.fr)

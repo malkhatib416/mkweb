@@ -1,0 +1,95 @@
+---
+title: "Structuring a Next.js Project as a Monorepo: Best Practices and Experience Feedback"
+description: "How to organize a Next.js project in a monorepo architecture? Advantages, tools, folder structure, and advice from my experience on high-volume applications."
+categories: ["nextjs", "architecture", "typescript"]
+author: "Mohamad Al-Khatib"
+publishedAt: "2025-06-17"
+readTime: 3
+image: "/nextjs-monorepo.png"
+---
+
+![Next.js Monorepo Structure](/nextjs-monorepo.png)
+
+When developing a Next.js application that will grow over time — with multiple modules, backends, shared components — a monorepo architecture quickly becomes a necessity. After several projects, I'm sharing here my best practices for structuring a Next.js project in a clean, maintainable, and scalable monorepo.
+
+### 📦 Why Switch to Monorepo?
+
+- **Centralize frontend, API, shared libraries**
+- **Reduce code duplication** (types, business logic)
+- **Simplify updates** across all modules
+- **Better manage permissions / CI / tests**
+
+A well-structured monorepo also allows multiple people to work without overwriting other modules.
+
+### 🧰 Recommended Tools
+
+- **Turborepo** (or Nx) for cached builds
+- **pnpm** with workspaces for fast dependency resolution
+- **TypeScript** with `projectReferences`
+- **ESLint + Prettier** configured at root level
+
+### 📁 Basic Structure of a Next.js Monorepo
+
+```
+my-app/
+├── apps/
+│   ├── web/         → main Next.js app
+│   └── admin/       → admin interface
+├── packages/
+│   ├── ui/          → shared components (design system)
+│   ├── config/      → Tailwind, ESLint config, etc.
+│   └── db/          → ORM, Drizzle schemas, DB helpers
+├── .gitignore
+├── package.json
+├── turbo.json
+└── tsconfig.json
+```
+
+Each sub-project can have its own dependencies while accessing common packages via `workspaces`.
+
+### 🔄 Usage Example: Shared Components
+
+The `packages/ui` folder contains components like `<Button />`, `<Card />`, `<Layout />`, all written in TypeScript and styled with Tailwind.
+
+```tsx
+// packages/ui/button.tsx
+export function Button({ children }) {
+  return (
+    <button className="rounded-xl px-4 py-2 bg-orange-500 text-white">
+      {children}
+    </button>
+  );
+}
+```
+
+Then, you import it from `apps/web`:
+
+```tsx
+import { Button } from "@ui/button";
+```
+
+### 🧪 Tests and Shared Typing
+
+In `packages/types`, I place all my shared types between frontend, backend, and API. This allows strict typing, especially for data retrieved with Drizzle ORM.
+
+For tests, each app can embed its own Jest/Vitest, or we can share helpers in `packages/test-utils`.
+
+### 🚀 Deployment and CI/CD
+
+- **Vercel** natively supports Turborepo
+- **Github Actions** or **Husky** to validate PRs
+- Deployment per app (web, admin…) targeting only what changed
+
+### 🎯 What a Well-Structured Monorepo Changes for My Clients
+
+- Easier maintenance, even with multiple apps
+- Single source of truth for types, components, functions
+- Visual and technical consistency across the entire product
+- Real scalability in the long term
+
+### 📩 Want a Clean Architecture from the Start?
+
+I support startups and ambitious web projects in their technical structuring, whether in creation or redesign.
+
+👉 [See my services](https://mk-web.fr#services)
+👉 [mohamad@mk-web.fr](mailto:mohamad@mk-web.fr)

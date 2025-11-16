@@ -175,24 +175,26 @@ export default async function MyPage({ params }: Props) {
 
 ### Blog System
 
-- **Data source**: Blog posts are stored as MDX files in `content/blog/` directory
+- **Data source**: Blog posts are stored as MDX files in locale-specific directories: `content/blog/[locale]/`
+- **Multilingual**: Each locale (fr, en) has its own blog posts directory
 - **MDX Implementation**: Uses Next.js's built-in `@next/mdx` support with dynamic imports
 - **Structure**: Each MDX file has:
   - **Frontmatter**: `title`, `description`, `categories`, `author`, `publishedAt`, `readTime`, `image`
   - **Content**: Markdown/MDX with support for custom components
 - **Categories**: Defined in `data/index.ts` with color coding (SEO, Refonte, Tech, Next.js, Architecture, TypeScript, Technique)
 - **MDX Utilities** (`lib/mdx.ts`):
-  - `getAllBlogPosts()`: Fetches all blog posts with metadata using `gray-matter`
-  - `getBlogPostById(id)`: Fetches a specific post with content
-  - `getBlogPostSlugs()`: Returns all post slugs for static generation
+  - `getAllBlogPosts(locale)`: Fetches all blog posts for a specific locale using `gray-matter`
+  - `getBlogPostById(id, locale)`: Fetches a specific post with content for a locale
+  - `getBlogPostSlugs(locale)`: Returns all post slugs for a locale for static generation
 - **Components**:
-  - `blog-page.tsx`: Main blog interface with search and filtering
+  - `blog-page.tsx`: Main blog interface with search and filtering (locale-aware)
   - `blog-card.tsx`: Individual post preview cards
   - `search-bar.tsx`: Client-side search functionality
   - `category-filter.tsx`: Filter by category
   - `mdx-components.tsx`: Custom MDX component styling (auto-loaded via `mdx-components.tsx` at root)
-- **Dynamic routes**: `app/[locale]/blog/[id]/page.tsx` renders individual posts using `next/dynamic` to import MDX files
+- **Dynamic routes**: `app/[locale]/blog/[id]/page.tsx` renders individual posts using `next/dynamic` to import MDX files from locale-specific directories
 - **Content format**: MDX files with frontmatter metadata (parsed by `gray-matter`) and Markdown/JSX content
+- **Frontmatter handling**: `remark-frontmatter` plugin strips frontmatter from rendered output
 
 ### Styling & Theming
 
@@ -262,7 +264,12 @@ Key features in layout:
 
 ### Adding Blog Posts
 
-1. Create a new `.mdx` file in `content/blog/` directory (e.g., `my-post-slug.mdx`)
+Blog posts are organized by locale in `content/blog/[locale]/` directories.
+
+1. Create a new `.mdx` file in the appropriate locale directory:
+   - French: `content/blog/fr/my-post-slug.mdx`
+   - English: `content/blog/en/my-post-slug.mdx`
+
 2. Add frontmatter metadata at the top:
    ```mdx
    ---
@@ -275,11 +282,14 @@ Key features in layout:
    image: "/blog-image.png"
    ---
    ```
+
 3. Write content in Markdown/MDX format below the frontmatter
 4. Use standard Markdown syntax (headings, lists, links, code blocks, etc.)
 5. Images should be placed in `public/` and referenced with relative paths
 6. Custom components from `mdx-components.tsx` are automatically styled
-7. The post will be automatically picked up and displayed in the blog listing
+7. The post will be automatically picked up and displayed in the locale-specific blog listing
+
+**Note**: You don't need to use the same slug for different language versions of the same post. Each locale can have its own unique posts.
 
 ### Environment Variables
 

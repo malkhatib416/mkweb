@@ -4,24 +4,33 @@ import { notFound } from 'next/navigation';
 import { User, Calendar, Clock } from 'lucide-react';
 import React, { use } from 'react';
 import dynamic from 'next/dynamic';
+import type { Locale } from '@/locales/i18n';
+import { locales } from '@/locales/i18n';
 
 interface BlogPostPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }
 
 export async function generateStaticParams() {
-  const slugs = await getBlogPostSlugs();
-  return slugs.map((slug) => ({ id: slug }));
+  const allParams: { id: string; locale: string }[] = [];
+
+  for (const locale of locales) {
+    const slugs = await getBlogPostSlugs(locale);
+    const params = slugs.map((slug) => ({ id: slug, locale }));
+    allParams.push(...params);
+  }
+
+  return allParams;
 }
 
 const BlogPostPage = ({ params }: BlogPostPageProps) => {
-  const { id } = use(params);
-  const post = use(getBlogPostById(id));
+  const { id, locale } = use(params);
+  const post = use(getBlogPostById(id, locale as Locale));
 
   if (!post) return notFound();
 
-  // Dynamically import the MDX file
-  const MDXContent = dynamic(() => import(`@/content/blog/${id}.mdx`));
+  // Dynamically import the MDX file from locale-specific directory
+  const MDXContent = dynamic(() => import(`@/content/blog/${locale}/${id}.mdx`));
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('fr-FR', {

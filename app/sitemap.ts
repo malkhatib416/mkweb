@@ -33,18 +33,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  // Fetch blog posts from MDX files
-  const blogPosts = await getAllBlogPosts();
-
-  // Generate sitemap entries for all blog posts in all locales
-  const blogEntries = blogPosts.flatMap((post) =>
-    locales.map((locale) => ({
+  // Fetch blog posts from MDX files for each locale
+  const blogEntriesPromises = locales.map(async (locale) => {
+    const posts = await getAllBlogPosts(locale);
+    return posts.map((post) => ({
       url: `${baseUrl}/${locale}/blog/${post.id}`,
       lastModified: new Date(post.publishedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    })),
-  );
+    }));
+  });
+
+  const blogEntriesArrays = await Promise.all(blogEntriesPromises);
+  const blogEntries = blogEntriesArrays.flat();
 
   return [...routeEntries, ...blogEntries];
 }
