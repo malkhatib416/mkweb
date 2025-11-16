@@ -1,20 +1,27 @@
-import { blogPosts, categories } from '@/data';
+import { categories } from '@/data';
+import { getBlogPostById, getBlogPostSlugs } from '@/lib/mdx';
 import { notFound } from 'next/navigation';
 import { User, Calendar, Clock } from 'lucide-react';
 import React, { use } from 'react';
+import dynamic from 'next/dynamic';
 
 interface BlogPostPageProps {
   params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ id: post.id }));
+  const slugs = await getBlogPostSlugs();
+  return slugs.map((slug) => ({ id: slug }));
 }
 
 const BlogPostPage = ({ params }: BlogPostPageProps) => {
   const { id } = use(params);
-  const post = blogPosts.find((p) => p.id === id);
+  const post = use(getBlogPostById(id));
+
   if (!post) return notFound();
+
+  // Dynamically import the MDX file
+  const MDXContent = dynamic(() => import(`@/content/blog/${id}.mdx`));
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('fr-FR', {
@@ -65,9 +72,9 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
         <p className="text-xl text-gray-600 mb-8 leading-relaxed">
           {post.description}
         </p>
-        {/* Content */}
+        {/* MDX Content */}
         <div className="prose prose-lg max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <MDXContent />
         </div>
       </div>
     </div>

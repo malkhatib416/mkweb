@@ -1,0 +1,95 @@
+---
+title: "Structurer un projet Next.js en monorepo : bonnes pratiques et retour d'expérience"
+description: "Comment organiser un projet Next.js en architecture monorepo ? Avantages, outils, structure de dossiers, et conseils issus de mon expérience sur des applications à fort volume."
+categories: ["nextjs", "architecture", "typescript"]
+author: "Mohamad Al-Khatib"
+publishedAt: "2025-06-17"
+readTime: 3
+image: "/nextjs-monorepo.png"
+---
+
+![Structure monorepo Next.js](/nextjs-monorepo.png)
+
+Quand on développe une application Next.js qui va grandir dans le temps — avec plusieurs modules, backends, composants partagés — une architecture monorepo devient rapidement une nécessité. Après plusieurs projets, je partage ici mes bonnes pratiques pour structurer un projet Next.js en monorepo de manière propre, maintenable et scalable.
+
+### 📦 Pourquoi passer au monorepo ?
+
+- **Centraliser le front, l'API, les librairies partagées**
+- **Réduire la duplication de code** (types, logique métier)
+- **Simplifier les mises à jour** dans tous les modules
+- **Mieux gérer les permissions / CI / tests**
+
+Un monorepo bien structuré permet aussi de travailler à plusieurs sans écraser les autres modules.
+
+### 🧰 Outils recommandés
+
+- **Turborepo** (ou Nx) pour le build en cache
+- **pnpm** avec workspaces pour une résolution rapide des dépendances
+- **TypeScript** avec `projectReferences`
+- **ESLint + Prettier** configurés au niveau racine
+
+### 📁 Structure de base d'un monorepo Next.js
+
+```
+my-app/
+├── apps/
+│   ├── web/         → l'app Next.js principale
+│   └── admin/       → interface d'administration
+├── packages/
+│   ├── ui/          → composants partagés (design system)
+│   ├── config/      → config Tailwind, ESLint, etc.
+│   └── db/          → ORM, schémas Drizzle, helpers DB
+├── .gitignore
+├── package.json
+├── turbo.json
+└── tsconfig.json
+```
+
+Chaque sous-projet peut avoir ses propres dépendances tout en accédant aux packages communs via les `workspaces`.
+
+### 🔄 Exemple d'usage : composants partagés
+
+Le dossier `packages/ui` contient des composants comme `<Button />`, `<Card />`, `<Layout />`, tous écrits en TypeScript et stylés avec Tailwind.
+
+```tsx
+// packages/ui/button.tsx
+export function Button({ children }) {
+  return (
+    <button className="rounded-xl px-4 py-2 bg-orange-500 text-white">
+      {children}
+    </button>
+  );
+}
+```
+
+Ensuite, tu l'importes depuis `apps/web` :
+
+```tsx
+import { Button } from "@ui/button";
+```
+
+### 🧪 Tests et typage partagé
+
+Dans `packages/types`, je place tous mes types partagés entre front, back et API. Ça permet d'avoir un typage strict, notamment pour les données récupérées avec Drizzle ORM.
+
+Pour les tests, chaque app peut embarquer son propre Jest/Vitest, ou on peut mutualiser des helpers dans `packages/test-utils`.
+
+### 🚀 Déploiement et CI/CD
+
+- **Vercel** supporte nativement Turborepo
+- **Github Actions** ou **Husk** pour valider les PR
+- Déploiement par app (web, admin…) en ciblant uniquement ce qui a changé
+
+### 🎯 Ce qu'un monorepo bien structuré change pour mes clients
+
+- Maintenance facilitée, même avec plusieurs apps
+- Un seul point de vérité pour les types, composants, fonctions
+- Une cohérence visuelle et technique sur tout le produit
+- Une scalabilité réelle sur le long terme
+
+### 📩 Tu veux une architecture propre dès le début ?
+
+J'accompagne les startups et les projets web ambitieux dans leur structuration technique, que ce soit en création ou refonte.
+
+👉 [Voir mes services](https://mk-web.fr#services)
+👉 [mohamad@mk-web.fr](mailto:mohamad@mk-web.fr)

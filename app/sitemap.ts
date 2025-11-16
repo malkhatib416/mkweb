@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
-import { blogPosts } from '@/data';
+import { getAllBlogPosts } from '@/lib/mdx';
 import { locales } from '@/locales/i18n';
 
 const baseUrl = 'https://mk-web.fr';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     {
       path: '',
@@ -32,6 +32,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: route.priority,
     })),
   );
+
+  // Fetch blog posts from MDX files
+  const blogPosts = await getAllBlogPosts();
 
   // Generate sitemap entries for all blog posts in all locales
   const blogEntries = blogPosts.flatMap((post) =>

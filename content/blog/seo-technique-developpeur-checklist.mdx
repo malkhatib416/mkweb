@@ -1,0 +1,111 @@
+---
+title: "SEO technique pour les développeurs : 10 vérifications à intégrer dans chaque projet"
+description: "Tu es développeur web ? Voici une checklist SEO technique que j'intègre à tous mes projets pour garantir performance, indexation et visibilité sur Google."
+categories: ["seo", "technique"]
+author: "Mohamad Al-Khatib"
+publishedAt: "2025-06-14"
+readTime: 4
+image: "/seo-technique-checklist.png"
+---
+
+![Checklist SEO technique](/seo-technique-checklist.png)
+
+On parle souvent de SEO côté contenu ou marketing. Mais **le SEO technique**, c'est le socle. Et en tant que développeur, tu es en première ligne.
+
+Voici les **10 points techniques** que je vérifie sur chaque projet pour garantir une base solide à la stratégie SEO.
+
+### 1. ✅ URLs propres et lisibles
+
+- Pas de paramètres inutiles ?
+- Structure claire avec des tirets (`/services/creation-site-vitrine`)
+- Slug dynamique bien généré en Next.js ou Laravel ?
+
+### 2. ✅ Balises `<title>` et `meta description`
+
+- Générées dynamiquement ?
+- Incluent les bons mots-clés ?
+- Pas de duplication entre pages ?
+
+👉 Sur Next.js 13+, tu peux utiliser `metadata.ts` pour faire ça proprement.
+
+### 3. ✅ Balises Hn bien hiérarchisées
+
+- Une seule `<h1>` par page
+- Structure logique : h1 → h2 → h3
+- Aucun heading vide ou sauté (h2 directement après h4)
+
+### 4. ✅ Sitemap.xml généré automatiquement
+
+- Contient toutes les pages importantes
+- Mis à jour à chaque build ?
+- Inclut les dates de mise à jour ?
+
+👉 Outils utiles : `next-sitemap`, `laravel-sitemap`
+
+### 5. ✅ robots.txt bien configuré
+
+- Bloque les pages privées (ex : `/admin`)
+- Permet le crawl des assets et pages publiques
+- Indique l'URL du sitemap
+
+### 6. ✅ Performance (Core Web Vitals)
+
+- **LCP** < 2.5s ?
+- **CLS** < 0.1 ?
+- **FID** ou INP rapide ?
+
+👉 Utilise Lighthouse, PageSpeed Insights ou WebPageTest.org
+
+### 7. ✅ Chargement optimisé des images
+
+- Lazy loading activé ?
+- WebP ou formats modernes ?
+- Balises `alt` bien remplies ?
+
+### 8. ✅ Liens internes et externes
+
+- Liens internes cohérents entre pages ?
+- Attribut `rel="noopener noreferrer"` sur les liens externes ?
+- Pas de liens cassés (404) ?
+
+### 9. ✅ Canonical tags
+
+- Utile pour les pages avec contenus similaires
+- Géré dynamiquement si duplication potentielle
+
+### 10. ✅ Données structurées (schema.org)
+
+- Organisation, produit, article, FAQ...
+- Ajoute du contexte à tes pages
+- Augmente les chances d'avoir des résultats enrichis
+
+👉 Exemple (JSON-LD) à inclure dans le `<head>` :
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamad Al-Khatib",
+  "url": "https://mk-web.fr"
+}
+```
+
+### 📈 Bonus : outils pour tester
+
+- Google Search Console
+- Lighthouse / PageSpeed
+- Screaming Frog SEO Spider
+- Ahrefs / SEMrush / Moz
+
+### 🎯 Conclusion
+
+En appliquant cette checklist SEO technique à tous tes projets, tu :
+
+- Facilites l'indexation par Google
+- Boostes les performances dès le départ
+- Prépares une base SEO solide pour ton client ou ton propre site
+
+Tu veux un audit technique SEO de ton site ? Ou tu lances un nouveau projet et veux partir sur de bonnes bases ?
+
+👉 [Découvre mes services SEO techniques](https://mk-web.fr#services)
+👉 [Contacte-moi directement](mailto:hello@mk-web.fr)

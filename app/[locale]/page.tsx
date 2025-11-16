@@ -23,7 +23,7 @@ export default async function Home({ params }: Props) {
       <GradientWrapper />
       <ServiceShowCase dict={dict} />
       <GradientWrapper />
-      <LatestProjects dict={dict} locale={locale as Locale} />
+      <LatestProjects dict={dict} />
       {dict.faq ? <FAQ faq={dict.faq} /> : null}
       <ContactSection dict={dict} />
     </>

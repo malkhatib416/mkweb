@@ -1,6 +1,5 @@
 'use client';
 
-import { blogPosts } from '@/data';
 import { Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import BlogCard from './blog-card';
@@ -8,18 +7,20 @@ import CategoryFilter from './category-filter';
 import SearchBar from './search-bar';
 import type { Dictionary } from '@/locales/dictionaries';
 import type { Locale } from '@/locales/i18n';
+import type { BlogPost } from '@/types';
 
 type Props = {
   dict: Dictionary;
   locale: Locale;
+  posts: BlogPost[];
 };
 
-export default function BlogPage({ dict, locale }: Props) {
+export default function BlogPage({ dict, locale, posts }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const filteredPosts = useMemo(() => {
-    let filtered = blogPosts;
+    let filtered = posts;
 
     if (searchTerm) {
       filtered = filtered.filter(
@@ -42,7 +43,7 @@ export default function BlogPage({ dict, locale }: Props) {
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
     );
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, posts]);
 
   return (
     <div className="min-h-[50vh] bg-white">

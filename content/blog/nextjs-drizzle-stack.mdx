@@ -1,0 +1,82 @@
+---
+title: "Pourquoi j'utilise Next.js 15 et Drizzle ORM pour créer des apps modernes"
+description: "Next.js 15 et Drizzle ORM forment une stack puissante, moderne et typée pour construire des applications web rapides, maintenables et scalables. Voici pourquoi je les utilise au quotidien."
+categories: ["tech", "nextjs", "typescript"]
+author: "Mohamad Al-Khatib"
+publishedAt: "2025-06-18"
+readTime: 3
+image: "/nextjs-drizzle.png"
+---
+
+![Stack Next.js + Drizzle ORM](/nextjs-drizzle.png)
+
+Aujourd'hui, créer une application web performante, rapide et évolutive ne se limite plus à "faire du React". En tant que développeur freelance spécialisé en JavaScript, j'ai testé de nombreux outils, frameworks et ORM au fil des projets. Mais depuis plusieurs mois, une combinaison s'est imposée naturellement dans mon workflow : **Next.js 15 + Drizzle ORM**.
+
+Dans cet article, je t'explique pourquoi ce stack me permet de livrer des applications modernes, robustes, et pourquoi c'est un vrai plus pour mes clients.
+
+### 🚀 Next.js 15 : bien plus qu'un framework React
+
+Next.js est devenu un framework fullstack complet. Depuis la version 13, et encore plus avec la 15, il offre :
+
+- **App Router** : architecture modulaire ultra claire
+- **Server & Client components** : rendu optimisé
+- **Edge rendering & streaming** : performance maximale
+- **Layouts imbriqués** : pour des interfaces complexes et réactives
+- **SEO natif** : gestion fine avec l'API `metadata.ts`
+
+Avec Next.js, je peux déployer une app performante dès les premiers jours, sans recoder toute l'architecture backend. C'est un vrai gain de temps.
+
+### 🧩 Drizzle ORM : typage natif, requêtes claires, simplicité
+
+J'ai longtemps utilisé Prisma, Knex, Sequelize… mais Drizzle ORM a changé ma vision :
+
+- **Typage TypeScript natif**, pas de génération de client
+- **Syntaxe proche du SQL**, simple et lisible
+- **API .query** très puissante pour structurer les requêtes
+- **Pas de magie noire** : tout est explicite
+
+```typescript
+const result = await db.query.users.findMany({
+  where: (u, { eq }) => eq(u.email, "client@example.com"),
+});
+```
+
+Le typage est strict mais confortable, la productivité est excellente, et surtout : **le code est maintenable**.
+
+### 🔧 La puissance de la combinaison Next.js + Drizzle
+
+Ces deux outils s'intègrent parfaitement dans une architecture monorepo :
+
+- Typage TypeScript de bout en bout
+- Back et front dans le même repo
+- Performance + structure + rapidité de dev
+- API Routes ou Server Actions très faciles à implémenter
+
+Je peux ainsi développer une application fullstack complète, optimisée et lisible sans sacrifier la scalabilité ou la qualité du code.
+
+### 🧪 Cas concret : AlertJO.fr
+
+Pour [AlertJO.fr](https://alertjo.fr), j'ai utilisé ce stack pour créer une app qui :
+
+- Scrape les PDF des journaux officiels
+- Extrait les noms et numéros de dossier
+- Permet une recherche rapide par numéro
+- Envoie des notifications email en cas de correspondance
+
+Résultat : une app légère, rapide, maintenable, et un SEO bien structuré pour capter les bons utilisateurs.
+
+### 🎯 Pourquoi c'est un avantage pour mes clients
+
+- Des apps modernes et scalables
+- Un rendu rapide et fluide
+- Un code lisible, structuré et typé
+- Un gain de temps dans les évolutions futures
+
+Mon objectif en tant que freelance, ce n'est pas juste d'écrire du code. C'est de livrer des solutions techniques fiables, performantes, maintenables et bien conçues.
+
+### 📬 Un projet web en tête ?
+
+Je peux t'accompagner, du concept à la mise en ligne. Discutons de ton besoin :
+
+- [mohamad@mk-web.fr](mailto:mohamad@mk-web.fr)
+- [Voir mes services](https://mk-web.fr#services)

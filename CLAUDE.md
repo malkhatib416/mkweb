@@ -19,6 +19,7 @@ MK-Web is a French freelance web development portfolio and business website buil
 - **Storage**: Vercel Blob (for image storage)
 - **Rate Limiting**: Vercel KV with @upstash/ratelimit
 - **AI Integration**: Replicate (for potential AI features)
+- **Blog**: MDX with `@next/mdx`, `gray-matter` for frontmatter parsing
 - **Package Manager**: bun
 
 ## Common Commands
@@ -174,16 +175,24 @@ export default async function MyPage({ params }: Props) {
 
 ### Blog System
 
-- **Data source**: Blog posts are stored in `data/index.ts` as static content (not a CMS)
-- **Structure**: Each post has `id`, `title`, `description`, `content` (HTML string), `categories`, `author`, `publishedAt`, and `readTime`
-- **Categories**: Defined in `data/index.ts` with color coding (SEO, Refonte, Tech, Next.js, Architecture, TypeScript)
+- **Data source**: Blog posts are stored as MDX files in `content/blog/` directory
+- **MDX Implementation**: Uses Next.js's built-in `@next/mdx` support with dynamic imports
+- **Structure**: Each MDX file has:
+  - **Frontmatter**: `title`, `description`, `categories`, `author`, `publishedAt`, `readTime`, `image`
+  - **Content**: Markdown/MDX with support for custom components
+- **Categories**: Defined in `data/index.ts` with color coding (SEO, Refonte, Tech, Next.js, Architecture, TypeScript, Technique)
+- **MDX Utilities** (`lib/mdx.ts`):
+  - `getAllBlogPosts()`: Fetches all blog posts with metadata using `gray-matter`
+  - `getBlogPostById(id)`: Fetches a specific post with content
+  - `getBlogPostSlugs()`: Returns all post slugs for static generation
 - **Components**:
   - `blog-page.tsx`: Main blog interface with search and filtering
   - `blog-card.tsx`: Individual post preview cards
   - `search-bar.tsx`: Client-side search functionality
   - `category-filter.tsx`: Filter by category
-- **Dynamic routes**: `app/blog/[id]/page.tsx` renders individual posts
-- **Content format**: Blog content is HTML strings with inline images and semantic markup
+  - `mdx-components.tsx`: Custom MDX component styling (auto-loaded via `mdx-components.tsx` at root)
+- **Dynamic routes**: `app/[locale]/blog/[id]/page.tsx` renders individual posts using `next/dynamic` to import MDX files
+- **Content format**: MDX files with frontmatter metadata (parsed by `gray-matter`) and Markdown/JSX content
 
 ### Styling & Theming
 
@@ -253,12 +262,24 @@ Key features in layout:
 
 ### Adding Blog Posts
 
-1. Add the post object to `blogPosts` array in `data/index.ts`
-2. Use a unique ID (kebab-case slug)
-3. Assign relevant categories from the `categories` array
-4. Include `readTime` estimate
-5. Content should be HTML string with semantic markup
-6. Images should be placed in `public/` and referenced with absolute paths
+1. Create a new `.mdx` file in `content/blog/` directory (e.g., `my-post-slug.mdx`)
+2. Add frontmatter metadata at the top:
+   ```mdx
+   ---
+   title: "Your Post Title"
+   description: "Brief description"
+   categories: ["seo", "tech"]
+   author: "Mohamad Al-Khatib"
+   publishedAt: "2025-06-20"
+   readTime: 5
+   image: "/blog-image.png"
+   ---
+   ```
+3. Write content in Markdown/MDX format below the frontmatter
+4. Use standard Markdown syntax (headings, lists, links, code blocks, etc.)
+5. Images should be placed in `public/` and referenced with relative paths
+6. Custom components from `mdx-components.tsx` are automatically styled
+7. The post will be automatically picked up and displayed in the blog listing
 
 ### Environment Variables
 

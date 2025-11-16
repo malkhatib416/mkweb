@@ -1,16 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, ExternalLink, Github } from 'lucide-react';
+import { Calendar, ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
-// import Image from 'next/image';
-import Link from 'next/link';
 import type { Dictionary } from '@/locales/dictionaries';
-import type { Locale } from '@/locales/i18n';
 
 type Props = {
   dict: Dictionary;
-  locale: Locale;
 };
 
 const getProjects = (dict: Dictionary) => [
@@ -66,7 +62,7 @@ const getProjects = (dict: Dictionary) => [
   // },
 ];
 
-export default function LatestProjects({ dict, locale }: Props) {
+export default function LatestProjects({ dict }: Props) {
   const projects = getProjects(dict);
 
   const getStatusText = (status: string) => {
