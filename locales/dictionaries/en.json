@@ -132,6 +132,8 @@
     "intro": "I help businesses transform their ideas into high-performance, custom web solutions.",
     "location": "Based in",
     "chartres": "Chartres",
+    "remote": "Available online",
+    "remoteDescription": "Remote collaboration worldwide",
     "services": "I work on",
     "creation": "creation",
     "optimization": "optimization",
@@ -149,7 +151,7 @@
   "services": {
     "badge": "Services",
     "title": "My Services",
-    "subtitle": "I support you at every stage of your digital project: website creation, e-commerce, redesign, maintenance, hosting and innovation.",
+    "subtitle": "I support you at every stage of your digital project: website creation, e-commerce, mobile applications, redesign, maintenance, hosting and innovation.",
     "website": {
       "title": "Website Creation",
       "description": "Design of custom showcase and corporate websites, designed to enhance your image and achieve your goals.",
@@ -172,18 +174,11 @@
       "feature3": "Training included"
     },
     "maintenance": {
-      "title": "Maintenance",
-      "description": "Proactive monitoring, regular updates and responsive support for an always operational site.",
-      "feature1": "24/7 support",
-      "feature2": "Auto backups",
-      "feature3": "Security updates"
-    },
-    "hosting": {
-      "title": "Hosting",
-      "description": "Secure hosting solutions tailored to your needs to guarantee your site's availability.",
-      "feature1": "SSL included",
-      "feature2": "Global CDN",
-      "feature3": "Continuous monitoring"
+      "title": "Hosting & Maintenance",
+      "description": "Secure hosting solutions, proactive monitoring, regular updates and responsive support for an always operational site.",
+      "feature1": "SSL/CDN Hosting",
+      "feature2": "24/7 Support",
+      "feature3": "Backups & Updates"
     },
     "innovation": {
       "title": "Innovation",
@@ -191,6 +186,13 @@
       "feature1": "Integrated AI",
       "feature2": "Modern APIs",
       "feature3": "Emerging technologies"
+    },
+    "mobileapp": {
+      "title": "Mobile Applications",
+      "description": "Development of native and hybrid mobile applications for iOS and Android, performant and intuitive.",
+      "feature1": "iOS & Android",
+      "feature2": "Optimized UX",
+      "feature3": "Offline-first"
     }
   },
   "faq": {

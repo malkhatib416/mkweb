@@ -132,6 +132,8 @@
     "intro": "J'aide les entreprises à transformer leurs idées en solutions web performantes et sur-mesure.",
     "location": "Basé à",
     "chartres": "Chartres",
+    "remote": "Disponible en ligne",
+    "remoteDescription": "Collaboration à distance partout dans le monde",
     "services": "j'interviens sur la",
     "creation": "création",
     "optimization": "optimisation",
@@ -149,7 +151,7 @@
   "services": {
     "badge": "Services",
     "title": "Mes Services",
-    "subtitle": "Je vous accompagne à chaque étape de votre projet digital : création de site, e-commerce, refonte, maintenance, hébergement et innovation.",
+    "subtitle": "Je vous accompagne à chaque étape de votre projet digital : création de site, e-commerce, applications mobiles, refonte, maintenance, hébergement et innovation.",
     "website": {
       "title": "Création de site internet",
       "description": "Conception de sites vitrines et corporate sur-mesure, pensés pour valoriser votre image et atteindre vos objectifs.",
@@ -172,18 +174,11 @@
       "feature3": "Formation incluse"
     },
     "maintenance": {
-      "title": "Maintenance",
-      "description": "Surveillance proactive, mises à jour régulières et support réactif pour un site toujours opérationnel.",
-      "feature1": "Support 24/7",
-      "feature2": "Sauvegardes auto",
-      "feature3": "Mises à jour sécurité"
-    },
-    "hosting": {
-      "title": "Hébergement",
-      "description": "Solutions d'hébergement sécurisées et adaptées à vos besoins pour garantir la disponibilité de votre site.",
-      "feature1": "SSL inclus",
-      "feature2": "CDN mondial",
-      "feature3": "Monitoring continu"
+      "title": "Hébergement & Maintenance",
+      "description": "Solutions d'hébergement sécurisées, surveillance proactive, mises à jour régulières et support réactif pour un site toujours performant.",
+      "feature1": "Hébergement SSL/CDN",
+      "feature2": "Support 24/7",
+      "feature3": "Sauvegardes & MAJ"
     },
     "innovation": {
       "title": "Innovation",
@@ -191,6 +186,13 @@
       "feature1": "IA intégrée",
       "feature2": "API modernes",
       "feature3": "Technologies émergentes"
+    },
+    "mobileapp": {
+      "title": "Applications mobiles",
+      "description": "Développement d'applications mobiles natives et hybrides pour iOS et Android, performantes et intuitives.",
+      "feature1": "iOS & Android",
+      "feature2": "UX optimisée",
+      "feature3": "Offline-first"
     }
   },
   "faq": {

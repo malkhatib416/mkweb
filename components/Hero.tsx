@@ -4,14 +4,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import NavLink from './NavLink';
 import type { Dictionary } from '@/locales/dictionaries';
-import type { Locale } from '@/locales/i18n';
 
 type Props = {
   dict: Dictionary;
-  locale: Locale;
 };
 
-export default function Hero({ dict, locale }: Props) {
+export default function Hero({ dict }: Props) {
   return (
     <section className="hero-wrapper relative overflow-hidden" id="main">
       {/* Animated background elements */}
@@ -56,7 +54,8 @@ export default function Hero({ dict, locale }: Props) {
             className="flex items-center justify-center gap-x-4 font-medium text-sm"
           >
             <NavLink
-              href={`/${locale}#contact`}
+              href="https://calendly.com/mk-web28/30min"
+              target="_blank"
               className="text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100 px-8 py-4 rounded-xl flex items-center gap-2 group text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
             >
               <span>{dict.hero.cta}</span>
