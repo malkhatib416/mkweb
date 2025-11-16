@@ -4,7 +4,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { PHONE } from '@/utils/contactInfo';
+import { PHONE } from '@/utils/consts';
 import { MessageCircle, X } from 'lucide-react';
 
 export default function WhatsAppQuickContact() {

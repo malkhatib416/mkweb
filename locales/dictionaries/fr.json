@@ -1,0 +1,260 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "blog": "Blog",
+    "getQuote": "Demander un devis"
+  },
+  "hero": {
+    "badge": "Disponible pour nouveaux projets",
+    "title": "Transformez vos idées en",
+    "titleHighlight": "applications web performantes",
+    "subtitle": "J'accompagne les startups et entreprises dans la création de solutions web sur-mesure, performantes et évolutives.",
+    "cta": "Discutons de votre projet",
+    "feature1": "Réponse sous 24h",
+    "feature2": "+5 ans d'expérience",
+    "feature3": "Support continu"
+  },
+  "footer": {
+    "rights": "Tous droits réservés",
+    "legalNotice": "Mentions légales",
+    "contact": "Contact",
+    "links": "Liens",
+    "home": "Accueil"
+  },
+  "common": {
+    "readMore": "Lire la suite",
+    "learnMore": "En savoir plus",
+    "contactUs": "Nous contacter",
+    "backToHome": "Retour à l'accueil",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "submit": "Envoyer",
+    "cancel": "Annuler"
+  },
+  "blog": {
+    "title": "Blog",
+    "readTime": "min de lecture",
+    "search": "Rechercher un article...",
+    "allCategories": "Tout",
+    "noResults": "Aucun article trouvé",
+    "noResultsDescription": "Essayez de modifier vos termes de recherche ou parcourez toutes les catégories",
+    "resultsFor": "Résultats pour",
+    "article": "Article",
+    "articles": "Articles",
+    "readArticle": "Lire L'article"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour répondre à toutes vos questions. N'hésitez pas à nous contacter !",
+    "form": {
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "email": "Email",
+      "phone": "Numéro de téléphone",
+      "company": "Entreprise",
+      "subject": "Sujet",
+      "message": "Message",
+      "helper": "Partagez vos objectifs, votre échéance et vos contraintes afin que je puisse préparer une réponse sur-mesure.",
+      "send": "Envoyer",
+      "sending": "Envoi en cours..."
+    },
+    "toast": {
+      "successTitle": "Message envoyé !",
+      "successDescription": "Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.",
+      "errorTitle": "Erreur",
+      "errorDescription": "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer plus tard."
+    },
+    "email": {
+      "contactSubject": "Informations de contact",
+      "confirmationSubject": "Confirmation de réception",
+      "confirmationGreeting": "Bonjour",
+      "confirmationMessage": "Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.",
+      "confirmationClosing": "Cordialement,",
+      "confirmationTeam": "L'équipe de MK-Web",
+      "fields": {
+        "lastName": "Nom",
+        "firstName": "Prénom",
+        "email": "Email",
+        "company": "Entreprise",
+        "phone": "Téléphone"
+      }
+    },
+    "highlights": [
+      {
+        "title": "Feuille de route sur-mesure",
+        "description": "Chaque collaboration débute par un échange pour cadrer vos objectifs, indicateurs de succès et contraintes techniques."
+      },
+      {
+        "title": "Budget et planning clairs",
+        "description": "Vous recevez une proposition détaillée avec jalons, livrables et investissement afin que chacun reste aligné."
+      },
+      {
+        "title": "Outils de collaboration",
+        "description": "Nous travaillons dans des espaces partagés avec un suivi transparent et des points asynchrones quand vous en avez besoin."
+      },
+      {
+        "title": "Suivi post-livraison",
+        "description": "Des offres de maintenance assurent sécurité, mises à jour et évolutions en fonction de vos priorités."
+      }
+    ],
+    "office": {
+      "title": "Basé à Chartres, j'accompagne des clients partout en Europe",
+      "description": "Rencontrons-nous autour de Chartres ou travaillons entièrement à distance avec des points hebdomadaires en visio et une documentation partagée.",
+      "hours": "Du lundi au vendredi • 09h00 – 18h00 CET"
+    },
+    "privacy": "Vos informations restent confidentielles et ne sont utilisées que pour répondre à votre message.",
+    "details": {
+      "emailLabel": "Email",
+      "phoneLabel": "Téléphone",
+      "responseTime": "Temps de réponse",
+      "responseTimeValue": "Moins de 24h"
+    }
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "Oups ! La page que vous cherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English",
+    "switchTo": "Changer de langue"
+  },
+  "metadata": {
+    "title": "MK-Web - Développeur Web Freelance",
+    "description": "Développeur Web Freelance. Création de sites internet, applications web, référencement et maintenance de sites web.",
+    "keywords": "Développeur Web, Freelance, Chartres, Création de sites internet, Applications web, Référencement, Maintenance de sites web, MK-Web, Agence Web, Webmaster Freelance"
+  },
+  "about": {
+    "imageAlt": "Votre expert web",
+    "intro": "J'aide les entreprises à transformer leurs idées en solutions web performantes et sur-mesure.",
+    "location": "Basé à",
+    "chartres": "Chartres",
+    "services": "j'interviens sur la",
+    "creation": "création",
+    "optimization": "optimisation",
+    "maintenance": "maintenance",
+    "description": "de sites web et d'applications, avec une approche centrée sur l'utilisateur et la performance.",
+    "goal": "Mon objectif : vous offrir des",
+    "uniqueSolutions": "solutions digitales uniques",
+    "adapted": ", parfaitement adaptées à vos besoins et à vos ambitions, pour booster votre présence en ligne et faciliter la gestion de vos projets.",
+    "expertise": "De l'intégration de",
+    "innovative": "fonctionnalités innovantes",
+    "to": "à la",
+    "fluidUX": "conception d'expériences utilisateurs fluides",
+    "commitment": ", je mets mon expertise et ma rigueur au service de votre réussite."
+  },
+  "services": {
+    "badge": "Services",
+    "title": "Mes Services",
+    "subtitle": "Je vous accompagne à chaque étape de votre projet digital : création de site, e-commerce, refonte, maintenance, hébergement et innovation.",
+    "website": {
+      "title": "Création de site internet",
+      "description": "Conception de sites vitrines et corporate sur-mesure, pensés pour valoriser votre image et atteindre vos objectifs.",
+      "feature1": "Design responsive",
+      "feature2": "SEO optimisé",
+      "feature3": "Performance maximale"
+    },
+    "ecommerce": {
+      "title": "E-commerce",
+      "description": "Développement de boutiques en ligne performantes, évolutives et optimisées pour la conversion.",
+      "feature1": "Paiements sécurisés",
+      "feature2": "Gestion stocks",
+      "feature3": "Analytics avancés"
+    },
+    "redesign": {
+      "title": "Refonte de site",
+      "description": "Modernisation de votre site pour booster son impact, sa performance et l'expérience utilisateur.",
+      "feature1": "Audit complet",
+      "feature2": "Migration sécurisée",
+      "feature3": "Formation incluse"
+    },
+    "maintenance": {
+      "title": "Maintenance",
+      "description": "Surveillance proactive, mises à jour régulières et support réactif pour un site toujours opérationnel.",
+      "feature1": "Support 24/7",
+      "feature2": "Sauvegardes auto",
+      "feature3": "Mises à jour sécurité"
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "description": "Solutions d'hébergement sécurisées et adaptées à vos besoins pour garantir la disponibilité de votre site.",
+      "feature1": "SSL inclus",
+      "feature2": "CDN mondial",
+      "feature3": "Monitoring continu"
+    },
+    "innovation": {
+      "title": "Innovation",
+      "description": "Intégration des dernières technologies web pour des solutions innovantes et différenciantes.",
+      "feature1": "IA intégrée",
+      "feature2": "API modernes",
+      "feature3": "Technologies émergentes"
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Questions fréquentes",
+    "subtitle": "Les réponses aux questions les plus courantes que l’on me pose avant de lancer un projet.",
+    "items": [
+      {
+        "question": "Combien de temps faut-il pour créer un site ou une application ?",
+        "answer": "Un site vitrine standard est généralement livré en une semaine en moyenne. Pour les applications plus complexes (SaaS, outils métier, espace client, automatisations…), le délai peut varier et une petite phase de cadrage est réalisée afin de définir précisément les besoins et le planning."
+      },
+      {
+        "question": "Pouvez-vous améliorer ou refondre un site déjà en ligne ?",
+        "answer": "Oui, tout à fait. Je réalise des audits techniques et UX, j’identifie les points d’amélioration (performance, SEO, sécurité) et je propose un plan de refonte. La transition est gérée afin de ne pas interrompre votre activité ni impacter votre référencement."
+      },
+      {
+        "question": "Y a-t-il un accompagnement après la mise en ligne ?",
+        "answer": "Oui. Chaque projet inclut 30 jours d’ajustements gratuits après la livraison. Je propose également des forfaits de maintenance comprenant mises à jour techniques, correctifs de sécurité, sauvegardes et petites évolutions."
+      },
+      {
+        "question": "Quelles technologies utilisez-vous ?",
+        "answer": "Je travaille principalement avec Next.js, React, TypeScript et Tailwind CSS pour le front-end. Pour le back-end, j’utilise Node.js (Fastify/Express) avec Prisma, ainsi que des plateformes modernes comme Vercel, Supabase ou PlanetScale selon vos besoins."
+      },
+      {
+        "question": "Est-ce que vous vous occupez de tout même si je n’y connais rien ?",
+        "answer": "Oui. Je m’occupe de toute la partie technique : nom de domaine, hébergement, sécurité, intégration du design, optimisation, SEO, configuration des emails… Vous pouvez vous concentrer uniquement sur votre activité."
+      },
+      {
+        "question": "Pouvez-vous aussi gérer les textes, images et le SEO ?",
+        "answer": "Oui. Je peux rédiger le contenu, optimiser votre SEO, intégrer vos images ou en générer via IA, et structurer le site pour qu’il soit performant dès sa mise en ligne."
+      }
+    ]
+  },
+  "projects": {
+    "badge": "Projets Récents",
+    "title": "Mes Dernières",
+    "titleHighlight": "Réalisations",
+    "subtitle": "Découvrez mes projets les plus récents, alliant innovation technique et design moderne pour créer des expériences web exceptionnelles.",
+    "viewProject": "Voir le projet",
+    "sourceCode": "Code source",
+    "otherProjects": "Autres Projets",
+    "demo": "Demo",
+    "code": "Code",
+    "cta": {
+      "title": "Prêt à créer votre prochain projet ?",
+      "subtitle": "Transformons ensemble vos idées en solutions web innovantes et performantes.",
+      "button": "Démarrer un projet"
+    },
+    "status": {
+      "online": "En ligne",
+      "development": "En développement",
+      "completed": "Terminé"
+    },
+    "items": {
+      "alertjo": {
+        "description": "Application de surveillance des journaux officiels avec scraping automatisé et notifications email en temps réel.",
+        "longDescription": "Plateforme complète permettant de surveiller les publications du Journal Officiel français. Extraction automatique des données PDF, recherche avancée et système de notifications personnalisées.",
+        "category": "Application Web"
+      },
+      "pcmge": {
+        "description": "Migration et refonte d'un site vitrine en CRM interne sur mesure pour une PME.",
+        "longDescription": "Projet de migration d'un site existant réalisé en PHP vers Laravel. Développement d'un CRM interne pour gérer les clients et les contacts. Intégration de Bootstrap pour une interface claire et responsive.",
+        "category": "CRM / Application Web"
+      }
+    }
+  }
+}

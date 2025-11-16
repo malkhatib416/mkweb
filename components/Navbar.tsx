@@ -1,150 +1,237 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  Suspense,
+  useRef,
+} from 'react';
+import type { RefObject } from 'react';
+import { usePathname } from 'next/navigation';
 import NavLink from './NavLink';
-import { usePathname, useSearchParams } from 'next/navigation';
 import MKWEbLogo from './Icons/MKWebLogo';
-import useWindowSize from '@/hooks/useWindowSize';
-import { Suspense } from 'react';
+import LanguageSwitcher from './LanguageSwitcher';
+import { isValidLocale, type Locale } from '@/locales/i18n';
+import frDict from '@/locales/dictionaries/fr.json';
+import enDict from '@/locales/dictionaries/en.json';
+import { X, Menu } from 'lucide-react';
+
+const dictionaries = {
+  fr: frDict,
+  en: enDict,
+} as const;
+
+const useBodyScrollLock = (
+  isOpen: boolean,
+  menuRef: RefObject<HTMLDivElement>,
+) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('overflow-hidden');
+      const firstLink = menuRef.current?.querySelector('a');
+      firstLink?.focus();
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [isOpen, menuRef]);
+};
+
+// Constants
+const MOBILE_NAV_ID = 'mobile-nav';
+
+// Types
+interface NavigationItem {
+  title: string;
+  path: string;
+  id: string;
+}
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [pastHero, setPastHero] = useState(false);
-  const [width] = useWindowSize(); // Automatically detects window size
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const pathname = usePathname() ?? '/';
 
-  const navigation = [
-    { title: 'Accueil', path: '/#main' },
-    { title: 'Services', path: '/#services' },
-    { title: 'Blog', path: '/blog' },
-  ];
+  // Extract locale from pathname
+  const currentLocale: Locale = useMemo(() => {
+    const pathSegments = pathname.split('/').filter(Boolean);
+    const localeFromPath = pathSegments[0];
+    return isValidLocale(localeFromPath) ? localeFromPath : 'fr';
+  }, [pathname]);
 
-  const handleState = () => {
-    document.body.classList.remove('overflow-hidden');
+  const dict = dictionaries[currentLocale];
+  const t = dict.nav;
+
+  const navigation: NavigationItem[] = useMemo(
+    () => [
+      {
+        title: t.home,
+        path: `/${currentLocale}/#main`,
+        id: 'home',
+      },
+      {
+        title: t.services,
+        path: `/${currentLocale}/#services`,
+        id: 'services',
+      },
+      {
+        title: t.blog,
+        path: `/${currentLocale}/blog`,
+        id: 'blog',
+      },
+    ],
+    [t, currentLocale],
+  );
+
+  const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
-  };
+    // Return focus to menu button when closing
+    menuButtonRef.current?.focus();
+  }, []);
 
-  const handleScroll = () => {
-    const heroSection = document.querySelector('.hero-wrapper');
-    if (heroSection) {
-      const heroBottom = heroSection.getBoundingClientRect().bottom;
-      setPastHero(heroBottom <= 0);
-    }
-  };
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
 
+  // Handle keyboard navigation
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        closeMenu();
+      }
+    },
+    [isMenuOpen, closeMenu],
+  );
+  // Manage body scroll and close menu when the route changes
+  useBodyScrollLock(isMenuOpen, mobileMenuRef);
   useEffect(() => {
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [width]);
+    closeMenu();
+  }, [pathname, closeMenu]);
 
+  // Handle escape key to close menu
   useEffect(() => {
-    handleState(); // Close menu on navigation
-  }, [pathname, searchParams]);
+    if (!isMenuOpen) return;
 
-  const handleNavMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    document.body.classList.toggle('overflow-hidden');
-  };
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    };
 
-  const hoverColor = pastHero ? 'hover:text-black/80' : 'hover:text-white/80';
-  const inHomePage = pathname === '/';
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isMenuOpen, closeMenu]);
 
-  const linkColor = (whiteOnMobile = false) => {
-    if (!inHomePage) return 'text-black hover:text-black/80'; // Handle other pages
-    if (whiteOnMobile && !pastHero) return 'text-white hover:text-white/80';
-    if (width <= 768) return 'text-black hover:text-black/80'; // Handle mobile
-    return pastHero
-      ? 'text-black hover:text-black/80'
-      : 'text-white hover:text-white/80';
-  };
-
-  const closeMobileMenu = () => {
-    setIsMenuOpen(false);
-    document.body.classList.remove('overflow-hidden');
-  };
+  const headerClassName =
+    'fixed top-0 w-full z-50 bg-white border-b border-gray-100';
+  const desktopNavLinkClass =
+    'inline-flex items-center px-3 py-2 text-sm font-medium rounded-full text-gray-700 transition-colors duration-200 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
+  const mobileNavLinkClass =
+    'block w-full px-3 py-3 text-base font-medium rounded-lg text-gray-700 transition-colors duration-200 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
 
   return (
-    <header
-      className={`fixed top-0 w-full z-40 ${pastHero ? 'bg-white shadow-sm' : ''} ${!inHomePage ? 'shadow-sm bg-white' : ''}`}
-    >
-      <nav
-        className={`w-full md:static md:text-sm ${isMenuOpen ? 'fixed h-full' : ''}`}
-      >
-        <div className="items-center mx-auto md:flex custom-screen">
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Suspense>
-              <MKWEbLogo />
-            </Suspense>
+    <header className={headerClassName} onKeyDown={handleKeyDown}>
+      <nav className="w-full" aria-label="Main navigation">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link
+                href={`/${currentLocale}/#main`}
+                aria-label="MK-Web home"
+                className="focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 rounded-lg"
+              >
+                <Suspense fallback={<div className="w-32 h-8" />}>
+                  <MKWEbLogo />
+                </Suspense>
+              </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex md:items-center md:gap-3">
+              {navigation.map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.path}
+                  className={desktopNavLinkClass}
+                >
+                  {item.title}
+                </Link>
+              ))}
+
+              <NavLink
+                href={`/${currentLocale}#contact`}
+                className="ml-5 inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2"
+              >
+                {t.getQuote}
+              </NavLink>
+
+              <div className="pl-4 ml-4 border-l border-gray-200/70">
+                <LanguageSwitcher currentLocale={currentLocale} />
+              </div>
+            </div>
+
+            {/* Mobile menu button */}
             <div className="md:hidden">
               <button
-                role="button"
-                aria-label="Toggle menu"
-                className={`${linkColor(true)} ${hoverColor}`}
-                onClick={handleNavMenu}
+                ref={menuButtonRef}
+                type="button"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
+                aria-controls={MOBILE_NAV_ID}
+                className="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2"
+                onClick={toggleMenu}
               >
                 {isMenuOpen ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <X className="h-6 w-6" aria-hidden="true" />
                 ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                    />
-                  </svg>
+                  <Menu className="h-6 w-6" aria-hidden="true" />
                 )}
               </button>
             </div>
           </div>
-          <div
-            onClick={closeMobileMenu}
-            className={`flex-1 pb-3 mt-8 md:pb-0 md:mt-0 md:block ${
-              isMenuOpen
-                ? 'h-screen fixed -top-8 left-0 w-full pt-12 px-4 bg-white text-gray-600'
-                : 'hidden'
-            }`}
-          >
-            <ul className="justify-end items-center space-y-6 md:flex md:space-x-6 md:space-y-0 md:font-medium">
-              {navigation.map((item, idx) => (
-                <li
-                  key={idx}
-                  className={`duration-150 transition-all ${linkColor()} `}
-                >
-                  <Link href={item.path} className="block">
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <NavLink
-                  href="/nous-contacter"
-                  className="block font-medium text-sm text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100-900 md:inline"
-                >
-                  Demander un devis
-                </NavLink>
-              </li>
-            </ul>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div
+          ref={mobileMenuRef}
+          id={MOBILE_NAV_ID}
+          className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-[320px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+          aria-hidden={!isMenuOpen}
+        >
+          <div className="px-4 pt-2 pb-6 space-y-1 bg-white border-t border-gray-100 shadow-sm">
+            {navigation.map((item) => (
+              <Link
+                key={item.id}
+                href={item.path}
+                onClick={closeMenu}
+                className={mobileNavLinkClass}
+              >
+                {item.title}
+              </Link>
+            ))}
+
+            <NavLink
+              href={`/${currentLocale}#contact`}
+              onClick={closeMenu}
+              className="block w-full px-4 py-3 mt-4 text-center text-sm font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2"
+            >
+              {t.getQuote}
+            </NavLink>
+
+            <div className="pt-4 mt-4 border-t border-gray-100">
+              <LanguageSwitcher currentLocale={currentLocale} />
+            </div>
           </div>
         </div>
       </nav>

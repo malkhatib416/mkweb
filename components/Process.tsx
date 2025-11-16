@@ -89,7 +89,7 @@ export default function Process() {
                     className="mt-16 text-center"
                 >
                     <a
-                        href="/nous-contacter"
+                        href="#contact"
                         className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors"
                     >
                         Démarrer Votre Projet

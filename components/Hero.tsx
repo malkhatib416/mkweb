@@ -3,15 +3,15 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import NavLink from './NavLink';
+import type { Dictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
 
-// const technologies = [
-//   { name: 'React', logo: '/tech/react.svg' },
-//   { name: 'Next.js', logo: '/tech/nextjs.svg' },
-//   { name: 'Node.js', logo: '/tech/nodejs.svg' },
-//   { name: 'TypeScript', logo: '/tech/typescript.svg' },
-// ];
+type Props = {
+  dict: Dictionary;
+  locale: Locale;
+};
 
-export default function Hero() {
+export default function Hero({ dict, locale }: Props) {
   return (
     <section className="hero-wrapper relative overflow-hidden" id="main">
       {/* Animated background elements */}
@@ -19,7 +19,7 @@ export default function Hero() {
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-myorange-100/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
-      
+
       <div className="custom-screen pt-32 pb-20 text-white min-h-screen flex items-center justify-center relative z-10">
         <div className="space-y-8 max-w-4xl mx-auto text-center">
           <motion.div
@@ -29,12 +29,12 @@ export default function Hero() {
           >
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              Disponible pour nouveaux projets
+              {dict.hero.badge}
             </div>
             <h1 className="text-4xl text-white font-extrabold mx-auto sm:text-6xl lg:text-7xl leading-tight">
-              Transformez vos idées en{' '}
+              {dict.hero.title}{' '}
               <span className="text-myorange-100 bg-gradient-to-r from-myorange-100 to-red-500 bg-clip-text text-transparent">
-                applications web performantes
+                {dict.hero.titleHighlight}
               </span>
             </h1>
           </motion.div>
@@ -45,8 +45,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="max-w-2xl mx-auto text-xl leading-relaxed text-white/90">
-              J'accompagne les startups et entreprises 
-              dans la création de solutions web sur-mesure, performantes et évolutives.
+              {dict.hero.subtitle}
             </p>
           </motion.div>
 
@@ -57,15 +56,14 @@ export default function Hero() {
             className="flex items-center justify-center gap-x-4 font-medium text-sm"
           >
             <NavLink
-              href="/nous-contacter"
+              href={`/${locale}#contact`}
               className="text-white bg-myorange-100 hover:bg-myorange-100/80 active:bg-myorange-100 px-8 py-4 rounded-xl flex items-center gap-2 group text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
             >
-              <span>Discutons de votre projet</span>
+              <span>{dict.hero.cta}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </NavLink>
           </motion.div>
 
-         
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -74,15 +72,15 @@ export default function Hero() {
           >
             <div className="flex items-center justify-center gap-2 text-white/90">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-sm font-medium">Réponse sous 24h</span>
+              <span className="text-sm font-medium">{dict.hero.feature1}</span>
             </div>
             <div className="flex items-center justify-center gap-2 text-white/90">
               <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-              <span className="text-sm font-medium">+5 ans d'expérience</span>
+              <span className="text-sm font-medium">{dict.hero.feature2}</span>
             </div>
             <div className="flex items-center justify-center gap-2 text-white/90">
               <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-              <span className="text-sm font-medium">Support continu</span>
+              <span className="text-sm font-medium">{dict.hero.feature3}</span>
             </div>
           </motion.div>
         </div>

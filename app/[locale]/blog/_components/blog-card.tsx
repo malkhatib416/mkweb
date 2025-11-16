@@ -3,20 +3,25 @@ import { BlogPost } from '@/types';
 import { ArrowRight, Clock, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import type { Dictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
 
 interface BlogCardProps {
   post: BlogPost;
+  locale: Locale;
+  dict: Dictionary;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ post, locale, dict }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/blog/${post.id}`);
+    router.push(`/${locale}/blog/${post.id}`);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    const localeCode = locale === 'fr' ? 'fr-FR' : 'en-US';
+    return new Date(dateString).toLocaleDateString(localeCode, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -69,7 +74,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 
         {/* Read More */}
         <div className="flex items-center text-sm font-medium text-gray-900 group-hover:opacity-60 transition-opacity">
-          <span>Lire L'article</span>
+          <span>{dict.blog.readArticle}</span>
           <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </div>
       </div>

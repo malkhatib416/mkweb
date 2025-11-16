@@ -6,8 +6,15 @@ import { useMemo, useState } from 'react';
 import BlogCard from './blog-card';
 import CategoryFilter from './category-filter';
 import SearchBar from './search-bar';
+import type { Dictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
 
-export default function BlogPage() {
+type Props = {
+  dict: Dictionary;
+  locale: Locale;
+};
+
+export default function BlogPage({ dict, locale }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -78,10 +85,12 @@ export default function BlogPage() {
               <SearchBar
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
+                placeholder={dict.blog.search}
               />
               <CategoryFilter
                 selectedCategory={selectedCategory}
                 onCategoryChange={setSelectedCategory}
+                allText={dict.blog.allCategories}
               />
             </div>
           </aside>
@@ -92,11 +101,13 @@ export default function BlogPage() {
             <div className="mb-8">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
                 {filteredPosts.length === 0
-                  ? 'Aucun article trouvé'
-                  : `${filteredPosts.length} ${filteredPosts.length === 1 ? 'Article' : 'Articles'}`}
+                  ? dict.blog.noResults
+                  : `${filteredPosts.length} ${filteredPosts.length === 1 ? dict.blog.article : dict.blog.articles}`}
               </h2>
               {searchTerm && (
-                <p className="text-gray-600">Résultats pour "{searchTerm}"</p>
+                <p className="text-gray-600">
+                  {dict.blog.resultsFor} "{searchTerm}"
+                </p>
               )}
             </div>
 
@@ -104,7 +115,12 @@ export default function BlogPage() {
             {filteredPosts.length > 0 ? (
               <div className="grid grid-cols-1 gap-8">
                 {filteredPosts.map((post) => (
-                  <BlogCard key={post.id} post={post} />
+                  <BlogCard
+                    key={post.id}
+                    post={post}
+                    locale={locale}
+                    dict={dict}
+                  />
                 ))}
               </div>
             ) : (
@@ -113,11 +129,10 @@ export default function BlogPage() {
                   <Search className="h-8 w-8 text-gray-400" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  Aucun article trouvé
+                  {dict.blog.noResults}
                 </h3>
                 <p className="text-gray-600 max-w-sm mx-auto">
-                  Essayez de modifier vos termes de recherche ou parcourez
-                  toutes les catégories
+                  {dict.blog.noResultsDescription}
                 </p>
               </div>
             )}

@@ -1,0 +1,260 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "blog": "Blog",
+    "getQuote": "Request a quote"
+  },
+  "hero": {
+    "badge": "Available for new projects",
+    "title": "Transform your ideas into",
+    "titleHighlight": "high-performance web applications",
+    "subtitle": "I support startups and businesses in creating custom, high-performance and scalable web solutions.",
+    "cta": "Let's discuss your project",
+    "feature1": "24h response time",
+    "feature2": "+5 years experience",
+    "feature3": "Ongoing support"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "legalNotice": "Legal Notice",
+    "contact": "Contact",
+    "links": "Links",
+    "home": "Home"
+  },
+  "common": {
+    "readMore": "Read more",
+    "learnMore": "Learn more",
+    "contactUs": "Contact us",
+    "backToHome": "Back to home",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "blog": {
+    "title": "Blog",
+    "readTime": "min read",
+    "search": "Search for an article...",
+    "allCategories": "All",
+    "noResults": "No articles found",
+    "noResultsDescription": "Try changing your search terms or browse all categories",
+    "resultsFor": "Results for",
+    "article": "Article",
+    "articles": "Articles",
+    "readArticle": "Read article"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to answer all your questions. Don't hesitate to contact us!",
+    "form": {
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "company": "Company",
+      "subject": "Subject",
+      "message": "Message",
+      "helper": "Tell me about your goals, timeline, and constraints so I can prepare a tailored response.",
+      "send": "Send",
+      "sending": "Sending..."
+    },
+    "toast": {
+      "successTitle": "Message sent!",
+      "successDescription": "We have received your message and will respond to you as soon as possible.",
+      "errorTitle": "Error",
+      "errorDescription": "An error occurred while sending your message. Please try again later."
+    },
+    "email": {
+      "contactSubject": "Contact Information",
+      "confirmationSubject": "Receipt Confirmation",
+      "confirmationGreeting": "Hello",
+      "confirmationMessage": "We have received your message and will respond to you as soon as possible.",
+      "confirmationClosing": "Best regards,",
+      "confirmationTeam": "The MK-Web Team",
+      "fields": {
+        "lastName": "Last Name",
+        "firstName": "First Name",
+        "email": "Email",
+        "company": "Company",
+        "phone": "Phone"
+      }
+    },
+    "highlights": [
+      {
+        "title": "Tailored roadmap",
+        "description": "Each collaboration starts with a discovery call to map your objectives, success metrics, and technical constraints."
+      },
+      {
+        "title": "Clear budget & timeline",
+        "description": "You receive a detailed proposal with milestones, deliverables, and investment so everyone stays aligned."
+      },
+      {
+        "title": "Collaboration tools",
+        "description": "We work in shared workspaces with transparent progress reporting and async updates when you need them."
+      },
+      {
+        "title": "Post-launch care",
+        "description": "Maintenance plans keep your product secure, up-to-date, and evolving with your team’s priorities."
+      }
+    ],
+    "office": {
+      "title": "Based in Chartres, working with clients across Europe",
+      "description": "We can meet in person around Chartres or work fully remotely with weekly video check-ins and shared documentation.",
+      "hours": "Monday to Friday • 09:00 – 18:00 CET"
+    },
+    "privacy": "Your information stays confidential and is only used to answer your message.",
+    "details": {
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "responseTime": "Response time",
+      "responseTimeValue": "Under 24 hours"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Oops! The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English",
+    "switchTo": "Switch language"
+  },
+  "metadata": {
+    "title": "MK-Web - Freelance Web Developer",
+    "description": "Freelance Web Developer. Website creation, web applications, SEO and website maintenance.",
+    "keywords": "Web Developer, Freelance, Chartres, Website creation, Web applications, SEO, Website maintenance, MK-Web, Web Agency, Freelance Webmaster"
+  },
+  "about": {
+    "imageAlt": "Your web expert in Chartres",
+    "intro": "I help businesses transform their ideas into high-performance, custom web solutions.",
+    "location": "Based in",
+    "chartres": "Chartres",
+    "services": "I work on",
+    "creation": "creation",
+    "optimization": "optimization",
+    "maintenance": "maintenance",
+    "description": "of websites and applications, with a user-centered and performance-focused approach.",
+    "goal": "My goal: to provide you with",
+    "uniqueSolutions": "unique digital solutions",
+    "adapted": ", perfectly tailored to your needs and ambitions, to boost your online presence and facilitate the management of your projects.",
+    "expertise": "From integrating",
+    "innovative": "innovative features",
+    "to": "to",
+    "fluidUX": "designing fluid user experiences",
+    "commitment": ", I put my expertise and rigor at the service of your success."
+  },
+  "services": {
+    "badge": "Services",
+    "title": "My Services",
+    "subtitle": "I support you at every stage of your digital project: website creation, e-commerce, redesign, maintenance, hosting and innovation.",
+    "website": {
+      "title": "Website Creation",
+      "description": "Design of custom showcase and corporate websites, designed to enhance your image and achieve your goals.",
+      "feature1": "Responsive design",
+      "feature2": "SEO optimized",
+      "feature3": "Maximum performance"
+    },
+    "ecommerce": {
+      "title": "E-commerce",
+      "description": "Development of high-performance, scalable online stores optimized for conversion.",
+      "feature1": "Secure payments",
+      "feature2": "Stock management",
+      "feature3": "Advanced analytics"
+    },
+    "redesign": {
+      "title": "Website Redesign",
+      "description": "Modernize your site to boost its impact, performance and user experience.",
+      "feature1": "Complete audit",
+      "feature2": "Secure migration",
+      "feature3": "Training included"
+    },
+    "maintenance": {
+      "title": "Maintenance",
+      "description": "Proactive monitoring, regular updates and responsive support for an always operational site.",
+      "feature1": "24/7 support",
+      "feature2": "Auto backups",
+      "feature3": "Security updates"
+    },
+    "hosting": {
+      "title": "Hosting",
+      "description": "Secure hosting solutions tailored to your needs to guarantee your site's availability.",
+      "feature1": "SSL included",
+      "feature2": "Global CDN",
+      "feature3": "Continuous monitoring"
+    },
+    "innovation": {
+      "title": "Innovation",
+      "description": "Integration of the latest web technologies for innovative and differentiating solutions.",
+      "feature1": "Integrated AI",
+      "feature2": "Modern APIs",
+      "feature3": "Emerging technologies"
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Quick answers to the most common questions I receive before starting a project.",
+    "items": [
+      {
+        "question": "How long does it take to build a website or an application?",
+        "answer": "A standard showcase website is usually delivered within one week on average. More advanced applications (SaaS platforms, internal tools, client dashboards, automations, etc.) take longer and begin with a short scoping phase to clearly define the requirements and timeline."
+      },
+      {
+        "question": "Can you improve or redesign an existing website?",
+        "answer": "Yes. I frequently perform technical and UX audits, identify performance and SEO issues, and propose a structured redesign plan. The migration is handled smoothly to avoid downtime and to preserve your SEO."
+      },
+      {
+        "question": "Do you provide support after the website is launched?",
+        "answer": "Yes. Every project includes 30 days of free adjustments after delivery. I also offer maintenance plans that cover updates, security patches, backups, and small improvements."
+      },
+      {
+        "question": "What technologies do you work with?",
+        "answer": "I primarily work with Next.js, React, TypeScript, and Tailwind CSS on the front end. For the back end, I use Node.js (Fastify/Express) with Prisma, as well as modern platforms like Vercel, Supabase, or PlanetScale depending on your needs."
+      },
+      {
+        "question": "Can you handle everything if I’m not technical?",
+        "answer": "Absolutely. I take care of the entire technical side: domain name, hosting, security, design integration, optimization, SEO, email setup, and more. You can focus solely on your business."
+      },
+      {
+        "question": "Do you also provide content, images, and SEO?",
+        "answer": "Yes. I can write or refine your content, optimize your SEO, integrate your images or generate new ones using AI, and structure your pages to perform well from day one."
+      }
+    ]
+  },
+  "projects": {
+    "badge": "Recent Projects",
+    "title": "My Latest",
+    "titleHighlight": "Work",
+    "subtitle": "Discover my most recent projects, combining technical innovation and modern design to create exceptional web experiences.",
+    "viewProject": "View project",
+    "sourceCode": "Source code",
+    "otherProjects": "Other Projects",
+    "demo": "Demo",
+    "code": "Code",
+    "cta": {
+      "title": "Ready to create your next project?",
+      "subtitle": "Let's transform your ideas into innovative and high-performance web solutions together.",
+      "button": "Start a project"
+    },
+    "status": {
+      "online": "Online",
+      "development": "In development",
+      "completed": "Completed"
+    },
+    "items": {
+      "alertjo": {
+        "description": "Official gazette monitoring application with automated scraping and real-time email notifications.",
+        "longDescription": "Complete platform for monitoring French Official Gazette publications. Automatic PDF data extraction, advanced search and personalized notification system.",
+        "category": "Web Application"
+      },
+      "pcmge": {
+        "description": "Migration and redesign of a showcase website into a custom internal CRM for an SME.",
+        "longDescription": "Migration project of an existing PHP site to Laravel. Development of an internal CRM to manage clients and contacts. Bootstrap integration for a clean and responsive interface.",
+        "category": "CRM / Web Application"
+      }
+    }
+  }
+}

@@ -5,11 +5,13 @@ interface CategoryFilterProps {
   selectedCategory: string | null;
   // eslint-disable-next-line no-unused-vars
   onCategoryChange: (category: string | null) => void;
+  allText: string;
 }
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({
   selectedCategory,
   onCategoryChange,
+  allText,
 }) => {
   return (
     <div className="flex flex-wrap gap-2">
@@ -21,7 +23,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         }`}
       >
-        Tout
+        {allText}
       </button>
       {categories.map((category) => (
         <button

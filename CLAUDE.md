@@ -47,31 +47,42 @@ bun format             # Format code with Prettier
 ```
 mkweb/
 ├── app/                          # Next.js App Router
-│   ├── api/                      # API routes
+│   ├── [locale]/                 # Locale-based routing
+│   │   ├── blog/                 # Blog section
+│   │   │   ├── _components/      # Blog-specific components
+│   │   │   ├── [id]/             # Dynamic blog post pages
+│   │   │   └── page.tsx          # Blog listing page
+│   │   ├── mentions-legales/     # Legal notices
+│   │   ├── nous-contacter/       # Contact page
+│   │   ├── layout.tsx            # Locale layout (validates locale)
+│   │   ├── not-found.tsx         # Locale-specific 404 page
+│   │   ├── page.tsx              # Homepage
+│   │   └── template.tsx          # Page transition wrapper
+│   ├── api/                      # API routes (no locale prefix)
 │   │   └── og/                   # Open Graph image generation
-│   ├── blog/                     # Blog section
-│   │   ├── _components/          # Blog-specific components
-│   │   ├── [id]/                 # Dynamic blog post pages
-│   │   └── page.tsx              # Blog listing page
-│   ├── mentions-legales/         # Legal notices
-│   ├── nous-contacter/           # Contact page
 │   ├── layout.tsx                # Root layout with providers
-│   ├── page.tsx                  # Homepage
 │   ├── robots.ts                 # Robots.txt generator
-│   ├── sitemap.ts                # Sitemap generator
-│   └── template.tsx              # Page transition wrapper
+│   └── sitemap.ts                # Sitemap generator (with locale URLs)
 │
 ├── components/                   # React components
 │   ├── ui/                       # Shadcn UI components
 │   ├── Icons/                    # Icon components
 │   ├── About.tsx                 # About section
 │   ├── Hero.tsx                  # Hero section
-│   ├── Navbar.tsx                # Navigation
+│   ├── Navbar.tsx                # Navigation (includes locale detection)
 │   ├── Footer.tsx                # Footer
+│   ├── LanguageSwitcher.tsx      # Language switcher dropdown
 │   ├── ServiceShowCase.tsx       # Services display
 │   ├── LatestProjects.tsx        # Projects showcase
 │   ├── WhatsAppQuickContact.tsx  # WhatsApp floating button
 │   └── theme-provider.tsx        # Dark mode support
+│
+├── lib/                          # Core library code
+│   ├── dictionaries/             # Translation files
+│   │   ├── fr.json               # French translations
+│   │   └── en.json               # English translations
+│   ├── dictionaries.ts           # Dictionary loader utility
+│   └── i18n.ts                   # i18n configuration and utilities
 │
 ├── data/                         # Static data
 │   └── index.ts                  # Blog posts and categories
@@ -102,11 +113,64 @@ mkweb/
 
 ### Internationalization (i18n)
 
-The site uses Next.js i18n configuration with locale-based routing:
-- **Supported locales**: `fr` (default), `en`, and `default`
-- **Middleware** (`middleware.ts`): Handles locale detection and redirects users from the default locale to their preferred language (French by default, stored in `NEXT_LOCALE` cookie)
-- **Locale structure**: All routes except API routes, `_next`, and public files are processed through the middleware
-- When adding new pages, ensure they support the locale routing pattern
+The site uses Next.js App Router with custom locale-based routing via dynamic `[locale]` segment:
+
+- **Supported locales**: `fr` (default), `en`
+- **Configuration**: All locale constants are defined in `locales/i18n.ts` for centralized management
+- **URL structure**: All pages are prefixed with locale (e.g., `/fr/blog`, `/en/nous-contacter`)
+- **Middleware** (`middleware.ts`):
+  - Detects user locale from `NEXT_LOCALE` cookie or `Accept-Language` header
+  - Redirects non-localized URLs (e.g., `/blog`) to localized versions (e.g., `/fr/blog`)
+  - Skips processing for API routes, `_next` internals, and public files
+- **Locale validation**: The `app/[locale]/layout.tsx` validates the locale param and returns 404 for invalid locales
+- **Static generation**: `generateStaticParams()` pre-renders all locale variants at build time
+
+**When adding new pages:**
+1. Create them inside `app/[locale]/` directory
+2. Access the locale via `params.locale` in Server Components
+3. Use the `Locale` type from `locales/i18n.ts` for type safety
+4. Update the sitemap in `app/sitemap.ts` to include all locale variants
+
+### Translations
+
+The site uses JSON-based translations stored in `locales/dictionaries/`:
+
+- **Translation files**: `fr.json` (French) and `en.json` (English)
+- **Loading translations**: Use `getDictionary(locale)` from `lib/dictionaries.ts` in Server Components
+- **Type safety**: The `Dictionary` type is exported for type-safe translation access
+- **Language switcher**: The `LanguageSwitcher` component in the navbar:
+  - Shows a globe icon with a dropdown menu
+  - Sets the `NEXT_LOCALE` cookie when switching languages
+  - Redirects to the same page in the new locale
+  - Highlights the current language in the dropdown
+
+**Using translations in Server Components:**
+```typescript
+import { getDictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function MyPage({ params }: Props) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+
+  return <h1>{dict.common.title}</h1>;
+}
+```
+
+**Using translations in Client Components:**
+- For client components, either:
+  1. Pass translations as props from a parent Server Component
+  2. Use inline translation objects (see `app/[locale]/not-found.tsx` for example)
+  3. Extract locale from pathname using `usePathname()` hook
+
+**Adding new translations:**
+1. Add the key-value pairs to both `locales/dictionaries/fr.json` and `locales/dictionaries/en.json`
+2. Keep the structure consistent between both files
+3. Use nested objects to organize translations by feature/page
 
 ### Blog System
 
@@ -171,11 +235,21 @@ Key features in layout:
 
 ### Adding New Pages
 
-1. Create the page in the appropriate `app/` subdirectory
-2. Ensure it works with the i18n middleware
-3. Add metadata for SEO
-4. Update sitemap if needed
-5. Test across locales
+1. Create the page inside the `app/[locale]/` directory (e.g., `app/[locale]/my-page/page.tsx`)
+2. Access the locale parameter in your page component:
+   ```typescript
+   type Props = {
+     params: Promise<{ locale: string }>;
+   };
+
+   export default async function MyPage({ params }: Props) {
+     const { locale } = await params;
+     // Use locale for content/translations
+   }
+   ```
+3. Add metadata for SEO (can be locale-specific)
+4. Update `app/sitemap.ts` to include all locale variants
+5. Test navigation works for both `/fr/my-page` and `/en/my-page`
 
 ### Adding Blog Posts
 

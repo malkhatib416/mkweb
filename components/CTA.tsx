@@ -79,7 +79,7 @@ const CTA = () => (
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <NavLink
-            href="/nous-contacter"
+            href="#contact"
             className="text-gray-900 bg-white hover:bg-gray-100 active:bg-gray-200 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center gap-2 group"
           >
             Démarrer mon projet

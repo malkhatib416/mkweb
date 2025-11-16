@@ -5,15 +5,20 @@ import { ArrowRight, Calendar, ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
 // import Image from 'next/image';
 import Link from 'next/link';
+import type { Dictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
 
-const projects = [
+type Props = {
+  dict: Dictionary;
+  locale: Locale;
+};
+
+const getProjects = (dict: Dictionary) => [
   {
     id: 1,
     title: 'AlertJO.fr',
-    description:
-      'Application de surveillance des journaux officiels avec scraping automatisé et notifications email en temps réel.',
-    longDescription:
-      'Plateforme complète permettant de surveiller les publications du Journal Officiel français. Extraction automatique des données PDF, recherche avancée et système de notifications personnalisées.',
+    description: dict.projects.items.alertjo.description,
+    longDescription: dict.projects.items.alertjo.longDescription,
     technologies: [
       'Next.js',
       'TypeScript',
@@ -26,24 +31,22 @@ const projects = [
     live: 'https://alertjo.fr',
     featured: true,
     date: '2025',
-    status: 'En ligne',
-    category: 'Application Web',
+    status: 'online',
+    category: dict.projects.items.alertjo.category,
   },
   {
     id: 2,
     title: 'PCMGE.fr',
-    description:
-      'Migration et refonte d’un site vitrine en CRM interne sur mesure pour une PME.',
-    longDescription:
-      'Projet de migration d’un site existant réalisé en PHP vers Laravel. Développement d’un CRM interne pour gérer les clients et les contacts. Intégration de Bootstrap pour une interface claire et responsive.',
+    description: dict.projects.items.pcmge.description,
+    longDescription: dict.projects.items.pcmge.longDescription,
     technologies: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
     image: '/projects/pcmge.png',
     // github: 'https://github.com/mohamad-alkhatib/pcmge',
     live: 'https://pcmge.fr',
     featured: true,
     date: '2025',
-    status: 'En ligne',
-    category: 'CRM / Application Web',
+    status: 'online',
+    category: dict.projects.items.pcmge.category,
   },
   // {
   //   id: 3,
@@ -63,7 +66,15 @@ const projects = [
   // },
 ];
 
-export default function LatestProjects() {
+export default function LatestProjects({ dict, locale }: Props) {
+  const projects = getProjects(dict);
+
+  const getStatusText = (status: string) => {
+    if (status === 'online') return dict.projects.status.online;
+    if (status === 'development') return dict.projects.status.development;
+    return dict.projects.status.completed;
+  };
+
   return (
     <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,15 +88,17 @@ export default function LatestProjects() {
         >
           <div className="inline-flex items-center gap-2 bg-myorange-100/10 text-myorange-100 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Calendar className="w-4 h-4" />
-            Projets Récents
+            {dict.projects.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Mes Dernières
-            <span className="text-myorange-100"> Réalisations</span>
+            {dict.projects.title}
+            <span className="text-myorange-100">
+              {' '}
+              {dict.projects.titleHighlight}
+            </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Découvrez mes projets les plus récents, alliant innovation technique
-            et design moderne pour créer des expériences web exceptionnelles.
+            {dict.projects.subtitle}
           </p>
         </motion.div>
 
@@ -108,14 +121,14 @@ export default function LatestProjects() {
                   <div className="absolute top-4 left-4 z-20">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        project.status === 'En ligne'
+                        project.status === 'online'
                           ? 'bg-green-100 text-green-700'
-                          : project.status === 'En développement'
+                          : project.status === 'development'
                             ? 'bg-blue-100 text-blue-700'
                             : 'bg-gray-100 text-gray-700'
                       }`}
                     >
-                      {project.status}
+                      {getStatusText(project.status)}
                     </span>
                   </div>
                   <div className="absolute top-4 right-4 z-20">
@@ -147,9 +160,9 @@ export default function LatestProjects() {
                     <h3 className="text-2xl font-bold text-gray-900 group-hover:text-myorange-100 transition-colors">
                       {project.title}
                     </h3>
-                    <span className="text-sm text-gray-500 font-medium">
+                    {/*<span className="text-sm text-gray-500 font-medium">
                       {project.date}
-                    </span>
+                    </span>*/}
                   </div>
 
                   <p className="text-gray-600 mb-6 leading-relaxed">
@@ -183,7 +196,7 @@ export default function LatestProjects() {
                         className="flex items-center gap-2 px-6 py-3 bg-myorange-100 text-white rounded-xl font-medium hover:bg-myorange-100/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
                       >
                         <ExternalLink className="w-4 h-4" />
-                        Voir le projet
+                        {dict.projects.viewProject}
                       </a>
                     )}
                     {project?.github && (
@@ -194,7 +207,7 @@ export default function LatestProjects() {
                         className="flex items-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
                       >
                         <Github className="w-4 h-4" />
-                        Code source
+                        {dict.projects.sourceCode}
                       </a>
                     )}
                   </div>
@@ -213,7 +226,7 @@ export default function LatestProjects() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-              Autres Projets
+              {dict.projects.otherProjects}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects
@@ -258,7 +271,7 @@ export default function LatestProjects() {
                           className="flex items-center gap-1 text-myorange-100 hover:text-myorange-100/80 transition-colors text-sm font-medium"
                         >
                           <ExternalLink className="w-3 h-3" />
-                          Demo
+                          {dict.projects.demo}
                         </a>
                       )}
                       {project.github && (
@@ -269,7 +282,7 @@ export default function LatestProjects() {
                           className="flex items-center gap-1 text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium"
                         >
                           <Github className="w-3 h-3" />
-                          Code
+                          {dict.projects.code}
                         </a>
                       )}
                     </div>
@@ -278,32 +291,6 @@ export default function LatestProjects() {
             </div>
           </motion.div>
         )}
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-myorange-100 to-red-500 rounded-2xl p-8 md:p-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Prêt à créer votre prochain projet ?
-            </h3>
-            <p className="text-white/90 mb-8 text-lg max-w-2xl mx-auto">
-              Transformons ensemble vos idées en solutions web innovantes et
-              performantes.
-            </p>
-            <Link
-              href="/nous-contacter"
-              className="inline-flex items-center gap-2 bg-white text-myorange-100 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              Démarrer un projet
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
