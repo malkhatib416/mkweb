@@ -52,8 +52,9 @@ export async function sendMail(params: {
   text: string;
   html?: string;
   recaptchaToken: string;
+  fromName?: string;
 }) {
-  const { email, subject, text, html, recaptchaToken } = params;
+  const { email, subject, text, html, recaptchaToken, fromName } = params;
 
   await verifyRecaptcha(recaptchaToken).catch((e) => {
     throw new Error("Error verifying recaptcha: " + e);
@@ -71,7 +72,7 @@ export async function sendMail(params: {
   try {
     const info = await transporter.sendMail({
       from: {
-        name: "MK-Web Formulaire de Contact",
+        name: fromName || "MK-Web Formulaire de Contact",
         address: EMAIL,
       },
       to: {

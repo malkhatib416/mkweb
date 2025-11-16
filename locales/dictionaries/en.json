@@ -3,7 +3,8 @@
     "home": "Home",
     "services": "Services",
     "blog": "Blog",
-    "getQuote": "Request a quote"
+    "getQuote": "Request a quote",
+    "estimation": "Estimation"
   },
   "hero": {
     "badge": "Available for new projects",
@@ -11,6 +12,7 @@
     "titleHighlight": "high-performance web applications",
     "subtitle": "I support startups and businesses in creating custom, high-performance and scalable web solutions.",
     "cta": "Let's discuss your project",
+    "estimationCta": "Estimate my project",
     "feature1": "24h response time",
     "feature2": "+5 years experience",
     "feature3": "Ongoing support"
@@ -258,5 +260,221 @@
         "category": "CRM / Web Application"
       }
     }
+  },
+  "estimation": {
+    "title": "Estimate Your Project",
+    "subtitle": "Fill out this form to receive a detailed estimate",
+    "steps": {
+      "step1": "Type & Objective",
+      "step2": "Content & Features",
+      "step3": "Identity & Design",
+      "step4": "Planning & Priorities",
+      "step5": "Contact Details"
+    },
+    "step1": {
+      "title": "Project Type & Objective",
+      "projectType": {
+        "label": "Project type",
+        "placeholder": "Select a type",
+        "required": "Please select a project type",
+        "options": {
+          "showcase": "Showcase website",
+          "redesign": "Website redesign",
+          "ecommerce": "E-commerce",
+          "webapp": "Web application / client area",
+          "landing": "Landing page",
+          "other": "Other"
+        },
+        "otherLabel": "Specify the project type",
+        "otherPlaceholder": "Describe your project type"
+      },
+      "mainObjective": {
+        "label": "Main objective",
+        "placeholder": "Select an objective",
+        "required": "Please select an objective",
+        "options": {
+          "presentation": "Present the business",
+          "leads": "Get more clients / leads",
+          "sell": "Sell online",
+          "modernize": "Modernize the image",
+          "automate": "Automate a process",
+          "client_area": "Create a client area",
+          "other": "Other"
+        },
+        "otherLabel": "Specify the objective",
+        "otherPlaceholder": "Describe your objective"
+      }
+    },
+    "step2": {
+      "title": "Content & Features",
+      "plannedContent": {
+        "label": "Planned content",
+        "placeholder": "Number of pages",
+        "required": "Please select the planned content",
+        "options": {
+          "1-3": "1–3 pages",
+          "4-7": "4–7 pages",
+          "8-15": "8–15 pages",
+          "15plus": "15+",
+          "unknown": "I don't know yet"
+        }
+      },
+      "features": {
+        "label": "Desired features",
+        "sublabel": "(multiple selection)",
+        "required": "Select at least one feature",
+        "options": {
+          "simple_form": "Simple form",
+          "advanced_form": "Advanced form",
+          "blog": "Blog",
+          "gallery": "Gallery / portfolio",
+          "booking": "Appointment booking",
+          "catalog": "Catalog (without payment)",
+          "payment": "Online payment",
+          "client_area": "Client area",
+          "downloads": "Document downloads",
+          "reviews": "Customer reviews",
+          "newsletter": "Newsletter",
+          "chat": "Live chat",
+          "multilingual": "Multilingual"
+        },
+        "otherLabel": "Other feature",
+        "otherPlaceholder": "Specify other features"
+      }
+    },
+    "step3": {
+      "title": "Visual Identity & Design",
+      "contentAvailability": {
+        "label": "Available content",
+        "placeholder": "Content availability",
+        "required": "Please indicate content availability",
+        "options": {
+          "ready": "Everything is ready",
+          "partial": "Partially",
+          "none": "Nothing is ready"
+        }
+      },
+      "visualIdentity": {
+        "label": "Visual identity",
+        "placeholder": "Visual identity status",
+        "required": "Please select visual identity",
+        "options": {
+          "logo_chart": "Logo + brand guidelines",
+          "logo_only": "Logo only",
+          "redesign": "Visual redesign",
+          "create": "Complete creation"
+        }
+      },
+      "currentWebsite": {
+        "label": "Current website",
+        "sublabel": "(if existing)",
+        "placeholder": "https://your-website.com"
+      },
+      "improvementNotes": {
+        "label": "What you'd like to improve",
+        "placeholder": "Describe what you'd like to improve on your current website"
+      }
+    },
+    "step4": {
+      "title": "Planning & Priorities",
+      "deadline": {
+        "label": "Desired deadline",
+        "placeholder": "Choose a deadline",
+        "required": "Please select a deadline",
+        "options": {
+          "asap": "As soon as possible",
+          "2-4weeks": "2–4 weeks",
+          "1-2months": "1–2 months",
+          "no_deadline": "No deadline"
+        }
+      },
+      "priorities": {
+        "label": "Priorities",
+        "sublabel": "(multiple selection)",
+        "required": "Select at least one priority",
+        "options": {
+          "speed": "Speed",
+          "design": "Design quality",
+          "seo": "SEO",
+          "ux": "UX",
+          "autonomy": "Autonomy",
+          "support": "Long-term support"
+        }
+      },
+      "additionalNotes": {
+        "label": "Additional notes",
+        "placeholder": "Add any additional information you find useful"
+      }
+    },
+    "step5": {
+      "title": "Your Contact Details",
+      "name": {
+        "label": "Full name",
+        "placeholder": "Your full name",
+        "required": "Name is required"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your@email.com",
+        "required": "Invalid email"
+      },
+      "phone": {
+        "label": "Phone",
+        "sublabel": "(optional)",
+        "placeholder": "06 12 34 56 78"
+      }
+    },
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Send my request",
+      "submitting": "Sending..."
+    },
+    "toast": {
+      "validationError": "Validation error",
+      "validationErrorDesc": "Please fill in all required fields",
+      "success": "Request sent!",
+      "successDesc": "We will get back to you as soon as possible.",
+      "error": "Error",
+      "errorDesc": "An error occurred while sending your request."
+    },
+    "email": {
+      "newRequest": "New estimation request",
+      "projectInfo": "Project information",
+      "contactInfo": "Contact details",
+      "projectType": "Project type",
+      "mainObjective": "Main objective",
+      "plannedContent": "Planned content",
+      "features": "Desired features",
+      "contentAvailability": "Available content",
+      "visualIdentity": "Visual identity",
+      "currentWebsite": "Current website",
+      "improvements": "To improve",
+      "deadline": "Desired deadline",
+      "priorities": "Priorities",
+      "additionalNotes": "Additional notes",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "other": "Other",
+      "confirmation": {
+        "subject": "Your estimation request - MK-Web",
+        "greeting": "Hello",
+        "received": "We have received your project estimation request.",
+        "followUp": "We will get back to you as soon as possible.",
+        "summary": "Summary of your request"
+      }
+    }
+  },
+  "whatsapp": {
+    "title": "WhatsApp Chat",
+    "subtitle": "Let's talk together",
+    "greeting": "Hello 👋 How can I help you?",
+    "willWriteTo": "You will write to",
+    "onWhatsApp": "on WhatsApp.",
+    "placeholder": "Write a message...",
+    "send": "Send",
+    "open": "Open WhatsApp chat",
+    "close": "Close"
   }
 }

@@ -18,7 +18,7 @@ export default async function Home({ params }: Props) {
 
   return (
     <>
-      <Hero dict={dict} />
+      <Hero dict={dict} locale={locale as Locale} />
       <About dict={dict} />
       <GradientWrapper />
       <ServiceShowCase dict={dict} />

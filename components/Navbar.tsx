@@ -83,6 +83,11 @@ const Navbar = () => {
         id: 'services',
       },
       {
+        title: t.estimation,
+        path: `/${currentLocale}/estimation`,
+        id: 'estimation',
+      },
+      {
         title: t.blog,
         path: `/${currentLocale}/blog`,
         id: 'blog',

@@ -3,7 +3,8 @@
     "home": "Accueil",
     "services": "Services",
     "blog": "Blog",
-    "getQuote": "Demander un devis"
+    "getQuote": "Demander un devis",
+    "estimation": "Estimation"
   },
   "hero": {
     "badge": "Disponible pour nouveaux projets",
@@ -11,6 +12,7 @@
     "titleHighlight": "applications web performantes",
     "subtitle": "J'accompagne les startups et entreprises dans la création de solutions web sur-mesure, performantes et évolutives.",
     "cta": "Discutons de votre projet",
+    "estimationCta": "Estimer mon projet",
     "feature1": "Réponse sous 24h",
     "feature2": "+5 ans d'expérience",
     "feature3": "Support continu"
@@ -258,5 +260,221 @@
         "category": "CRM / Application Web"
       }
     }
+  },
+  "estimation": {
+    "title": "Estimez votre projet",
+    "subtitle": "Remplissez ce formulaire pour obtenir une estimation détaillée",
+    "steps": {
+      "step1": "Type & Objectif",
+      "step2": "Contenu & Fonctionnalités",
+      "step3": "Identité & Design",
+      "step4": "Planning & Priorités",
+      "step5": "Coordonnées"
+    },
+    "step1": {
+      "title": "Type de projet & Objectif",
+      "projectType": {
+        "label": "Type de projet",
+        "placeholder": "Sélectionnez un type",
+        "required": "Veuillez sélectionner un type de projet",
+        "options": {
+          "showcase": "Site vitrine",
+          "redesign": "Refonte de site",
+          "ecommerce": "E-commerce",
+          "webapp": "Application web / espace client",
+          "landing": "Landing page",
+          "other": "Autre"
+        },
+        "otherLabel": "Précisez le type de projet",
+        "otherPlaceholder": "Décrivez votre type de projet"
+      },
+      "mainObjective": {
+        "label": "Objectif principal",
+        "placeholder": "Sélectionnez un objectif",
+        "required": "Veuillez sélectionner un objectif",
+        "options": {
+          "presentation": "Présenter l'activité",
+          "leads": "Obtenir plus de clients / leads",
+          "sell": "Vendre en ligne",
+          "modernize": "Moderniser l'image",
+          "automate": "Automatiser un processus",
+          "client_area": "Créer un espace client",
+          "other": "Autre"
+        },
+        "otherLabel": "Précisez l'objectif",
+        "otherPlaceholder": "Décrivez votre objectif"
+      }
+    },
+    "step2": {
+      "title": "Contenu & Fonctionnalités",
+      "plannedContent": {
+        "label": "Contenu prévu",
+        "placeholder": "Nombre de pages",
+        "required": "Veuillez sélectionner le contenu prévu",
+        "options": {
+          "1-3": "1–3 pages",
+          "4-7": "4–7 pages",
+          "8-15": "8–15 pages",
+          "15plus": "15+",
+          "unknown": "Je ne sais pas encore"
+        }
+      },
+      "features": {
+        "label": "Fonctionnalités souhaitées",
+        "sublabel": "(sélection multiple)",
+        "required": "Sélectionnez au moins une fonctionnalité",
+        "options": {
+          "simple_form": "Formulaire simple",
+          "advanced_form": "Formulaire avancé",
+          "blog": "Blog",
+          "gallery": "Galerie / portfolio",
+          "booking": "Prise de rendez-vous",
+          "catalog": "Catalogue (sans paiement)",
+          "payment": "Paiement en ligne",
+          "client_area": "Espace client",
+          "downloads": "Téléchargement de documents",
+          "reviews": "Avis clients",
+          "newsletter": "Newsletter",
+          "chat": "Chat en ligne",
+          "multilingual": "Multilingue"
+        },
+        "otherLabel": "Autre fonctionnalité",
+        "otherPlaceholder": "Précisez d'autres fonctionnalités"
+      }
+    },
+    "step3": {
+      "title": "Identité visuelle & Design",
+      "contentAvailability": {
+        "label": "Contenus disponibles",
+        "placeholder": "Disponibilité du contenu",
+        "required": "Veuillez indiquer la disponibilité du contenu",
+        "options": {
+          "ready": "Tout est prêt",
+          "partial": "Partiellement",
+          "none": "Rien n'est prêt"
+        }
+      },
+      "visualIdentity": {
+        "label": "Identité visuelle",
+        "placeholder": "Statut de l'identité visuelle",
+        "required": "Veuillez sélectionner l'identité visuelle",
+        "options": {
+          "logo_chart": "Logo + charte",
+          "logo_only": "Logo seulement",
+          "redesign": "Refonte visuelle",
+          "create": "Création complète"
+        }
+      },
+      "currentWebsite": {
+        "label": "Site actuel",
+        "sublabel": "(si existant)",
+        "placeholder": "https://votre-site.com"
+      },
+      "improvementNotes": {
+        "label": "Ce que vous souhaitez améliorer",
+        "placeholder": "Décrivez ce que vous aimeriez améliorer sur votre site actuel"
+      }
+    },
+    "step4": {
+      "title": "Planning & Priorités",
+      "deadline": {
+        "label": "Deadline souhaitée",
+        "placeholder": "Choisissez une deadline",
+        "required": "Veuillez sélectionner une deadline",
+        "options": {
+          "asap": "Dès que possible",
+          "2-4weeks": "2–4 semaines",
+          "1-2months": "1–2 mois",
+          "no_deadline": "Pas de deadline"
+        }
+      },
+      "priorities": {
+        "label": "Priorités",
+        "sublabel": "(sélection multiple)",
+        "required": "Sélectionnez au moins une priorité",
+        "options": {
+          "speed": "Rapidité",
+          "design": "Qualité du design",
+          "seo": "SEO",
+          "ux": "UX",
+          "autonomy": "Autonomie",
+          "support": "Accompagnement long terme"
+        }
+      },
+      "additionalNotes": {
+        "label": "Notes supplémentaires",
+        "placeholder": "Ajoutez toute information complémentaire que vous jugez utile"
+      }
+    },
+    "step5": {
+      "title": "Vos coordonnées",
+      "name": {
+        "label": "Nom complet",
+        "placeholder": "Votre nom complet",
+        "required": "Le nom est requis"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "votre@email.com",
+        "required": "Email invalide"
+      },
+      "phone": {
+        "label": "Téléphone",
+        "sublabel": "(facultatif)",
+        "placeholder": "06 12 34 56 78"
+      }
+    },
+    "buttons": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "submit": "Envoyer ma demande",
+      "submitting": "Envoi en cours..."
+    },
+    "toast": {
+      "validationError": "Erreur de validation",
+      "validationErrorDesc": "Veuillez remplir tous les champs requis",
+      "success": "Demande envoyée !",
+      "successDesc": "Nous reviendrons vers vous dans les plus brefs délais.",
+      "error": "Erreur",
+      "errorDesc": "Une erreur est survenue lors de l'envoi de votre demande."
+    },
+    "email": {
+      "newRequest": "Nouvelle demande d'estimation",
+      "projectInfo": "Informations du projet",
+      "contactInfo": "Coordonnées",
+      "projectType": "Type de projet",
+      "mainObjective": "Objectif principal",
+      "plannedContent": "Contenu prévu",
+      "features": "Fonctionnalités souhaitées",
+      "contentAvailability": "Contenus disponibles",
+      "visualIdentity": "Identité visuelle",
+      "currentWebsite": "Site actuel",
+      "improvements": "À améliorer",
+      "deadline": "Deadline souhaitée",
+      "priorities": "Priorités",
+      "additionalNotes": "Notes supplémentaires",
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "other": "Autre",
+      "confirmation": {
+        "subject": "Votre demande d'estimation - MK-Web",
+        "greeting": "Bonjour",
+        "received": "Nous avons bien reçu votre demande d'estimation pour votre projet.",
+        "followUp": "Nous reviendrons vers vous dans les plus brefs délais.",
+        "summary": "Récapitulatif de votre demande"
+      }
+    }
+  },
+  "whatsapp": {
+    "title": "WhatsApp Chat",
+    "subtitle": "Discutons ensemble",
+    "greeting": "Bonjour 👋 Comment puis-je vous aider ?",
+    "willWriteTo": "Vous écrirez à",
+    "onWhatsApp": "sur WhatsApp.",
+    "placeholder": "Écrire un message...",
+    "send": "Envoyer",
+    "open": "Ouvrir le chat WhatsApp",
+    "close": "Fermer"
   }
 }

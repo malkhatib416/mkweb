@@ -64,6 +64,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
+  const dict = await getDictionary(locale);
   const GTM_ID = process.env.GTM_ID;
 
   return (
@@ -85,7 +86,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <Footer />
           <Toaster />
           <GoogleAnalytics gaId="G-9NPYEM4FGH" />
-          <WhatsAppQuickContact />
+          <WhatsAppQuickContact dict={dict} />
         </ReCaptchaProvider>
       </body>
     </html>

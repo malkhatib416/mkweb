@@ -6,8 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { PHONE } from '@/utils/consts';
 import { MessageCircle, X } from 'lucide-react';
+import type { Dictionary } from '@/locales/dictionaries';
 
-export default function WhatsAppQuickContact() {
+type Props = {
+  dict: Dictionary;
+};
+
+export default function WhatsAppQuickContact({ dict }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -51,8 +56,8 @@ export default function WhatsAppQuickContact() {
                 <MessageCircle className="w-5 h-5 text-white" />
               </div>
               <div className="text-sm">
-                <div className="font-semibold">WhatsApp Chat</div>
-                <div className="text-white/80">Discutons ensemble</div>
+                <div className="font-semibold">{dict.whatsapp.title}</div>
+                <div className="text-white/80">{dict.whatsapp.subtitle}</div>
               </div>
             </div>
             <button
@@ -61,7 +66,7 @@ export default function WhatsAppQuickContact() {
                 setIsOpen(false);
               }}
               className="p-1 rounded hover:bg-white/10 transition-colors"
-              aria-label="Fermer"
+              aria-label={dict.whatsapp.close}
             >
               <X className="w-4 h-4 text-white" />
             </button>
@@ -69,7 +74,8 @@ export default function WhatsAppQuickContact() {
 
           <div className="px-4 py-4 space-y-2 max-h-72 overflow-auto">
             <div className="text-xs text-muted-foreground">
-              Vous écrirez à {normalizedPhone} sur WhatsApp.
+              {dict.whatsapp.willWriteTo} {normalizedPhone}{' '}
+              {dict.whatsapp.onWhatsApp}
             </div>
             <motion.div
               initial={{ opacity: 0, x: -8 }}
@@ -77,7 +83,7 @@ export default function WhatsAppQuickContact() {
               transition={{ delay: 0.05 }}
               className="bg-muted text-foreground rounded-md p-3 text-sm max-w-[85%]"
             >
-              Bonjour 👋 Comment puis-je vous aider ?
+              {dict.whatsapp.greeting}
             </motion.div>
           </div>
 
@@ -86,15 +92,15 @@ export default function WhatsAppQuickContact() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Écrire un message..."
+              placeholder={dict.whatsapp.placeholder}
               className="flex-1 bg-background h-11"
             />
             <Button
               onClick={handleSend}
               className="shrink-0 h-11 bg-green-500 hover:bg-green-600 text-white"
-              aria-label="Envoyer sur WhatsApp"
+              aria-label={dict.whatsapp.send}
             >
-              Envoyer
+              {dict.whatsapp.send}
             </Button>
           </div>
         </motion.div>
@@ -103,7 +109,7 @@ export default function WhatsAppQuickContact() {
         type="button"
         onClick={() => setIsOpen(true)}
         className="rounded-full h-14 w-14 p-0 shadow-2xl bg-green-500 text-white flex items-center justify-center"
-        aria-label="Ouvrir le chat WhatsApp"
+        aria-label={dict.whatsapp.open}
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.98 }}
         initial={false}
