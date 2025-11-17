@@ -45,7 +45,12 @@
     "resultsFor": "Results for",
     "article": "Article",
     "articles": "Articles",
-    "readArticle": "Read article"
+    "readArticle": "Read article",
+    "cta": {
+      "services": "Discover my technical SEO services",
+      "contact": "Contact me directly",
+      "schedule": "Schedule a 30-minute call"
+    }
   },
   "contact": {
     "title": "Contact Us",
