@@ -1,25 +1,40 @@
 import { Building2, Globe, Mail, Phone, User } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@radix-ui/react-dropdown-menu';
+import { getDictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
+import type { Metadata } from 'next';
+import { APP_URL } from '@/utils/consts';
 
-export const metadata = {
-  title: 'AlertJo - Mentions Légales',
-  description: 'Informations légales concernant le site AlertJo',
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-const MentionLegalPage = () => {
-  const url = 'https://alertjo.fr/';
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+
+  return {
+    title: `MK-Web - ${dict.legal.title}`,
+    description: dict.legal.description,
+  };
+}
+
+const MentionLegalPage = async ({ params }: Props) => {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  const url = APP_URL;
 
   return (
-    <main className="min-h-[120vh] mt-12 ">
+    <main className="mb-16 mt-20">
       <div className="container mx-auto px-4 pt-16 pb-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">
-            Mentions Légales
+            {dict.legal.title}
           </h1>
           <p className="text-slate-600 text-lg">
-            Informations légales concernant le site{' '}
+            {dict.legal.description}{' '}
             {url.replace('https://', '').replace('/', '')}
           </p>
         </div>
@@ -30,7 +45,7 @@ const MentionLegalPage = () => {
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-3 text-2xl text-slate-800">
                 <Building2 className="h-6 w-6 text-blue-600" />
-                Informations Principales
+                {dict.legal.mainInfo.title}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -38,19 +53,21 @@ const MentionLegalPage = () => {
                 <div className="space-y-3">
                   <div>
                     <span className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
-                      Dénomination
+                      {dict.legal.mainInfo.denomination}
                     </span>
-                    <p className="text-slate-900 font-medium">MK-Web</p>
+                    <p className="text-slate-900 font-medium">
+                      {dict.legal.mainInfo.denominationValue}
+                    </p>
                   </div>
 
                   <div>
                     <span className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
-                      Siège social
+                      {dict.legal.mainInfo.headquarters}
                     </span>
                     <p className="text-slate-900">
-                      4 Mail des Petits Clos
+                      {dict.legal.mainInfo.address}
                       <br />
-                      28000 Chartres
+                      {dict.legal.mainInfo.city}
                     </p>
                   </div>
                 </div>
@@ -60,7 +77,7 @@ const MentionLegalPage = () => {
                     <Phone className="h-4 w-4 text-blue-600" />
                     <div>
                       <span className="text-sm font-semibold text-slate-500 uppercase tracking-wide block">
-                        Téléphone
+                        {dict.legal.mainInfo.phone}
                       </span>
                       <a
                         href="tel:+33646777804"
@@ -75,7 +92,7 @@ const MentionLegalPage = () => {
                     <Mail className="h-4 w-4 text-blue-600" />
                     <div>
                       <span className="text-sm font-semibold text-slate-500 uppercase tracking-wide block">
-                        Email
+                        {dict.legal.mainInfo.email}
                       </span>
                       <a
                         href="mailto:contact@mk-web.fr"
@@ -93,16 +110,20 @@ const MentionLegalPage = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <span className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
-                    SIRET
+                    {dict.legal.mainInfo.siret}
                   </span>
-                  <p className="text-slate-900 font-mono">93179152900015</p>
+                  <p className="text-slate-900 font-mono">
+                    {dict.legal.mainInfo.siretValue}
+                  </p>
                 </div>
 
                 <div>
                   <span className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
-                    TVA Intracommunautaire
+                    {dict.legal.mainInfo.vat}
                   </span>
-                  <p className="text-slate-900 font-mono">FR81931791529</p>
+                  <p className="text-slate-900 font-mono">
+                    {dict.legal.mainInfo.vatValue}
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -113,13 +134,13 @@ const MentionLegalPage = () => {
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-3 text-2xl text-slate-800">
                 <Globe className="h-6 w-6 text-green-600" />
-                Hébergement
+                {dict.legal.hosting.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <p className="text-slate-700 leading-relaxed">
-                  Le site{' '}
+                  {dict.legal.hosting.description.replace('{url}', '')}{' '}
                   <a
                     href={url}
                     target="_blank"
@@ -127,20 +148,21 @@ const MentionLegalPage = () => {
                     className="font-semibold text-blue-600 hover:text-blue-700 transition-colors underline decoration-2 underline-offset-2"
                   >
                     {url}
-                  </a>{' '}
-                  est hébergé par :
+                  </a>
                 </p>
 
                 <div className="bg-slate-50 rounded-lg p-4 border-l-4 border-green-500">
                   <div className="space-y-2">
-                    <p className="font-semibold text-slate-900">IONOS</p>
-                    <p className="text-slate-700">
-                      7 Place de la Gare
-                      <br />
-                      57200 Sarreguemines
+                    <p className="font-semibold text-slate-900">
+                      {dict.legal.hosting.provider}
                     </p>
                     <p className="text-slate-700">
-                      Contact :{' '}
+                      {dict.legal.hosting.address}
+                      <br />
+                      {dict.legal.hosting.city}
+                    </p>
+                    <p className="text-slate-700">
+                      {dict.legal.hosting.contact} :{' '}
                       <a
                         href="https://www.ionos.fr/contact"
                         target="_blank"
@@ -161,16 +183,16 @@ const MentionLegalPage = () => {
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-3 text-2xl text-slate-800">
                 <User className="h-6 w-6 text-purple-600" />
-                Création & Développement
+                {dict.legal.creation.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="bg-slate-50 rounded-lg p-4 border-l-4 border-purple-500">
                 <p className="text-slate-900 font-semibold">
-                  EI Mohamad AL-KHATIB
+                  {dict.legal.creation.company}
                 </p>
                 <p className="text-slate-600 text-sm mt-1">
-                  Développeur web Fullstack et créateur du site{' '}
+                  {dict.legal.creation.role}
                 </p>
               </div>
             </CardContent>
@@ -180,7 +202,8 @@ const MentionLegalPage = () => {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-slate-200">
           <p className="text-slate-500 text-sm">
-            Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
+            {dict.legal.lastUpdate}{' '}
+            {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US')}
           </p>
         </div>
       </div>

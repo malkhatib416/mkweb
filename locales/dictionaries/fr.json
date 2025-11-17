@@ -476,5 +476,37 @@
     "send": "Envoyer",
     "open": "Ouvrir le chat WhatsApp",
     "close": "Fermer"
+  },
+  "legal": {
+    "title": "Mentions Légales",
+    "description": "Informations légales concernant le site",
+    "mainInfo": {
+      "title": "Informations Principales",
+      "denomination": "Dénomination",
+      "denominationValue": "MK-Web",
+      "headquarters": "Siège social",
+      "address": "4 Mail des Petits Clos",
+      "city": "28000 Chartres",
+      "phone": "Téléphone",
+      "email": "Email",
+      "siret": "SIRET",
+      "siretValue": "93179152900015",
+      "vat": "TVA Intracommunautaire",
+      "vatValue": "FR81931791529"
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "description": "Le site {url} est hébergé par :",
+      "provider": "IONOS",
+      "address": "7 Place de la Gare",
+      "city": "57200 Sarreguemines",
+      "contact": "Contact"
+    },
+    "creation": {
+      "title": "Création & Développement",
+      "company": "EI Mohamad AL-KHATIB",
+      "role": "Développeur web Fullstack et créateur du site"
+    },
+    "lastUpdate": "Dernière mise à jour :"
   }
 }
