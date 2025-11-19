@@ -45,6 +45,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: APP_NAME,
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
       type: 'website',
+      images: [
+        {
+          url: `${APP_URL}/api/og?title=${encodeURIComponent(
+            dict.metadata.title,
+          )}&description=${encodeURIComponent(
+            dict.metadata.description,
+          )}&locale=${locale}`,
+          width: 1200,
+          height: 630,
+          alt: dict.metadata.title,
+        },
+      ],
     },
     alternates: {
       canonical: `${APP_URL}/${locale}`,

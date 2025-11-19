@@ -1,8 +1,35 @@
 import { ImageResponse } from 'next/og';
+import { NextRequest } from 'next/server';
 
 export const runtime = 'edge';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const locale = searchParams.get('locale') || 'fr';
+  const rawTitle =
+    searchParams.get('title') || 'MK-Web - Développeur Web Freelance';
+  const description =
+    searchParams.get('description') ||
+    'Développeur Web Freelance. Création de sites internet, applications web, référencement et maintenance de sites web.';
+
+  // Clean up title: remove brand prefix if present to avoid repetition
+  const title = rawTitle
+    .replace(/^MK-Web\s*[-|]\s*/i, '')
+    .replace(/\s*[-|]\s*MK-Web$/i, '');
+
+  // Truncate title if too long
+  const displayTitle =
+    title.length > 60 ? `${title.slice(0, 60)}...` : title;
+
+  // Localized services
+  const services = {
+    fr: ['Sites Web Modernes', 'Applications Web', 'Optimisation SEO'],
+    en: ['Modern Websites', 'Web Applications', 'SEO Optimization'],
+  };
+
+  const currentServices =
+    services[locale as keyof typeof services] || services.fr;
+
   return new ImageResponse(
     (
       <div
@@ -96,17 +123,25 @@ export async function GET() {
             />
           </svg>
 
-          {/* Main tagline */}
+          {/* Main tagline removed as per request */}
+
+
+          {/* Description */}
           <div
             style={{
-              fontSize: 36,
-              color: '#020202',
-              fontWeight: 600,
-              marginBottom: 30,
-              lineHeight: 1.2,
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 50,
+              fontSize: 22,
+              color: '#010101',
+              fontWeight: 500,
+              marginBottom: 40,
+              opacity: 0.7,
             }}
           >
-            Développement Web & Applications
+            {description}
           </div>
 
           {/* Services */}
@@ -124,39 +159,22 @@ export async function GET() {
               opacity: 0.7,
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {currentServices.map((service, index) => (
               <div
-                style={{
-                  width: 10,
-                  height: 10,
-                  backgroundColor: '#FF4A15',
-                  borderRadius: '50%',
-                }}
-              />
-              Sites Web Modernes
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <div
-                style={{
-                  width: 10,
-                  height: 10,
-                  backgroundColor: '#FF4A15',
-                  borderRadius: '50%',
-                }}
-              />
-              Applications Web
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <div
-                style={{
-                  width: 10,
-                  height: 10,
-                  backgroundColor: '#FF4A15',
-                  borderRadius: '50%',
-                }}
-              />
-              Optimisation SEO
-            </div>
+                key={index}
+                style={{ display: 'flex', alignItems: 'center', gap: 12 }}
+              >
+                <div
+                  style={{
+                    width: 10,
+                    height: 10,
+                    backgroundColor: '#FF4A15',
+                    borderRadius: '50%',
+                  }}
+                />
+                {service}
+              </div>
+            ))}
           </div>
 
           {/* Tech stack indicators */}
