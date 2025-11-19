@@ -6,20 +6,10 @@ export const runtime = 'edge';
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const locale = searchParams.get('locale') || 'fr';
-  const rawTitle =
-    searchParams.get('title') || 'MK-Web - Développeur Web Freelance';
+
   const description =
     searchParams.get('description') ||
     'Développeur Web Freelance. Création de sites internet, applications web, référencement et maintenance de sites web.';
-
-  // Clean up title: remove brand prefix if present to avoid repetition
-  const title = rawTitle
-    .replace(/^MK-Web\s*[-|]\s*/i, '')
-    .replace(/\s*[-|]\s*MK-Web$/i, '');
-
-  // Truncate title if too long
-  const displayTitle =
-    title.length > 60 ? `${title.slice(0, 60)}...` : title;
 
   // Localized services
   const services = {
@@ -124,7 +114,6 @@ export async function GET(req: NextRequest) {
           </svg>
 
           {/* Main tagline removed as per request */}
-
 
           {/* Description */}
           <div
