@@ -18,6 +18,7 @@ import { isValidLocale, type Locale } from '@/locales/i18n';
 import frDict from '@/locales/dictionaries/fr.json';
 import enDict from '@/locales/dictionaries/en.json';
 import { X, Menu } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const dictionaries = {
   fr: frDict,
@@ -139,8 +140,32 @@ const Navbar = () => {
     'fixed top-0 w-full z-50 bg-white border-b border-gray-100';
   const desktopNavLinkClass =
     'inline-flex items-center px-3 py-2 text-sm font-medium rounded-full text-gray-700 transition-colors duration-200 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
-  const mobileNavLinkClass =
-    'block w-full px-3 py-3 text-base font-medium rounded-lg text-gray-700 transition-colors duration-200 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
+  
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      y: '-100%',
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    open: {
+      opacity: 1,
+      y: '0%',
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    closed: { opacity: 0, y: 20 },
+    open: { opacity: 1, y: 0 },
+  };
 
   return (
     <header className={headerClassName} onKeyDown={handleKeyDown}>
@@ -148,11 +173,12 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 z-50 relative">
               <Link
                 href={`/${currentLocale}/#main`}
                 aria-label="MK-Web home"
                 className="focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 rounded-lg"
+                onClick={() => isMenuOpen && closeMenu()}
               >
                 <Suspense fallback={<div className="w-32 h-8" />}>
                   <MKWEbLogo />
@@ -185,7 +211,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden z-50 relative">
               <button
                 ref={menuButtonRef}
                 type="button"
@@ -205,40 +231,48 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div
-          ref={mobileMenuRef}
-          id={MOBILE_NAV_ID}
-          className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
-            isMenuOpen ? 'max-h-[320px] opacity-100' : 'max-h-0 opacity-0'
-          }`}
-          aria-hidden={!isMenuOpen}
-        >
-          <div className="px-4 pt-2 pb-6 space-y-1 bg-white border-t border-gray-100 shadow-sm">
-            {navigation.map((item) => (
-              <Link
-                key={item.id}
-                href={item.path}
-                onClick={closeMenu}
-                className={mobileNavLinkClass}
-              >
-                {item.title}
-              </Link>
-            ))}
-
-            <NavLink
-              href={`/${currentLocale}#contact`}
-              onClick={closeMenu}
-              className="block w-full px-4 py-3 mt-4 text-center text-sm font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2"
+        {/* Mobile Navigation Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              ref={mobileMenuRef}
+              id={MOBILE_NAV_ID}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+              className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-center items-center"
             >
-              {t.getQuote}
-            </NavLink>
+              <div className="w-full max-w-md px-6 py-8 flex flex-col items-center space-y-6">
+                {navigation.map((item) => (
+                  <motion.div key={item.id} variants={itemVariants}>
+                    <Link
+                      href={item.path}
+                      onClick={closeMenu}
+                      className="text-2xl font-medium text-gray-900 hover:text-myorange-100 transition-colors"
+                    >
+                      {item.title}
+                    </Link>
+                  </motion.div>
+                ))}
 
-            <div className="pt-4 mt-4 border-t border-gray-100">
-              <LanguageSwitcher currentLocale={currentLocale} />
-            </div>
-          </div>
-        </div>
+                <motion.div variants={itemVariants} className="pt-4">
+                  <NavLink
+                    href={`/${currentLocale}#contact`}
+                    onClick={closeMenu}
+                    className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-md"
+                  >
+                    {t.getQuote}
+                  </NavLink>
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="pt-8">
+                  <LanguageSwitcher currentLocale={currentLocale} />
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   );

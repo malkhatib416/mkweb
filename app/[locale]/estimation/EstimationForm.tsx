@@ -338,8 +338,9 @@ export default function EstimationForm({ dict }: Props) {
         </div>
 
         {/* Progress Steps */}
-        <div className="mb-10">
-          <div className="flex items-start justify-between gap-2">
+        <div className="mb-8 sm:mb-10">
+          {/* Desktop Steps */}
+          <div className="hidden sm:flex items-start justify-between gap-2">
             {steps.map((step, index) => (
               <Fragment key={step.number}>
                 <div
@@ -387,13 +388,31 @@ export default function EstimationForm({ dict }: Props) {
               </Fragment>
             ))}
           </div>
+
+          {/* Mobile Steps */}
+          <div className="block sm:hidden">
+            <div className="mb-4 flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-500">
+                {t.steps[`step${currentStep}` as keyof typeof t.steps]}
+              </span>
+              <span className="text-sm font-medium text-gray-900">
+                {currentStep} / {steps.length}
+              </span>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+              <div
+                className="h-full bg-myorange-100 transition-all duration-300 ease-in-out"
+                style={{ width: `${(currentStep / steps.length) * 100}%` }}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Form */}
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+            className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-8"
           >
             {/* Step 1: Type & Objectif */}
             {currentStep === 1 && (
