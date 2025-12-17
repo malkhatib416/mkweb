@@ -27,7 +27,7 @@ const dictionaries = {
 
 const useBodyScrollLock = (
   isOpen: boolean,
-  menuRef: RefObject<HTMLDivElement>,
+  menuRef: RefObject<HTMLDivElement | null>,
 ) => {
   useEffect(() => {
     if (isOpen) {

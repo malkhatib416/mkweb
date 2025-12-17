@@ -1,5 +1,4 @@
 import createMDX from '@next/mdx';
-import remarkFrontmatter from 'remark-frontmatter';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,15 +19,7 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [
-      remarkFrontmatter,
-      // Strip frontmatter from output
-      () => (tree) => {
-        tree.children = tree.children.filter(
-          (node) => node.type !== 'yaml' && node.type !== 'toml',
-        );
-      },
-    ],
+    remarkPlugins: [],
     rehypePlugins: [],
   },
 });
