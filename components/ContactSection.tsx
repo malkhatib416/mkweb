@@ -167,7 +167,6 @@ export default function ContactSection({
                         <Input
                           id="prenom"
                           autoComplete="given-name"
-                          placeholder={dict.contact.form.firstName}
                           {...field}
                         />
                       </FormControl>
@@ -186,7 +185,6 @@ export default function ContactSection({
                         <Input
                           id="nom"
                           autoComplete="family-name"
-                          placeholder={dict.contact.form.lastName}
                           {...field}
                         />
                       </FormControl>
@@ -206,7 +204,6 @@ export default function ContactSection({
                           id="email"
                           type="email"
                           autoComplete="email"
-                          placeholder={dict.contact.form.email}
                           {...field}
                         />
                       </FormControl>
@@ -226,7 +223,6 @@ export default function ContactSection({
                           id="telephone"
                           type="tel"
                           autoComplete="tel"
-                          placeholder={dict.contact.form.phone}
                           {...field}
                         />
                       </FormControl>
@@ -245,7 +241,6 @@ export default function ContactSection({
                         <Input
                           id="entreprise"
                           autoComplete="organization"
-                          placeholder={dict.contact.form.company}
                           {...field}
                         />
                       </FormControl>
@@ -263,7 +258,6 @@ export default function ContactSection({
                       <FormControl>
                         <Input
                           id="sujet"
-                          placeholder={dict.contact.form.subject}
                           {...field}
                         />
                       </FormControl>
@@ -281,7 +275,6 @@ export default function ContactSection({
                       <FormControl>
                         <Textarea
                           id="message"
-                          placeholder={dict.contact.form.message}
                           rows={6}
                           {...field}
                         />

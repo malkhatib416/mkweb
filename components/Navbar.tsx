@@ -84,14 +84,14 @@ const Navbar = () => {
         id: 'services',
       },
       {
-        title: t.contact,
-        path: `/${currentLocale}/#contact`,
-        id: 'contact',
-      },
-      {
         title: t.blog,
         path: `/${currentLocale}/blog`,
         id: 'blog',
+      },
+      {
+        title: t.contact,
+        path: `/${currentLocale}/#contact`,
+        id: 'contact',
       },
     ],
     [t, currentLocale],
