@@ -2,10 +2,10 @@ import { categories } from '@/data';
 import { getBlogPostById, getBlogPostSlugs } from '@/lib/mdx';
 import { notFound } from 'next/navigation';
 import { User, Calendar, Clock } from 'lucide-react';
-import React, { use } from 'react';
 import dynamic from 'next/dynamic';
 import type { Locale } from '@/locales/i18n';
 import { locales } from '@/locales/i18n';
+import { getDictionary } from '@/locales/dictionaries';
 
 interface BlogPostPageProps {
   params: Promise<{ id: string; locale: string }>;
@@ -23,9 +23,10 @@ export async function generateStaticParams() {
   return allParams;
 }
 
-const BlogPostPage = ({ params }: BlogPostPageProps) => {
-  const { id, locale } = use(params);
-  const post = use(getBlogPostById(id, locale as Locale));
+const BlogPostPage = async ({ params }: BlogPostPageProps) => {
+  const { id, locale } = await params;
+  const post = await getBlogPostById(id, locale as Locale);
+  const dict = await getDictionary(locale as Locale);
 
   if (!post) return notFound();
 
@@ -33,7 +34,11 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
   const MDXContent = dynamic(() => import(`@/content/blog/${locale}/${id}.mdx`));
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('fr-FR', {
+    const localeMap: Record<string, string> = {
+      fr: 'fr-FR',
+      en: 'en-US',
+    };
+    return new Date(dateString).toLocaleDateString(localeMap[locale] || 'fr-FR', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -74,7 +79,7 @@ const BlogPostPage = ({ params }: BlogPostPageProps) => {
           </div>
           <div className="flex items-center space-x-2">
             <Clock className="h-4 w-4" />
-            <span className="text-sm">{post.readTime} min de lecture</span>
+            <span className="text-sm">{post.readTime} {dict.blog.readTime}</span>
           </div>
         </div>
         {/* Description */}

@@ -1,24 +1,102 @@
 import type { MDXComponents } from 'mdx/types';
+import type React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Helper function to check if content looks like frontmatter
+function isFrontmatterContent(children: React.ReactNode): boolean {
+  // Extract text content from React node
+  const extractText = (node: React.ReactNode): string => {
+    if (typeof node === 'string') {
+      return node;
+    }
+    if (typeof node === 'number') {
+      return String(node);
+    }
+    if (Array.isArray(node)) {
+      return node.map(extractText).join(' ');
+    }
+    if (node && typeof node === 'object' && 'props' in node) {
+      const props = node.props as { children?: React.ReactNode };
+      return extractText(props?.children);
+    }
+    return '';
+  };
+
+  const text = extractText(children).trim();
+  
+  // Check for frontmatter patterns: title:, description:, categories:, author:, publishedAt:, readTime:, image:, lang:
+  // Also check if it contains multiple frontmatter fields (indicating it's likely frontmatter)
+  const frontmatterPatterns = [
+    /^title:\s*"/,
+    /^description:\s*"/,
+    /^categories:\s*\[/,
+    /^author:\s*"/,
+    /^publishedAt:\s*"/,
+    /^readTime:\s*\d+/,
+    /^image:\s*"/,
+    /^lang:\s*"/,
+  ];
+  
+  // Check if text contains multiple frontmatter patterns (more reliable detection)
+  const matches = frontmatterPatterns.filter((pattern) => pattern.test(text));
+  
+  // If it contains 2+ frontmatter patterns, it's definitely frontmatter
+  if (matches.length >= 2) {
+    return true;
+  }
+  
+  // Also check for single pattern matches at the start of the text
+  return frontmatterPatterns.some((pattern) => pattern.test(text));
+}
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    h1: ({ children }) => (
-      <h1 className="text-4xl font-bold text-gray-900 mb-6 mt-8">{children}</h1>
-    ),
-    h2: ({ children }) => (
-      <h2 className="text-3xl font-bold text-gray-900 mb-4 mt-8">{children}</h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">{children}</h3>
-    ),
-    h4: ({ children }) => (
-      <h4 className="text-xl font-bold text-gray-900 mb-2 mt-4">{children}</h4>
-    ),
-    p: ({ children }) => (
-      <p className="text-gray-700 mb-4 leading-relaxed">{children}</p>
-    ),
+    h1: ({ children }) => {
+      // Filter out frontmatter content
+      if (isFrontmatterContent(children)) {
+        return null;
+      }
+      return (
+        <h1 className="text-4xl font-bold text-gray-900 mb-6 mt-8">{children}</h1>
+      );
+    },
+    h2: ({ children }) => {
+      // Filter out frontmatter content
+      if (isFrontmatterContent(children)) {
+        return null;
+      }
+      return (
+        <h2 className="text-3xl font-bold text-gray-900 mb-4 mt-8">{children}</h2>
+      );
+    },
+    h3: ({ children }) => {
+      // Filter out frontmatter content
+      if (isFrontmatterContent(children)) {
+        return null;
+      }
+      return (
+        <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">{children}</h3>
+      );
+    },
+    h4: ({ children }) => {
+      // Filter out frontmatter content
+      if (isFrontmatterContent(children)) {
+        return null;
+      }
+      return (
+        <h4 className="text-xl font-bold text-gray-900 mb-2 mt-4">{children}</h4>
+      );
+    },
+    p: ({ children }) => {
+      // Filter out frontmatter content
+      if (isFrontmatterContent(children)) {
+        return null;
+      }
+      return (
+        <p className="text-gray-700 mb-4 leading-relaxed">{children}</p>
+      );
+    },
     a: ({ href, children }) => (
       <Link
         href={href as string}
