@@ -3,8 +3,9 @@
     "home": "Accueil",
     "services": "Services",
     "blog": "Blog",
-    "getQuote": "Demander un devis",
-    "estimation": "Estimation"
+    "contact": "Nous contacter",
+    "requestQuote": "Demander un devis",
+    "estimation": "Estimer mon projet"
   },
   "hero": {
     "badge": "Disponible pour nouveaux projets",
@@ -263,6 +264,11 @@
         "description": "Migration et refonte d'un site vitrine en CRM interne sur mesure pour une PME.",
         "longDescription": "Projet de migration d'un site existant réalisé en PHP vers Laravel. Développement d'un CRM interne pour gérer les clients et les contacts. Intégration de Bootstrap pour une interface claire et responsive.",
         "category": "CRM / Application Web"
+      },
+      "luxdrive": {
+        "description": "Plateforme premium de location de voitures avec système de réservation, tableau de bord d'administration et intégration de paiement Stripe",
+        "longDescription": "Plateforme complète de gestion de location de voitures offrant un système de réservation multi-étapes, la disponibilité des véhicules en temps réel, le traitement de paiement via Stripe, ainsi qu'un tableau de bord d'administration pour gérer la flotte et les réservations. Le système inclut le support multilingue (FR/DE), les notifications par email, la vérification de documents et la génération de factures. Développé avec Next.js 15, TypeScript, PostgreSQL et les dernières pratiques React.",
+        "category": "E-Commerce / SaaS Platform"
       }
     }
   },

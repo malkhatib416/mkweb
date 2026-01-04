@@ -22,7 +22,7 @@ const getProjects = (dict: Dictionary) => [
       'PostgreSQL',
       'Puppeteer',
     ],
-    image: '/projects/alertjo.png',
+    image: '/projects/alertjo.webp',
     github: undefined,
     live: 'https://alertjo.fr',
     featured: true,
@@ -36,13 +36,27 @@ const getProjects = (dict: Dictionary) => [
     description: dict.projects.items.pcmge.description,
     longDescription: dict.projects.items.pcmge.longDescription,
     technologies: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
-    image: '/projects/pcmge.png',
+    image: '/projects/pcmge.webp',
     // github: 'https://github.com/mohamad-alkhatib/pcmge',
     live: 'https://pcmge.fr',
     featured: true,
     date: '2025',
     status: 'online',
     category: dict.projects.items.pcmge.category,
+  },
+  {
+    id: 3,
+    title: 'LuxDrive.de',
+    description: dict.projects.items.luxdrive.description,
+    longDescription: dict.projects.items.luxdrive.longDescription,
+    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe'],
+    image: '/projects/luxdrive.webp',
+    github: undefined,
+    live: 'https://luxdrive24.de',
+    featured: true,
+    date: '2025',
+    status: 'online',
+    category: dict.projects.items.luxdrive.category,
   },
   // {
   //   id: 3,
@@ -138,8 +152,7 @@ export default function LatestProjects({ dict }: Props) {
                       <Image
                         src={project.image}
                         alt={project.title}
-                        width={400}
-                        height={600}
+                        fill
                         className="object-cover w-full h-full"
                       />
                     ) : (

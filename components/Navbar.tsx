@@ -84,9 +84,9 @@ const Navbar = () => {
         id: 'services',
       },
       {
-        title: t.estimation,
-        path: `/${currentLocale}/estimation`,
-        id: 'estimation',
+        title: t.contact,
+        path: `/${currentLocale}/#contact`,
+        id: 'contact',
       },
       {
         title: t.blog,
@@ -199,10 +199,10 @@ const Navbar = () => {
               ))}
 
               <NavLink
-                href={`/${currentLocale}#contact`}
+                href={`/${currentLocale}/estimation`}
                 className="ml-5 inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2"
               >
-                {t.getQuote}
+                {t.estimation}
               </NavLink>
 
               <div className="pl-4 ml-4 border-l border-gray-200/70">
@@ -258,11 +258,11 @@ const Navbar = () => {
 
                 <motion.div variants={itemVariants} className="pt-4">
                   <NavLink
-                    href={`/${currentLocale}#contact`}
+                    href={`/${currentLocale}/estimation`}
                     onClick={closeMenu}
                     className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-md"
                   >
-                    {t.getQuote}
+                    {t.estimation}
                   </NavLink>
                 </motion.div>
 

@@ -2,9 +2,10 @@
   "nav": {
     "home": "Home",
     "services": "Services",
+    "contact": "Contact us",
     "blog": "Blog",
-    "getQuote": "Request a quote",
-    "estimation": "Estimation"
+    "requestQuote": "Request a quote",
+    "estimation": "Estimate my project"
   },
   "hero": {
     "badge": "Available for new projects",
@@ -263,6 +264,11 @@
         "description": "Migration and redesign of a showcase website into a custom internal CRM for an SME.",
         "longDescription": "Migration project of an existing PHP site to Laravel. Development of an internal CRM to manage clients and contacts. Bootstrap integration for a clean and responsive interface.",
         "category": "CRM / Web Application"
+      },
+      "luxdrive": {
+        "description": "Premium car rental platform with reservation system, admin dashboard, and Stripe integration",
+        "longDescription": "A comprehensive car rental management platform featuring a multi-step booking system, real-time vehicle availability, Stripe payment processing, admin dashboard for fleet and reservation management, multi-language support (FR/DE), email notifications, document verification, and invoice generation. Built with Next.js 15, TypeScript, PostgreSQL, and modern React patterns.",
+        "category": "E-Commerce / SaaS Platform"
       }
     }
   },
