@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
+    "dev": "next dev --port 3300",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -38,6 +38,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "emailjs": "^4.0.3",
+    "flag-icons": "^7.5.0",
     "framer-motion": "^11.11.4",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.451.0",

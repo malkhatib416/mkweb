@@ -10,14 +10,15 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
+import CountryFlag from './CountryFlag';
 
 type Props = {
 	currentLocale: Locale;
 };
 
-const localeData: Record<Locale, { name: string; flag: string }> = {
-	fr: { name: 'Français', flag: '🇫🇷' },
-	en: { name: 'English', flag: '🇬🇧' },
+const localeData: Record<Locale, { name: string; flagCode: 'FR' | 'GB' }> = {
+	fr: { name: 'Français', flagCode: 'FR' },
+	en: { name: 'English', flagCode: 'GB' },
 };
 
 export default function LanguageSwitcher({ currentLocale }: Props) {
@@ -48,7 +49,10 @@ export default function LanguageSwitcher({ currentLocale }: Props) {
 			<SelectContent>
 				{locales.map((locale) => (
 					<SelectItem key={locale} value={locale}>
-						{localeData[locale].flag} {localeData[locale].name}
+						<span className="flex items-center gap-2">
+							<CountryFlag countryCode={localeData[locale].flagCode} />
+							{localeData[locale].name}
+						</span>
 					</SelectItem>
 				))}
 			</SelectContent>
