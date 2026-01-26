@@ -1,14 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import {
-  Code2,
-  Database,
-  Globe,
-  Layers,
-  Shield,
-  Zap,
-} from 'lucide-react';
+import { Code2, Database, Globe, Layers, Shield, Zap } from 'lucide-react';
 
 const expertise = [
   {
@@ -86,7 +79,8 @@ export default function Expertise() {
         >
           <h2 className="text-4xl font-bold mb-4">Expertise Technique</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Un large éventail de compétences techniques pour répondre à tous vos besoins en développement web.
+            Un large éventail de compétences techniques pour répondre à tous vos
+            besoins en développement web.
           </p>
         </motion.div>
 
@@ -111,7 +105,9 @@ export default function Expertise() {
                   <div key={skillIndex}>
                     <div className="flex justify-between mb-1">
                       <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                      <span className="text-sm text-muted-foreground">
+                        {skill.level}%
+                      </span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
                       <motion.div
@@ -131,5 +127,4 @@ export default function Expertise() {
       </div>
     </section>
   );
-};
-
+}

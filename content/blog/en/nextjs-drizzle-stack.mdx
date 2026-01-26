@@ -1,11 +1,11 @@
 ---
-title: "Why I Use Next.js 15 and Drizzle ORM to Build Modern Apps"
+title: 'Why I Use Next.js 15 and Drizzle ORM to Build Modern Apps'
 description: "Next.js 15 and Drizzle ORM form a powerful, modern, and typed stack to build fast, maintainable, and scalable web applications. Here's why I use them daily."
-categories: ["tech", "nextjs", "typescript"]
-author: "Mohamad Al-Khatib"
-publishedAt: "2025-06-18"
+categories: ['tech', 'nextjs', 'typescript']
+author: 'Mohamad Al-Khatib'
+publishedAt: '2025-06-18'
 readTime: 3
-image: "/nextjs-drizzle.png"
+image: '/nextjs-drizzle.png'
 ---
 
 ![Next.js + Drizzle ORM Stack](/nextjs-drizzle.png)
@@ -37,7 +37,7 @@ I've long used Prisma, Knex, Sequelize… but Drizzle ORM changed my vision:
 
 ```typescript
 const result = await db.query.users.findMany({
-  where: (u, { eq }) => eq(u.email, "client@example.com"),
+  where: (u, { eq }) => eq(u.email, 'client@example.com'),
 });
 ```
 

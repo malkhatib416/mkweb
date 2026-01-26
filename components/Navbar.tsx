@@ -140,7 +140,7 @@ const Navbar = () => {
     'fixed top-0 w-full z-50 bg-white border-b border-gray-100';
   const desktopNavLinkClass =
     'inline-flex items-center px-3 py-2 text-sm font-medium rounded-full text-gray-700 transition-colors duration-200 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
-  
+
   const menuVariants = {
     closed: {
       opacity: 0,

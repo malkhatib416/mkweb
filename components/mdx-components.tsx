@@ -24,7 +24,7 @@ function isFrontmatterContent(children: React.ReactNode): boolean {
   };
 
   const text = extractText(children).trim();
-  
+
   // Check for frontmatter patterns: title:, description:, categories:, author:, publishedAt:, readTime:, image:, lang:
   // Also check if it contains multiple frontmatter fields (indicating it's likely frontmatter)
   const frontmatterPatterns = [
@@ -37,15 +37,15 @@ function isFrontmatterContent(children: React.ReactNode): boolean {
     /^image:\s*"/,
     /^lang:\s*"/,
   ];
-  
+
   // Check if text contains multiple frontmatter patterns (more reliable detection)
   const matches = frontmatterPatterns.filter((pattern) => pattern.test(text));
-  
+
   // If it contains 2+ frontmatter patterns, it's definitely frontmatter
   if (matches.length >= 2) {
     return true;
   }
-  
+
   // Also check for single pattern matches at the start of the text
   return frontmatterPatterns.some((pattern) => pattern.test(text));
 }
@@ -58,7 +58,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         return null;
       }
       return (
-        <h1 className="text-4xl font-bold text-gray-900 mb-6 mt-8">{children}</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-6 mt-8">
+          {children}
+        </h1>
       );
     },
     h2: ({ children }) => {
@@ -67,7 +69,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         return null;
       }
       return (
-        <h2 className="text-3xl font-bold text-gray-900 mb-4 mt-8">{children}</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4 mt-8">
+          {children}
+        </h2>
       );
     },
     h3: ({ children }) => {
@@ -76,7 +80,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         return null;
       }
       return (
-        <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">{children}</h3>
+        <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">
+          {children}
+        </h3>
       );
     },
     h4: ({ children }) => {
@@ -85,7 +91,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         return null;
       }
       return (
-        <h4 className="text-xl font-bold text-gray-900 mb-2 mt-4">{children}</h4>
+        <h4 className="text-xl font-bold text-gray-900 mb-2 mt-4">
+          {children}
+        </h4>
       );
     },
     p: ({ children }) => {
@@ -93,9 +101,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       if (isFrontmatterContent(children)) {
         return null;
       }
-      return (
-        <p className="text-gray-700 mb-4 leading-relaxed">{children}</p>
-      );
+      return <p className="text-gray-700 mb-4 leading-relaxed">{children}</p>;
     },
     a: ({ href, children }) => (
       <Link

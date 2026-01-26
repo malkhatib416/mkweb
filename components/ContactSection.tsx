@@ -182,11 +182,7 @@ export default function ContactSection({
                     <FormItem>
                       <FormLabel>{dict.contact.form.lastName}</FormLabel>
                       <FormControl>
-                        <Input
-                          id="nom"
-                          autoComplete="family-name"
-                          {...field}
-                        />
+                        <Input id="nom" autoComplete="family-name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -256,10 +252,7 @@ export default function ContactSection({
                     <FormItem className="sm:col-span-2">
                       <FormLabel>{dict.contact.form.subject}</FormLabel>
                       <FormControl>
-                        <Input
-                          id="sujet"
-                          {...field}
-                        />
+                        <Input id="sujet" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -273,11 +266,7 @@ export default function ContactSection({
                     <FormItem className="sm:col-span-2">
                       <FormLabel>{dict.contact.form.message}</FormLabel>
                       <FormControl>
-                        <Textarea
-                          id="message"
-                          rows={6}
-                          {...field}
-                        />
+                        <Textarea id="message" rows={6} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

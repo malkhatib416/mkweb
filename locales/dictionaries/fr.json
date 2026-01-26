@@ -519,5 +519,182 @@
       "role": "Développeur web Fullstack et créateur du site"
     },
     "lastUpdate": "Dernière mise à jour :"
+  },
+  "admin": {
+    "title": "MK-Web Admin",
+    "auth": {
+      "login": {
+        "title": "Connectez-vous à votre compte",
+        "subtitle": "Ou",
+        "createAccount": "créer un nouveau compte",
+        "email": "Adresse e-mail",
+        "password": "Mot de passe",
+        "signIn": "Se connecter",
+        "signingIn": "Connexion...",
+        "loginFailed": "Échec de la connexion",
+        "loginSuccess": "Connexion réussie"
+      },
+      "signup": {
+        "title": "Créez votre compte",
+        "subtitle": "Ou",
+        "signIn": "connectez-vous à votre compte existant",
+        "name": "Nom complet",
+        "email": "Adresse e-mail",
+        "password": "Mot de passe",
+        "createAccount": "Créer un compte",
+        "creating": "Création du compte...",
+        "signupFailed": "Échec de l'inscription",
+        "signupSuccess": "Compte créé avec succès"
+      },
+      "signOut": "Se déconnecter",
+      "logOut": "Déconnexion",
+      "signOutSuccess": "Déconnexion réussie",
+      "signOutError": "Erreur lors de la déconnexion"
+    },
+    "dashboard": {
+      "title": "Tableau de bord",
+      "welcome": "Bon retour, {name} !",
+      "stats": {
+        "totalBlogs": "Total des articles",
+        "publishedBlogs": "Articles publiés",
+        "totalProjects": "Total des projets",
+        "publishedProjects": "Projets publiés"
+      }
+    },
+    "sidebar": {
+      "dashboard": "Tableau de bord",
+      "blogs": "Articles",
+      "projects": "Projets"
+    },
+    "blogs": {
+      "title": "Articles",
+      "subtitle": "Gérez vos articles de blog",
+      "newBlog": "Nouvel article",
+      "createFirst": "Créez votre premier article",
+      "noBlogs": "Aucun article trouvé",
+      "loading": "Chargement...",
+      "backToBlogs": "Retour aux articles",
+      "create": {
+        "title": "Créer un nouvel article",
+        "createButton": "Créer l'article",
+        "creating": "Création..."
+      },
+      "edit": {
+        "title": "Modifier l'article",
+        "updateButton": "Mettre à jour l'article",
+        "updating": "Mise à jour..."
+      },
+      "view": {
+        "edit": "Modifier"
+      },
+      "fields": {
+        "title": "Titre",
+        "slug": "Slug",
+        "description": "Description",
+        "content": "Contenu (Markdown)",
+        "status": "Statut"
+      },
+      "placeholders": {
+        "title": "Titre de l'article",
+        "slug": "article-slug",
+        "description": "Courte description"
+      },
+      "status": {
+        "draft": "Brouillon",
+        "published": "Publié"
+      },
+      "slugHelper": "Slug compatible URL (minuscules, tirets uniquement)",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{title}\" ?",
+      "deleteSuccess": "Article supprimé avec succès",
+      "deleteError": "Échec de la suppression de l'article",
+      "createSuccess": "Article créé avec succès",
+      "createError": "Échec de la création de l'article",
+      "updateSuccess": "Article mis à jour avec succès",
+      "updateError": "Échec de la mise à jour de l'article",
+      "fetchError": "Échec du chargement des articles",
+      "fetchSingleError": "Échec du chargement de l'article",
+      "metadata": {
+        "slug": "Slug",
+        "created": "Créé",
+        "updated": "Mis à jour"
+      },
+      "pagination": {
+        "showing": "Affichage de {from} à {to} sur {total} articles",
+        "previous": "Précédent",
+        "next": "Suivant"
+      }
+    },
+    "projects": {
+      "title": "Projets",
+      "subtitle": "Gérez vos projets",
+      "newProject": "Nouveau projet",
+      "createFirst": "Créez votre premier projet",
+      "noProjects": "Aucun projet trouvé",
+      "loading": "Chargement...",
+      "backToProjects": "Retour aux projets",
+      "create": {
+        "title": "Créer un nouveau projet",
+        "createButton": "Créer le projet",
+        "creating": "Création..."
+      },
+      "edit": {
+        "title": "Modifier le projet",
+        "updateButton": "Mettre à jour le projet",
+        "updating": "Mise à jour..."
+      },
+      "view": {
+        "edit": "Modifier"
+      },
+      "fields": {
+        "title": "Titre",
+        "slug": "Slug",
+        "description": "Description",
+        "content": "Contenu (Markdown)",
+        "status": "Statut"
+      },
+      "placeholders": {
+        "title": "Titre du projet",
+        "slug": "projet-slug",
+        "description": "Courte description"
+      },
+      "status": {
+        "draft": "Brouillon",
+        "published": "Publié"
+      },
+      "slugHelper": "Slug compatible URL (minuscules, tirets uniquement)",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{title}\" ?",
+      "deleteSuccess": "Projet supprimé avec succès",
+      "deleteError": "Échec de la suppression du projet",
+      "createSuccess": "Projet créé avec succès",
+      "createError": "Échec de la création du projet",
+      "updateSuccess": "Projet mis à jour avec succès",
+      "updateError": "Échec de la mise à jour du projet",
+      "fetchError": "Échec du chargement des projets",
+      "fetchSingleError": "Échec du chargement du projet",
+      "metadata": {
+        "slug": "Slug",
+        "created": "Créé",
+        "updated": "Mis à jour"
+      },
+      "pagination": {
+        "showing": "Affichage de {from} à {to} sur {total} projets",
+        "previous": "Précédent",
+        "next": "Suivant"
+      }
+    },
+    "common": {
+      "required": "Requis",
+      "optional": "Optionnel",
+      "actions": "Actions",
+      "view": "Voir",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "back": "Retour",
+      "loading": "Chargement...",
+      "error": "Erreur",
+      "success": "Succès"
+    }
   }
 }

@@ -84,6 +84,10 @@ export default async function LocaleLayout({ children, params }: Props) {
       <head>
         <PlausibleProvider domain="mk-web.fr" />
         {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@uiw/react-md-editor/markdown-editor.css"
+        />
       </head>
       <body className={inter.className}>
         <ReCaptchaProvider>

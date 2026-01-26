@@ -47,7 +47,7 @@ export async function getAllBlogPosts(locale: Locale): Promise<BlogPost[]> {
 
 export async function getBlogPostById(
   id: string,
-  locale: Locale
+  locale: Locale,
 ): Promise<BlogPost | null> {
   try {
     const postsDirectory = path.join(contentDirectory, locale);

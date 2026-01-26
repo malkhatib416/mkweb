@@ -10,7 +10,8 @@
 
 .gradient-border {
   border: 1px solid transparent;
-  background: linear-gradient(white, white),
+  background:
+    linear-gradient(white, white),
     linear-gradient(
       25deg,
       rgba(209, 213, 219, 1),
@@ -96,12 +97,12 @@
   }
 }
 
-html{
+html {
   scroll-behavior: smooth;
   scroll-padding-top: 140px;
 }
 
-.hero-wrapper{
+.hero-wrapper {
   position: relative;
   background-image: url('/hero-bg.webp');
   background-size: cover;
@@ -116,7 +117,11 @@ html{
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
   z-index: 1;
   backdrop-filter: blur(2px);
 }
@@ -128,8 +133,13 @@ html{
 
 /* Custom animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .animate-float {
@@ -146,22 +156,22 @@ html{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FF4A17;
+  background: #ff4a17;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E33200;
+  background: #e33200;
 }
 
 /* Text selection */
 ::selection {
-  background-color: #FF4A17;
+  background-color: #ff4a17;
   color: white;
 }
 
 /* Focus styles */
 .focus-visible:focus {
-  outline: 2px solid #FF4A17;
+  outline: 2px solid #ff4a17;
   outline-offset: 2px;
 }

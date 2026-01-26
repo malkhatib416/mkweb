@@ -31,18 +31,23 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   if (!post) return notFound();
 
   // Dynamically import the MDX file from locale-specific directory
-  const MDXContent = dynamic(() => import(`@/content/blog/${locale}/${id}.mdx`));
+  const MDXContent = dynamic(
+    () => import(`@/content/blog/${locale}/${id}.mdx`),
+  );
 
   const formatDate = (dateString: string) => {
     const localeMap: Record<string, string> = {
       fr: 'fr-FR',
       en: 'en-US',
     };
-    return new Date(dateString).toLocaleDateString(localeMap[locale] || 'fr-FR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    return new Date(dateString).toLocaleDateString(
+      localeMap[locale] || 'fr-FR',
+      {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      },
+    );
   };
 
   return (
@@ -79,7 +84,9 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
           </div>
           <div className="flex items-center space-x-2">
             <Clock className="h-4 w-4" />
-            <span className="text-sm">{post.readTime} {dict.blog.readTime}</span>
+            <span className="text-sm">
+              {post.readTime} {dict.blog.readTime}
+            </span>
           </div>
         </div>
         {/* Description */}
