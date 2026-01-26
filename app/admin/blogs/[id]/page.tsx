@@ -9,7 +9,7 @@ import { ArrowLeft, Edit } from 'lucide-react';
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import useSWR from 'swr';
 import { fetcher } from '@/lib/swr-fetcher';
-import { type Blog, type BlogResponse } from '@/lib/services/blog.service';
+import type { Blog, BlogResponse } from '@/types/entities';
 
 export default function ViewBlogPage() {
   const params = useParams();
@@ -76,6 +76,9 @@ export default function ViewBlogPage() {
           <div className="text-sm text-gray-500">
             <p>
               {t.metadata.slug}: {blog.slug}
+            </p>
+            <p>
+              {t.fields.locale}: {t.locale[blog.locale]}
             </p>
             <p>
               {t.metadata.created}: {new Date(blog.createdAt).toLocaleString()}

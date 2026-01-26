@@ -3,6 +3,8 @@ import { requireAuth } from '@/lib/auth-utils';
 import { projectServiceServer } from '@/lib/services/project.service.server';
 import { getErrorStatus, getErrorMessage } from '@/lib/utils/api-error-handler';
 import { z } from 'zod';
+import { Locale } from '@/locales/i18n';
+import { Status } from 'better-auth';
 
 // GET - List all projects
 export async function GET(request: NextRequest) {
@@ -10,7 +12,8 @@ export async function GET(request: NextRequest) {
     await requireAuth();
 
     const searchParams = request.nextUrl.searchParams;
-    const status = searchParams.get('status') as 'draft' | 'published' | null;
+    const status = searchParams.get('status') as Status | null;
+    const locale = searchParams.get('locale') as Locale | null;
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
 
@@ -18,6 +21,7 @@ export async function GET(request: NextRequest) {
       page,
       limit,
       status: status || undefined,
+      locale: locale || undefined,
     });
 
     return NextResponse.json(result);

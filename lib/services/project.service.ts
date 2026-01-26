@@ -2,51 +2,13 @@
  * Project service - handles all project-related API calls
  */
 
-export interface Project {
-  id: string;
-  title: string;
-  slug: string;
-  description: string | null;
-  content: string;
-  status: 'draft' | 'published';
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface CreateProjectDto {
-  title: string;
-  slug: string;
-  description?: string | null;
-  content: string;
-  status: 'draft' | 'published';
-}
-
-export interface UpdateProjectDto {
-  title?: string;
-  slug?: string;
-  description?: string | null;
-  content?: string;
-  status?: 'draft' | 'published';
-}
-
-export interface ProjectListResponse {
-  data: Project[];
-  pagination: {
-    total: number;
-    page: number;
-    limit: number;
-  };
-}
-
-export interface ProjectResponse {
-  data: Project;
-}
-
-export interface ProjectListParams {
-  page?: number;
-  limit?: number;
-  status?: 'draft' | 'published';
-}
+import type {
+  CreateProjectDto,
+  ProjectListParams,
+  ProjectListResponse,
+  ProjectResponse,
+  UpdateProjectDto,
+} from '@/types/entities';
 
 class ProjectService {
   private baseUrl = '/api/admin/projects';
@@ -55,7 +17,7 @@ class ProjectService {
    * Get all projects with pagination
    */
   async getAll(params: ProjectListParams = {}): Promise<ProjectListResponse> {
-    const { page = 1, limit = 10, status } = params;
+    const { page = 1, limit = 10, status, locale } = params;
     const queryParams = new URLSearchParams({
       page: page.toString(),
       limit: limit.toString(),
@@ -63,6 +25,9 @@ class ProjectService {
 
     if (status) {
       queryParams.append('status', status);
+    }
+    if (locale) {
+      queryParams.append('locale', locale);
     }
 
     const response = await fetch(`${this.baseUrl}?${queryParams.toString()}`);
@@ -96,13 +61,7 @@ class ProjectService {
     const response = await fetch(this.baseUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: data.title,
-        slug: data.slug,
-        description: data.description || null,
-        content: data.content,
-        status: data.status,
-      }),
+      body: JSON.stringify(data),
     });
 
     const result = await response.json();
@@ -121,15 +80,7 @@ class ProjectService {
     const response = await fetch(`${this.baseUrl}/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...(data.title !== undefined && { title: data.title }),
-        ...(data.slug !== undefined && { slug: data.slug }),
-        ...(data.description !== undefined && {
-          description: data.description || null,
-        }),
-        ...(data.content !== undefined && { content: data.content }),
-        ...(data.status !== undefined && { status: data.status }),
-      }),
+      body: JSON.stringify(data),
     });
 
     const result = await response.json();

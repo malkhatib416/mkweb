@@ -1,23 +1,21 @@
 'use client';
 
-import { useState } from 'react';
-import * as React from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
+import MarkdownEditor from '@/components/admin/MarkdownEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import MarkdownEditor from '@/components/admin/MarkdownEditor';
-import { toast } from 'react-hot-toast';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
-import useSWR from 'swr';
+import { blogService } from '@/lib/services/blog.service';
 import { fetcher } from '@/lib/swr-fetcher';
-import {
-  blogService,
-  type Blog,
-  type BlogResponse,
-} from '@/lib/services/blog.service';
+import { Locale } from '@/locales/i18n';
+import type { BlogResponse, Status } from '@/types/entities';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
+import * as React from 'react';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import useSWR from 'swr';
 
 export default function EditBlogPage() {
   const router = useRouter();
@@ -36,9 +34,10 @@ export default function EditBlogPage() {
 
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
+  const [locale, setLocale] = useState<Locale>('fr');
   const [description, setDescription] = useState('');
   const [content, setContent] = useState('');
-  const [status, setStatus] = useState<'draft' | 'published'>('draft');
+  const [status, setStatus] = useState<Status>('draft');
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -47,6 +46,7 @@ export default function EditBlogPage() {
     if (blog && !isInitialized) {
       setTitle(blog.title);
       setSlug(blog.slug);
+      setLocale(blog.locale);
       setDescription(blog.description || '');
       setContent(blog.content);
       setStatus(blog.status);
@@ -67,6 +67,7 @@ export default function EditBlogPage() {
       await blogService.update(id, {
         title,
         slug,
+        locale,
         description: description || null,
         content,
         status,
@@ -128,6 +129,20 @@ export default function EditBlogPage() {
         </div>
 
         <div>
+          <Label htmlFor="locale">{t.fields.locale} *</Label>
+          <select
+            id="locale"
+            value={locale}
+            onChange={(e) => setLocale(e.target.value as Locale)}
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            required
+          >
+            <option value="fr">{t.locale.fr}</option>
+            <option value="en">{t.locale.en}</option>
+          </select>
+        </div>
+
+        <div>
           <Label htmlFor="description">{t.fields.description}</Label>
           <Input
             id="description"
@@ -142,7 +157,7 @@ export default function EditBlogPage() {
           <select
             id="status"
             value={status}
-            onChange={(e) => setStatus(e.target.value as 'draft' | 'published')}
+            onChange={(e) => setStatus(e.target.value as Status)}
             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <option value="draft">{t.status.draft}</option>

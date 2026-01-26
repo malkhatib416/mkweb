@@ -1,19 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Plus, Edit, Trash2, Eye } from 'lucide-react';
-import { toast } from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
-import useSWR, { mutate } from 'swr';
-import { fetcher } from '@/lib/swr-fetcher';
-import {
-  projectService,
-  type Project,
-  type ProjectListResponse,
-} from '@/lib/services/project.service';
 import Pagination from '@/components/admin/Pagination';
 import {
   AlertDialog,
@@ -25,12 +12,23 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+import { projectService } from '@/lib/services/project.service';
+import { fetcher } from '@/lib/swr-fetcher';
+import { Locale } from '@/locales/i18n';
+import type { ProjectListResponse, Status } from '@/types/entities';
+import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import useSWR, { mutate } from 'swr';
 
 export default function ProjectsPage() {
-  const router = useRouter();
   const dict = useAdminDictionary();
   const t = dict.admin.projects;
   const [page, setPage] = useState(1);
+  const [statusFilter, setStatusFilter] = useState<'all' | Status>('all');
+  const [localeFilter, setLocaleFilter] = useState<'all' | Locale>('all');
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{
     id: string;
@@ -38,8 +36,22 @@ export default function ProjectsPage() {
   } | null>(null);
   const limit = 10;
 
+  const buildUrl = () => {
+    const params = new URLSearchParams({
+      page: page.toString(),
+      limit: limit.toString(),
+    });
+    if (statusFilter !== 'all') {
+      params.append('status', statusFilter);
+    }
+    if (localeFilter !== 'all') {
+      params.append('locale', localeFilter);
+    }
+    return `/api/admin/projects?${params.toString()}`;
+  };
+
   const { data, error, isLoading } = useSWR<ProjectListResponse>(
-    `/api/admin/projects?page=${page}&limit=${limit}`,
+    buildUrl(),
     fetcher,
   );
 
@@ -61,7 +73,7 @@ export default function ProjectsPage() {
     try {
       await projectService.delete(itemToDelete.id);
       toast.success(t.deleteSuccess);
-      mutate(`/api/admin/projects?page=${page}&limit=${limit}`);
+      mutate(buildUrl());
       setDeleteDialogOpen(false);
       setItemToDelete(null);
     } catch (error) {
@@ -83,6 +95,44 @@ export default function ProjectsPage() {
             {t.newProject}
           </Button>
         </Link>
+      </div>
+
+      {/* Filters */}
+      <div className="mb-6 flex gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            {t.fields.status}
+          </label>
+          <select
+            value={statusFilter}
+            onChange={(e) => {
+              setStatusFilter(e.target.value as 'all' | Status);
+              setPage(1);
+            }}
+            className="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          >
+            <option value="all">{dict.admin.common.all || 'All'}</option>
+            <option value="draft">{t.status.draft}</option>
+            <option value="published">{t.status.published}</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            {t.fields.locale}
+          </label>
+          <select
+            value={localeFilter}
+            onChange={(e) => {
+              setLocaleFilter(e.target.value as Locale);
+              setPage(1);
+            }}
+            className="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          >
+            <option value="all">{dict.admin.common.all || 'All'}</option>
+            <option value="fr">{t.locale.fr}</option>
+            <option value="en">{t.locale.en}</option>
+          </select>
+        </div>
       </div>
 
       {isLoading ? (
@@ -116,6 +166,9 @@ export default function ProjectsPage() {
                           }`}
                         >
                           {t.status[project.status]}
+                        </span>
+                        <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                          {project.locale.toUpperCase()}
                         </span>
                       </div>
                       {project.description && (

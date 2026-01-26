@@ -1,13 +1,13 @@
 import { getCurrentUser } from '@/lib/auth-utils';
 import { db } from '@/lib/db';
 import { blog, project } from '@/lib/db/schema';
-import { count, eq } from 'drizzle-orm';
-import { FileText, FolderKanban } from 'lucide-react';
-import DashboardStats from '@/components/admin/DashboardStats';
+import { count, eq, desc } from 'drizzle-orm';
+import DashboardContent from '@/components/admin/DashboardContent';
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
 
+  // Get counts
   const [blogCount] = await db.select({ count: count() }).from(blog);
   const [projectCount] = await db.select({ count: count() }).from(project);
   const [publishedBlogCount] = await db
@@ -18,42 +18,39 @@ export default async function DashboardPage() {
     .select({ count: count() })
     .from(project)
     .where(eq(project.status, 'published'));
+  const [draftBlogCount] = await db
+    .select({ count: count() })
+    .from(blog)
+    .where(eq(blog.status, 'draft'));
+  const [draftProjectCount] = await db
+    .select({ count: count() })
+    .from(project)
+    .where(eq(project.status, 'draft'));
 
-  const stats = [
-    {
-      name: 'totalBlogs',
-      value: blogCount.count,
-      icon: FileText,
-      href: '/admin/blogs',
-    },
-    {
-      name: 'publishedBlogs',
-      value: publishedBlogCount.count,
-      icon: FileText,
-      href: '/admin/blogs?status=published',
-    },
-    {
-      name: 'totalProjects',
-      value: projectCount.count,
-      icon: FolderKanban,
-      href: '/admin/projects',
-    },
-    {
-      name: 'publishedProjects',
-      value: publishedProjectCount.count,
-      icon: FolderKanban,
-      href: '/admin/projects?status=published',
-    },
-  ];
+  // Get recent items
+  const recentBlogs = await db
+    .select()
+    .from(blog)
+    .orderBy(desc(blog.updatedAt))
+    .limit(5);
+
+  const recentProjects = await db
+    .select()
+    .from(project)
+    .orderBy(desc(project.updatedAt))
+    .limit(5);
 
   return (
-    <DashboardStats
+    <DashboardContent
       user={user}
-      stats={stats}
       blogCount={blogCount.count}
       projectCount={projectCount.count}
       publishedBlogCount={publishedBlogCount.count}
       publishedProjectCount={publishedProjectCount.count}
+      draftBlogCount={draftBlogCount.count}
+      draftProjectCount={draftProjectCount.count}
+      recentBlogs={recentBlogs}
+      recentProjects={recentProjects}
     />
   );
 }

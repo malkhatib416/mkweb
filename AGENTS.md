@@ -92,11 +92,14 @@ MK-Web is a multilingual (French/English) freelance web developer portfolio buil
 
 - **Location:** `/admin/blogs`
 - **Database table:** `blog` in `lib/db/schema.ts`
-- **Fields:** `id`, `title`, `slug`, `description`, `content` (Markdown), `status` (draft/published), `createdAt`, `updatedAt`
+- **Fields:** `id`, `title`, `slug`, `locale` (fr/en), `description`, `content` (Markdown), `status` (draft/published), `createdAt`, `updatedAt`
+- **Locale support:** Each blog post can be created in French (`fr`) or English (`en`)
+- **Slug uniqueness:** Slug must be unique per locale (same slug can exist in both locales)
 - **CRUD operations:** Full create, read, update, delete via admin interface
 - **Markdown editor:** Uses `@uiw/react-md-editor` for content editing
 - **Rendering:** Markdown is sanitized with DOMPurify before display
 - **API routes:** `/api/admin/blogs` (GET, POST) and `/api/admin/blogs/[id]` (GET, PUT, DELETE)
+- **Filtering:** List pages support filtering by `status` and `locale` query parameters
 
 ## Forms & Validation
 
@@ -400,17 +403,27 @@ export async function getCurrentUser() {
 
 - `id` (text, primary key, CUID2)
 - `title` (text, required)
-- `slug` (text, required, unique)
+- `slug` (text, required)
+- `locale` (enum: 'fr' | 'en', required, default: 'fr')
 - `description` (text, optional)
 - `content` (text, required) - Markdown content
 - `status` (enum: 'draft' | 'published', default: 'draft')
 - `createdAt` (timestamp)
 - `updatedAt` (timestamp)
+- **Unique constraint:** `slug` + `locale` combination must be unique (same slug can exist in different locales)
 
 **Project Table (`project`):**
 
 - Same structure as blog table
 - Used for project portfolio management
+- **Unique constraint:** `slug` + `locale` combination must be unique
+
+**Type System:**
+
+- Entity types are inferred from Drizzle schema using `InferSelectModel<typeof table>` and `InferInsertModel<typeof table>`
+- Shared types: `Locale` and `Status` are defined once in `types/entities.ts` and reused
+- DTOs are created by omitting auto-generated fields from insert types
+- All types exported from `@/types/entities` for consistency
 
 **User Tables (Better Auth):**
 

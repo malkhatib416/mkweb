@@ -5,7 +5,7 @@
 
 import { db } from '@/lib/db';
 import { blog } from '@/lib/db/schema';
-import { eq, count, desc } from 'drizzle-orm';
+import { eq, count, desc, and } from 'drizzle-orm';
 import { z } from 'zod';
 import type {
   Blog,
@@ -14,29 +14,31 @@ import type {
   BlogListResponse,
   BlogResponse,
   BlogListParams,
-} from './blog.service';
+} from '@/types/entities';
+import {
+  localeEnum,
+  statusEnum,
+  slugValidator,
+  titleValidator,
+  contentValidator,
+} from '@/lib/validations/entities';
 
 export const blogSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
-  slug: z
-    .string()
-    .min(1, 'Slug is required')
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Invalid slug format'),
+  title: titleValidator,
+  slug: slugValidator,
+  locale: localeEnum,
   description: z.string().optional(),
-  content: z.string().min(1, 'Content is required'),
-  status: z.enum(['draft', 'published']),
+  content: contentValidator,
+  status: statusEnum,
 });
 
 export const blogUpdateSchema = z.object({
-  title: z.string().min(1, 'Title is required').optional(),
-  slug: z
-    .string()
-    .min(1, 'Slug is required')
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Invalid slug format')
-    .optional(),
+  title: titleValidator.optional(),
+  slug: slugValidator.optional(),
+  locale: localeEnum.optional(),
   description: z.string().optional(),
-  content: z.string().min(1, 'Content is required').optional(),
-  status: z.enum(['draft', 'published']).optional(),
+  content: contentValidator.optional(),
+  status: statusEnum.optional(),
 });
 
 class BlogServiceServer {
@@ -44,25 +46,29 @@ class BlogServiceServer {
    * Get all blogs with pagination
    */
   async getAll(params: BlogListParams = {}): Promise<BlogListResponse> {
-    const { page = 1, limit = 10, status } = params;
+    const { page = 1, limit = 10, status, locale } = params;
     const offset = (page - 1) * limit;
 
-    let query = db.select().from(blog);
-
+    const conditions = [];
     if (status === 'published' || status === 'draft') {
-      query = query.where(eq(blog.status, status)) as any;
+      conditions.push(eq(blog.status, status));
+    }
+    if (locale === 'fr' || locale === 'en') {
+      conditions.push(eq(blog.locale, locale));
     }
 
-    const blogs = await query
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const blogs = await db
+      .select()
+      .from(blog)
+      .where(whereClause)
       .limit(limit)
       .offset(offset)
       .orderBy(desc(blog.createdAt));
 
-    const totalResult = status
-      ? await db
-          .select({ count: count() })
-          .from(blog)
-          .where(eq(blog.status, status))
+    const totalResult = whereClause
+      ? await db.select({ count: count() }).from(blog).where(whereClause)
       : await db.select({ count: count() }).from(blog);
 
     return {
@@ -99,14 +105,16 @@ class BlogServiceServer {
     // Validate input
     const validated = blogSchema.parse(data);
 
-    // Check if slug already exists
+    // Check if slug already exists for this locale
     const existing = await db
       .select()
       .from(blog)
-      .where(eq(blog.slug, validated.slug))
+      .where(
+        and(eq(blog.slug, validated.slug), eq(blog.locale, validated.locale)),
+      )
       .limit(1);
     if (existing.length > 0) {
-      throw new Error('Slug already exists');
+      throw new Error('Slug already exists for this locale');
     }
 
     const [newBlog] = await db
@@ -114,6 +122,7 @@ class BlogServiceServer {
       .values({
         title: validated.title,
         slug: validated.slug,
+        locale: validated.locale,
         description: validated.description || null,
         content: validated.content,
         status: validated.status,
@@ -140,15 +149,32 @@ class BlogServiceServer {
       throw new Error('Blog not found');
     }
 
-    // Check if slug is being changed and if it already exists
+    // Check if slug is being changed and if it already exists for the locale
+    const targetLocale = validated.locale || existing.locale;
     if (validated.slug && validated.slug !== existing.slug) {
       const slugExists = await db
         .select()
         .from(blog)
-        .where(eq(blog.slug, validated.slug))
+        .where(
+          and(eq(blog.slug, validated.slug), eq(blog.locale, targetLocale)),
+        )
+        .limit(1);
+      if (slugExists.length > 0 && slugExists[0].id !== id) {
+        throw new Error('Slug already exists for this locale');
+      }
+    }
+
+    // Check if locale is being changed and if slug exists in new locale
+    if (validated.locale && validated.locale !== existing.locale) {
+      const slugExists = await db
+        .select()
+        .from(blog)
+        .where(
+          and(eq(blog.slug, existing.slug), eq(blog.locale, validated.locale)),
+        )
         .limit(1);
       if (slugExists.length > 0) {
-        throw new Error('Slug already exists');
+        throw new Error('Slug already exists for this locale');
       }
     }
 

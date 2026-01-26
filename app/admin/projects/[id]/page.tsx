@@ -9,10 +9,8 @@ import { ArrowLeft, Edit } from 'lucide-react';
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import useSWR from 'swr';
 import { fetcher } from '@/lib/swr-fetcher';
-import {
-  type Project,
-  type ProjectResponse,
-} from '@/lib/services/project.service';
+import type { Project, ProjectResponse } from '@/types/entities';
+import type { Project, ProjectResponse } from '@/types/entities';
 
 export default function ViewProjectPage() {
   const params = useParams();
@@ -81,6 +79,9 @@ export default function ViewProjectPage() {
           <div className="text-sm text-gray-500">
             <p>
               {t.metadata.slug}: {project.slug}
+            </p>
+            <p>
+              {t.fields.locale}: {t.locale[project.locale]}
             </p>
             <p>
               {t.metadata.created}:{' '}

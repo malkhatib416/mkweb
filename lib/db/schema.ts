@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean } from 'drizzle-orm/pg-core';
+import { pgTable, text, timestamp, boolean, unique } from 'drizzle-orm/pg-core';
 import { createId } from '@paralleldrive/cuid2';
 
 /**
@@ -61,33 +61,53 @@ export const verification = pgTable('verification', {
 });
 
 // Blog posts table
-export const blog = pgTable('blog', {
-  id: text('id')
-    .primaryKey()
-    .$defaultFn(() => createId()),
-  title: text('title').notNull(),
-  slug: text('slug').notNull().unique(),
-  description: text('description'),
-  content: text('content').notNull(), // Markdown content
-  status: text('status', { enum: ['draft', 'published'] })
-    .notNull()
-    .default('draft'),
-  createdAt: timestamp('createdAt').notNull().defaultNow(),
-  updatedAt: timestamp('updatedAt').notNull().defaultNow(),
-});
+export const blog = pgTable(
+  'blog',
+  {
+    id: text('id')
+      .primaryKey()
+      .$defaultFn(() => createId()),
+    title: text('title').notNull(),
+    slug: text('slug').notNull(),
+    locale: text('locale', { enum: ['fr', 'en'] })
+      .notNull()
+      .default('fr'),
+    description: text('description'),
+    content: text('content').notNull(), // Markdown content
+    status: text('status', { enum: ['draft', 'published'] })
+      .notNull()
+      .default('draft'),
+    createdAt: timestamp('createdAt').notNull().defaultNow(),
+    updatedAt: timestamp('updatedAt').notNull().defaultNow(),
+  },
+  (table) => ({
+    // Unique constraint on slug + locale combination
+    uniqueSlugLocale: unique().on(table.slug, table.locale),
+  }),
+);
 
 // Projects table
-export const project = pgTable('project', {
-  id: text('id')
-    .primaryKey()
-    .$defaultFn(() => createId()),
-  title: text('title').notNull(),
-  slug: text('slug').notNull().unique(),
-  description: text('description'),
-  content: text('content').notNull(), // Markdown content
-  status: text('status', { enum: ['draft', 'published'] })
-    .notNull()
-    .default('draft'),
-  createdAt: timestamp('createdAt').notNull().defaultNow(),
-  updatedAt: timestamp('updatedAt').notNull().defaultNow(),
-});
+export const project = pgTable(
+  'project',
+  {
+    id: text('id')
+      .primaryKey()
+      .$defaultFn(() => createId()),
+    title: text('title').notNull(),
+    slug: text('slug').notNull(),
+    locale: text('locale', { enum: ['fr', 'en'] })
+      .notNull()
+      .default('fr'),
+    description: text('description'),
+    content: text('content').notNull(), // Markdown content
+    status: text('status', { enum: ['draft', 'published'] })
+      .notNull()
+      .default('draft'),
+    createdAt: timestamp('createdAt').notNull().defaultNow(),
+    updatedAt: timestamp('updatedAt').notNull().defaultNow(),
+  },
+  (table) => ({
+    // Unique constraint on slug + locale combination
+    uniqueSlugLocale: unique().on(table.slug, table.locale),
+  }),
+);

@@ -554,11 +554,24 @@
     "dashboard": {
       "title": "Tableau de bord",
       "welcome": "Bon retour, {name} !",
+      "statistics": "Statistiques",
+      "viewSite": "Voir le site",
+      "recentBlogs": "Articles récents",
+      "recentProjects": "Projets récents",
+      "viewAll": "Voir tout",
+      "noRecentBlogs": "Aucun article pour le moment",
+      "noRecentProjects": "Aucun projet pour le moment",
+      "justNow": "À l'instant",
+      "minutesAgo": "min",
+      "hoursAgo": "h",
+      "daysAgo": "j",
       "stats": {
         "totalBlogs": "Total des articles",
         "publishedBlogs": "Articles publiés",
+        "draftBlogs": "Articles en brouillon",
         "totalProjects": "Total des projets",
-        "publishedProjects": "Projets publiés"
+        "publishedProjects": "Projets publiés",
+        "draftProjects": "Projets en brouillon"
       }
     },
     "sidebar": {
@@ -648,6 +661,7 @@
       "fields": {
         "title": "Titre",
         "slug": "Slug",
+        "locale": "Langue",
         "description": "Description",
         "content": "Contenu (Markdown)",
         "status": "Statut"
@@ -660,6 +674,11 @@
       "status": {
         "draft": "Brouillon",
         "published": "Publié"
+      },
+      "locale": {
+        "fr": "Français",
+        "en": "Anglais",
+        "select": "Sélectionner la langue"
       },
       "slugHelper": "Slug compatible URL (minuscules, tirets uniquement)",
       "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{title}\" ?",
@@ -694,7 +713,8 @@
       "back": "Retour",
       "loading": "Chargement...",
       "error": "Erreur",
-      "success": "Succès"
+      "success": "Succès",
+      "all": "Tous"
     }
   }
 }

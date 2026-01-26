@@ -554,11 +554,24 @@
     "dashboard": {
       "title": "Dashboard",
       "welcome": "Welcome back, {name}!",
+      "statistics": "Statistics",
+      "viewSite": "View Site",
+      "recentBlogs": "Recent Blogs",
+      "recentProjects": "Recent Projects",
+      "viewAll": "View all",
+      "noRecentBlogs": "No blogs yet",
+      "noRecentProjects": "No projects yet",
+      "justNow": "Just now",
+      "minutesAgo": "min ago",
+      "hoursAgo": "hours ago",
+      "daysAgo": "days ago",
       "stats": {
         "totalBlogs": "Total Blogs",
         "publishedBlogs": "Published Blogs",
+        "draftBlogs": "Draft Blogs",
         "totalProjects": "Total Projects",
-        "publishedProjects": "Published Projects"
+        "publishedProjects": "Published Projects",
+        "draftProjects": "Draft Projects"
       }
     },
     "sidebar": {
@@ -648,6 +661,7 @@
       "fields": {
         "title": "Title",
         "slug": "Slug",
+        "locale": "Language",
         "description": "Description",
         "content": "Content (Markdown)",
         "status": "Status"
@@ -660,6 +674,11 @@
       "status": {
         "draft": "Draft",
         "published": "Published"
+      },
+      "locale": {
+        "fr": "French",
+        "en": "English",
+        "select": "Select language"
       },
       "slugHelper": "URL-friendly slug (lowercase, hyphens only)",
       "deleteConfirm": "Are you sure you want to delete \"{title}\"?",
@@ -694,7 +713,8 @@
       "back": "Back",
       "loading": "Loading...",
       "error": "Error",
-      "success": "Success"
+      "success": "Success",
+      "all": "All"
     }
   }
 }

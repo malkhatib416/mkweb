@@ -6,6 +6,7 @@ const ERROR_STATUS_MAP: Record<string, number> = {
   'Blog not found': 404,
   'Project not found': 404,
   'Slug already exists': 400,
+  'Slug already exists for this locale': 400,
   'Invalid slug format': 400,
   'Title is required': 400,
   'Content is required': 400,
