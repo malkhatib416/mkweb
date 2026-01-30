@@ -1,5 +1,6 @@
 'use client';
 
+import { Loading } from '@/components/ui/loading';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
@@ -70,7 +71,7 @@ export function MarkdownRenderer({
   }, [content]);
 
   if (!html) {
-    return <div className={className}>Loading...</div>;
+    return <Loading variant="text" label="Loading…" className={className} />;
   }
 
   return (

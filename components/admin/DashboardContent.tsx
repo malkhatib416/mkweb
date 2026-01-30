@@ -1,16 +1,33 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   FileText,
   FolderKanban,
   Plus,
   ExternalLink,
   Clock,
+  Eye,
+  ArrowRight,
+  MessageSquare,
+  Users,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAdminDictionary } from './AdminDictionaryProvider';
-import type { Blog, Project } from '@/types/entities';
+import { DataGrid } from './DataGrid';
+import type { DataGridConfig } from '@/types/data-grid';
+import { formatRelative } from '@/utils/format-date';
+
+type RecentActivityItem = {
+  id: string;
+  type: 'blog' | 'project';
+  title: string;
+  status: string;
+  locale: string;
+  updatedAt: string;
+  href: string;
+};
 
 interface DashboardContentProps {
   user: {
@@ -23,11 +40,8 @@ interface DashboardContentProps {
   publishedProjectCount: number;
   draftBlogCount: number;
   draftProjectCount: number;
-  recentBlogs: Pick<Blog, 'id' | 'title' | 'locale' | 'status' | 'updatedAt'>[];
-  recentProjects: Pick<
-    Project,
-    'id' | 'title' | 'locale' | 'status' | 'updatedAt'
-  >[];
+  pendingReviewCount?: number;
+  recentClients?: { id: string; name: string; createdAt: Date }[];
 }
 
 export default function DashboardContent({
@@ -38,247 +52,285 @@ export default function DashboardContent({
   publishedProjectCount,
   draftBlogCount,
   draftProjectCount,
-  recentBlogs,
-  recentProjects,
+  pendingReviewCount = 0,
+  recentClients = [],
 }: DashboardContentProps) {
   const dict = useAdminDictionary();
+  const router = useRouter();
   const t = dict.admin.dashboard;
   const stats = dict.admin.dashboard.stats;
 
-  const statItems = [
-    {
-      name: stats.totalBlogs,
-      value: blogCount,
-      icon: FileText,
-      href: '/admin/blogs',
-      color: 'bg-blue-500',
+  const recentActivityConfig: DataGridConfig<RecentActivityItem> = {
+    swrKey: 'dashboard-recent',
+    fetcher: async ([, params]) => {
+      const search = new URLSearchParams({
+        page: String(params.page),
+        limit: String(params.limit),
+      });
+      const res = await fetch(`/api/admin/dashboard/recent?${search}`);
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Failed to fetch');
+      return json;
     },
-    {
-      name: stats.publishedBlogs,
-      value: publishedBlogCount,
-      icon: FileText,
-      href: '/admin/blogs?status=published',
-      color: 'bg-green-500',
+    columns: [
+      {
+        name: 'type',
+        label: 'Type',
+        cell: (row) =>
+          row.type === 'blog'
+            ? dict.admin.sidebar.blogs
+            : dict.admin.sidebar.projects,
+      },
+      {
+        name: 'title',
+        label: 'Title',
+        cell: (row) => (
+          <Link
+            href={row.href}
+            className="font-medium text-foreground hover:text-myorange-100 hover:underline"
+          >
+            {row.title}
+          </Link>
+        ),
+      },
+      {
+        name: 'status',
+        label: 'Status',
+        cell: (row) => (
+          <span
+            className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
+              row.status === 'published'
+                ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                : 'bg-muted text-muted-foreground'
+            }`}
+          >
+            {row.type === 'blog'
+              ? dict.admin.blogs.status[row.status as 'draft' | 'published']
+              : dict.admin.projects.status[row.status as 'draft' | 'published']}
+          </span>
+        ),
+      },
+      {
+        name: 'locale',
+        label: 'Locale',
+        cell: (row) => (
+          <span className="text-xs uppercase tracking-wider text-muted-foreground">
+            {row.locale}
+          </span>
+        ),
+      },
+      {
+        name: 'updatedAt',
+        label: 'Updated',
+        cell: (row) => (
+          <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+            <Clock className="h-3.5 w-3.5 shrink-0" />
+            {formatRelative(row.updatedAt, 'fr')}
+          </span>
+        ),
+      },
+    ],
+    actions: [
+      {
+        name: 'view',
+        label: dict.admin.common.view,
+        icon: Eye,
+        onClick: (row) => router.push(row.href),
+      },
+    ],
+    empty: {
+      title: t.noRecentBlogs,
+      description: t.noRecentProjects,
     },
-    {
-      name: stats.draftBlogs,
-      value: draftBlogCount,
-      icon: FileText,
-      href: '/admin/blogs?status=draft',
-      color: 'bg-yellow-500',
-    },
-    {
-      name: stats.totalProjects,
-      value: projectCount,
-      icon: FolderKanban,
-      href: '/admin/projects',
-      color: 'bg-purple-500',
-    },
-    {
-      name: stats.publishedProjects,
-      value: publishedProjectCount,
-      icon: FolderKanban,
-      href: '/admin/projects?status=published',
-      color: 'bg-green-500',
-    },
-    {
-      name: stats.draftProjects,
-      value: draftProjectCount,
-      icon: FolderKanban,
-      href: '/admin/projects?status=draft',
-      color: 'bg-yellow-500',
-    },
-  ];
-
-  const formatDate = (date: Date | string) => {
-    const d = typeof date === 'string' ? new Date(date) : date;
-    const now = new Date();
-    const diffMs = now.getTime() - d.getTime();
-    const diffMins = Math.floor(diffMs / (1000 * 60));
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-    if (diffMins < 1) return t.justNow;
-    if (diffMins < 60) return `${diffMins} ${t.minutesAgo}`;
-    if (diffHours < 24) return `${diffHours} ${t.hoursAgo}`;
-    if (diffDays < 7) return `${diffDays} ${t.daysAgo}`;
-    return d.toLocaleDateString();
+    tableTitle: t.recentActivity,
+    defaultPageSize: 10,
+    className: '!space-y-4',
   };
 
+  const displayName = user?.name || user?.email || 'User';
+  const totalPublished = publishedBlogCount + publishedProjectCount;
+  const totalDraft = draftBlogCount + draftProjectCount;
+
   return (
-    <div>
-      <div className="mb-8 flex items-center justify-between">
+    <div className="flex flex-col gap-10">
+      {/* Welcome + actions */}
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t.title}</h1>
-          <p className="mt-2 text-sm text-gray-600">
-            {t.welcome.replace('{name}', user?.name || user?.email || 'User')}
-          </p>
+          <p className="text-sm font-medium text-muted-foreground">{t.title}</p>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            {t.welcome.replace('{name}', displayName)}
+          </h1>
         </div>
-        <div className="flex items-center gap-3">
-          <Link href="/" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" className="gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            asChild
+            size="sm"
+            className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+          >
+            <Link href="/admin/blogs/new">
+              <Plus className="h-4 w-4" />
+              {dict.admin.blogs.newBlog}
+            </Link>
+          </Button>
+          <Button asChild size="sm" variant="outline" className="gap-1.5">
+            <Link href="/admin/projects/new">
+              <Plus className="h-4 w-4" />
+              {dict.admin.projects.newProject}
+            </Link>
+          </Button>
+          <Button
+            asChild
+            size="sm"
+            variant="ghost"
+            className="gap-1.5 text-muted-foreground"
+          >
+            <Link href="/" target="_blank" rel="noopener noreferrer">
               <ExternalLink className="h-4 w-4" />
               {t.viewSite}
-            </Button>
+            </Link>
+          </Button>
+        </div>
+      </div>
+
+      {/* Stats: single row, minimal */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        <Link
+          href="/admin/blogs"
+          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted">
+              <FileText className="h-4 w-4 text-muted-foreground" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-2xl font-semibold tabular-nums text-foreground">
+                {blogCount}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">
+                {stats.totalBlogs}
+              </p>
+            </div>
+          </div>
+        </Link>
+        <Link
+          href="/admin/projects"
+          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted">
+              <FolderKanban className="h-4 w-4 text-muted-foreground" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-2xl font-semibold tabular-nums text-foreground">
+                {projectCount}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">
+                {stats.totalProjects}
+              </p>
+            </div>
+          </div>
+        </Link>
+        <Link
+          href="/admin/blogs?status=published"
+          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-emerald-500/10">
+              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                {totalPublished}
+              </span>
+            </div>
+            <div className="min-w-0">
+              <p className="text-2xl font-semibold tabular-nums text-foreground">
+                {totalPublished}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">
+                {stats.publishedShort}
+              </p>
+            </div>
+          </div>
+        </Link>
+        <Link
+          href="/admin/blogs?status=draft"
+          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-amber-500/10">
+              <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">
+                {totalDraft}
+              </span>
+            </div>
+            <div className="min-w-0">
+              <p className="text-2xl font-semibold tabular-nums text-foreground">
+                {totalDraft}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">
+                {stats.draftsShort}
+              </p>
+            </div>
+          </div>
+        </Link>
+        <Link
+          href="/admin/reviews?status=pending"
+          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-sky-500/10">
+              <MessageSquare className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-2xl font-semibold tabular-nums text-foreground">
+                {pendingReviewCount}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">
+                {dict.admin.sidebar.reviews}
+              </p>
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      {(recentClients.length > 0 || pendingReviewCount > 0) && (
+        <section className="grid gap-4 sm:grid-cols-2">
+          {recentClients.length > 0 && (
+            <div className="rounded-lg border border-border bg-card p-4">
+              <h2 className="mb-3 text-sm font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+                <Users className="h-4 w-4" />
+                {dict.admin.sidebar.clients} (récent)
+              </h2>
+              <ul className="space-y-2">
+                {recentClients.map((c) => (
+                  <li key={c.id}>
+                    <Link
+                      href={`/admin/clients/${c.id}`}
+                      className="text-sm font-medium text-foreground hover:text-myorange-100 hover:underline"
+                    >
+                      {c.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* Recent activity */}
+      <section>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+            {t.recentActivity}
+          </h2>
+          <Link
+            href="/admin/blogs"
+            className="flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+          >
+            {t.viewAll}
+            <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Link href="/admin/blogs/new">
-          <Button className="w-full bg-myorange-100 hover:bg-myorange-200 gap-2">
-            <Plus className="h-4 w-4" />
-            {dict.admin.blogs.newBlog}
-          </Button>
-        </Link>
-        <Link href="/admin/projects/new">
-          <Button className="w-full bg-myorange-100 hover:bg-myorange-200 gap-2">
-            <Plus className="h-4 w-4" />
-            {dict.admin.projects.newProject}
-          </Button>
-        </Link>
-      </div>
-
-      {/* Statistics */}
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">
-          {t.statistics}
-        </h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {statItems.map((stat) => (
-            <Link key={stat.name} href={stat.href}>
-              <div className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6 hover:shadow-md transition-shadow cursor-pointer">
-                <dt>
-                  <div className={`absolute rounded-md ${stat.color} p-3`}>
-                    <stat.icon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                    {stat.name}
-                  </p>
-                </dt>
-                <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                  <p className="text-2xl font-semibold text-gray-900">
-                    {stat.value}
-                  </p>
-                </dd>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* Recent Activity */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* Recent Blogs */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">
-              {t.recentBlogs}
-            </h2>
-            <Link
-              href="/admin/blogs"
-              className="text-sm text-myorange-100 hover:text-myorange-200"
-            >
-              {t.viewAll}
-            </Link>
-          </div>
-          {recentBlogs.length === 0 ? (
-            <p className="text-sm text-gray-500">{t.noRecentBlogs}</p>
-          ) : (
-            <ul className="space-y-3">
-              {recentBlogs.map((item) => (
-                <li key={item.id}>
-                  <Link
-                    href={`/admin/blogs/${item.id}`}
-                    className="flex items-center justify-between p-3 rounded-md hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
-                        {item.title}
-                      </p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span
-                          className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
-                            item.status === 'published'
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-gray-100 text-gray-800'
-                          }`}
-                        >
-                          {dict.admin.blogs.status[item.status]}
-                        </span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
-                          {item.locale.toUpperCase()}
-                        </span>
-                        <span className="text-xs text-gray-500 flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {formatDate(item.updatedAt)}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        {/* Recent Projects */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">
-              {t.recentProjects}
-            </h2>
-            <Link
-              href="/admin/projects"
-              className="text-sm text-myorange-100 hover:text-myorange-200"
-            >
-              {t.viewAll}
-            </Link>
-          </div>
-          {recentProjects.length === 0 ? (
-            <p className="text-sm text-gray-500">{t.noRecentProjects}</p>
-          ) : (
-            <ul className="space-y-3">
-              {recentProjects.map((item) => (
-                <li key={item.id}>
-                  <Link
-                    href={`/admin/projects/${item.id}`}
-                    className="flex items-center justify-between p-3 rounded-md hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
-                        {item.title}
-                      </p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span
-                          className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
-                            item.status === 'published'
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-gray-100 text-gray-800'
-                          }`}
-                        >
-                          {dict.admin.projects.status[item.status]}
-                        </span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
-                          {item.locale.toUpperCase()}
-                        </span>
-                        <span className="text-xs text-gray-500 flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {formatDate(item.updatedAt)}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
+        <DataGrid config={recentActivityConfig} />
+      </section>
     </div>
   );
 }

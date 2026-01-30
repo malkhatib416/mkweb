@@ -1,10 +1,30 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { LayoutDashboard, FileText, FolderKanban, LogOut } from 'lucide-react';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
 import { signOut } from '@/lib/auth-client';
-import { useRouter } from 'next/navigation';
+import {
+  FileText,
+  FolderKanban,
+  Languages,
+  LayoutDashboard,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Users,
+} from 'lucide-react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { useAdminDictionary } from './AdminDictionaryProvider';
 
@@ -14,14 +34,24 @@ export default function AdminSidebar() {
   const router = useRouter();
   const t = dict.admin;
 
-  const navigation = [
+  const mainNav = [
     {
       name: t.sidebar.dashboard,
       href: '/admin/dashboard',
       icon: LayoutDashboard,
     },
+  ];
+  const contentNav = [
     { name: t.sidebar.blogs, href: '/admin/blogs', icon: FileText },
     { name: t.sidebar.projects, href: '/admin/projects', icon: FolderKanban },
+  ];
+  const peopleNav = [
+    { name: t.sidebar.clients, href: '/admin/clients', icon: Users },
+    { name: t.sidebar.reviews, href: '/admin/reviews', icon: MessageSquare },
+  ];
+  const settingsNav = [
+    { name: t.sidebar.languages, href: '/admin/languages', icon: Languages },
+    { name: t.sidebar.newsletter, href: '/admin/newsletter', icon: Mail },
   ];
 
   const handleSignOut = async () => {
@@ -37,55 +67,125 @@ export default function AdminSidebar() {
   };
 
   return (
-    <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
-      <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white border-r border-gray-200 px-6 pb-4">
-        <div className="flex h-16 shrink-0 items-center">
-          <h1 className="text-2xl font-bold text-myorange-100">{t.title}</h1>
+    <Sidebar collapsible="icon" className="border-r border-sidebar-border">
+      <SidebarHeader className="border-b border-sidebar-border">
+        <div className="flex h-14 items-center gap-2 px-2">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-myorange-100 text-white">
+            <LayoutDashboard className="h-4 w-4" aria-hidden />
+          </div>
+          <div className="flex min-w-0 flex-col leading-tight group-data-[collapsible=icon]:hidden">
+            <span className="truncate text-sm font-semibold text-sidebar-foreground">
+              {t.brandingTitle}
+            </span>
+            <span className="truncate text-xs text-sidebar-foreground/70">
+              {t.brandingSubtitle}
+            </span>
+          </div>
         </div>
-        <nav className="flex flex-1 flex-col">
-          <ul role="list" className="flex flex-1 flex-col gap-y-7">
-            <li>
-              <ul role="list" className="-mx-2 space-y-1">
-                {navigation.map((item) => {
-                  const isActive =
-                    pathname === item.href ||
-                    pathname?.startsWith(item.href + '/');
-                  return (
-                    <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        className={`
-                          group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold
-                          ${
-                            isActive
-                              ? 'bg-myorange-100 text-white'
-                              : 'text-gray-700 hover:text-myorange-100 hover:bg-gray-50'
-                          }
-                        `}
-                      >
-                        <item.icon
-                          className="h-6 w-6 shrink-0"
-                          aria-hidden="true"
-                        />
-                        {item.name}
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>{t.sidebar.groupMain}</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {mainNav.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname?.startsWith(item.href + '/');
+                return (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton asChild isActive={isActive}>
+                      <Link href={item.href}>
+                        <item.icon className="h-5 w-5 shrink-0" />
+                        <span>{item.name}</span>
                       </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-            <li className="mt-auto">
-              <button
-                onClick={handleSignOut}
-                className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-red-600"
-              >
-                <LogOut className="h-6 w-6 shrink-0" aria-hidden="true" />
-                {t.auth.signOut}
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>{t.sidebar.groupContent}</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {contentNav.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname?.startsWith(item.href + '/');
+                return (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton asChild isActive={isActive}>
+                      <Link href={item.href}>
+                        <item.icon className="h-5 w-5 shrink-0" />
+                        <span>{item.name}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>{t.sidebar.groupPeople}</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {peopleNav.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname?.startsWith(item.href + '/');
+                return (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton asChild isActive={isActive}>
+                      <Link href={item.href}>
+                        <item.icon className="h-5 w-5 shrink-0" />
+                        <span>{item.name}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>{t.sidebar.groupSettings}</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {settingsNav.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  pathname?.startsWith(item.href + '/');
+                return (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton asChild isActive={isActive}>
+                      <Link href={item.href}>
+                        <item.icon className="h-5 w-5 shrink-0" />
+                        <span>{item.name}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter className="border-t border-sidebar-border">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              onClick={handleSignOut}
+              className="text-red-600 hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-950/30"
+            >
+              <LogOut className="h-5 w-5 shrink-0" />
+              <span>{t.auth.signOut}</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+    </Sidebar>
   );
 }

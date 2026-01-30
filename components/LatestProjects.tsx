@@ -1,12 +1,23 @@
 'use client';
 
+import type { Dictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
 import { motion } from 'framer-motion';
 import { Calendar, ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
-import type { Dictionary } from '@/locales/dictionaries';
+import Link from 'next/link';
+
+type DbProject = {
+  id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+};
 
 type Props = {
   dict: Dictionary;
+  locale: Locale;
+  dbProjects?: DbProject[];
 };
 
 const getProjects = (dict: Dictionary) => [
@@ -76,8 +87,31 @@ const getProjects = (dict: Dictionary) => [
   // },
 ];
 
-export default function LatestProjects({ dict }: Props) {
-  const projects = getProjects(dict);
+export default function LatestProjects({
+  dict,
+  locale,
+  dbProjects = [],
+}: Props) {
+  const staticProjects = getProjects(dict);
+  const projects =
+    dbProjects.length > 0
+      ? dbProjects.map((p, i) => ({
+          id: p.id,
+          title: p.title,
+          description: p.description ?? '',
+          longDescription: p.description ?? '',
+          technologies: [] as string[],
+          image: undefined as string | undefined,
+          github: undefined as string | undefined,
+          live: undefined as string | undefined,
+          featured: i < 2,
+          date: '',
+          status: 'online' as const,
+          category: '',
+          slug: p.slug,
+          fromDb: true,
+        }))
+      : staticProjects.map((p) => ({ ...p, fromDb: false as const, slug: '' }));
 
   const getStatusText = (status: string) => {
     if (status === 'online') return dict.projects.status.online;
@@ -167,7 +201,13 @@ export default function LatestProjects({ dict }: Props) {
                 <div className="p-8">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-2xl font-bold text-gray-900 group-hover:text-myorange-100 transition-colors">
-                      {project.title}
+                      {'slug' in project && project.slug ? (
+                        <Link href={`/${locale}/projects/${project.slug}`}>
+                          {project.title}
+                        </Link>
+                      ) : (
+                        project.title
+                      )}
                     </h3>
                     {/*<span className="text-sm text-gray-500 font-medium">
                       {project.date}
@@ -197,7 +237,15 @@ export default function LatestProjects({ dict }: Props) {
 
                   {/* Action Buttons */}
                   <div className="flex gap-4">
-                    {project.live && (
+                    {'slug' in project && project.slug ? (
+                      <Link
+                        href={`/${locale}/projects/${project.slug}`}
+                        className="flex items-center gap-2 px-6 py-3 bg-myorange-100 text-white rounded-xl font-medium hover:bg-myorange-100/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        {dict.projects.viewProject}
+                      </Link>
+                    ) : project.live ? (
                       <a
                         href={project.live}
                         target="_blank"
@@ -207,7 +255,7 @@ export default function LatestProjects({ dict }: Props) {
                         <ExternalLink className="w-4 h-4" />
                         {dict.projects.viewProject}
                       </a>
-                    )}
+                    ) : null}
                     {project?.github && (
                       <a
                         href={project.github}
@@ -272,7 +320,15 @@ export default function LatestProjects({ dict }: Props) {
                     </div>
 
                     <div className="flex gap-3">
-                      {project.live && (
+                      {'slug' in project && project.slug ? (
+                        <Link
+                          href={`/${locale}/projects/${project.slug}`}
+                          className="flex items-center gap-1 text-myorange-100 hover:text-myorange-100/80 transition-colors text-sm font-medium"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          {dict.projects.demo}
+                        </Link>
+                      ) : project.live ? (
                         <a
                           href={project.live}
                           target="_blank"
@@ -282,7 +338,7 @@ export default function LatestProjects({ dict }: Props) {
                           <ExternalLink className="w-3 h-3" />
                           {dict.projects.demo}
                         </a>
-                      )}
+                      ) : null}
                       {project.github && (
                         <a
                           href={project.github}

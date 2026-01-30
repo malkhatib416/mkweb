@@ -11,6 +11,7 @@ const ERROR_STATUS_MAP: Record<string, number> = {
   'Title is required': 400,
   'Content is required': 400,
   'Invalid status': 400,
+  'OPENAI_API_KEY is not configured': 503,
 };
 
 const DEFAULT_STATUS = 500;

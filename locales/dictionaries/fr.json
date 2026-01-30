@@ -23,7 +23,33 @@
     "legalNotice": "Mentions légales",
     "contact": "Contact",
     "links": "Liens",
-    "home": "Accueil"
+    "home": "Accueil",
+    "newsletterTitle": "Newsletter",
+    "newsletterPlaceholder": "Votre email",
+    "newsletterButton": "S'inscrire",
+    "newsletterSuccess": "Merci, vous êtes inscrit.",
+    "newsletterError": "Une erreur s'est produite."
+  },
+  "review": {
+    "title": "Donnez votre avis",
+    "subtitle": "Partagez votre expérience sur le projet",
+    "ratingLabel": "Note",
+    "reviewTextLabel": "Votre avis (optionnel)",
+    "reviewTextPlaceholder": "Décrivez votre expérience...",
+    "submit": "Envoyer mon avis",
+    "submitting": "Envoi...",
+    "success": "Merci ! Votre avis a bien été enregistré.",
+    "expired": "Ce lien a expiré.",
+    "alreadySubmitted": "Vous avez déjà soumis votre avis.",
+    "error": "Une erreur s'est produite."
+  },
+  "newsletterPublic": {
+    "success": "Merci, vous êtes inscrit.",
+    "error": "Une erreur s'est produite."
+  },
+  "testimonials": {
+    "title": "Ce que disent nos clients",
+    "subtitle": "Découvrez les retours de ceux qui nous ont fait confiance."
   },
   "common": {
     "readMore": "Lire la suite",
@@ -522,6 +548,8 @@
   },
   "admin": {
     "title": "MK-Web Admin",
+    "brandingTitle": "MK-Web",
+    "brandingSubtitle": "Admin",
     "auth": {
       "login": {
         "title": "Connectez-vous à votre compte",
@@ -558,6 +586,7 @@
       "viewSite": "Voir le site",
       "recentBlogs": "Articles récents",
       "recentProjects": "Projets récents",
+      "recentActivity": "Activité récente",
       "viewAll": "Voir tout",
       "noRecentBlogs": "Aucun article pour le moment",
       "noRecentProjects": "Aucun projet pour le moment",
@@ -571,13 +600,113 @@
         "draftBlogs": "Articles en brouillon",
         "totalProjects": "Total des projets",
         "publishedProjects": "Projets publiés",
-        "draftProjects": "Projets en brouillon"
+        "draftProjects": "Projets en brouillon",
+        "publishedShort": "Publiés",
+        "draftsShort": "Brouillons"
       }
     },
     "sidebar": {
       "dashboard": "Tableau de bord",
       "blogs": "Articles",
-      "projects": "Projets"
+      "projects": "Projets",
+      "clients": "Clients",
+      "languages": "Langues",
+      "reviews": "Avis clients",
+      "newsletter": "Newsletter",
+      "groupMain": "Principal",
+      "groupContent": "Contenu",
+      "groupPeople": "Personnes",
+      "groupSettings": "Paramètres"
+    },
+    "clients": {
+      "title": "Clients",
+      "subtitle": "Gérez vos clients et leurs projets",
+      "newClient": "Nouveau client",
+      "createFirst": "Créez votre premier client",
+      "noClients": "Aucun client trouvé",
+      "loading": "Chargement...",
+      "backToClients": "Retour aux clients",
+      "create": {
+        "title": "Créer un nouveau client",
+        "createButton": "Créer le client",
+        "creating": "Création..."
+      },
+      "edit": {
+        "title": "Modifier le client",
+        "updateButton": "Mettre à jour le client",
+        "updating": "Mise à jour..."
+      },
+      "view": {
+        "edit": "Modifier"
+      },
+      "fields": {
+        "name": "Nom",
+        "email": "Email",
+        "company": "Entreprise",
+        "photo": "Photo"
+      },
+      "placeholders": {
+        "name": "Nom du client",
+        "email": "email@exemple.com",
+        "company": "Entreprise",
+        "photoUrl": "URL de la photo"
+      },
+      "uploadPhoto": "Téléverser une photo",
+      "orPasteUrl": "Ou coller une URL",
+      "metadata": {
+        "created": "Créé",
+        "updated": "Mis à jour"
+      },
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{name}\" ?",
+      "deleteSuccess": "Client supprimé avec succès",
+      "deleteError": "Échec de la suppression du client",
+      "createSuccess": "Client créé avec succès",
+      "createError": "Échec de la création du client",
+      "updateSuccess": "Client mis à jour avec succès",
+      "updateError": "Échec de la mise à jour du client",
+      "fetchSingleError": "Échec du chargement du client"
+    },
+    "languages": {
+      "title": "Langues",
+      "subtitle": "Gérez les langues du site (utilisées pour la génération d'articles IA)",
+      "newLanguage": "Nouvelle langue",
+      "createFirst": "Créez votre première langue",
+      "noLanguages": "Aucune langue trouvée",
+      "loading": "Chargement...",
+      "backToLanguages": "Retour aux langues",
+      "create": {
+        "title": "Créer une nouvelle langue",
+        "createButton": "Créer la langue",
+        "creating": "Création..."
+      },
+      "edit": {
+        "title": "Modifier la langue",
+        "updateButton": "Mettre à jour la langue",
+        "updating": "Mise à jour..."
+      },
+      "view": {
+        "edit": "Modifier"
+      },
+      "fields": {
+        "code": "Code",
+        "name": "Nom"
+      },
+      "placeholders": {
+        "code": "ex. fr, en",
+        "name": "ex. Français, English"
+      },
+      "metadata": {
+        "created": "Créé",
+        "updated": "Mis à jour"
+      },
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{name}\" ?",
+      "deleteSuccess": "Langue supprimée avec succès",
+      "deleteError": "Échec de la suppression de la langue",
+      "createSuccess": "Langue créée avec succès",
+      "createError": "Échec de la création de la langue",
+      "updateSuccess": "Langue mise à jour avec succès",
+      "updateError": "Échec de la mise à jour de la langue",
+      "fetchSingleError": "Échec du chargement de la langue"
     },
     "blogs": {
       "title": "Articles",
@@ -592,6 +721,16 @@
         "createButton": "Créer l'article",
         "creating": "Création..."
       },
+      "generateWithAI": {
+        "title": "Générer avec l'IA",
+        "description": "Crée un brouillon d'article pour chaque langue (fr, en) à partir d'un sujet.",
+        "topicLabel": "Sujet de l'article",
+        "topicPlaceholder": "ex. Les bonnes pratiques SEO en 2025",
+        "generateButton": "Générer les articles",
+        "generating": "Génération en cours…",
+        "successMessage": "{count} article(s) créé(s). Redirection…",
+        "errorMessage": "Échec de la génération"
+      },
       "edit": {
         "title": "Modifier l'article",
         "updateButton": "Mettre à jour l'article",
@@ -603,6 +742,7 @@
       "fields": {
         "title": "Titre",
         "slug": "Slug",
+        "locale": "Langue",
         "description": "Description",
         "content": "Contenu (Markdown)",
         "status": "Statut"
@@ -611,6 +751,11 @@
         "title": "Titre de l'article",
         "slug": "article-slug",
         "description": "Courte description"
+      },
+      "locale": {
+        "fr": "Français",
+        "en": "Anglais",
+        "select": "Sélectionner la langue"
       },
       "status": {
         "draft": "Brouillon",
@@ -701,6 +846,34 @@
         "next": "Suivant"
       }
     },
+    "reviews": {
+      "title": "Avis clients",
+      "subtitle": "Liens d'avis par projet / client",
+      "createLink": "Créer un lien",
+      "noReviews": "Aucun avis",
+      "project": "Projet",
+      "client": "Client",
+      "status": "Statut",
+      "pending": "En attente",
+      "submitted": "Soumis",
+      "expiresAt": "Expire le",
+      "submittedAt": "Soumis le",
+      "copyLink": "Copier le lien",
+      "linkCopied": "Lien copié",
+      "createSuccess": "Lien créé",
+      "createError": "Échec de la création du lien",
+      "filterAll": "Tous",
+      "filterPending": "En attente",
+      "filterSubmitted": "Soumis"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "subtitle": "Inscrits à la newsletter",
+      "noSubscribers": "Aucun inscrit",
+      "email": "Email",
+      "locale": "Langue",
+      "createdAt": "Inscrit le"
+    },
     "common": {
       "required": "Requis",
       "optional": "Optionnel",
@@ -714,7 +887,18 @@
       "loading": "Chargement...",
       "error": "Erreur",
       "success": "Succès",
-      "all": "Tous"
+      "all": "Tous",
+      "filter": "Filtres",
+      "search": "Rechercher",
+      "columns": "Colonnes",
+      "resetColumns": "Réinitialiser les colonnes",
+      "emptyState": {
+        "noResults": "Aucun résultat"
+      },
+      "pagination": {
+        "pageOf": "Page {current} sur {total}",
+        "perPage": "par page"
+      }
     }
   }
 }

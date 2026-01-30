@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth-utils';
 import { projectServiceServer } from '@/lib/services/project.service.server';
-import { getErrorStatus, getErrorMessage } from '@/lib/utils/api-error-handler';
-import { z } from 'zod';
+import { getErrorMessage, getErrorStatus } from '@/lib/utils/api-error-handler';
 import { Locale } from '@/locales/i18n';
-import { Status } from 'better-auth';
+import { Status } from '@/types/entities';
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
 // GET - List all projects
 export async function GET(request: NextRequest) {

@@ -38,16 +38,17 @@ export default function Pagination({
   const to = Math.min(currentPage * limit, total);
 
   return (
-    <div className="mt-6 flex items-center justify-between">
-      <div className="text-sm text-gray-700">
+    <div className="flex items-center justify-between gap-4">
+      <div className="text-sm text-muted-foreground">
         {showingText
           .replace('{from}', String(from))
           .replace('{to}', String(to))
           .replace('{total}', String(total))}
       </div>
-      <div className="flex space-x-2">
+      <div className="flex gap-2">
         <Button
           variant="outline"
+          size="sm"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
         >
@@ -55,6 +56,7 @@ export default function Pagination({
         </Button>
         <Button
           variant="outline"
+          size="sm"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
         >

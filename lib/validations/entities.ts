@@ -5,7 +5,8 @@
 
 import { z } from 'zod';
 import type { Status } from '@/types/entities';
-import { Locale, locales } from '@/locales/i18n';
+import type { Locale } from '@/locales/i18n';
+import { locales } from '@/locales/i18n';
 
 // Shared enum validators
 export const localeEnum = z.enum(locales) satisfies z.ZodType<Locale>;

@@ -1,20 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { signIn } from '@/lib/auth-client';
+import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { signIn } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import Link from 'next/link';
-import type { Dictionary } from '@/locales/dictionaries';
 
-interface LoginFormProps {
-  dict: Dictionary;
-}
-
-export default function LoginForm({ dict }: LoginFormProps) {
+export default function LoginForm() {
+  const dict = useAdminDictionary();
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,21 +44,12 @@ export default function LoginForm({ dict }: LoginFormProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-[85vh] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             {t.title}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            {t.subtitle}{' '}
-            <Link
-              href="/admin/signup"
-              className="font-medium text-myorange-100 hover:text-myorange-200"
-            >
-              {t.createAccount}
-            </Link>
-          </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">

@@ -3,25 +3,26 @@
  * Used by API routes and server components
  */
 
-import { db } from '@/lib/db';
-import { blog } from '@/lib/db/schema';
-import { eq, count, desc, and } from 'drizzle-orm';
-import { z } from 'zod';
+import { db } from '@/db';
+import { blog } from '@/db/schema';
+import {
+  contentValidator,
+  localeEnum,
+  slugValidator,
+  statusEnum,
+  titleValidator,
+} from '@/lib/validations/entities';
+import { Locale, isValidLocale } from '@/locales/i18n';
 import type {
   Blog,
-  CreateBlogDto,
-  UpdateBlogDto,
+  BlogListParams,
   BlogListResponse,
   BlogResponse,
-  BlogListParams,
+  CreateBlogDto,
+  UpdateBlogDto,
 } from '@/types/entities';
-import {
-  localeEnum,
-  statusEnum,
-  slugValidator,
-  titleValidator,
-  contentValidator,
-} from '@/lib/validations/entities';
+import { and, count, eq } from 'drizzle-orm';
+import { z } from 'zod';
 
 export const blogSchema = z.object({
   title: titleValidator,
@@ -53,30 +54,31 @@ class BlogServiceServer {
     if (status === 'published' || status === 'draft') {
       conditions.push(eq(blog.status, status));
     }
-    if (locale === 'fr' || locale === 'en') {
+    if (isValidLocale(locale)) {
       conditions.push(eq(blog.locale, locale));
     }
 
     const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
-    const blogs = await db
-      .select()
-      .from(blog)
-      .where(whereClause)
-      .limit(limit)
-      .offset(offset)
-      .orderBy(desc(blog.createdAt));
+    const blogs = await db.query.blog.findMany({
+      where: whereClause,
+      limit,
+      offset,
+      orderBy: (b, { desc: d }) => [d(b.createdAt)],
+    });
 
     const totalResult = whereClause
       ? await db.select({ count: count() }).from(blog).where(whereClause)
       : await db.select({ count: count() }).from(blog);
 
+    const total = totalResult[0]?.count || 0;
     return {
       data: blogs as Blog[],
       pagination: {
         page,
         limit,
-        total: totalResult[0]?.count || 0,
+        total,
+        pages: Math.max(1, Math.ceil(total / limit)),
       },
     };
   }
@@ -85,11 +87,9 @@ class BlogServiceServer {
    * Get a single blog by ID
    */
   async getById(id: string): Promise<BlogResponse> {
-    const [blogPost] = await db
-      .select()
-      .from(blog)
-      .where(eq(blog.id, id))
-      .limit(1);
+    const blogPost = await db.query.blog.findFirst({
+      where: (b, { eq: e }) => e(b.id, id),
+    });
 
     if (!blogPost) {
       throw new Error('Blog not found');
@@ -106,14 +106,11 @@ class BlogServiceServer {
     const validated = blogSchema.parse(data);
 
     // Check if slug already exists for this locale
-    const existing = await db
-      .select()
-      .from(blog)
-      .where(
-        and(eq(blog.slug, validated.slug), eq(blog.locale, validated.locale)),
-      )
-      .limit(1);
-    if (existing.length > 0) {
+    const existing = await db.query.blog.findFirst({
+      where: (b, { eq: e, and: a }) =>
+        a(e(b.slug, validated.slug), e(b.locale, validated.locale)),
+    });
+    if (existing) {
       throw new Error('Slug already exists for this locale');
     }
 
@@ -140,40 +137,34 @@ class BlogServiceServer {
     const validated = blogUpdateSchema.parse(data);
 
     // Check if blog exists
-    const [existing] = await db
-      .select()
-      .from(blog)
-      .where(eq(blog.id, id))
-      .limit(1);
+    const existing = await db.query.blog.findFirst({
+      where: (b, { eq: e }) => e(b.id, id),
+    });
     if (!existing) {
       throw new Error('Blog not found');
     }
 
     // Check if slug is being changed and if it already exists for the locale
-    const targetLocale = validated.locale || existing.locale;
-    if (validated.slug && validated.slug !== existing.slug) {
-      const slugExists = await db
-        .select()
-        .from(blog)
-        .where(
-          and(eq(blog.slug, validated.slug), eq(blog.locale, targetLocale)),
-        )
-        .limit(1);
-      if (slugExists.length > 0 && slugExists[0].id !== id) {
+    const targetLocale: Locale = validated.locale ?? existing.locale;
+    const newSlug = validated.slug;
+    if (newSlug != null && newSlug !== existing.slug) {
+      const slugExists = await db.query.blog.findFirst({
+        where: (b, { eq: e, and: a }) =>
+          a(e(b.slug, newSlug), e(b.locale, targetLocale)),
+      });
+      if (slugExists && slugExists.id !== id) {
         throw new Error('Slug already exists for this locale');
       }
     }
 
     // Check if locale is being changed and if slug exists in new locale
-    if (validated.locale && validated.locale !== existing.locale) {
-      const slugExists = await db
-        .select()
-        .from(blog)
-        .where(
-          and(eq(blog.slug, existing.slug), eq(blog.locale, validated.locale)),
-        )
-        .limit(1);
-      if (slugExists.length > 0) {
+    const newLocale = validated.locale;
+    if (newLocale != null && newLocale !== existing.locale) {
+      const slugExists = await db.query.blog.findFirst({
+        where: (b, { eq: e, and: a }) =>
+          a(e(b.slug, existing.slug), e(b.locale, newLocale)),
+      });
+      if (slugExists) {
         throw new Error('Slug already exists for this locale');
       }
     }

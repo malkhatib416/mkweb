@@ -1,24 +1,24 @@
 'use client';
 
+import enDict from '@/locales/dictionaries/en.json';
+import frDict from '@/locales/dictionaries/fr.json';
+import { isValidLocale, type Locale } from '@/locales/i18n';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import {
-  useEffect,
-  useState,
-  useMemo,
-  useCallback,
-  Suspense,
-  useRef,
-} from 'react';
-import type { RefObject } from 'react';
 import { usePathname } from 'next/navigation';
-import NavLink from './NavLink';
+import type { RefObject } from 'react';
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import MKWEbLogo from './Icons/MKWebLogo';
 import LanguageSwitcher from './LanguageSwitcher';
-import { isValidLocale, type Locale } from '@/locales/i18n';
-import frDict from '@/locales/dictionaries/fr.json';
-import enDict from '@/locales/dictionaries/en.json';
-import { X, Menu } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
+import NavLink from './NavLink';
 
 const dictionaries = {
   fr: frDict,

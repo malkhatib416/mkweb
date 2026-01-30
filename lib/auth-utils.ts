@@ -1,6 +1,6 @@
-import { auth } from './auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { auth } from './auth';
 
 /**
  * Get the current session on the server
@@ -19,7 +19,7 @@ export async function getServerSession() {
 export async function requireAuth() {
   const session = await getServerSession();
   if (!session) {
-    redirect('/admin/login');
+    redirect('/signin');
   }
   return session;
 }

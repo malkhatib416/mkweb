@@ -23,7 +23,33 @@
     "legalNotice": "Legal Notice",
     "contact": "Contact",
     "links": "Links",
-    "home": "Home"
+    "home": "Home",
+    "newsletterTitle": "Newsletter",
+    "newsletterPlaceholder": "Your email",
+    "newsletterButton": "Subscribe",
+    "newsletterSuccess": "Thank you, you are subscribed.",
+    "newsletterError": "An error occurred."
+  },
+  "review": {
+    "title": "Leave your review",
+    "subtitle": "Share your experience on this project",
+    "ratingLabel": "Rating",
+    "reviewTextLabel": "Your review (optional)",
+    "reviewTextPlaceholder": "Describe your experience...",
+    "submit": "Submit my review",
+    "submitting": "Submitting...",
+    "success": "Thank you! Your review has been recorded.",
+    "expired": "This link has expired.",
+    "alreadySubmitted": "You have already submitted your review.",
+    "error": "An error occurred."
+  },
+  "newsletterPublic": {
+    "success": "Thank you, you are subscribed.",
+    "error": "An error occurred."
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "subtitle": "See what those who trusted us have to say."
   },
   "common": {
     "readMore": "Read more",
@@ -522,6 +548,8 @@
   },
   "admin": {
     "title": "MK-Web Admin",
+    "brandingTitle": "MK-Web",
+    "brandingSubtitle": "Admin",
     "auth": {
       "login": {
         "title": "Sign in to your account",
@@ -558,6 +586,7 @@
       "viewSite": "View Site",
       "recentBlogs": "Recent Blogs",
       "recentProjects": "Recent Projects",
+      "recentActivity": "Recent activity",
       "viewAll": "View all",
       "noRecentBlogs": "No blogs yet",
       "noRecentProjects": "No projects yet",
@@ -571,13 +600,113 @@
         "draftBlogs": "Draft Blogs",
         "totalProjects": "Total Projects",
         "publishedProjects": "Published Projects",
-        "draftProjects": "Draft Projects"
+        "draftProjects": "Draft Projects",
+        "publishedShort": "Published",
+        "draftsShort": "Drafts"
       }
     },
     "sidebar": {
       "dashboard": "Dashboard",
       "blogs": "Blogs",
-      "projects": "Projects"
+      "projects": "Projects",
+      "clients": "Clients",
+      "languages": "Languages",
+      "reviews": "Client reviews",
+      "newsletter": "Newsletter",
+      "groupMain": "Main",
+      "groupContent": "Content",
+      "groupPeople": "People",
+      "groupSettings": "Settings"
+    },
+    "clients": {
+      "title": "Clients",
+      "subtitle": "Manage your clients and their projects",
+      "newClient": "New Client",
+      "createFirst": "Create your first client",
+      "noClients": "No clients found",
+      "loading": "Loading...",
+      "backToClients": "Back to Clients",
+      "create": {
+        "title": "Create New Client",
+        "createButton": "Create Client",
+        "creating": "Creating..."
+      },
+      "edit": {
+        "title": "Edit Client",
+        "updateButton": "Update Client",
+        "updating": "Updating..."
+      },
+      "view": {
+        "edit": "Edit"
+      },
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "company": "Company",
+        "photo": "Photo"
+      },
+      "placeholders": {
+        "name": "Client name",
+        "email": "email@example.com",
+        "company": "Company",
+        "photoUrl": "Photo URL"
+      },
+      "uploadPhoto": "Upload photo",
+      "orPasteUrl": "Or paste URL",
+      "metadata": {
+        "created": "Created",
+        "updated": "Updated"
+      },
+      "deleteConfirm": "Are you sure you want to delete \"{name}\"?",
+      "deleteSuccess": "Client deleted successfully",
+      "deleteError": "Failed to delete client",
+      "createSuccess": "Client created successfully",
+      "createError": "Failed to create client",
+      "updateSuccess": "Client updated successfully",
+      "updateError": "Failed to update client",
+      "fetchSingleError": "Failed to fetch client"
+    },
+    "languages": {
+      "title": "Languages",
+      "subtitle": "Manage site languages (used for AI article generation)",
+      "newLanguage": "New Language",
+      "createFirst": "Create your first language",
+      "noLanguages": "No languages found",
+      "loading": "Loading...",
+      "backToLanguages": "Back to Languages",
+      "create": {
+        "title": "Create New Language",
+        "createButton": "Create Language",
+        "creating": "Creating..."
+      },
+      "edit": {
+        "title": "Edit Language",
+        "updateButton": "Update Language",
+        "updating": "Updating..."
+      },
+      "view": {
+        "edit": "Edit"
+      },
+      "fields": {
+        "code": "Code",
+        "name": "Name"
+      },
+      "placeholders": {
+        "code": "e.g. fr, en",
+        "name": "e.g. French, English"
+      },
+      "metadata": {
+        "created": "Created",
+        "updated": "Updated"
+      },
+      "deleteConfirm": "Are you sure you want to delete \"{name}\"?",
+      "deleteSuccess": "Language deleted successfully",
+      "deleteError": "Failed to delete language",
+      "createSuccess": "Language created successfully",
+      "createError": "Failed to create language",
+      "updateSuccess": "Language updated successfully",
+      "updateError": "Failed to update language",
+      "fetchSingleError": "Failed to fetch language"
     },
     "blogs": {
       "title": "Blogs",
@@ -592,6 +721,16 @@
         "createButton": "Create Blog",
         "creating": "Creating..."
       },
+      "generateWithAI": {
+        "title": "Generate with AI",
+        "description": "Creates a draft article for each language (fr, en) from a topic.",
+        "topicLabel": "Article topic",
+        "topicPlaceholder": "e.g. SEO best practices in 2025",
+        "generateButton": "Generate articles",
+        "generating": "Generating…",
+        "successMessage": "{count} article(s) created. Redirecting…",
+        "errorMessage": "Generation failed"
+      },
       "edit": {
         "title": "Edit Blog",
         "updateButton": "Update Blog",
@@ -603,6 +742,7 @@
       "fields": {
         "title": "Title",
         "slug": "Slug",
+        "locale": "Language",
         "description": "Description",
         "content": "Content (Markdown)",
         "status": "Status"
@@ -611,6 +751,11 @@
         "title": "Blog title",
         "slug": "blog-slug",
         "description": "Short description"
+      },
+      "locale": {
+        "fr": "French",
+        "en": "English",
+        "select": "Select language"
       },
       "status": {
         "draft": "Draft",
@@ -701,6 +846,34 @@
         "next": "Next"
       }
     },
+    "reviews": {
+      "title": "Client reviews",
+      "subtitle": "Review links per project / client",
+      "createLink": "Create link",
+      "noReviews": "No reviews",
+      "project": "Project",
+      "client": "Client",
+      "status": "Status",
+      "pending": "Pending",
+      "submitted": "Submitted",
+      "expiresAt": "Expires at",
+      "submittedAt": "Submitted at",
+      "copyLink": "Copy link",
+      "linkCopied": "Link copied",
+      "createSuccess": "Link created",
+      "createError": "Failed to create link",
+      "filterAll": "All",
+      "filterPending": "Pending",
+      "filterSubmitted": "Submitted"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "subtitle": "Newsletter subscribers",
+      "noSubscribers": "No subscribers",
+      "email": "Email",
+      "locale": "Language",
+      "createdAt": "Subscribed at"
+    },
     "common": {
       "required": "Required",
       "optional": "Optional",
@@ -714,7 +887,18 @@
       "loading": "Loading...",
       "error": "Error",
       "success": "Success",
-      "all": "All"
+      "all": "All",
+      "filter": "Filters",
+      "search": "Search",
+      "columns": "Columns",
+      "resetColumns": "Reset columns",
+      "emptyState": {
+        "noResults": "No results"
+      },
+      "pagination": {
+        "pageOf": "Page {current} of {total}",
+        "perPage": "per page"
+      }
     }
   }
 }

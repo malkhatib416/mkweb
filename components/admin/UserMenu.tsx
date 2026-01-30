@@ -1,8 +1,5 @@
 'use client';
 
-import { signOut } from '@/lib/auth-client';
-import { useRouter } from 'next/navigation';
-import { toast } from 'react-hot-toast';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,15 +8,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { User, LogOut } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { signOut } from '@/lib/auth-client';
+import { LogOut } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 import { useAdminDictionary } from './AdminDictionaryProvider';
 
 interface UserMenuProps {
   user: {
     name: string | null;
     email: string;
-    image: string | null;
+    image?: string | null;
   };
 }
 
@@ -32,7 +31,7 @@ export default function UserMenu({ user }: UserMenuProps) {
     try {
       await signOut();
       toast.success(t.signOutSuccess);
-      router.push('/admin/login');
+      router.push('/signin');
       router.refresh();
     } catch (error) {
       toast.error(t.signOutError);
@@ -40,16 +39,30 @@ export default function UserMenu({ user }: UserMenuProps) {
     }
   };
 
+  const initial = user.name
+    ? user.name.charAt(0).toUpperCase()
+    : user.email.charAt(0).toUpperCase();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-myorange-100 text-white">
-            {user.name
-              ? user.name.charAt(0).toUpperCase()
-              : user.email.charAt(0).toUpperCase()}
-          </div>
-        </Button>
+        <button
+          type="button"
+          className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-transparent bg-myorange-100 text-sm font-semibold text-white ring-offset-background transition-colors hover:bg-myorange-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          aria-label="Open user menu"
+        >
+          {user.image ? (
+            <img
+              src={user.image}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <span className="flex h-full w-full items-center justify-center">
+              {initial}
+            </span>
+          )}
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">

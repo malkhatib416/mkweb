@@ -139,7 +139,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     img: ({ src, alt }) => (
       <Image
-        src={src!}
+        src={typeof src === 'string' ? src : '/favicon.ico'}
         width={500}
         height={300}
         alt={alt || ''}

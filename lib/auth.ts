@@ -1,5 +1,5 @@
+import { db } from '@/db';
 import { betterAuth } from 'better-auth';
-import { db } from './db';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 
 if (!process.env.BETTER_AUTH_SECRET) {

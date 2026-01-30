@@ -1,17 +1,20 @@
-import { db } from '../lib/db';
-import { user } from '../lib/db/schema';
 import { eq } from 'drizzle-orm';
+import { db } from '../db';
+import { language, user } from '../db/schema';
 import { auth } from '../lib/auth';
 
 async function seed() {
   console.log('🌱 Starting seed...');
 
   try {
+    const adminEmail = 'mohamad@mk-web.fr';
+    const adminPassword = 'mohamad123';
+    const adminName = 'Mohamad Al-Khatib';
     // Check if admin user already exists
     const existingAdmin = await db
       .select()
       .from(user)
-      .where(eq(user.email, 'admin@mk-web.fr'))
+      .where(eq(user.email, adminEmail))
       .limit(1);
 
     if (existingAdmin.length > 0) {
@@ -21,16 +24,16 @@ async function seed() {
       try {
         const result = await auth.api.signUpEmail({
           body: {
-            email: 'admin@mk-web.fr',
-            password: 'admin123', // Change this password after first login
-            name: 'Admin User',
+            email: adminEmail,
+            password: adminPassword,
+            name: adminName,
           },
         });
 
         if (result.user) {
           console.log('✅ Admin user created:', result.user.email);
           console.log(
-            '   Password: admin123 (please change after first login)',
+            `   Password: ${adminPassword} (please change after first login)`,
           );
         } else {
           console.log('⚠️  Admin user creation returned no user');
@@ -49,11 +52,15 @@ async function seed() {
       }
     }
 
+    const testName = 'Test Name';
+    const testEmail = 'test@mk-web.fr';
+    const testPassword = 'test123123123';
+
     // Check if test user already exists
     const existingTest = await db
       .select()
       .from(user)
-      .where(eq(user.email, 'test@mk-web.fr'))
+      .where(eq(user.email, testEmail))
       .limit(1);
 
     if (existingTest.length > 0) {
@@ -63,15 +70,17 @@ async function seed() {
       try {
         const result = await auth.api.signUpEmail({
           body: {
-            email: 'test@mk-web.fr',
-            password: 'test123', // Change this password after first login
-            name: 'Test User',
+            email: testEmail,
+            password: testPassword,
+            name: testName,
           },
         });
 
         if (result.user) {
           console.log('✅ Test user created:', result.user.email);
-          console.log('   Password: test123 (please change after first login)');
+          console.log(
+            `   Password: ${testPassword} (please change after first login)`,
+          );
         } else {
           console.log('⚠️  Test user creation returned no user');
         }
@@ -89,10 +98,27 @@ async function seed() {
       }
     }
 
+    // Seed languages (fr, en) if not present
+    const languagesToSeed = [
+      { code: 'fr', name: 'French' },
+      { code: 'en', name: 'English' },
+    ];
+    for (const lang of languagesToSeed) {
+      const existing = await db
+        .select()
+        .from(language)
+        .where(eq(language.code, lang.code))
+        .limit(1);
+      if (existing.length === 0) {
+        await db.insert(language).values(lang);
+        console.log(`✅ Language ${lang.code} (${lang.name}) created`);
+      }
+    }
+
     console.log('\n✅ Seed completed!');
     console.log('\n📝 Default credentials:');
-    console.log('   Admin: admin@mk-web.fr / admin123');
-    console.log('   Test:  test@mk-web.fr / test123');
+    console.log(`   Admin: ${adminEmail} / ${adminPassword}`);
+    console.log(`   Test:  ${testEmail} / ${testPassword}`);
     console.log('\n⚠️  Please change these passwords after first login!');
   } catch (error) {
     console.error('❌ Error seeding:', error);

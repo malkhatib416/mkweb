@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import MKWEbLogo from './Icons/MKWebLogo';
 import Link from 'next/link';
 import { Linkedin, Mail, Phone } from 'lucide-react';
@@ -11,6 +11,9 @@ import { usePathname } from 'next/navigation';
 import { isValidLocale, type Locale } from '@/locales/i18n';
 import frDict from '@/locales/dictionaries/fr.json';
 import enDict from '@/locales/dictionaries/en.json';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { toast } from 'react-hot-toast';
 
 const dictionaries = {
   fr: frDict,
@@ -26,6 +29,68 @@ const SubFooter = ({ locale }: { locale: Locale }) => {
       <p className="my-6 text-center text-xs">
         © {date.getFullYear()} MKWeb. {dict.footer.rights}.
       </p>
+    </div>
+  );
+};
+
+const FooterNewsletter = ({
+  locale,
+  t,
+}: {
+  locale: Locale;
+  t: typeof frDict.footer;
+}) => {
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    setLoading(true);
+    try {
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmed, locale }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || t.newsletterError);
+      toast.success(t.newsletterSuccess);
+      setEmail('');
+    } catch {
+      toast.error(t.newsletterError);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="w-full md:text-left">
+      <p className="text-gray-600 font-bold text-lg mb-4 md:mb-0">
+        {t.newsletterTitle}
+      </p>
+      <form
+        onSubmit={handleSubmit}
+        className="mt-4 flex flex-col sm:flex-row gap-2 max-w-xs"
+      >
+        <Input
+          type="email"
+          placeholder={t.newsletterPlaceholder}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="bg-white dark:bg-slate-800"
+          required
+        />
+        <Button
+          type="submit"
+          size="sm"
+          className="bg-myorange-100 hover:bg-myorange-200 shrink-0"
+          disabled={loading}
+        >
+          {loading ? '…' : t.newsletterButton}
+        </Button>
+      </form>
     </div>
   );
 };
@@ -46,7 +111,9 @@ const Footer = () => {
           <div className="py-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4">
             <div className="w-full hidden md:block">
               <Suspense>
-                <MKWEbLogo />
+                <Link href={`/${locale}/#main`} aria-label="MK-Web home">
+                  <MKWEbLogo />
+                </Link>
                 <Link
                   href="https://www.linkedin.com/in/mohamad-alkhatib416/"
                   className=" inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-1.5 rounded-md me-2"
@@ -120,6 +187,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+            <FooterNewsletter locale={locale} t={t} />
           </div>
         </div>
       </footer>

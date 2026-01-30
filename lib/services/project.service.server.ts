@@ -3,8 +3,8 @@
  * Used by API routes and server components
  */
 
-import { db } from '@/lib/db';
-import { project } from '@/lib/db/schema';
+import { db } from '@/db';
+import { project } from '@/db/schema';
 import {
   contentValidator,
   localeEnum,
@@ -12,6 +12,7 @@ import {
   statusEnum,
   titleValidator,
 } from '@/lib/validations/entities';
+import { Locale, isValidLocale } from '@/locales/i18n';
 import type {
   CreateProjectDto,
   Project,
@@ -20,7 +21,7 @@ import type {
   ProjectResponse,
   UpdateProjectDto,
 } from '@/types/entities';
-import { and, count, desc, eq } from 'drizzle-orm';
+import { and, count, eq } from 'drizzle-orm';
 import { z } from 'zod';
 
 export const projectSchema = z.object({
@@ -30,6 +31,7 @@ export const projectSchema = z.object({
   description: z.string().optional(),
   content: contentValidator,
   status: statusEnum,
+  clientId: z.string().optional().nullable(),
 });
 
 export const projectUpdateSchema = z.object({
@@ -39,6 +41,7 @@ export const projectUpdateSchema = z.object({
   description: z.string().optional(),
   content: contentValidator.optional(),
   status: statusEnum.optional(),
+  clientId: z.string().optional().nullable(),
 });
 
 class ProjectServiceServer {
@@ -53,30 +56,31 @@ class ProjectServiceServer {
     if (status === 'published' || status === 'draft') {
       conditions.push(eq(project.status, status));
     }
-    if (locale === 'fr' || locale === 'en') {
+    if (isValidLocale(locale)) {
       conditions.push(eq(project.locale, locale));
     }
 
     const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
-    const projects = await db
-      .select()
-      .from(project)
-      .where(whereClause)
-      .limit(limit)
-      .offset(offset)
-      .orderBy(desc(project.createdAt));
+    const projects = await db.query.project.findMany({
+      where: whereClause,
+      limit,
+      offset,
+      orderBy: (p, { desc: d }) => [d(p.createdAt)],
+    });
 
     const totalResult = whereClause
       ? await db.select({ count: count() }).from(project).where(whereClause)
       : await db.select({ count: count() }).from(project);
 
+    const total = totalResult[0]?.count || 0;
     return {
       data: projects as Project[],
       pagination: {
         page,
         limit,
-        total: totalResult[0]?.count || 0,
+        total,
+        pages: Math.max(1, Math.ceil(total / limit)),
       },
     };
   }
@@ -85,11 +89,9 @@ class ProjectServiceServer {
    * Get a single project by ID
    */
   async getById(id: string): Promise<ProjectResponse> {
-    const [projectItem] = await db
-      .select()
-      .from(project)
-      .where(eq(project.id, id))
-      .limit(1);
+    const projectItem = await db.query.project.findFirst({
+      where: (p, { eq: e }) => e(p.id, id),
+    });
 
     if (!projectItem) {
       throw new Error('Project not found');
@@ -106,17 +108,11 @@ class ProjectServiceServer {
     const validated = projectSchema.parse(data);
 
     // Check if slug already exists for this locale
-    const existing = await db
-      .select()
-      .from(project)
-      .where(
-        and(
-          eq(project.slug, validated.slug),
-          eq(project.locale, validated.locale),
-        ),
-      )
-      .limit(1);
-    if (existing.length > 0) {
+    const existing = await db.query.project.findFirst({
+      where: (p, { eq: e, and: a }) =>
+        a(e(p.slug, validated.slug), e(p.locale, validated.locale)),
+    });
+    if (existing) {
       throw new Error('Slug already exists for this locale');
     }
 
@@ -129,6 +125,7 @@ class ProjectServiceServer {
         description: validated.description || null,
         content: validated.content,
         status: validated.status,
+        clientId: validated.clientId ?? null,
       })
       .returning();
 
@@ -143,46 +140,34 @@ class ProjectServiceServer {
     const validated = projectUpdateSchema.parse(data);
 
     // Check if project exists
-    const [existing] = await db
-      .select()
-      .from(project)
-      .where(eq(project.id, id))
-      .limit(1);
+    const existing = await db.query.project.findFirst({
+      where: (p, { eq: e }) => e(p.id, id),
+    });
     if (!existing) {
       throw new Error('Project not found');
     }
 
     // Check if slug is being changed and if it already exists for the locale
-    const targetLocale = validated.locale || existing.locale;
-    if (validated.slug && validated.slug !== existing.slug) {
-      const slugExists = await db
-        .select()
-        .from(project)
-        .where(
-          and(
-            eq(project.slug, validated.slug),
-            eq(project.locale, targetLocale),
-          ),
-        )
-        .limit(1);
-      if (slugExists.length > 0 && slugExists[0].id !== id) {
+    const targetLocale: Locale = validated.locale ?? existing.locale;
+    const newSlug = validated.slug;
+    if (newSlug != null && newSlug !== existing.slug) {
+      const slugExists = await db.query.project.findFirst({
+        where: (p, { eq: e, and: a }) =>
+          a(e(p.slug, newSlug), e(p.locale, targetLocale)),
+      });
+      if (slugExists && slugExists.id !== id) {
         throw new Error('Slug already exists for this locale');
       }
     }
 
     // Check if locale is being changed and if slug exists in new locale
-    if (validated.locale && validated.locale !== existing.locale) {
-      const slugExists = await db
-        .select()
-        .from(project)
-        .where(
-          and(
-            eq(project.slug, existing.slug),
-            eq(project.locale, validated.locale),
-          ),
-        )
-        .limit(1);
-      if (slugExists.length > 0) {
+    const newLocale = validated.locale;
+    if (newLocale != null && newLocale !== existing.locale) {
+      const slugExists = await db.query.project.findFirst({
+        where: (p, { eq: e, and: a }) =>
+          a(e(p.slug, existing.slug), e(p.locale, newLocale)),
+      });
+      if (slugExists) {
         throw new Error('Slug already exists for this locale');
       }
     }
@@ -211,6 +196,33 @@ class ProjectServiceServer {
     if (!deleted) {
       throw new Error('Project not found');
     }
+  }
+
+  /**
+   * Get published project by slug and locale (public)
+   */
+  async getPublishedBySlug(
+    slug: string,
+    locale: Locale,
+  ): Promise<Project | null> {
+    const row = await db.query.project.findFirst({
+      where: (p, { eq: e, and: a }) =>
+        a(e(p.slug, slug), e(p.locale, locale), e(p.status, 'published')),
+    });
+    return (row as Project) ?? null;
+  }
+
+  /**
+   * Get published projects for a locale (public)
+   */
+  async getPublished(locale: Locale, limit: number = 50): Promise<Project[]> {
+    const rows = await db.query.project.findMany({
+      where: (p, { eq: e, and: a }) =>
+        a(e(p.locale, locale), e(p.status, 'published')),
+      orderBy: (p, { desc: d }) => [d(p.createdAt)],
+      limit,
+    });
+    return rows as Project[];
   }
 }
 
