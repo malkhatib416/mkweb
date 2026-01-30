@@ -5,41 +5,24 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loading } from '@/components/ui/loading';
 import { useUploadPhoto } from '@/hooks/use-upload-photo';
 import { clientService } from '@/lib/services/client.service';
-import { fetcher } from '@/lib/swr-fetcher';
-import type { ClientResponse } from '@/types/entities';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
-import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import useSWR from 'swr';
 
-export default function EditClientPage() {
+export default function NewClientPage() {
   const router = useRouter();
-  const params = useParams();
-  const id = params.id as string;
   const dict = useAdminDictionary();
   const t = dict.admin.clients;
   const { uploadPhoto, isUploading: isUploadingPhoto } = useUploadPhoto();
-
-  const {
-    data,
-    error,
-    isLoading: isFetching,
-  } = useSWR<ClientResponse>(id ? `/api/admin/clients/${id}` : null, fetcher);
-
-  const client = data?.data;
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [photo, setPhoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   const handlePhotoFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -55,50 +38,25 @@ export default function EditClientPage() {
     }
   };
 
-  React.useEffect(() => {
-    if (client && !isInitialized) {
-      setName(client.name);
-      setEmail(client.email ?? '');
-      setCompany(client.company ?? '');
-      setPhoto(client.photo ?? '');
-      setIsInitialized(true);
-    }
-  }, [client, isInitialized]);
-
-  if (error) {
-    toast.error(t.fetchSingleError);
-    router.push('/admin/clients');
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await clientService.update(id, {
+      await clientService.create({
         name,
         email: email || undefined,
         company: company || undefined,
         photo: photo || undefined,
       });
-      toast.success(t.updateSuccess);
+      toast.success(t.createSuccess);
       router.push('/admin/clients');
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : t.updateError);
+      toast.error(err instanceof Error ? err.message : t.createError);
       console.error(err);
     } finally {
       setIsLoading(false);
     }
   };
-
-  if (isFetching) {
-    return (
-      <div className="rounded-lg border border-border bg-card py-16">
-        <Loading label={t.loading} />
-      </div>
-    );
-  }
-
-  if (!client) return null;
 
   return (
     <div className="flex flex-col gap-8">
@@ -112,10 +70,10 @@ export default function EditClientPage() {
 
       <div>
         <p className="text-sm font-medium text-muted-foreground">
-          {t.edit.title}
+          {t.create.title}
         </p>
         <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-          {client.name}
+          {t.subtitle}
         </h1>
       </div>
 
@@ -192,7 +150,7 @@ export default function EditClientPage() {
                 disabled={isLoading}
                 className="bg-myorange-100 hover:bg-myorange-200"
               >
-                {isLoading ? t.edit.updating : t.edit.updateButton}
+                {isLoading ? t.create.creating : t.create.createButton}
               </Button>
             </div>
           </form>

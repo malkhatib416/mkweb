@@ -5,9 +5,9 @@ import { DataGrid } from '@/components/admin/DataGrid';
 import { DeleteConfirmDialog } from '@/components/admin/DeleteConfirmDialog';
 import { PageHeader } from '@/components/admin/PageHeader';
 import { Button } from '@/components/ui/button';
-import { blogService } from '@/lib/services/blog.service';
+import { languageService } from '@/lib/services/language.service';
 import type { DataGridConfig } from '@/types/data-grid';
-import type { Blog } from '@/types/entities';
+import type { Language } from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
 import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
@@ -15,26 +15,26 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-export default function BlogsPage() {
+export default function LanguagesPage() {
   const dict = useAdminDictionary();
   const router = useRouter();
-  const t = dict.admin.blogs;
+  const t = dict.admin.languages;
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{
     id: string;
-    title: string;
+    name: string;
   } | null>(null);
   const gridMutateRef = useRef<(() => Promise<unknown>) | null>(null);
 
-  const handleDeleteClick = (blog: Blog) => {
-    setItemToDelete({ id: blog.id, title: blog.title });
+  const handleDeleteClick = (lang: Language) => {
+    setItemToDelete({ id: lang.id, name: lang.name });
     setDeleteDialogOpen(true);
   };
 
   const handleDeleteConfirm = async () => {
     if (!itemToDelete) return;
     try {
-      await blogService.delete(itemToDelete.id);
+      await languageService.delete(itemToDelete.id);
       toast.success(t.deleteSuccess);
       await gridMutateRef.current?.();
       setDeleteDialogOpen(false);
@@ -49,86 +49,36 @@ export default function BlogsPage() {
     gridMutateRef.current = mutateFn;
   }, []);
 
-  const config: DataGridConfig<Blog> = {
-    swrKey: 'admin-blogs',
+  const config: DataGridConfig<Language> = {
+    swrKey: 'admin-languages',
     fetcher: async ([, params]) => {
       const search = new URLSearchParams({
         page: String(params.page),
         limit: String(params.limit),
       });
-      if (params.status) search.set('status', params.status);
-      if (params.locale) search.set('locale', params.locale);
-      const res = await fetch(`/api/admin/blogs?${search}`);
+      const res = await fetch(`/api/admin/languages?${search}`);
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Failed to fetch');
       return json;
     },
-    filters: [
-      {
-        type: 'select',
-        name: 'status',
-        placeholder: t.fields.status,
-        options: [
-          { value: 'draft', label: t.status.draft },
-          { value: 'published', label: t.status.published },
-        ],
-        allowEmpty: true,
-        emptyLabel: dict.admin.common.all,
-      },
-      {
-        type: 'select',
-        name: 'locale',
-        placeholder: t.fields.locale,
-        options: [
-          { value: 'fr', label: t.locale.fr },
-          { value: 'en', label: t.locale.en },
-        ],
-        allowEmpty: true,
-        emptyLabel: dict.admin.common.all,
-      },
-    ],
     columns: [
       {
-        name: 'title',
-        label: t.fields.title,
+        name: 'code',
+        label: t.fields.code,
         cell: (row) => (
           <Link
-            href={`/admin/blogs/${row.id}`}
+            href={`/admin/languages/${row.id}`}
             className="font-medium text-foreground hover:text-myorange-100 hover:underline"
           >
-            {row.title}
+            {row.code}
           </Link>
         ),
       },
       {
-        name: 'status',
-        label: t.fields.status,
+        name: 'name',
+        label: t.fields.name,
         cell: (row) => (
-          <span
-            className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
-              row.status === 'published'
-                ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                : 'bg-muted text-muted-foreground'
-            }`}
-          >
-            {t.status[row.status]}
-          </span>
-        ),
-      },
-      {
-        name: 'locale',
-        label: t.fields.locale,
-        cell: (row) => (
-          <span className="text-xs uppercase tracking-wider text-muted-foreground">
-            {row.locale}
-          </span>
-        ),
-      },
-      {
-        name: 'slug',
-        label: t.metadata.slug,
-        cell: (row) => (
-          <span className="text-sm text-muted-foreground">{row.slug}</span>
+          <span className="text-sm text-muted-foreground">{row.name}</span>
         ),
       },
       {
@@ -146,13 +96,13 @@ export default function BlogsPage() {
         name: 'view',
         label: dict.admin.common.view,
         icon: Eye,
-        onClick: (row) => router.push(`/admin/blogs/${row.id}`),
+        onClick: (row) => router.push(`/admin/languages/${row.id}`),
       },
       {
         name: 'edit',
         label: dict.admin.common.edit,
         icon: Edit,
-        onClick: (row) => router.push(`/admin/blogs/${row.id}/edit`),
+        onClick: (row) => router.push(`/admin/languages/${row.id}/edit`),
       },
       {
         name: 'delete',
@@ -165,10 +115,10 @@ export default function BlogsPage() {
       },
     ],
     empty: {
-      title: t.noBlogs,
+      title: t.noLanguages,
       description: t.subtitle,
       createLabel: t.createFirst,
-      onCreate: () => router.push('/admin/blogs/new'),
+      onCreate: () => router.push('/admin/languages/new'),
     },
     defaultPageSize: 10,
     className: '!space-y-4',
@@ -180,13 +130,13 @@ export default function BlogsPage() {
         title={t.subtitle}
         description={t.title}
         actions={
-          <Link href="/admin/blogs/new">
+          <Link href="/admin/languages/new">
             <Button
               size="sm"
               className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
             >
               <Plus className="h-4 w-4" />
-              {t.newBlog}
+              {t.newLanguage}
             </Button>
           </Link>
         }
@@ -200,7 +150,7 @@ export default function BlogsPage() {
         title={dict.admin.common.delete}
         description={
           itemToDelete
-            ? t.deleteConfirm.replace('{title}', itemToDelete.title)
+            ? t.deleteConfirm.replace('{name}', itemToDelete.name)
             : ''
         }
         cancelLabel={dict.admin.common.cancel}

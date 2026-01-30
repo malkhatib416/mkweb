@@ -1,19 +1,19 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
+import { PageHeader } from '@/components/admin/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Loading } from '@/components/ui/loading';
-import { PageHeader } from '@/components/admin/PageHeader';
-import { toast } from 'react-hot-toast';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Edit } from 'lucide-react';
-import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
-import useSWR from 'swr';
 import { fetcher } from '@/lib/swr-fetcher';
 import type { ClientResponse } from '@/types/entities';
 import { formatDateTime } from '@/utils/format-date';
+import { Edit } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+import useSWR from 'swr';
 
 export default function ViewClientPage() {
   const params = useParams();
