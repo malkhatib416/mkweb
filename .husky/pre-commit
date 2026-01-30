@@ -1,1 +1,1 @@
-prettier --write .
+bun run fmt
