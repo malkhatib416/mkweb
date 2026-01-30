@@ -14,7 +14,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "bun --env-file=.env scripts/seed.ts"
+    "db:seed": "bun --env-file=.env scripts/seed.ts",
+    "db:migrate-blog": "bun --env-file=.env scripts/migrate-blog-mdx-to-db.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.23",
@@ -89,10 +91,11 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@types/pg": "^8.10.9",
+    "drizzle-kit": "^0.31.8",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
-    "drizzle-kit": "^0.31.8",
-    "@types/pg": "^8.10.9"
+    "husky": "^9.1.7"
   },
   "overrides": {
     "@types/react": "19.2.7",
