@@ -17,7 +17,7 @@ class BlogService {
    * Get all blogs with pagination
    */
   async getAll(params: BlogListParams = {}): Promise<BlogListResponse> {
-    const { page = 1, limit = 10, status, locale } = params;
+    const { page = 1, limit = 10, status, locale, categoryId } = params;
     const queryParams = new URLSearchParams({
       page: page.toString(),
       limit: limit.toString(),
@@ -28,6 +28,9 @@ class BlogService {
     }
     if (locale) {
       queryParams.append('locale', locale);
+    }
+    if (categoryId) {
+      queryParams.append('categoryId', categoryId);
     }
 
     const response = await fetch(`${this.baseUrl}?${queryParams.toString()}`);

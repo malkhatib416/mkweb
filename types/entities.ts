@@ -4,6 +4,7 @@
 
 import {
   blog,
+  category,
   client,
   language,
   newsletterSubscriber,
@@ -11,7 +12,7 @@ import {
   projectReview,
 } from '@/db/schema';
 import type { Locale } from '@/locales/i18n';
-import type { InferSelectModel, InferInsertModel } from 'drizzle-orm';
+import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 
 // Shared enum types
 export type Status = 'draft' | 'published';
@@ -19,7 +20,11 @@ export type Status = 'draft' | 'published';
 // Inferred types from schema
 export type Language = InferSelectModel<typeof language>;
 export type LanguageInsert = InferInsertModel<typeof language>;
-export type Blog = InferSelectModel<typeof blog>;
+export type Category = InferSelectModel<typeof category>;
+export type CategoryInsert = InferInsertModel<typeof category>;
+export type Blog = InferSelectModel<typeof blog> & {
+  category?: Category | null;
+};
 export type BlogInsert = InferInsertModel<typeof blog>;
 export type Client = InferSelectModel<typeof client>;
 export type ClientInsert = InferInsertModel<typeof client>;
@@ -35,6 +40,11 @@ export type NewsletterSubscriberInsert = InferInsertModel<
 >;
 
 // DTO types for API (omitting auto-generated fields)
+export type CreateCategoryDto = Omit<
+  CategoryInsert,
+  'id' | 'createdAt' | 'updatedAt'
+>;
+export type UpdateCategoryDto = Partial<CreateCategoryDto>;
 export type CreateBlogDto = Omit<BlogInsert, 'id' | 'createdAt' | 'updatedAt'>;
 export type UpdateBlogDto = Partial<CreateBlogDto>;
 export type CreateClientDto = Omit<
@@ -63,12 +73,25 @@ export type CreateLanguageDto = Omit<
 >;
 export type UpdateLanguageDto = Partial<CreateLanguageDto>;
 
+export type PaginationResponse = {
+  page?: number;
+  limit?: number;
+  total?: number;
+  pages?: number;
+}
+
 // List params
+export interface CategoryListParams {
+  page?: number;
+  limit?: number;
+}
+
 export interface BlogListParams {
   page?: number;
   limit?: number;
   status?: Status;
   locale?: Locale;
+  categoryId?: string;
 }
 
 export interface ProjectListParams {
@@ -90,14 +113,18 @@ export interface LanguageListParams {
 }
 
 // API response types
+export interface CategoryListResponse {
+  data: Category[];
+  pagination: PaginationResponse;
+}
+
+export interface CategoryResponse {
+  data: Category;
+}
+
 export interface BlogListResponse {
   data: Blog[];
-  pagination: {
-    total: number;
-    page: number;
-    limit: number;
-    pages?: number;
-  };
+  pagination: PaginationResponse;
 }
 
 export interface BlogResponse {
@@ -106,22 +133,12 @@ export interface BlogResponse {
 
 export interface ProjectListResponse {
   data: Project[];
-  pagination: {
-    total: number;
-    page: number;
-    limit: number;
-    pages?: number;
-  };
+  pagination: PaginationResponse;
 }
 
 export interface ClientListResponse {
   data: Client[];
-  pagination: {
-    total: number;
-    page: number;
-    limit: number;
-    pages?: number;
-  };
+  pagination: PaginationResponse;
 }
 
 export interface ClientResponse {
@@ -130,12 +147,7 @@ export interface ClientResponse {
 
 export interface LanguageListResponse {
   data: Language[];
-  pagination: {
-    total: number;
-    page: number;
-    limit: number;
-    pages?: number;
-  };
+  pagination: PaginationResponse;
 }
 
 export interface LanguageResponse {
@@ -152,10 +164,5 @@ export interface ProjectReviewResponse {
 
 export interface NewsletterSubscriberListResponse {
   data: NewsletterSubscriber[];
-  pagination: {
-    total: number;
-    page: number;
-    limit: number;
-    pages?: number;
-  };
+  pagination: PaginationResponse;
 }

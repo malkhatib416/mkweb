@@ -64,6 +64,9 @@
   },
   "blog": {
     "title": "Blog",
+    "subtitle": "Insights & Updates",
+    "description": "Explore the latest insights, tutorials, and thoughts on web development, SEO, and digital innovation.",
+    "categories": "Categories",
     "readTime": "min read",
     "search": "Search for an article...",
     "allCategories": "All",
@@ -74,9 +77,10 @@
     "articles": "Articles",
     "readArticle": "Read article",
     "cta": {
-      "services": "Discover my technical SEO services",
+      "services": "Need technical or SEO expertise?",
       "contact": "Contact me directly",
-      "schedule": "Schedule a 30-minute call"
+      "schedule": "Book a 30-minute call",
+      "description": "From building high-performance web apps to optimizing your visibility, I turn your technical challenges into growth opportunities."
     }
   },
   "contact": {
@@ -590,6 +594,11 @@
       "viewAll": "View all",
       "noRecentBlogs": "No blogs yet",
       "noRecentProjects": "No projects yet",
+      "recentClientsSubtitle": "Recently added clients",
+      "pendingReviewsSubtitle": "Review links awaiting submission",
+      "pendingReviewSingular": "link",
+      "pendingReviewPlural": "links",
+      "viewPendingReviews": "View links",
       "justNow": "Just now",
       "minutesAgo": "min ago",
       "hoursAgo": "hours ago",
@@ -602,12 +611,15 @@
         "publishedProjects": "Published Projects",
         "draftProjects": "Draft Projects",
         "publishedShort": "Published",
-        "draftsShort": "Drafts"
+        "draftsShort": "Drafts",
+        "pendingReviewsShort": "Pending links"
       }
     },
     "sidebar": {
       "dashboard": "Dashboard",
+      "suggestions": "Article ideas",
       "blogs": "Blogs",
+      "categories": "Categories",
       "projects": "Projects",
       "clients": "Clients",
       "languages": "Languages",
@@ -617,6 +629,27 @@
       "groupContent": "Content",
       "groupPeople": "People",
       "groupSettings": "Settings"
+    },
+    "suggestions": {
+      "title": "Article ideas",
+      "description": "AI-suggested topics, latest articles and services to inspire your content.",
+      "suggestionsTitle": "Suggested topics",
+      "suggestionsDescription": "Topics to attract clients and improve SEO.",
+      "latestArticles": "Latest articles",
+      "services": "Services",
+      "createArticle": "Create article",
+      "refresh": "Refresh",
+      "noSuggestions": "No suggestions (configure OPENAI_API_KEY).",
+      "loading": "Loading…",
+      "generating": "Generating…",
+      "copyTopic": "Copy",
+      "copySuccess": "Topic copied",
+      "localeFr": "FR",
+      "localeEn": "EN",
+      "suggestionsCount": "Number of topics",
+      "categoriesHint": "Select categories to focus suggestions. Refresh to apply.",
+      "selectAll": "Select all",
+      "deselectAll": "Deselect all"
     },
     "clients": {
       "title": "Clients",
@@ -677,7 +710,13 @@
       "create": {
         "title": "Create New Language",
         "createButton": "Create Language",
-        "creating": "Creating..."
+        "creating": "Creating...",
+        "chooseFromPalette": "Choose a language",
+        "alreadyAdded": "Already added",
+        "addThisLanguage": "Add this language",
+        "addCustom": "Add custom language",
+        "searchPlaceholder": "Search by name or code…",
+        "noResults": "No languages to add. All are already configured or no results for your search."
       },
       "edit": {
         "title": "Edit Language",
@@ -708,6 +747,51 @@
       "updateError": "Failed to update language",
       "fetchSingleError": "Failed to fetch language"
     },
+    "categories": {
+      "title": "Categories",
+      "subtitle": "Manage blog article categories",
+      "newCategory": "New category",
+      "createFirst": "Create your first category",
+      "noCategories": "No categories found",
+      "loading": "Loading...",
+      "backToCategories": "Back to categories",
+      "create": {
+        "title": "Create new category",
+        "createButton": "Create category",
+        "creating": "Creating..."
+      },
+      "edit": {
+        "title": "Edit category",
+        "updateButton": "Update category",
+        "updating": "Updating..."
+      },
+      "view": {
+        "edit": "Edit"
+      },
+      "fields": {
+        "name": "Name",
+        "slug": "Slug",
+        "description": "Description"
+      },
+      "placeholders": {
+        "name": "e.g. SEO, Redesign",
+        "slug": "e.g. seo, redesign-site",
+        "slugHint": "Lowercase letters, numbers and hyphens only.",
+        "description": "Short description (optional)"
+      },
+      "metadata": {
+        "created": "Created",
+        "updated": "Updated"
+      },
+      "deleteConfirm": "Are you sure you want to delete \"{name}\"?",
+      "deleteSuccess": "Category deleted successfully",
+      "deleteError": "Failed to delete category",
+      "createSuccess": "Category created successfully",
+      "createError": "Failed to create category",
+      "updateSuccess": "Category updated successfully",
+      "updateError": "Failed to update category",
+      "fetchSingleError": "Failed to fetch category"
+    },
     "blogs": {
       "title": "Blogs",
       "subtitle": "Manage your blog posts",
@@ -728,8 +812,27 @@
         "topicPlaceholder": "e.g. SEO best practices in 2025",
         "generateButton": "Generate articles",
         "generating": "Generating…",
-        "successMessage": "{count} article(s) created. Redirecting…",
+        "generatingHint": "Creating drafts for each language.",
+        "successMessage": "{count} article(s) created.",
+        "successTitle": "Articles created",
+        "successDescription": "Drafts have been created. You can edit them or generate more.",
+        "viewDrafts": "View drafts",
+        "createAnother": "Generate another",
+        "orCreateManually": "Or create an article manually",
         "errorMessage": "Generation failed"
+      },
+      "generateImage": {
+        "button": "Generate image",
+        "generating": "Generating image…",
+        "success": "Image generated",
+        "error": "Failed to generate image",
+        "hint": "Uses title and description to generate an image."
+      },
+      "uploadImage": {
+        "button": "Upload",
+        "uploading": "Uploading…",
+        "success": "Image uploaded",
+        "error": "Upload failed"
       },
       "edit": {
         "title": "Edit Blog",
@@ -739,18 +842,24 @@
       "view": {
         "edit": "Edit"
       },
+      "filterLanguage": "Language",
+      "image": "Image",
       "fields": {
         "title": "Title",
         "slug": "Slug",
         "locale": "Language",
         "description": "Description",
         "content": "Content (Markdown)",
-        "status": "Status"
+        "status": "Status",
+        "image": "Cover image",
+        "category": "Category",
+        "readingTime": "Reading time (min)"
       },
       "placeholders": {
         "title": "Blog title",
         "slug": "blog-slug",
-        "description": "Short description"
+        "description": "Short description",
+        "imageUrl": "https://… or upload an image"
       },
       "locale": {
         "fr": "French",

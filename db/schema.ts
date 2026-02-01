@@ -1,6 +1,13 @@
 import { createId } from '@paralleldrive/cuid2';
 import { relations } from 'drizzle-orm';
-import { boolean, pgTable, text, timestamp, unique } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  unique,
+} from 'drizzle-orm/pg-core';
 
 /**
  * Better Auth required tables
@@ -72,6 +79,18 @@ export const language = pgTable('language', {
   updatedAt: timestamp('updatedAt').notNull().defaultNow(),
 });
 
+// Category table (for blog articles)
+export const category = pgTable('category', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  name: text('name').notNull(),
+  slug: text('slug').notNull().unique(),
+  description: text('description'),
+  createdAt: timestamp('createdAt').notNull().defaultNow(),
+  updatedAt: timestamp('updatedAt').notNull().defaultNow(),
+});
+
 // Blog posts table
 export const blog = pgTable(
   'blog',
@@ -85,10 +104,15 @@ export const blog = pgTable(
       .notNull()
       .default('fr'),
     description: text('description'),
+    image: text('image'), // Optional cover/thumbnail URL
     content: text('content').notNull(), // Markdown content
     status: text('status', { enum: ['draft', 'published'] })
       .notNull()
       .default('draft'),
+    categoryId: text('categoryId').references(() => category.id, {
+      onDelete: 'set null',
+    }),
+    readingTime: integer('reading_time'), // estimated reading time in minutes
     createdAt: timestamp('createdAt').notNull().defaultNow(),
     updatedAt: timestamp('updatedAt').notNull().defaultNow(),
   },
@@ -178,6 +202,17 @@ export const newsletterSubscriber = pgTable('newsletter_subscriber', {
 });
 
 // Relations (for db.query API)
+export const categoryRelations = relations(category, ({ many }) => ({
+  blogs: many(blog),
+}));
+
+export const blogRelations = relations(blog, ({ one }) => ({
+  category: one(category, {
+    fields: [blog.categoryId],
+    references: [category.id],
+  }),
+}));
+
 export const projectReviewRelations = relations(projectReview, ({ one }) => ({
   project: one(project, {
     fields: [projectReview.projectId],

@@ -4,6 +4,7 @@
 
 // Client-side services (for use in React components)
 export { blogService } from './blog.service';
+export { categoryService } from './category.service';
 export { clientService } from './client.service';
 export { languageService } from './language.service';
 export { projectService } from './project.service';
@@ -21,6 +22,12 @@ export {
   blogServiceServer,
   blogUpdateSchema,
 } from './blog.service.server';
+export {
+  categorySchema,
+  categoryUpdateSchema,
+  getAllCategories,
+  getCategoryById,
+} from './category.service.server';
 export { clientServiceServer } from './client.service.server';
 export {
   createLanguage,
@@ -43,11 +50,16 @@ export type {
   BlogListParams,
   BlogListResponse,
   BlogResponse,
+  Category,
+  CategoryListParams,
+  CategoryListResponse,
+  CategoryResponse,
   Client,
   ClientListParams,
   ClientListResponse,
   ClientResponse,
   CreateBlogDto,
+  CreateCategoryDto,
   CreateClientDto,
   CreateLanguageDto,
   CreateProjectDto,
@@ -61,6 +73,7 @@ export type {
   ProjectResponse,
   Status,
   UpdateBlogDto,
+  UpdateCategoryDto,
   UpdateClientDto,
   UpdateLanguageDto,
   UpdateProjectDto,

@@ -47,7 +47,11 @@ const SectionWrapper = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => <section className={`py-16 ${className}`}>{children}</section>;
+}) => (
+  <section className={`py-16 dark:bg-slate-950 ${className}`}>
+    {children}
+  </section>
+);
 
 export default function Testimonials({
   dict,

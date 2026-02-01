@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
 import { db } from '../db';
-import { language, user } from '../db/schema';
+import { category, language, user } from '../db/schema';
 import { auth } from '../lib/auth';
 
 async function seed() {
@@ -112,6 +112,36 @@ async function seed() {
       if (existing.length === 0) {
         await db.insert(language).values(lang);
         console.log(`✅ Language ${lang.code} (${lang.name}) created`);
+      }
+    }
+
+    // Seed categories for blog articles
+    const categoriesToSeed = [
+      { name: 'SEO', slug: 'seo', description: 'Référencement et visibilité' },
+      { name: 'Refonte', slug: 'refonte', description: 'Refonte de site' },
+      { name: 'Tech', slug: 'tech', description: 'Technologie' },
+      { name: 'Next.js', slug: 'nextjs', description: 'Next.js' },
+      {
+        name: 'Architecture',
+        slug: 'architecture',
+        description: 'Architecture web',
+      },
+      { name: 'TypeScript', slug: 'typescript', description: 'TypeScript' },
+      {
+        name: 'Technique',
+        slug: 'technique',
+        description: 'Développement technique',
+      },
+    ];
+    for (const cat of categoriesToSeed) {
+      const existing = await db
+        .select()
+        .from(category)
+        .where(eq(category.slug, cat.slug))
+        .limit(1);
+      if (existing.length === 0) {
+        await db.insert(category).values(cat);
+        console.log(`✅ Category ${cat.slug} (${cat.name}) created`);
       }
     }
 
