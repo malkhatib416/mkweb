@@ -3,9 +3,8 @@
 import type { Dictionary } from '@/locales/dictionaries';
 import type { Locale } from '@/locales/i18n';
 import { motion } from 'framer-motion';
-import { Calendar, ExternalLink, Github } from 'lucide-react';
+import { Calendar, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 type DbProject = {
   id: string;
@@ -161,7 +160,7 @@ export default function LatestProjects({
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group relative bg-slate-50/50 dark:bg-slate-900/50 rounded-[2rem] overflow-hidden border border-slate-200/60 dark:border-slate-800/60 transition-all duration-500 hover:bg-white dark:hover:bg-slate-900 hover:shadow-[0_0_50px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-none hover:border-myorange-100/20 dark:hover:border-myorange-100/30"
               >
-                <div className="relative h-64 overflow-hidden bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800">
+                <div className="relative h-64 overflow-hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-600">
                   {project.image ? (
                     <Image
                       src={project.image}
@@ -191,7 +190,7 @@ export default function LatestProjects({
                     {project.description}
                   </p>
 
-                  <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center justify-between pt-6 border-t border-slate-200 dark:border-slate-600">
                     <div className="flex gap-2">
                       {project.technologies.slice(0, 3).map((tech, i) => (
                         <span

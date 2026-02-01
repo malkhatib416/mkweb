@@ -52,7 +52,7 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
   const secondaryPosts = useMemo(() => filteredPosts.slice(1), [filteredPosts]);
 
   return (
-    <div className="min-h-screen bg-slate-50/50">
+    <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950 transition-colors">
       {/* Editorial Header - Featured Post */}
       {featuredPost && !searchTerm && !selectedCategory && (
         <section className="relative px-6 pt-32 pb-16">
@@ -75,7 +75,7 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
           <aside className="lg:w-1/4 w-full order-2 lg:order-1">
             <div className="sticky top-28 space-y-12">
               <div className="space-y-6">
-                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
                   {dict.blog.search}
                 </h3>
                 <SearchBar
@@ -86,7 +86,7 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
                   {dict.blog.categories}
                 </h3>
                 <CategoryFilter
@@ -98,7 +98,7 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
               </div>
 
               {/* Newsletter or CTA placeholder */}
-              <div className="p-8 rounded-[2rem] bg-slate-900 text-white space-y-4 shadow-2xl shadow-slate-900/20">
+              <div className="p-8 rounded-[2rem] bg-slate-900 dark:bg-slate-800 text-white space-y-4 shadow-2xl shadow-slate-900/20 dark:shadow-black/30 border border-slate-800 dark:border-slate-700">
                 <h4 className="text-lg font-bold leading-tight">
                   {dict.blog.cta.services}
                 </h4>
@@ -116,17 +116,19 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
           <section className="flex-1 order-1 lg:order-2">
             {!featuredPost && (
               <div className="mb-12">
-                <h1 className="text-4xl font-black text-slate-900 mb-4">
+                <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
                   {dict.blog.title}
                 </h1>
-                <p className="text-slate-500">{dict.blog.description}</p>
+                <p className="text-slate-500 dark:text-slate-400">
+                  {dict.blog.description}
+                </p>
               </div>
             )}
 
             {/* Results Header */}
-            <div className="flex items-end justify-between mb-10 pb-6 border-b border-slate-200">
+            <div className="flex items-end justify-between mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
               <div>
-                <h2 className="text-2xl font-black text-slate-900">
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white">
                   {searchTerm || selectedCategory ? (
                     <>
                       {dict.blog.resultsFor}{' '}
@@ -143,7 +145,7 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
                     dict.blog.articles
                   )}
                 </h2>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mt-2">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-2">
                   {filteredPosts.length} {dict.blog.articles}
                 </p>
               </div>
@@ -168,14 +170,14 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-32 rounded-[3rem] bg-white border border-dashed border-slate-200">
-                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Search className="h-10 w-10 text-slate-300" />
+              <div className="text-center py-32 rounded-[3rem] bg-white dark:bg-slate-900 border border-dashed border-slate-200 dark:border-slate-700">
+                <div className="w-20 h-20 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search className="h-10 w-10 text-slate-300 dark:text-slate-600" />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-2">
+                <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">
                   {dict.blog.noResults}
                 </h3>
-                <p className="text-slate-500 max-w-sm mx-auto">
+                <p className="text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
                   {dict.blog.noResultsDescription}
                 </p>
               </div>

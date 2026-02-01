@@ -1,19 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
-import MKWEbLogo from './Icons/MKWebLogo';
-import Link from 'next/link';
-import { Linkedin, Mail, Phone } from 'lucide-react';
-import { Suspense } from 'react';
-import { EMAIL, PHONE } from '@/utils/consts';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { isValidLocale, type Locale } from '@/locales/i18n';
-import frDict from '@/locales/dictionaries/fr.json';
-import enDict from '@/locales/dictionaries/en.json';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import enDict from '@/locales/dictionaries/en.json';
+import frDict from '@/locales/dictionaries/fr.json';
+import { isValidLocale, type Locale } from '@/locales/i18n';
+import { EMAIL, PHONE } from '@/utils/consts';
+import { Linkedin, Mail, Phone } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { Suspense, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import MKWEbLogo from './Icons/MKWebLogo';
 
 const dictionaries = {
   fr: frDict,
@@ -106,7 +105,7 @@ const Footer = () => {
 
   return (
     <React.Fragment>
-      <footer className="bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
+      <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-600">
         <div className="custom-screen">
           <div className="py-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4">
             <div className="w-full hidden md:block">

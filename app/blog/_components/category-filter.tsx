@@ -21,8 +21,8 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
         onClick={() => onCategoryChange(null)}
         className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
           selectedCategory === null
-            ? 'bg-black text-white'
-            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-950'
+            : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700'
         }`}
       >
         {allText}
@@ -33,8 +33,8 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
           onClick={() => onCategoryChange(category.id)}
           className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
             selectedCategory === category.id
-              ? 'bg-black text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-950'
+              : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700'
           }`}
         >
           {category.name}

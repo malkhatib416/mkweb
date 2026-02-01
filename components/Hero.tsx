@@ -1,10 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowRight, FileText, Zap, Code, Globe } from 'lucide-react';
-import NavLink from './NavLink';
 import type { Dictionary } from '@/locales/dictionaries';
 import type { Locale } from '@/locales/i18n';
+import { motion } from 'framer-motion';
+import { ArrowRight, Code, FileText, Globe, Zap } from 'lucide-react';
+import NavLink from './NavLink';
 
 type Props = {
   dict: Dictionary;
@@ -82,7 +82,7 @@ export default function Hero({ dict, locale }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 pt-12 border-t border-slate-100 dark:border-slate-800"
+            className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 pt-12 border-t border-slate-200 dark:border-slate-600"
           >
             {[
               { icon: <Zap className="w-4 h-4" />, text: dict.hero.feature1 },

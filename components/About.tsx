@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { MapPin, Code, Zap, Target, Globe } from 'lucide-react';
 import type { Dictionary } from '@/locales/dictionaries';
+import { motion } from 'framer-motion';
+import { Code, MapPin, Target, Zap } from 'lucide-react';
+import Image from 'next/image';
 
 type Props = {
   dict: Dictionary;
@@ -11,7 +11,7 @@ type Props = {
 
 const About = ({ dict }: Props) => {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900">
+    <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-950">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Image Section */}
