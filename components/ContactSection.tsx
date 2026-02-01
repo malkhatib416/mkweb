@@ -138,20 +138,20 @@ export default function ContactSection({
   };
 
   return (
-    <section id={id} className="bg-white">
+    <section id={id} className="bg-white dark:bg-slate-950">
       <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-12 space-y-4 text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
             {dict.contact.title}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-gray-400">
             {dict.contact.subtitle}
           </p>
         </div>
 
         <Form {...form}>
           <form
-            className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+            className="rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-8 shadow-sm"
             onSubmit={form.handleSubmit(onSubmit)}
             noValidate
           >

@@ -1,7 +1,8 @@
 import { getLocaleFromHeaders } from '@/lib/get-locale-from-headers';
-import { getAllBlogPosts } from '@/lib/mdx';
-import { APP_URL } from '@/utils/consts';
+import { blogServiceServer } from '@/lib/services/blog.service.server';
 import type { Locale } from '@/locales/i18n';
+import { isValidLocale } from '@/locales/i18n';
+import { APP_URL } from '@/utils/consts';
 
 function escapeXml(unsafe: string): string {
   return unsafe
@@ -14,21 +15,27 @@ function escapeXml(unsafe: string): string {
 
 export async function GET() {
   const locale = (await getLocaleFromHeaders()) as Locale;
-  const posts = await getAllBlogPosts(locale);
-  const base = `${APP_URL}/${locale}`;
-  const title = locale === 'fr' ? 'MK-Web Blog' : 'MK-Web Blog';
+  const safeLocale = isValidLocale(locale) ? locale : 'fr';
+  const { data: posts } = await blogServiceServer.getAll({
+    status: 'published',
+    locale: safeLocale,
+    limit: 1000,
+    page: 1,
+  });
+  const base = `${APP_URL}/${safeLocale}`;
+  const title = safeLocale === 'fr' ? 'MK-Web Blog' : 'MK-Web Blog';
   const description =
-    locale === 'fr' ? 'Articles du blog MK-Web' : 'MK-Web blog articles';
+    safeLocale === 'fr' ? 'Articles du blog MK-Web' : 'MK-Web blog articles';
 
   const items = posts
     .map(
       (post) => `
     <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${base}/blog/${post.id}</link>
+      <link>${base}/blog/${post.slug}</link>
       <description>${escapeXml(post.description ?? '')}</description>
-      <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
-      <guid isPermaLink="true">${base}/blog/${post.id}</guid>
+      <pubDate>${new Date(post.createdAt).toUTCString()}</pubDate>
+      <guid isPermaLink="true">${base}/blog/${post.slug}</guid>
     </item>`,
     )
     .join('');
@@ -39,9 +46,9 @@ export async function GET() {
     <title>${escapeXml(title)}</title>
     <link>${base}/blog</link>
     <description>${escapeXml(description)}</description>
-    <language>${locale}</language>
+    <language>${safeLocale}</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="${base}/blog/feed" rel="self" type="application/rss+xml"/>
+    <atom:link href="${base}/blog/feed" rel="self" type="application/rss+xml" />
     ${items}
   </channel>
 </rss>`;

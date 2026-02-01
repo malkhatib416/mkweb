@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const status = searchParams.get('status') as Status | null;
     const locale = searchParams.get('locale') as Locale | null;
+    const categoryId = searchParams.get('categoryId') || undefined;
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
 
@@ -22,6 +23,7 @@ export async function GET(request: NextRequest) {
       limit,
       status: status || undefined,
       locale: locale || undefined,
+      categoryId,
     });
 
     return NextResponse.json(result);

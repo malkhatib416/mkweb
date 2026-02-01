@@ -68,7 +68,7 @@ export default function LanguagesPage() {
         cell: (row) => (
           <Link
             href={`/admin/languages/${row.id}`}
-            className="font-medium text-foreground hover:text-myorange-100 hover:underline"
+            className="font-medium text-foreground hover:text-foreground hover:underline"
           >
             {row.code}
           </Link>
@@ -133,7 +133,7 @@ export default function LanguagesPage() {
           <Link href="/admin/languages/new">
             <Button
               size="sm"
-              className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+              className="gap-1.5 bg-myorange-100 hover:bg-myorange-100/90"
             >
               <Plus className="h-4 w-4" />
               {t.newLanguage}

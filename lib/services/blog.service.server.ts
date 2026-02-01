@@ -171,7 +171,7 @@ class BlogServiceServer {
     const validated = blogUpdateSchema.parse(data);
 
     // Check if blog exists
-    const existing = await this.getById(id)
+    const existing = await this.getById(id);
 
     // Check if slug is being changed and if it already exists for the locale
     const targetLocale: Locale = validated.locale ?? existing.data.locale;

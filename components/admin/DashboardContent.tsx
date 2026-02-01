@@ -1,23 +1,23 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import {
-  FileText,
-  FolderKanban,
-  Plus,
-  ExternalLink,
-  Clock,
-  Eye,
-  ArrowRight,
-  MessageSquare,
-  Users,
-} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useAdminDictionary } from './AdminDictionaryProvider';
-import { DataGrid } from './DataGrid';
 import type { DataGridConfig } from '@/types/data-grid';
 import { formatRelative } from '@/utils/format-date';
+import {
+  ArrowRight,
+  Clock,
+  ExternalLink,
+  Eye,
+  FileText,
+  FolderKanban,
+  MessageSquare,
+  Plus,
+  Users,
+} from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAdminDictionary } from './AdminDictionaryProvider';
+import { DataGrid } from './DataGrid';
 
 type RecentActivityItem = {
   id: string;
@@ -87,7 +87,7 @@ export default function DashboardContent({
         cell: (row) => (
           <Link
             href={row.href}
-            className="font-medium text-foreground hover:text-myorange-100 hover:underline"
+            className="font-medium text-foreground hover:text-foreground/70 hover:underline"
           >
             {row.title}
           </Link>
@@ -98,12 +98,15 @@ export default function DashboardContent({
         label: 'Status',
         cell: (row) => (
           <span
-            className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
+            className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-tight border ${
               row.status === 'published'
-                ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                : 'bg-muted text-muted-foreground'
+                ? 'bg-emerald-50/50 text-emerald-700 border-emerald-200/50 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20'
+                : 'bg-muted/50 text-muted-foreground border-border/50'
             }`}
           >
+            <span
+              className={`h-1 w-1 rounded-full ${row.status === 'published' ? 'bg-emerald-500' : 'bg-muted-foreground/40'}`}
+            />
             {row.type === 'blog'
               ? dict.admin.blogs.status[row.status as 'draft' | 'published']
               : dict.admin.projects.status[row.status as 'draft' | 'published']}
@@ -156,23 +159,30 @@ export default function DashboardContent({
       {/* Welcome + actions */}
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-sm font-medium text-muted-foreground">{t.title}</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
+            {t.title}
+          </p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
             {t.welcome.replace('{name}', displayName)}
           </h1>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-3">
           <Button
             asChild
             size="sm"
-            className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+            className="h-9 gap-2 bg-myorange-100 text-white hover:bg-myorange-200"
           >
             <Link href="/admin/blogs/new">
               <Plus className="h-4 w-4" />
               {dict.admin.blogs.newBlog}
             </Link>
           </Button>
-          <Button asChild size="sm" variant="outline" className="gap-1.5">
+          <Button
+            asChild
+            size="sm"
+            variant="outline"
+            className="h-9 gap-2 border-border/50 hover:bg-muted/50"
+          >
             <Link href="/admin/projects/new">
               <Plus className="h-4 w-4" />
               {dict.admin.projects.newProject}
@@ -182,7 +192,7 @@ export default function DashboardContent({
             asChild
             size="sm"
             variant="ghost"
-            className="gap-1.5 text-muted-foreground"
+            className="h-9 gap-2 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
           >
             <Link href="/" target="_blank" rel="noopener noreferrer">
               <ExternalLink className="h-4 w-4" />
@@ -193,97 +203,111 @@ export default function DashboardContent({
       </div>
 
       {/* Stats: single row, minimal */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         <Link
           href="/admin/blogs"
-          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+          className="group relative overflow-hidden rounded-xl border border-border bg-background p-5 transition-all hover:border-border/80 hover:bg-muted/30"
         >
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted">
-              <FileText className="h-4 w-4 text-muted-foreground" />
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground shadow-sm transition-colors group-hover:text-foreground">
+                <FileText className="h-5 w-5" />
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-2xl font-semibold tabular-nums text-foreground">
+            <div>
+              <p className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
                 {blogCount}
               </p>
-              <p className="truncate text-xs text-muted-foreground">
+              <p className="mt-1 text-xs font-medium text-muted-foreground/80">
                 {stats.totalBlogs}
               </p>
             </div>
           </div>
         </Link>
+
         <Link
           href="/admin/projects"
-          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+          className="group relative overflow-hidden rounded-xl border border-border bg-background p-5 transition-all hover:border-border/80 hover:bg-muted/30"
         >
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted">
-              <FolderKanban className="h-4 w-4 text-muted-foreground" />
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground shadow-sm transition-colors group-hover:text-foreground">
+                <FolderKanban className="h-5 w-5" />
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-2xl font-semibold tabular-nums text-foreground">
+            <div>
+              <p className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
                 {projectCount}
               </p>
-              <p className="truncate text-xs text-muted-foreground">
+              <p className="mt-1 text-xs font-medium text-muted-foreground/80">
                 {stats.totalProjects}
               </p>
             </div>
           </div>
         </Link>
+
         <Link
           href="/admin/blogs?status=published"
-          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+          className="group relative overflow-hidden rounded-xl border border-border bg-background p-5 transition-all hover:border-border/80 hover:bg-muted/30"
         >
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-emerald-500/10">
-              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-                {totalPublished}
-              </span>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-emerald-600/80 shadow-sm transition-colors group-hover:text-emerald-600">
+                <span className="text-xs font-bold uppercase tracking-tighter">
+                  Pub
+                </span>
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-2xl font-semibold tabular-nums text-foreground">
+            <div>
+              <p className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
                 {totalPublished}
               </p>
-              <p className="truncate text-xs text-muted-foreground">
+              <p className="mt-1 text-xs font-medium text-muted-foreground/80">
                 {stats.publishedShort}
               </p>
             </div>
           </div>
         </Link>
+
         <Link
           href="/admin/blogs?status=draft"
-          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+          className="group relative overflow-hidden rounded-xl border border-border bg-background p-5 transition-all hover:border-border/80 hover:bg-muted/30"
         >
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-amber-500/10">
-              <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">
-                {totalDraft}
-              </span>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-amber-600/80 shadow-sm transition-colors group-hover:text-amber-600">
+                <span className="text-xs font-bold uppercase tracking-tighter">
+                  Draft
+                </span>
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-2xl font-semibold tabular-nums text-foreground">
+            <div>
+              <p className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
                 {totalDraft}
               </p>
-              <p className="truncate text-xs text-muted-foreground">
+              <p className="mt-1 text-xs font-medium text-muted-foreground/80">
                 {stats.draftsShort}
               </p>
             </div>
           </div>
         </Link>
+
         <Link
           href="/admin/reviews?status=pending"
-          className="rounded-lg border border-border bg-card p-4 transition-colors hover:bg-muted/50"
+          className="group relative overflow-hidden rounded-xl border border-border bg-background p-5 transition-all hover:border-border/80 hover:bg-muted/30"
         >
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-sky-500/10">
-              <MessageSquare className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-sky-600/80 shadow-sm transition-colors group-hover:text-sky-600">
+                <MessageSquare className="h-5 w-5" />
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-2xl font-semibold tabular-nums text-foreground">
+            <div>
+              <p className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
                 {pendingReviewCount}
               </p>
-              <p className="truncate text-xs text-muted-foreground">
-                {dict.admin.sidebar.reviews}
+              <p className="mt-1 text-xs font-medium text-muted-foreground/80">
+                {stats.pendingReviewsShort}
               </p>
             </div>
           </div>
@@ -291,25 +315,59 @@ export default function DashboardContent({
       </div>
 
       {(recentClients.length > 0 || pendingReviewCount > 0) && (
-        <section className="grid gap-4 sm:grid-cols-2">
+        <section className="grid gap-6 sm:grid-cols-2">
           {recentClients.length > 0 && (
-            <div className="rounded-lg border border-border bg-card p-4">
-              <h2 className="mb-3 text-sm font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+            <div className="rounded-xl border border-border bg-background p-6 shadow-sm">
+              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/80">
                 <Users className="h-4 w-4" />
-                {dict.admin.sidebar.clients} (récent)
+                {dict.admin.sidebar.clients}
               </h2>
-              <ul className="space-y-2">
+              <p className="mb-4 text-xs text-muted-foreground">
+                {t.recentClientsSubtitle}
+              </p>
+              <ul className="divide-y divide-border/50">
                 {recentClients.map((c) => (
                   <li key={c.id}>
                     <Link
                       href={`/admin/clients/${c.id}`}
-                      className="text-sm font-medium text-foreground hover:text-myorange-100 hover:underline"
+                      className="block py-3 text-sm font-medium text-foreground transition-colors hover:text-foreground/70"
                     >
                       {c.name}
                     </Link>
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+          {pendingReviewCount > 0 && (
+            <div className="rounded-xl border border-border bg-background p-6 shadow-sm">
+              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/80">
+                <MessageSquare className="h-4 w-4" />
+                {dict.admin.sidebar.reviews}
+              </h2>
+              <p className="mb-4 text-xs text-muted-foreground">
+                {t.pendingReviewsSubtitle}
+              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-3xl font-bold tabular-nums tracking-tight text-foreground">
+                  {pendingReviewCount}{' '}
+                  <span className="text-lg font-medium text-muted-foreground">
+                    {pendingReviewCount === 1
+                      ? t.pendingReviewSingular
+                      : t.pendingReviewPlural}
+                  </span>
+                </p>
+                <Button
+                  asChild
+                  size="sm"
+                  variant="outline"
+                  className="rounded-full px-4"
+                >
+                  <Link href="/admin/reviews?status=pending">
+                    {t.viewPendingReviews}
+                  </Link>
+                </Button>
+              </div>
             </div>
           )}
         </section>

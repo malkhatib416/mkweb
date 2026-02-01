@@ -11,7 +11,7 @@ type Props = {
 
 const About = ({ dict }: Props) => {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Image Section */}
@@ -23,7 +23,7 @@ const About = ({ dict }: Props) => {
             className="lg:w-2/5"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-myorange-100/20 rounded-full blur-3xl"></div>
+              <div className="absolute inset-0 bg-myorange-100/20 rounded-full blur-3xl" />
               <Image
                 src="/geek.svg"
                 alt={dict.about.imageAlt}
@@ -44,86 +44,100 @@ const About = ({ dict }: Props) => {
             className="lg:w-3/5"
           >
             {/* Intro */}
-            <div className="mb-8">
-              <p className="text-2xl md:text-3xl font-bold text-gray-900 leading-relaxed">
+            <div className="mb-12">
+              <p className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-8">
                 {dict.about.intro}
               </p>
-            </div>
 
-            {/* Location & Remote Badges */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="flex items-center gap-2 bg-myorange-100/10 text-myorange-100 px-4 py-2 rounded-full">
-                <MapPin className="w-4 h-4" />
-                <span className="font-medium">
-                  {dict.about.location} {dict.about.chartres}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 bg-green-500/10 text-green-600 px-4 py-2 rounded-full border border-green-200">
-                <Globe className="w-4 h-4" />
-                <span className="font-medium">{dict.about.remote}</span>
+              <div className="flex flex-wrap gap-3">
+                <div className="flex items-center gap-2.5 bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <MapPin className="w-3.5 h-3.5 text-myorange-100" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest leading-none">
+                    {dict.about.location} {dict.about.chartres}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5 bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest leading-none">
+                    {dict.about.remote}
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* Remote Work Description */}
-            <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-100">
-              <p className="text-gray-700 text-sm font-medium">
-                <span className="text-green-600">🌍</span>{' '}
+            <div className="mb-10 p-6 bg-slate-50 dark:bg-slate-900/50 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-inner">
+              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium leading-relaxed">
+                <span className="text-emerald-500 font-bold mr-2 text-lg">
+                  🌍
+                </span>{' '}
                 {dict.about.remoteDescription}
               </p>
             </div>
 
-            {/* Services List */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg mb-6 border border-gray-100">
-              <div className="flex items-start gap-3 mb-4">
-                <Code className="w-6 h-6 text-myorange-100 mt-1 flex-shrink-0" />
-                <p className="text-gray-700 leading-relaxed">
-                  {dict.about.services}{' '}
-                  <span className="font-bold text-myorange-100">
-                    {dict.about.creation}
-                  </span>
-                  , l'
-                  <span className="font-bold text-myorange-100">
-                    {dict.about.optimization}
-                  </span>{' '}
-                  {dict.about.to} la{' '}
-                  <span className="font-bold text-myorange-100">
-                    {dict.about.maintenance}
-                  </span>{' '}
-                  {dict.about.description}
-                </p>
-              </div>
-            </div>
-
-            {/* Goal */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg mb-6 border border-gray-100">
-              <div className="flex items-start gap-3">
-                <Target className="w-6 h-6 text-myorange-100 mt-1 flex-shrink-0" />
-                <p className="text-gray-700 leading-relaxed">
-                  {dict.about.goal}{' '}
-                  <span className="font-bold text-myorange-100">
-                    {dict.about.uniqueSolutions}
-                  </span>
-                  {dict.about.adapted}
-                </p>
-              </div>
-            </div>
-
-            {/* Expertise */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-              <div className="flex items-start gap-3">
-                <Zap className="w-6 h-6 text-myorange-100 mt-1 flex-shrink-0" />
-                <p className="text-gray-700 leading-relaxed">
-                  {dict.about.expertise}{' '}
-                  <span className="font-bold text-myorange-100">
-                    {dict.about.innovative}
-                  </span>{' '}
-                  {dict.about.to}{' '}
-                  <span className="font-bold text-myorange-100">
-                    {dict.about.fluidUX}
-                  </span>
-                  {dict.about.commitment}
-                </p>
-              </div>
+            <div className="space-y-6">
+              {[
+                {
+                  icon: <Code className="w-6 h-6 text-myorange-100 mt-1" />,
+                  content: (
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                      {dict.about.services}{' '}
+                      <span className="font-black text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors uppercase tracking-tighter">
+                        {dict.about.creation}
+                      </span>
+                      {', '}
+                      <span className="font-black text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors uppercase tracking-tighter">
+                        {dict.about.optimization}
+                      </span>{' '}
+                      {dict.about.to} la{' '}
+                      <span className="font-black text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors uppercase tracking-tighter">
+                        {dict.about.maintenance}
+                      </span>{' '}
+                      {dict.about.description}
+                    </p>
+                  ),
+                },
+                {
+                  icon: <Target className="w-6 h-6 text-myorange-100 mt-1" />,
+                  content: (
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                      {dict.about.goal}{' '}
+                      <span className="font-black text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors uppercase tracking-tighter">
+                        {dict.about.uniqueSolutions}
+                      </span>
+                      {dict.about.adapted}
+                    </p>
+                  ),
+                },
+                {
+                  icon: <Zap className="w-6 h-6 text-myorange-100 mt-1" />,
+                  content: (
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                      {dict.about.expertise}{' '}
+                      <span className="font-black text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors uppercase tracking-tighter">
+                        {dict.about.innovative}
+                      </span>{' '}
+                      {dict.about.to}{' '}
+                      <span className="font-black text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors uppercase tracking-tighter">
+                        {dict.about.fluidUX}
+                      </span>
+                      {dict.about.commitment}
+                    </p>
+                  ),
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 shadow-sm hover:shadow-xl dark:hover:shadow-none transition-all duration-500 border border-slate-100 dark:border-slate-800 group"
+                >
+                  <div className="flex items-start gap-6">
+                    <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-2xl transition-colors group-hover:bg-myorange-100/10">
+                      {item.icon}
+                    </div>
+                    <div>{item.content}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>

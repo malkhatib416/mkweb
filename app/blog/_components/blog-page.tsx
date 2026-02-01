@@ -1,21 +1,24 @@
 'use client';
 
+import type { Dictionary } from '@/locales/dictionaries';
+import type { Locale } from '@/locales/i18n';
+import type { BlogPost } from '@/types';
 import { Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import BlogCard from './blog-card';
 import CategoryFilter from './category-filter';
 import SearchBar from './search-bar';
-import type { Dictionary } from '@/locales/dictionaries';
-import type { Locale } from '@/locales/i18n';
-import type { BlogPost } from '@/types';
+
+export type BlogCategory = { id: string; name: string; color?: string };
 
 type Props = {
   dict: Dictionary;
   locale: Locale;
   posts: BlogPost[];
+  categories: BlogCategory[];
 };
 
-export default function BlogPage({ dict, locale, posts }: Props) {
+export default function BlogPage({ dict, locale, posts, categories }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -45,94 +48,134 @@ export default function BlogPage({ dict, locale, posts }: Props) {
     );
   }, [searchTerm, selectedCategory, posts]);
 
+  const featuredPost = useMemo(() => filteredPosts[0], [filteredPosts]);
+  const secondaryPosts = useMemo(() => filteredPosts.slice(1), [filteredPosts]);
+
   return (
-    <div className="min-h-[50vh] bg-white">
-      {/* Minimal Header
-      <header className="border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          <div className="flex items-center justify-between mb-8">
-            <a
-              href="https://mk-web.fr"
-              className="flex items-center space-x-2 text-gray-500 hover:text-gray-900 transition-colors text-sm"
-            >
-              ← Portfolio
-            </a>
+    <div className="min-h-screen bg-slate-50/50">
+      {/* Editorial Header - Featured Post */}
+      {featuredPost && !searchTerm && !selectedCategory && (
+        <section className="relative px-6 pt-32 pb-16">
+          <div className="max-w-6xl mx-auto">
+            <BlogCard
+              post={featuredPost}
+              locale={locale}
+              dict={dict}
+              categories={categories}
+              variant="featured"
+            />
           </div>
+        </section>
+      )}
 
-          <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-                <Code2 className="h-6 w-6 text-white" />
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-6 py-20">
+        <div className="flex flex-col lg:flex-row gap-16">
+          {/* Sidebar: Navigation & Filters */}
+          <aside className="lg:w-1/4 w-full order-2 lg:order-1">
+            <div className="sticky top-28 space-y-12">
+              <div className="space-y-6">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                  {dict.blog.search}
+                </h3>
+                <SearchBar
+                  searchTerm={searchTerm}
+                  onSearchChange={setSearchTerm}
+                  placeholder={dict.blog.search}
+                />
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">
-                  MK Dev Blog
-                </h1>
-                <p className="text-gray-600">
-                  Technical insights and development thoughts
+
+              <div className="space-y-6">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                  {dict.blog.categories}
+                </h3>
+                <CategoryFilter
+                  categories={categories}
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={setSelectedCategory}
+                  allText={dict.blog.allCategories}
+                />
+              </div>
+
+              {/* Newsletter or CTA placeholder */}
+              <div className="p-8 rounded-[2rem] bg-slate-900 text-white space-y-4 shadow-2xl shadow-slate-900/20">
+                <h4 className="text-lg font-bold leading-tight">
+                  {dict.blog.cta.services}
+                </h4>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  {dict.blog.cta.description}
                 </p>
+                <button className="w-full py-3 px-4 rounded-xl bg-myorange-100 text-white text-xs font-black uppercase tracking-widest hover:bg-myorange-200 transition-colors">
+                  {dict.common.contactUs}
+                </button>
               </div>
-            </div>
-          </div>
-        </div>
-      </header> */}
-
-      {/* Main Content - Sidebar Layout */}
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Sidebar: Filters */}
-          <aside className="lg:w-1/4 w-full mb-8 sm:mb-4 mt-12 lg:mb-0">
-            <div className="sticky top-24 space-y-8">
-              <SearchBar
-                searchTerm={searchTerm}
-                onSearchChange={setSearchTerm}
-                placeholder={dict.blog.search}
-              />
-              <CategoryFilter
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-                allText={dict.blog.allCategories}
-              />
             </div>
           </aside>
 
-          {/* Blog Cards */}
-          <section className="flex-1 lg:mt-12 sm:mt-8">
-            {/* Results Count */}
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                {filteredPosts.length === 0
-                  ? dict.blog.noResults
-                  : `${filteredPosts.length} ${filteredPosts.length === 1 ? dict.blog.article : dict.blog.articles}`}
-              </h2>
-              {searchTerm && (
-                <p className="text-gray-600">
-                  {dict.blog.resultsFor} "{searchTerm}"
+          {/* Blog Feed */}
+          <section className="flex-1 order-1 lg:order-2">
+            {!featuredPost && (
+              <div className="mb-12">
+                <h1 className="text-4xl font-black text-slate-900 mb-4">
+                  {dict.blog.title}
+                </h1>
+                <p className="text-slate-500">{dict.blog.description}</p>
+              </div>
+            )}
+
+            {/* Results Header */}
+            <div className="flex items-end justify-between mb-10 pb-6 border-b border-slate-200">
+              <div>
+                <h2 className="text-2xl font-black text-slate-900">
+                  {searchTerm || selectedCategory ? (
+                    <>
+                      {dict.blog.resultsFor}{' '}
+                      <span className="text-myorange-100 italic">
+                        "
+                        {searchTerm ||
+                          (selectedCategory &&
+                            categories.find((c) => c.id === selectedCategory)
+                              ?.name)}
+                        "
+                      </span>
+                    </>
+                  ) : (
+                    dict.blog.articles
+                  )}
+                </h2>
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mt-2">
+                  {filteredPosts.length} {dict.blog.articles}
                 </p>
-              )}
+              </div>
             </div>
 
-            {/* Blog Posts - Vertical List */}
+            {/* Posts Grid */}
             {filteredPosts.length > 0 ? (
-              <div className="grid grid-cols-1 gap-8">
-                {filteredPosts.map((post) => (
-                  <BlogCard
-                    key={post.id}
-                    post={post}
-                    locale={locale}
-                    dict={dict}
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                {(searchTerm || selectedCategory
+                  ? filteredPosts
+                  : secondaryPosts
+                ).map((post) => (
+                  <div key={post.id} className="h-full">
+                    <BlogCard
+                      post={post}
+                      locale={locale}
+                      dict={dict}
+                      categories={categories}
+                      variant="vertical"
+                    />
+                  </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-20">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="h-8 w-8 text-gray-400" />
+              <div className="text-center py-32 rounded-[3rem] bg-white border border-dashed border-slate-200">
+                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search className="h-10 w-10 text-slate-300" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-2xl font-black text-slate-900 mb-2">
                   {dict.blog.noResults}
                 </h3>
-                <p className="text-gray-600 max-w-sm mx-auto">
+                <p className="text-slate-500 max-w-sm mx-auto">
                   {dict.blog.noResultsDescription}
                 </p>
               </div>

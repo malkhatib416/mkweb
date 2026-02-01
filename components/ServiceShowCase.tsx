@@ -81,63 +81,90 @@ export default function ServiceShowCase({ dict }: Props) {
   ];
 
   return (
-    <section className=" bg-white" id="services">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      className="py-32 bg-white dark:bg-slate-950 relative overflow-hidden"
+      id="services"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-24"
         >
-          <div className="inline-flex items-center gap-2 bg-myorange-100/10 text-myorange-100 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Cog className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest mb-8 shadow-sm">
+            <Cog className="w-3.5 h-3.5 text-myorange-100" />
             {dict.services.badge}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-slate-900 dark:text-white tracking-tight">
             {dict.services.title}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
             {dict.services.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
-            >
-              <Card className="p-8 flex flex-col items-start bg-white shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 rounded-2xl group-hover:scale-105">
-                <div className="mb-6 p-3 bg-myorange-100/10 rounded-xl group-hover:bg-myorange-100/20 transition-colors">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-myorange-100 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                  {service.description}
-                </p>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[minmax(300px,auto)]">
+          {services.map((service, index) => {
+            // Bento sizing logic
+            const isLarge = index === 0;
+            const isMedium = index === 1 || index === 2;
 
-                {/* Features list */}
-                <ul className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <li
-                      key={featureIndex}
-                      className="flex items-center gap-2 text-sm text-gray-600"
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`
+                  ${isLarge ? 'md:col-span-4 md:row-span-2' : ''}
+                  ${isMedium ? 'md:col-span-2' : ''}
+                  ${!isLarge && !isMedium ? 'md:col-span-2' : ''}
+                  group
+                `}
+              >
+                <Card className="h-full p-8 md:p-10 flex flex-col items-start bg-slate-50/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-900 transition-all duration-500 border border-slate-200/60 dark:border-slate-800/60 rounded-[2rem] hover:shadow-[0_0_50px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-none hover:border-myorange-100/20 dark:hover:border-myorange-100/30 relative overflow-hidden">
+                  {/* Subtle inner glow on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-myorange-100/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative z-10 w-full flex flex-col h-full">
+                    <div className="mb-8 p-4 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl w-fit shadow-sm group-hover:scale-110 transition-transform duration-500">
+                      {service.icon}
+                    </div>
+
+                    <h3
+                      className={`font-bold text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors tracking-tight ${isLarge ? 'text-3xl mb-6' : 'text-xl mb-4'}`}
                     >
-                      <div className="w-1.5 h-1.5 bg-myorange-100 rounded-full"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </motion.div>
-          ))}
+                      {service.title}
+                    </h3>
+
+                    <p
+                      className={`text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-8 ${isLarge ? 'text-lg' : 'text-sm'}`}
+                    >
+                      {service.description}
+                    </p>
+
+                    <div className="mt-auto pt-6 border-t border-slate-100/50 dark:border-slate-800/50 w-full">
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {service.features.map((feature, featureIndex) => (
+                          <li
+                            key={featureIndex}
+                            className="flex items-center gap-2.5 text-[10px] font-mono uppercase tracking-widest text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors"
+                          >
+                            <div className="w-1 h-1 bg-myorange-100 rounded-full" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

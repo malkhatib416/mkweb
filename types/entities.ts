@@ -78,7 +78,7 @@ export type PaginationResponse = {
   limit?: number;
   total?: number;
   pages?: number;
-}
+};
 
 // List params
 export interface CategoryListParams {

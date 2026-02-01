@@ -26,7 +26,7 @@ const SubFooter = ({ locale }: { locale: Locale }) => {
 
   return (
     <div className="custom-screen">
-      <p className="my-6 text-center text-xs">
+      <p className="my-6 text-center text-xs dark:text-slate-500">
         © {date.getFullYear()} MKWeb. {dict.footer.rights}.
       </p>
     </div>
@@ -67,7 +67,7 @@ const FooterNewsletter = ({
 
   return (
     <div className="w-full md:text-left">
-      <p className="text-gray-600 font-bold text-lg mb-4 md:mb-0">
+      <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
         {t.newsletterTitle}
       </p>
       <form
@@ -106,7 +106,7 @@ const Footer = () => {
 
   return (
     <React.Fragment>
-      <footer className="bg-slate-50">
+      <footer className="bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
         <div className="custom-screen">
           <div className="py-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4">
             <div className="w-full hidden md:block">
@@ -132,14 +132,14 @@ const Footer = () => {
               </Suspense>
             </div>
             <div className="w-full  md:text-left">
-              <p className="text-gray-600 font-bold text-lg mb-4 md:mb-0">
+              <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
                 {t.links}
               </p>
               <ul className="text-sm mt-4 flex flex-col gap-4">
                 <li>
                   <Link
                     href={`/${locale}`}
-                    className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
+                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
                     {t.home}
                   </Link>
@@ -147,7 +147,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`/${locale}/mentions-legales`}
-                    className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
+                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
                     {t.legalNotice}
                   </Link>
@@ -155,7 +155,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`/${locale}#contact`}
-                    className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out"
+                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
                     {t.contact}
                   </Link>
@@ -163,14 +163,14 @@ const Footer = () => {
               </ul>
             </div>
             <div className="w-full  md:text-left">
-              <p className="text-gray-600 font-bold text-lg mb-4 md:mb-0">
+              <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
                 {t.contact}
               </p>
               <ul className="text-sm mt-4 flex flex-col gap-4">
                 <li>
                   <Link
                     href={`tel:${PHONE}`}
-                    className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
+                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                   >
                     <Phone size={16} />
                     {PHONE}
@@ -179,7 +179,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`mailto:${EMAIL}`}
-                    className="text-gray-500 hover:text-gray-400 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
+                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                   >
                     <Mail size={16} />
                     {EMAIL}

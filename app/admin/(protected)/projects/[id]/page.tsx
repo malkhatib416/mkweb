@@ -55,7 +55,7 @@ export default function ViewProjectPage() {
         </Link>
         <Button
           size="sm"
-          className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+          className="gap-1.5 bg-myorange-100 hover:bg-myorange-100/90"
           asChild
         >
           <Link href={`/admin/projects/${id}/edit`}>

@@ -109,7 +109,12 @@ export default async function RootLayout({ children }: Props) {
       <body className={inter.className}>
         <ReCaptchaProvider>
           <Transition>
-            <ThemeProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
               <PublicChrome dict={dict}>{children}</PublicChrome>
             </ThemeProvider>
           </Transition>

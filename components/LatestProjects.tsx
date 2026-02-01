@@ -120,151 +120,97 @@ export default function LatestProjects({
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      className="py-32 bg-white dark:bg-slate-950 relative"
+      id="projects"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-24"
         >
-          <div className="inline-flex items-center gap-2 bg-myorange-100/10 text-myorange-100 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <Calendar className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest mb-8 shadow-sm">
+            <Calendar className="w-3.5 h-3.5 text-myorange-100" />
             {dict.projects.badge}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {dict.projects.title}
+          <h2 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            {dict.projects.title}{' '}
             <span className="text-myorange-100">
-              {' '}
               {dict.projects.titleHighlight}
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
             {dict.projects.subtitle}
           </p>
         </motion.div>
 
-        {/* Featured Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        {/* Bento-style Unified Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects
-            .filter((project) => project.featured)
+            .filter((p) => p.featured)
             .map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative bg-slate-50/50 dark:bg-slate-900/50 rounded-[2rem] overflow-hidden border border-slate-200/60 dark:border-slate-800/60 transition-all duration-500 hover:bg-white dark:hover:bg-slate-900 hover:shadow-[0_0_50px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-none hover:border-myorange-100/20 dark:hover:border-myorange-100/30"
               >
-                {/* Project Image */}
-                <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
-                  <div className="absolute top-4 left-4 z-20">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        project.status === 'online'
-                          ? 'bg-green-100 text-green-700'
-                          : project.status === 'development'
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'bg-gray-100 text-gray-700'
-                      }`}
-                    >
-                      {getStatusText(project.status)}
-                    </span>
-                  </div>
-                  <div className="absolute top-4 right-4 z-20">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-700">
+                <div className="relative h-64 overflow-hidden bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+                      <span className="text-4xl font-bold text-slate-200 dark:text-slate-800 tracking-tighter">
+                        MK
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute top-6 left-6 z-20">
+                    <span className="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-full text-[9px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 shadow-sm">
                       {project.category}
                     </span>
                   </div>
-                  {/* Placeholder for project image */}
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-myorange-100/20 to-blue-500/20">
-                    {project.image ? (
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover w-full h-full"
-                      />
-                    ) : (
-                      <div className="text-6xl font-bold text-white/30">
-                        {project.title.charAt(0)}
-                      </div>
-                    )}
-                  </div>
                 </div>
 
-                {/* Project Content */}
                 <div className="p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-myorange-100 transition-colors">
-                      {'slug' in project && project.slug ? (
-                        <Link href={`/${locale}/projects/${project.slug}`}>
-                          {project.title}
-                        </Link>
-                      ) : (
-                        project.title
-                      )}
-                    </h3>
-                    {/*<span className="text-sm text-gray-500 font-medium">
-                      {project.date}
-                    </span>*/}
-                  </div>
-
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    {project.longDescription}
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-myorange-100 transition-colors tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-500 dark:text-slate-400 mb-8 line-clamp-2 text-sm font-medium leading-relaxed">
+                    {project.description}
                   </p>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-myorange-100/10 hover:text-myorange-100 transition-colors"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded-lg text-sm">
-                        +{project.technologies.length - 4}
-                      </span>
-                    )}
-                  </div>
+                  <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
+                    <div className="flex gap-2">
+                      {project.technologies.slice(0, 3).map((tech, i) => (
+                        <span
+                          key={i}
+                          className="text-[9px] font-mono uppercase tracking-widest text-slate-400 dark:text-slate-500"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-4">
-                    {'slug' in project && project.slug ? (
-                      <Link
-                        href={`/${locale}/projects/${project.slug}`}
-                        className="flex items-center gap-2 px-6 py-3 bg-myorange-100 text-white rounded-xl font-medium hover:bg-myorange-100/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        {dict.projects.viewProject}
-                      </Link>
-                    ) : project.live ? (
+                    {project.live && (
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-6 py-3 bg-myorange-100 text-white rounded-xl font-medium hover:bg-myorange-100/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                        className="w-10 h-10 flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-xl hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-950 hover:border-slate-900 dark:hover:border-white transition-all duration-300"
                       >
                         <ExternalLink className="w-4 h-4" />
-                        {dict.projects.viewProject}
-                      </a>
-                    ) : null}
-                    {project?.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
-                      >
-                        <Github className="w-4 h-4" />
-                        {dict.projects.sourceCode}
                       </a>
                     )}
                   </div>
@@ -273,88 +219,42 @@ export default function LatestProjects({
             ))}
         </div>
 
-        {/* Other Projects */}
-
-        {!!projects.filter((project) => !project.featured).length && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+        {/* Other Projects Tiling */}
+        {!!projects.filter((p) => !p.featured).length && (
+          <div className="mt-24">
+            <h3 className="text-sm font-mono uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 mb-12 text-center">
               {dict.projects.otherProjects}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {projects
-                .filter((project) => !project.featured)
+                .filter((p) => !p.featured)
                 .map((project) => (
                   <div
                     key={project.id}
-                    className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 group"
+                    className="bg-slate-50/30 dark:bg-slate-900/30 rounded-2xl p-6 border border-slate-100 dark:border-slate-800 hover:border-myorange-100/20 dark:hover:border-myorange-100/30 transition-all duration-300 group"
                   >
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="text-lg font-semibold text-gray-900 group-hover:text-myorange-100 transition-colors">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-myorange-100 transition-colors">
                         {project.title}
                       </h4>
-                      <span className="text-xs text-gray-500">
-                        {project.date}
-                      </span>
-                    </div>
-
-                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {project.technologies
-                        .slice(0, 3)
-                        .map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                    </div>
-
-                    <div className="flex gap-3">
-                      {'slug' in project && project.slug ? (
-                        <Link
-                          href={`/${locale}/projects/${project.slug}`}
-                          className="flex items-center gap-1 text-myorange-100 hover:text-myorange-100/80 transition-colors text-sm font-medium"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          {dict.projects.demo}
-                        </Link>
-                      ) : project.live ? (
+                      {project.live && (
                         <a
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-myorange-100 hover:text-myorange-100/80 transition-colors text-sm font-medium"
+                          className="text-slate-400 hover:text-myorange-100 transition-colors"
                         >
-                          <ExternalLink className="w-3 h-3" />
-                          {dict.projects.demo}
-                        </a>
-                      ) : null}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium"
-                        >
-                          <Github className="w-3 h-3" />
-                          {dict.projects.code}
+                          <ExternalLink className="w-3.5 h-3.5" />
                         </a>
                       )}
                     </div>
+                    <span className="text-[8px] font-mono uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                      {project.category || 'Development'}
+                    </span>
                   </div>
                 ))}
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

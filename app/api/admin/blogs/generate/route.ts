@@ -3,11 +3,11 @@ import {
   generateBlogArticle,
   type GenerateBlogArticleInput,
 } from '@/lib/services/ai.service.server';
+import { generateAndUploadBlogCoverImage } from '@/lib/services/blog-image.service.server';
 import { blogServiceServer } from '@/lib/services/blog.service.server';
 import { getAllLanguages } from '@/lib/services/language.service.server';
 import { getErrorMessage, getErrorStatus } from '@/lib/utils/api-error-handler';
-import { locales, type Locale } from '@/locales/i18n';
-import { generateSlug } from '@/utils/utils';
+import { estimateReadingTime, generateSlug } from '@/utils/utils';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
@@ -22,10 +22,15 @@ export async function POST(request: NextRequest) {
     if (!topic) {
       return NextResponse.json({ error: 'topic is required' }, { status: 400 });
     }
+    const categoryId =
+      typeof body.categoryId === 'string' && body.categoryId.trim()
+        ? body.categoryId.trim()
+        : null;
 
     const { data: languages } = await getAllLanguages({ limit: 100 });
+    const supportedLocales = ['fr', 'en'] as const;
     const languagesToUse = languages.filter((l) =>
-      locales.includes(l.code as Locale),
+      supportedLocales.includes(l.code as (typeof supportedLocales)[number]),
     );
     if (languagesToUse.length === 0) {
       return NextResponse.json(
@@ -36,24 +41,43 @@ export async function POST(request: NextRequest) {
 
     const created: { id: string; locale: string; title: string }[] = [];
 
-    for (const lang of languagesToUse) {
-      const input: GenerateBlogArticleInput = {
-        topic,
-        languageCode: lang.code,
-        languageName: lang.name,
-      };
-      const article = await generateBlogArticle(input);
+    // Generate first article to get title/description, then generate one shared image
+    const firstInput: GenerateBlogArticleInput = {
+      topic,
+      languageCode: languagesToUse[0].code,
+      languageName: languagesToUse[0].name,
+    };
+    const firstArticle = await generateBlogArticle(firstInput);
+    const sharedImageUrl = await generateAndUploadBlogCoverImage(
+      firstArticle.title,
+      firstArticle.description,
+    );
+
+    for (let i = 0; i < languagesToUse.length; i++) {
+      const lang = languagesToUse[i];
+      const article =
+        i === 0
+          ? firstArticle
+          : await generateBlogArticle({
+              topic,
+              languageCode: lang.code,
+              languageName: lang.name,
+            });
 
       const finalSlug =
         generateSlug(article.slug) || `article-${lang.code}-${Date.now()}`;
+      const readingTime = estimateReadingTime(article.content);
 
       const result = await blogServiceServer.create({
         title: article.title,
         slug: finalSlug,
-        locale: lang.code as Locale,
+        locale: lang.code as (typeof supportedLocales)[number],
         description: article.description,
         content: article.content,
         status: 'draft',
+        ...(sharedImageUrl && { image: sharedImageUrl }),
+        ...(categoryId && { categoryId }),
+        readingTime,
       });
 
       created.push({

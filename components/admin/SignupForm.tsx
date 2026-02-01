@@ -51,7 +51,7 @@ export default function SignupForm({ dict }: SignupFormProps) {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center bg-gray-50 dark:bg-gray-950 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-[85vh] flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-100">
@@ -61,7 +61,7 @@ export default function SignupForm({ dict }: SignupFormProps) {
             {t.subtitle}{' '}
             <Link
               href="/admin/login"
-              className="font-medium text-myorange-100 hover:text-myorange-200"
+              className="font-medium text-foreground hover:text-foreground/70 underline underline-offset-4"
             >
               {t.signIn}
             </Link>
@@ -79,7 +79,7 @@ export default function SignupForm({ dict }: SignupFormProps) {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-myorange-100 focus:border-myorange-100 sm:text-sm dark:bg-gray-900 dark:text-gray-100"
+                className="mt-1 block w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-foreground focus:border-foreground sm:text-sm bg-background text-foreground"
                 placeholder={t.name}
               />
             </div>
@@ -93,7 +93,7 @@ export default function SignupForm({ dict }: SignupFormProps) {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-myorange-100 focus:border-myorange-100 sm:text-sm dark:bg-gray-900 dark:text-gray-100"
+                className="mt-1 block w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-foreground focus:border-foreground sm:text-sm bg-background text-foreground"
                 placeholder={t.email}
               />
             </div>
@@ -107,7 +107,7 @@ export default function SignupForm({ dict }: SignupFormProps) {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-myorange-100 focus:border-myorange-100 sm:text-sm dark:bg-gray-900 dark:text-gray-100"
+                className="mt-1 block w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-foreground focus:border-foreground sm:text-sm bg-background text-foreground"
                 placeholder={t.password}
               />
             </div>
@@ -117,7 +117,7 @@ export default function SignupForm({ dict }: SignupFormProps) {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-myorange-100 hover:bg-myorange-200"
+              className="w-full bg-foreground text-background hover:bg-foreground/90 transition-all font-semibold py-2"
             >
               {isLoading ? t.creating : t.createAccount}
             </Button>

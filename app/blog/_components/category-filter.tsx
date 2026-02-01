@@ -1,7 +1,8 @@
-import { categories } from '@/data';
 import React from 'react';
+import type { BlogCategory } from './blog-page';
 
 interface CategoryFilterProps {
+  categories: BlogCategory[];
   selectedCategory: string | null;
   // eslint-disable-next-line no-unused-vars
   onCategoryChange: (category: string | null) => void;
@@ -9,6 +10,7 @@ interface CategoryFilterProps {
 }
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({
+  categories,
   selectedCategory,
   onCategoryChange,
   allText,

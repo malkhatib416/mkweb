@@ -3,6 +3,7 @@
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/utils/utils';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -67,11 +68,10 @@ function normalizeSelectOptions(
     list.push({ value: EMPTY_FILTER_VALUE, label: emptyLabel || 'Tous' });
   }
   for (const o of opts) {
-    if (typeof o === 'string') {
-      list.push({ value: o, label: o });
-    } else {
-      list.push({ value: o.value, label: o.label });
-    }
+    const value = typeof o === 'string' ? o : o.value;
+    const label = typeof o === 'string' ? o : o.label;
+    if (value === EMPTY_FILTER_VALUE) continue;
+    list.push({ value, label });
   }
   return list;
 }
@@ -378,7 +378,7 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
           <div className="mb-2 flex items-center justify-end">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="gap-1.5">
                   <Columns className="h-4 w-4" />
                   {t('common.columns')}
                 </Button>
@@ -438,7 +438,7 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
                   {visibleColumns.map((col) => (
                     <TableHead
                       key={col.name}
-                      className={col.width}
+                      className={`h-11 px-4 text-xs font-bold uppercase tracking-wider text-muted-foreground/80 ${col.width || ''}`}
                       style={
                         col.align === 'right'
                           ? { textAlign: 'right' }
@@ -487,10 +487,16 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
                             return (
                               <Button
                                 key={a.name}
-                                variant={a.variant ?? 'ghost'}
+                                variant="ghost"
                                 size="icon"
                                 onClick={() => a.onClick(row)}
-                                className={a.className ?? 'h-8 w-8'}
+                                className={cn(
+                                  'h-8 w-8 transition-colors',
+                                  a.variant === 'destructive'
+                                    ? 'text-destructive hover:bg-destructive/10'
+                                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                                  a.className,
+                                )}
                                 aria-label={a.label}
                               >
                                 {Icon ? <Icon className="h-4 w-4" /> : a.label}

@@ -1,8 +1,8 @@
-import { MetadataRoute } from 'next';
-import { getAllBlogPosts } from '@/lib/mdx';
-import { locales } from '@/locales/i18n';
+import { blogServiceServer } from '@/lib/services/blog.service.server';
 import { projectServiceServer } from '@/lib/services/project.service.server';
+import { locales } from '@/locales/i18n';
 import { APP_URL } from '@/utils/consts';
+import { MetadataRoute } from 'next';
 
 const baseUrl = APP_URL || 'https://mk-web.fr';
 
@@ -30,10 +30,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [blogEntriesArrays, projectSlugsByLocale] = await Promise.all([
     Promise.all(
       locales.map(async (locale) => {
-        const posts = await getAllBlogPosts(locale);
+        const { data: posts } = await blogServiceServer.getAll({
+          status: 'published',
+          locale,
+          limit: 500,
+          page: 1,
+        });
         return posts.map((post) => ({
-          url: `${baseUrl}/${locale}/blog/${post.id}`,
-          lastModified: new Date(post.publishedAt),
+          url: `${baseUrl}/${locale}/blog/${post.slug}`,
+          lastModified: new Date(post.updatedAt),
           changeFrequency: 'monthly' as const,
           priority: 0.7,
         }));

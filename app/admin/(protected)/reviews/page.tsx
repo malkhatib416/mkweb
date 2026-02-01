@@ -232,7 +232,7 @@ export default function AdminReviewsPage() {
             <AlertDialogTrigger asChild>
               <Button
                 size="sm"
-                className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+                className="gap-1.5 bg-myorange-100 hover:bg-myorange-100/90"
               >
                 <Plus className="h-4 w-4" />
                 {t.createLink}

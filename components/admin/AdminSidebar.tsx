@@ -16,17 +16,111 @@ import { signOut } from '@/lib/auth-client';
 import {
   FileText,
   FolderKanban,
+  FolderTree,
   Languages,
   LayoutDashboard,
+  Lightbulb,
   LogOut,
   Mail,
   MessageSquare,
   Users,
+  type LucideIcon,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { useAdminDictionary } from './AdminDictionaryProvider';
+
+const MENU_BUTTON_CLASS =
+  'transition-all duration-200 hover:bg-muted/80 active:scale-[0.98]';
+const GROUP_LABEL_CLASS =
+  'text-[10px] uppercase tracking-wider text-muted-foreground/70';
+const ICON_ACTIVE_CLASS = 'h-4 w-4 shrink-0 text-foreground transition-colors';
+const ICON_INACTIVE_CLASS =
+  'h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground';
+
+type NavItem = {
+  name: string;
+  href: string;
+  icon: LucideIcon;
+};
+
+const SIDEBAR_GROUP_KEYS = [
+  'groupMain',
+  'groupContent',
+  'groupPeople',
+  'groupSettings',
+] as const;
+
+type SidebarGroupKey = (typeof SIDEBAR_GROUP_KEYS)[number];
+
+type NavGroup = {
+  labelKey: SidebarGroupKey;
+  items: NavItem[];
+};
+
+function isPathActive(pathname: string | null, href: string): boolean {
+  if (!pathname) return false;
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function SidebarNavItem({
+  item,
+  isActive,
+}: {
+  item: NavItem;
+  isActive: boolean;
+}) {
+  const Icon = item.icon;
+  return (
+    <SidebarMenuItem key={item.name}>
+      <SidebarMenuButton
+        asChild
+        isActive={isActive}
+        className={MENU_BUTTON_CLASS}
+      >
+        <Link href={item.href}>
+          <Icon
+            className={isActive ? ICON_ACTIVE_CLASS : ICON_INACTIVE_CLASS}
+            aria-hidden
+          />
+          <span className={isActive ? 'font-medium text-foreground' : ''}>
+            {item.name}
+          </span>
+        </Link>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  );
+}
+
+function SidebarNavGroup({
+  label,
+  items,
+  pathname,
+}: {
+  label: string;
+  items: NavItem[];
+  pathname: string | null;
+}) {
+  return (
+    <SidebarGroup>
+      <SidebarGroupLabel className={GROUP_LABEL_CLASS}>
+        {label}
+      </SidebarGroupLabel>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {items.map((item) => (
+            <SidebarNavItem
+              key={item.href}
+              item={item}
+              isActive={isPathActive(pathname, item.href)}
+            />
+          ))}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
+  );
+}
 
 export default function AdminSidebar() {
   const dict = useAdminDictionary();
@@ -34,24 +128,60 @@ export default function AdminSidebar() {
   const router = useRouter();
   const t = dict.admin;
 
-  const mainNav = [
+  const navGroups: NavGroup[] = [
     {
-      name: t.sidebar.dashboard,
-      href: '/admin/dashboard',
-      icon: LayoutDashboard,
+      labelKey: 'groupMain',
+      items: [
+        {
+          name: t.sidebar.dashboard,
+          href: '/admin/dashboard',
+          icon: LayoutDashboard,
+        },
+      ],
     },
-  ];
-  const contentNav = [
-    { name: t.sidebar.blogs, href: '/admin/blogs', icon: FileText },
-    { name: t.sidebar.projects, href: '/admin/projects', icon: FolderKanban },
-  ];
-  const peopleNav = [
-    { name: t.sidebar.clients, href: '/admin/clients', icon: Users },
-    { name: t.sidebar.reviews, href: '/admin/reviews', icon: MessageSquare },
-  ];
-  const settingsNav = [
-    { name: t.sidebar.languages, href: '/admin/languages', icon: Languages },
-    { name: t.sidebar.newsletter, href: '/admin/newsletter', icon: Mail },
+    {
+      labelKey: 'groupContent',
+      items: [
+        {
+          name: t.sidebar.suggestions,
+          href: '/admin/suggestions',
+          icon: Lightbulb,
+        },
+        { name: t.sidebar.blogs, href: '/admin/blogs', icon: FileText },
+        {
+          name: t.sidebar.categories,
+          href: '/admin/categories',
+          icon: FolderTree,
+        },
+        {
+          name: t.sidebar.projects,
+          href: '/admin/projects',
+          icon: FolderKanban,
+        },
+      ],
+    },
+    {
+      labelKey: 'groupPeople',
+      items: [
+        { name: t.sidebar.clients, href: '/admin/clients', icon: Users },
+        {
+          name: t.sidebar.reviews,
+          href: '/admin/reviews',
+          icon: MessageSquare,
+        },
+      ],
+    },
+    {
+      labelKey: 'groupSettings',
+      items: [
+        {
+          name: t.sidebar.languages,
+          href: '/admin/languages',
+          icon: Languages,
+        },
+        { name: t.sidebar.newsletter, href: '/admin/newsletter', icon: Mail },
+      ],
+    },
   ];
 
   const handleSignOut = async () => {
@@ -70,117 +200,37 @@ export default function AdminSidebar() {
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex h-14 items-center gap-2 px-2">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-myorange-100 text-white">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-myorange-100 text-white shadow-sm">
             <LayoutDashboard className="h-4 w-4" aria-hidden />
           </div>
           <div className="flex min-w-0 flex-col leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="truncate text-sm font-semibold text-sidebar-foreground">
+            <span className="truncate text-sm font-semibold text-foreground">
               {t.brandingTitle}
             </span>
-            <span className="truncate text-xs text-sidebar-foreground/70">
+            <span className="truncate text-xs text-muted-foreground">
               {t.brandingSubtitle}
             </span>
           </div>
         </div>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>{t.sidebar.groupMain}</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {mainNav.map((item) => {
-                const isActive =
-                  pathname === item.href ||
-                  pathname?.startsWith(item.href + '/');
-                return (
-                  <SidebarMenuItem key={item.name}>
-                    <SidebarMenuButton asChild isActive={isActive}>
-                      <Link href={item.href}>
-                        <item.icon className="h-5 w-5 shrink-0" />
-                        <span>{item.name}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>{t.sidebar.groupContent}</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {contentNav.map((item) => {
-                const isActive =
-                  pathname === item.href ||
-                  pathname?.startsWith(item.href + '/');
-                return (
-                  <SidebarMenuItem key={item.name}>
-                    <SidebarMenuButton asChild isActive={isActive}>
-                      <Link href={item.href}>
-                        <item.icon className="h-5 w-5 shrink-0" />
-                        <span>{item.name}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>{t.sidebar.groupPeople}</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {peopleNav.map((item) => {
-                const isActive =
-                  pathname === item.href ||
-                  pathname?.startsWith(item.href + '/');
-                return (
-                  <SidebarMenuItem key={item.name}>
-                    <SidebarMenuButton asChild isActive={isActive}>
-                      <Link href={item.href}>
-                        <item.icon className="h-5 w-5 shrink-0" />
-                        <span>{item.name}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>{t.sidebar.groupSettings}</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {settingsNav.map((item) => {
-                const isActive =
-                  pathname === item.href ||
-                  pathname?.startsWith(item.href + '/');
-                return (
-                  <SidebarMenuItem key={item.name}>
-                    <SidebarMenuButton asChild isActive={isActive}>
-                      <Link href={item.href}>
-                        <item.icon className="h-5 w-5 shrink-0" />
-                        <span>{item.name}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {navGroups.map((group) => (
+          <SidebarNavGroup
+            key={group.labelKey}
+            label={t.sidebar[group.labelKey]}
+            items={group.items}
+            pathname={pathname}
+          />
+        ))}
       </SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border">
+      <SidebarFooter className="border-t border-sidebar-border/50 p-2">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={handleSignOut}
-              className="text-red-600 hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-950/30"
+              className="w-full text-muted-foreground hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/20"
             >
-              <LogOut className="h-5 w-5 shrink-0" />
+              <LogOut className="h-4 w-4 shrink-0" aria-hidden />
               <span>{t.auth.signOut}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>

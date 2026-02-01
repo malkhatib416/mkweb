@@ -94,7 +94,7 @@ export default function ProjectsPage() {
         cell: (row) => (
           <Link
             href={`/admin/projects/${row.id}`}
-            className="font-medium text-foreground hover:text-myorange-100 hover:underline"
+            className="font-medium text-foreground hover:text-foreground hover:underline"
           >
             {row.title}
           </Link>

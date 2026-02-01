@@ -168,7 +168,7 @@ export default function NewProjectPage() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-myorange-100 hover:bg-myorange-200"
+                className="bg-myorange-100 hover:bg-myorange-100/90"
               >
                 {isLoading ? t.create.creating : t.create.createButton}
               </Button>

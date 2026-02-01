@@ -44,7 +44,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-[85vh] flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -63,7 +63,7 @@ export default function LoginForm() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-myorange-100 focus:border-myorange-100 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-border placeholder-muted-foreground/60 text-foreground rounded-t-lg focus:outline-none focus:ring-1 focus:ring-foreground focus:border-foreground focus:z-10 sm:text-sm bg-background"
                 placeholder={t.email}
               />
             </div>
@@ -77,7 +77,7 @@ export default function LoginForm() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-myorange-100 focus:border-myorange-100 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-border placeholder-muted-foreground/60 text-foreground rounded-b-lg focus:outline-none focus:ring-1 focus:ring-foreground focus:border-foreground focus:z-10 sm:text-sm bg-background"
                 placeholder={t.password}
               />
             </div>
@@ -87,7 +87,7 @@ export default function LoginForm() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-myorange-100 hover:bg-myorange-200"
+              className="w-full bg-foreground text-background hover:bg-foreground/90 transition-all font-semibold py-2"
             >
               {isLoading ? t.signingIn : t.signIn}
             </Button>

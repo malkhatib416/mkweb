@@ -130,7 +130,7 @@ export default function EditLanguagePage() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-myorange-100 hover:bg-myorange-200"
+                className="bg-myorange-100 hover:bg-myorange-100/90"
               >
                 {isLoading ? t.edit.updating : t.edit.updateButton}
               </Button>

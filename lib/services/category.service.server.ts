@@ -100,7 +100,7 @@ export async function updateCategory(
 ): Promise<CategoryResponse> {
   const validated = categoryUpdateSchema.parse(data);
 
-  const existing = await getCategoryById(id)
+  const existing = await getCategoryById(id);
 
   const newSlug = validated.slug;
   if (newSlug != null && newSlug !== existing.data.slug) {

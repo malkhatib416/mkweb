@@ -54,7 +54,7 @@ export default function ViewClientPage() {
         actions={
           <Button
             size="sm"
-            className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+            className="gap-1.5 bg-myorange-100 hover:bg-myorange-100/90"
             asChild
           >
             <Link href={`/admin/clients/${id}/edit`}>
@@ -92,7 +92,7 @@ export default function ViewClientPage() {
               {client.email && (
                 <a
                   href={`mailto:${client.email}`}
-                  className="text-sm text-myorange-100 hover:underline"
+                  className="text-sm text-foreground hover:underline"
                 >
                   {client.email}
                 </a>
