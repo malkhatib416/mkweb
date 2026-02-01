@@ -11,13 +11,13 @@ import {
   project,
   projectReview,
 } from '@/db/schema';
-import type { Locale } from '@/locales/i18n';
 import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 
-// Shared enum types
-export type Status = 'draft' | 'published';
+// Inferred from schema (blog and project share these enums)
+export type Status = InferSelectModel<typeof blog>['status'];
+export type Locale = InferSelectModel<typeof blog>['locale'];
 
-// Inferred types from schema
+// Entity types inferred from schema
 export type Language = InferSelectModel<typeof language>;
 export type LanguageInsert = InferInsertModel<typeof language>;
 export type Category = InferSelectModel<typeof category>;
@@ -38,6 +38,12 @@ export type NewsletterSubscriber = InferSelectModel<
 export type NewsletterSubscriberInsert = InferInsertModel<
   typeof newsletterSubscriber
 >;
+
+// Admin list row: project review with joined project/client names
+export type ProjectReviewAdminRow = ProjectReview & {
+  projectTitle: string;
+  clientName: string;
+};
 
 // DTO types for API (omitting auto-generated fields)
 export type CreateCategoryDto = Omit<
@@ -80,7 +86,17 @@ export type PaginationResponse = {
   pages?: number;
 };
 
-// List params
+// Generic API response types (entity T inferred from Drizzle)
+export type ListResponse<T> = {
+  data: T[];
+  pagination: PaginationResponse;
+};
+
+export type SingleResponse<T> = {
+  data: T;
+};
+
+// List params (API query shape, not in schema)
 export interface CategoryListParams {
   page?: number;
   limit?: number;
@@ -112,57 +128,17 @@ export interface LanguageListParams {
   limit?: number;
 }
 
-// API response types
-export interface CategoryListResponse {
-  data: Category[];
-  pagination: PaginationResponse;
-}
-
-export interface CategoryResponse {
-  data: Category;
-}
-
-export interface BlogListResponse {
-  data: Blog[];
-  pagination: PaginationResponse;
-}
-
-export interface BlogResponse {
-  data: Blog;
-}
-
-export interface ProjectListResponse {
-  data: Project[];
-  pagination: PaginationResponse;
-}
-
-export interface ClientListResponse {
-  data: Client[];
-  pagination: PaginationResponse;
-}
-
-export interface ClientResponse {
-  data: Client;
-}
-
-export interface LanguageListResponse {
-  data: Language[];
-  pagination: PaginationResponse;
-}
-
-export interface LanguageResponse {
-  data: Language;
-}
-
-export interface ProjectResponse {
-  data: Project;
-}
-
-export interface ProjectReviewResponse {
-  data: ProjectReview;
-}
-
-export interface NewsletterSubscriberListResponse {
-  data: NewsletterSubscriber[];
-  pagination: PaginationResponse;
-}
+// API response types (using generic + inferred entity types)
+export type CategoryListResponse = ListResponse<Category>;
+export type CategoryResponse = SingleResponse<Category>;
+export type BlogListResponse = ListResponse<Blog>;
+export type BlogResponse = SingleResponse<Blog>;
+export type ProjectListResponse = ListResponse<Project>;
+export type ProjectResponse = SingleResponse<Project>;
+export type ClientListResponse = ListResponse<Client>;
+export type ClientResponse = SingleResponse<Client>;
+export type LanguageListResponse = ListResponse<Language>;
+export type LanguageResponse = SingleResponse<Language>;
+export type ProjectReviewResponse = SingleResponse<ProjectReview>;
+export type ProjectReviewListResponse = ListResponse<ProjectReviewAdminRow>;
+export type NewsletterSubscriberListResponse = ListResponse<NewsletterSubscriber>;

@@ -1,16 +1,12 @@
 'use client';
 
-import {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useEffect,
-} from 'react';
 import { Loading } from '@/components/ui/loading';
+import { fetcher } from '@/lib/swr-fetcher';
 import type { Dictionary } from '@/locales/dictionaries';
 import type { Locale } from '@/locales/i18n';
 import { defaultLocale } from '@/locales/i18n';
+import { ReactNode, createContext, useContext } from 'react';
+import useSWR from 'swr';
 
 const AdminDictionaryContext = createContext<Dictionary | null>(null);
 
@@ -25,35 +21,17 @@ export function AdminDictionaryProvider({
   locale?: Locale;
   children: ReactNode;
 }) {
-  const [dict, setDict] = useState<Dictionary | null>(initialDict ?? null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (initialDict != null) {
-      setDict(initialDict);
-      return;
-    }
-    let cancelled = false;
-    fetch(`${DICTIONARY_API}?locale=${locale}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(res.statusText);
-        return res.json();
-      })
-      .then((data) => {
-        if (!cancelled) setDict(data as Dictionary);
-      })
-      .catch((err) => {
-        if (!cancelled) setError(err?.message ?? 'Failed to load dictionary');
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [locale, initialDict]);
+  const key = initialDict == null ? `${DICTIONARY_API}?locale=${locale}` : null;
+  const { data, error, isLoading } = useSWR<Dictionary>(key, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: true,
+  });
+  const dict = initialDict ?? data ?? null;
 
   if (error) {
     return (
       <div className="flex min-h-[200px] items-center justify-center text-destructive">
-        {error}
+        {error instanceof Error ? error.message : 'Failed to load dictionary'}
       </div>
     );
   }
