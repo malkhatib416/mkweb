@@ -3,6 +3,7 @@
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import { DataGrid } from '@/components/admin/DataGrid';
 import { PageHeader } from '@/components/admin/PageHeader';
+import { newsletterService } from '@/lib/services/newsletter.service';
 import type { DataGridConfig } from '@/types/data-grid';
 import type { NewsletterSubscriber } from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
@@ -13,16 +14,8 @@ export default function AdminNewsletterPage() {
 
   const config: DataGridConfig<NewsletterSubscriber> = {
     swrKey: 'admin-newsletter',
-    fetcher: async ([, params]) => {
-      const search = new URLSearchParams({
-        page: String(params.page),
-        limit: String(params.limit),
-      });
-      const res = await fetch(`/api/admin/newsletter?${search}`);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to fetch');
-      return json;
-    },
+    fetcher: async ([, params]) =>
+      newsletterService.getAll({ page: params.page, limit: params.limit }),
     columns: [
       {
         name: 'email',

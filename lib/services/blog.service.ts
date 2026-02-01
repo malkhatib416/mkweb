@@ -108,6 +108,28 @@ class BlogService {
       throw new Error(data.error || 'Failed to delete blog');
     }
   }
+
+  /**
+   * Generate a cover image from title and description (AI).
+   */
+  async generateImage(
+    title: string,
+    description: string,
+  ): Promise<{ url: string }> {
+    const response = await fetch(`${this.baseUrl}/generate-image`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, description }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to generate image');
+    }
+
+    return data;
+  }
 }
 
 export const blogService = new BlogService();

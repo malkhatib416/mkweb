@@ -52,16 +52,8 @@ export default function ClientsPage() {
 
   const config: DataGridConfig<Client> = {
     swrKey: 'admin-clients',
-    fetcher: async ([, params]) => {
-      const search = new URLSearchParams({
-        page: String(params.page),
-        limit: String(params.limit),
-      });
-      const res = await fetch(`/api/admin/clients?${search}`);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to fetch');
-      return json;
-    },
+    fetcher: async ([, params]) =>
+      clientService.getAll({ page: params.page, limit: params.limit }),
     columns: [
       {
         name: 'photo',

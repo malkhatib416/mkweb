@@ -51,18 +51,13 @@ export default function ProjectsPage() {
 
   const config: DataGridConfig<Project> = {
     swrKey: 'admin-projects',
-    fetcher: async ([, params]) => {
-      const search = new URLSearchParams({
-        page: String(params.page),
-        limit: String(params.limit),
-      });
-      if (params.status) search.set('status', params.status);
-      if (params.locale) search.set('locale', params.locale);
-      const res = await fetch(`/api/admin/projects?${search}`);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to fetch');
-      return json;
-    },
+    fetcher: async ([, params]) =>
+      projectService.getAll({
+        page: params.page,
+        limit: params.limit,
+        status: params.status,
+        locale: params.locale,
+      }),
     filters: [
       {
         type: 'select',

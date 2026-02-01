@@ -51,16 +51,8 @@ export default function LanguagesPage() {
 
   const config: DataGridConfig<Language> = {
     swrKey: 'admin-languages',
-    fetcher: async ([, params]) => {
-      const search = new URLSearchParams({
-        page: String(params.page),
-        limit: String(params.limit),
-      });
-      const res = await fetch(`/api/admin/languages?${search}`);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to fetch');
-      return json;
-    },
+    fetcher: async ([, params]) =>
+      languageService.getAll({ page: params.page, limit: params.limit }),
     columns: [
       {
         name: 'code',
