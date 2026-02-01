@@ -17,17 +17,19 @@ export default async function ProtectedLayout({
 
   return (
     <AdminDictionaryProvider>
-      <SidebarProvider>
+      <SidebarProvider className="h-screen min-h-0 overflow-hidden">
         <AdminSidebar />
-        <SidebarInset>
-          <header className="flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background px-4">
+        <SidebarInset className="min-h-0 border-l border-border !bg-white dark:!bg-slate-900">
+          <header className="flex h-14 shrink-0 items-center gap-3 border-b border-border bg-white dark:bg-slate-900 px-4">
             <SidebarTrigger className="-ml-1" aria-label="Toggle sidebar" />
             <div className="flex flex-1 items-center justify-end">
               <AdminTopbar />
             </div>
           </header>
-          <main className="flex-1 overflow-auto py-8">
-            <div className="w-full px-4 sm:px-6 lg:px-8">{children}</div>
+          <main className="flex min-h-0 flex-1 flex-col overflow-hidden py-8">
+            <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-4 sm:px-6 lg:px-8">
+              {children}
+            </div>
           </main>
         </SidebarInset>
       </SidebarProvider>

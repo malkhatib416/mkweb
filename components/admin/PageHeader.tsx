@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/utils/utils';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export interface PageHeaderProps {
   /** Page title */
@@ -30,7 +30,7 @@ export function PageHeader({
   return (
     <div
       className={cn(
-        'flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between',
+        'flex shrink-0 flex-col gap-4 sm:flex-row sm:items-start sm:justify-between',
         className,
       )}
     >
@@ -49,7 +49,7 @@ export function PageHeader({
           </Link>
         )}
         <div className="min-w-0 flex-1">
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-2xl font-medium tracking-tight text-foreground">
             {title}
           </h1>
           {description && (

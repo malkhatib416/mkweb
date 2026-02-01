@@ -61,8 +61,10 @@ export default function DashboardStats({
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">{t.title}</h1>
-        <p className="mt-2 text-sm text-gray-600">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-foreground">
+          {t.title}
+        </h1>
+        <p className="mt-2 text-sm text-gray-600 dark:text-muted-foreground">
           {t.welcome.replace('{name}', user?.name || user?.email || 'User')}
         </p>
       </div>
@@ -71,18 +73,18 @@ export default function DashboardStats({
         {statItems.map((stat) => (
           <div
             key={stat.name}
-            className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
+            className="relative overflow-hidden rounded-lg bg-white dark:bg-card px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6 border border-transparent dark:border-border/50"
           >
             <dt>
               <div className="absolute rounded-md bg-myorange-100 p-3">
                 <stat.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
-              <p className="ml-16 truncate text-sm font-medium text-gray-500">
+              <p className="ml-16 truncate text-sm font-medium text-gray-500 dark:text-muted-foreground">
                 {stat.name}
               </p>
             </dt>
             <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-              <p className="text-2xl font-semibold text-gray-900">
+              <p className="text-2xl font-semibold text-gray-900 dark:text-foreground">
                 {stat.value}
               </p>
             </dd>

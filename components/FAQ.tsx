@@ -27,7 +27,7 @@ const FAQ = ({ faq, id = 'faq', className }: FAQProps) => {
     <section
       id={id}
       className={cn(
-        'bg-gray-50 dark:bg-slate-900 py-20 transition-colors duration-200',
+        'bg-gray-50 dark:bg-slate-950 py-20 transition-colors duration-200',
         className,
       )}
     >

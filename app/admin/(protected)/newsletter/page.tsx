@@ -43,11 +43,10 @@ export default function AdminNewsletterPage() {
     ],
     empty: { title: t.noSubscribers, description: t.subtitle },
     defaultPageSize: 10,
-    className: '!space-y-4',
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-8">
       <PageHeader title={t.subtitle} description={t.title} />
       <DataGrid config={config} />
     </div>

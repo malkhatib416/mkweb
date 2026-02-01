@@ -497,7 +497,7 @@ export default function EstimationForm({ dict }: Props) {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 block">
+                          <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 block">
                             {t.step1.mainObjective.label} *
                           </FormLabel>
                           <Select
@@ -570,12 +570,12 @@ export default function EstimationForm({ dict }: Props) {
                           control={form.control}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3 block">
+                              <FormLabel className="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3 block">
                                 {t.step1.projectType.otherLabel}
                               </FormLabel>
                               <FormControl>
                                 <Input
-                                  className="h-12 bg-white border-slate-200/60 rounded-xl focus:ring-myorange-100/20"
+                                  className="h-12 bg-white dark:bg-slate-950 border-slate-200/60 dark:border-slate-800/60 rounded-xl focus:ring-myorange-100/20"
                                   placeholder={
                                     t.step1.projectType.otherPlaceholder
                                   }
@@ -595,12 +595,12 @@ export default function EstimationForm({ dict }: Props) {
                           control={form.control}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3 block">
+                              <FormLabel className="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3 block">
                                 {t.step1.mainObjective.otherLabel}
                               </FormLabel>
                               <FormControl>
                                 <Input
-                                  className="h-12 bg-white border-slate-200/60 rounded-xl focus:ring-myorange-100/20"
+                                  className="h-12 bg-white dark:bg-slate-950 border-slate-200/60 dark:border-slate-800/60 rounded-xl focus:ring-myorange-100/20"
                                   placeholder={
                                     t.step1.mainObjective.otherPlaceholder
                                   }
@@ -1054,12 +1054,12 @@ export default function EstimationForm({ dict }: Props) {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 block">
+                          <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 block">
                             {t.step5.email.label} *
                           </FormLabel>
                           <FormControl>
                             <Input
-                              className="h-12 bg-white border-slate-200/60 rounded-xl focus:ring-myorange-100/20"
+                              className="h-12 bg-white dark:bg-slate-950 border-slate-200/60 dark:border-slate-800/60 rounded-xl focus:ring-myorange-100/20"
                               type="email"
                               placeholder={t.step5.email.placeholder}
                               {...field}
@@ -1083,7 +1083,7 @@ export default function EstimationForm({ dict }: Props) {
                           </FormLabel>
                           <FormControl>
                             <Input
-                              className="h-12 bg-white border-slate-200/60 rounded-xl focus:ring-myorange-100/20"
+                              className="h-12 bg-white dark:bg-slate-950 border-slate-200/60 dark:border-slate-800/60 rounded-xl focus:ring-myorange-100/20"
                               type="tel"
                               placeholder={t.step5.phone.placeholder}
                               {...field}

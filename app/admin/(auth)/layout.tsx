@@ -7,7 +7,9 @@ export default function AuthLayout({
 }) {
   return (
     <AdminDictionaryProvider>
-      <div className="min-h-screen bg-gray-50">{children}</div>
+      <div className="min-h-screen bg-gray-50 dark:bg-background">
+        {children}
+      </div>
     </AdminDictionaryProvider>
   );
 }

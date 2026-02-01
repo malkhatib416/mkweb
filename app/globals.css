@@ -80,7 +80,7 @@
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 220 14% 96%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
@@ -98,13 +98,13 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 222 47% 11%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 222 47% 11%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 222 47% 11%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 0 0% 98%;
@@ -126,13 +126,13 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
 
-    --sidebar-background: 240 5.9% 6%;
-    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-accent: 222 47% 16%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 222 30% 18%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -143,6 +143,10 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Homepage: body must match Tailwind slate-950 exactly so separators don’t show a band */
+  .dark body {
+    background-color: rgb(2 6 23);
   }
 }
 

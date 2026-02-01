@@ -3,7 +3,6 @@
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { cn } from '@/utils/utils';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -50,6 +49,7 @@ import type {
   DataGridResponse,
   DataGridSelectOption,
 } from '@/types/data-grid';
+import { cn } from '@/utils/utils';
 import { AlertCircle, Columns, Search } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
@@ -286,7 +286,12 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
   };
 
   return (
-    <div className={className ? `space-y-6 ${className}` : 'space-y-6'}>
+    <div
+      className={cn(
+        'flex min-h-0 w-full min-w-0 flex-1 flex-col gap-6',
+        className,
+      )}
+    >
       {error && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
@@ -297,7 +302,7 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
       )}
       {/* Filters */}
       {filters.length > 0 && (
-        <Card>
+        <Card className="shrink-0">
           <CardHeader>
             <CardTitle>{filterTitle ?? t('common.filter')}</CardTitle>
           </CardHeader>
@@ -373,9 +378,9 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
       )}
 
       {/* Table */}
-      <div>
+      <div className="flex min-h-0 flex-1 flex-col">
         {columns.length > 0 && (
-          <div className="mb-2 flex items-center justify-end">
+          <div className="mb-2 flex shrink-0 items-center justify-end">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-1.5">
@@ -431,39 +436,15 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
             </Empty>
           </Card>
         ) : (
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-muted/50">
-                  {visibleColumns.map((col) => (
-                    <TableHead
-                      key={col.name}
-                      className={`h-11 px-4 text-xs font-bold uppercase tracking-wider text-muted-foreground/80 ${col.width || ''}`}
-                      style={
-                        col.align === 'right'
-                          ? { textAlign: 'right' }
-                          : col.align === 'center'
-                            ? { textAlign: 'center' }
-                            : undefined
-                      }
-                    >
-                      {col.label}
-                    </TableHead>
-                  ))}
-                  {actions.length > 0 && (
-                    <TableHead className="text-right w-[120px]">
-                      {t('common.actions')}
-                    </TableHead>
-                  )}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rowsToRender.map((row, idx) => (
-                  <TableRow key={(row as { id?: string }).id ?? idx}>
+          <div className="min-h-0 flex-1 overflow-auto">
+            <div className="w-full overflow-x-auto rounded-md border">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-muted/50">
                     {visibleColumns.map((col) => (
-                      <TableCell
+                      <TableHead
                         key={col.name}
-                        className={col.width}
+                        className={`h-11 px-4 text-xs font-medium uppercase tracking-wider text-muted-foreground/80 ${col.width || ''}`}
                         style={
                           col.align === 'right'
                             ? { textAlign: 'right' }
@@ -472,44 +453,75 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
                               : undefined
                         }
                       >
-                        {col.cell
-                          ? col.cell(row)
-                          : String(
-                              (row as Record<string, unknown>)[col.name] ?? '',
-                            )}
-                      </TableCell>
+                        {col.label}
+                      </TableHead>
                     ))}
                     {actions.length > 0 && (
-                      <TableCell className="text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          {actions.map((a) => {
-                            const Icon = a.icon;
-                            return (
-                              <Button
-                                key={a.name}
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => a.onClick(row)}
-                                className={cn(
-                                  'h-8 w-8 transition-colors',
-                                  a.variant === 'destructive'
-                                    ? 'text-destructive hover:bg-destructive/10'
-                                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                                  a.className,
-                                )}
-                                aria-label={a.label}
-                              >
-                                {Icon ? <Icon className="h-4 w-4" /> : a.label}
-                              </Button>
-                            );
-                          })}
-                        </div>
-                      </TableCell>
+                      <TableHead className="text-right w-[120px]">
+                        {t('common.actions')}
+                      </TableHead>
                     )}
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {rowsToRender.map((row, idx) => (
+                    <TableRow key={(row as { id?: string }).id ?? idx}>
+                      {visibleColumns.map((col) => (
+                        <TableCell
+                          key={col.name}
+                          className={col.width}
+                          style={
+                            col.align === 'right'
+                              ? { textAlign: 'right' }
+                              : col.align === 'center'
+                                ? { textAlign: 'center' }
+                                : undefined
+                          }
+                        >
+                          {col.cell
+                            ? col.cell(row)
+                            : String(
+                                (row as Record<string, unknown>)[col.name] ??
+                                  '',
+                              )}
+                        </TableCell>
+                      ))}
+                      {actions.length > 0 && (
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            {actions.map((a) => {
+                              const Icon = a.icon;
+                              return (
+                                <Button
+                                  key={a.name}
+                                  variant="ghost"
+                                  size="icon"
+                                  onClick={() => a.onClick(row)}
+                                  className={cn(
+                                    'h-8 w-8 transition-colors',
+                                    a.variant === 'destructive'
+                                      ? 'text-destructive hover:bg-destructive/10'
+                                      : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                                    a.className,
+                                  )}
+                                  aria-label={a.label}
+                                >
+                                  {Icon ? (
+                                    <Icon className="h-4 w-4" />
+                                  ) : (
+                                    a.label
+                                  )}
+                                </Button>
+                              );
+                            })}
+                          </div>
+                        </TableCell>
+                      )}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </div>
         )}
       </div>
@@ -524,7 +536,7 @@ export function DataGrid<T, F extends DataGridFilter[] = DataGridFilter[]>({
           setPage(1);
         }}
         pageSizeOptions={pageSizeOptions}
-        className="mt-6"
+        className="mt-6 shrink-0"
       />
     </div>
   );
