@@ -17,18 +17,18 @@ export {
   generateObjectFromAI,
   type GenerateBlogArticleInput,
   type GenerateObjectOptions,
-  type GeneratedArticle
+  type GeneratedArticle,
 } from './ai.service.server';
 export {
   blogSchema,
   blogServiceServer,
-  blogUpdateSchema
+  blogUpdateSchema,
 } from './blog.service.server';
 export {
   categorySchema,
   categoryUpdateSchema,
   getAllCategories,
-  getCategoryById
+  getCategoryById,
 } from './category.service.server';
 export { clientServiceServer } from './client.service.server';
 export {
@@ -38,12 +38,12 @@ export {
   getLanguageById,
   languageSchema,
   languageUpdateSchema,
-  updateLanguage
+  updateLanguage,
 } from './language.service.server';
 export {
   projectSchema,
   projectServiceServer,
-  projectUpdateSchema
+  projectUpdateSchema,
 } from './project.service.server';
 
 // Re-export types from entities (for convenience)
@@ -80,6 +80,5 @@ export type {
   UpdateCategoryDto,
   UpdateClientDto,
   UpdateLanguageDto,
-  UpdateProjectDto
+  UpdateProjectDto,
 } from '@/types/entities';
-

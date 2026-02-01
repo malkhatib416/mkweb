@@ -141,4 +141,5 @@ export type LanguageListResponse = ListResponse<Language>;
 export type LanguageResponse = SingleResponse<Language>;
 export type ProjectReviewResponse = SingleResponse<ProjectReview>;
 export type ProjectReviewListResponse = ListResponse<ProjectReviewAdminRow>;
-export type NewsletterSubscriberListResponse = ListResponse<NewsletterSubscriber>;
+export type NewsletterSubscriberListResponse =
+  ListResponse<NewsletterSubscriber>;
