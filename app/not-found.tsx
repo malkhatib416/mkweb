@@ -32,8 +32,12 @@ export default function NotFound() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-slate-950 px-4">
       <div className="text-center">
         <h1 className="text-7xl font-extrabold text-[#FF7F50] mb-4">404</h1>
-        <h2 className="text-2xl font-bold text-zinc-800 dark:text-white mb-2">{t.title}</h2>
-        <p className="text-zinc-500 dark:text-slate-400 mb-8">{t.description}</p>
+        <h2 className="text-2xl font-bold text-zinc-800 dark:text-white mb-2">
+          {t.title}
+        </h2>
+        <p className="text-zinc-500 dark:text-slate-400 mb-8">
+          {t.description}
+        </p>
         <Link
           href={`/${currentLocale}`}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 dark:bg-myorange-100 text-white font-semibold shadow hover:bg-[#FF7F50] dark:hover:bg-myorange-100/90 hover:text-white transition-colors"
