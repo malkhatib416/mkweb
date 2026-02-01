@@ -8,14 +8,7 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { RefObject } from 'react';
-import {
-  Suspense,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import MKWEbLogo from './Icons/MKWebLogo';
 import LanguageSwitcher from './LanguageSwitcher';
 import NavLink from './NavLink';
@@ -199,7 +192,7 @@ const Navbar = () => {
 
             <NavLink
               href={`/${currentLocale}/estimation`}
-              className="ml-4 inline-flex items-center justify-center px-6 py-2.5 text-[10px] font-mono uppercase tracking-widest text-white bg-slate-900 hover:bg-slate-800 rounded-full transition-all duration-200 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 hover:scale-105 active:scale-95 border border-slate-800"
+              className="ml-4 inline-flex items-center justify-center px-6 py-2.5 text-[10px] font-mono uppercase tracking-widest text-white bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 dark:text-slate-950 rounded-full transition-all duration-200 shadow-md dark:shadow-none focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950 hover:scale-105 active:scale-95 border border-slate-800 dark:border-white"
             >
               {t.estimation}
             </NavLink>
@@ -216,7 +209,7 @@ const Navbar = () => {
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
               aria-controls={MOBILE_NAV_ID}
-              className="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2"
+              className="text-gray-600 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
               onClick={toggleMenu}
             >
               {isMenuOpen ? (

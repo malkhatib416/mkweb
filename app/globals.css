@@ -33,6 +33,21 @@
   background-origin: padding-box, border-box;
 }
 
+.dark .gradient-border {
+  background:
+    linear-gradient(theme(colors.slate.950), theme(colors.slate.950)),
+    linear-gradient(
+      25deg,
+      rgba(51, 65, 85, 1),
+      rgba(51, 65, 85, 1),
+      rgba(148, 163, 184, 0.4),
+      rgba(51, 65, 85, 1),
+      rgba(51, 65, 85, 1)
+    );
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -160,6 +175,14 @@ html {
   backdrop-filter: blur(2px);
 }
 
+.dark .hero-wrapper::before {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
 .hero-wrapper > * {
   position: relative;
   z-index: 2;
@@ -189,6 +212,10 @@ html {
   background: #f1f1f1;
 }
 
+.dark ::-webkit-scrollbar-track {
+  background: hsl(240 10% 6%);
+}
+
 ::-webkit-scrollbar-thumb {
   background: #ff4a17;
   border-radius: 4px;
@@ -198,9 +225,22 @@ html {
   background: #e33200;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(14 100% 57% / 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #ff4a17;
+}
+
 /* Text selection */
 ::selection {
   background-color: #ff4a17;
+  color: white;
+}
+
+.dark ::selection {
+  background-color: hsl(14 100% 57% / 0.9);
   color: white;
 }
 
