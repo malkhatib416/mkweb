@@ -23,28 +23,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { projectReviewService } from '@/lib/services/project-review.service';
+import { fetcher } from '@/lib/swr-fetcher';
 import type { DataGridConfig } from '@/types/data-grid';
+import type { ProjectReviewAdminRow } from '@/types/entities';
 import { APP_URL } from '@/utils/consts';
 import { formatDate } from '@/utils/format-date';
 import { Copy, Plus } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
-
-type ReviewRow = {
-  id: string;
-  projectId: string;
-  clientId: string;
-  token: string;
-  tokenExpiresAt: string;
-  reviewText: string | null;
-  rating: string | null;
-  submittedAt: string | null;
-  createdAt: string;
-  projectTitle: string;
-  clientName: string;
-};
+import useSWR from 'swr';
 
 const EMPTY_FILTER_VALUE = '__all__';
+
+type ProjectsResponse = { data: { id: string; title: string }[] };
+type ClientsResponse = { data: { id: string; name: string }[] };
 
 export default function AdminReviewsPage() {
   const dict = useAdminDictionary();
@@ -53,10 +46,15 @@ export default function AdminReviewsPage() {
   const [projectId, setProjectId] = useState('');
   const [clientId, setClientId] = useState('');
   const [expiryDays, setExpiryDays] = useState(30);
-  const [projects, setProjects] = useState<{ id: string; title: string }[]>([]);
-  const [clients, setClients] = useState<{ id: string; name: string }[]>([]);
   const [loadingCreate, setLoadingCreate] = useState(false);
   const gridMutateRef = useRef<(() => Promise<unknown>) | null>(null);
+
+  const projectsKey = createOpen ? '/api/admin/projects?limit=500' : null;
+  const clientsKey = createOpen ? '/api/admin/clients?limit=500' : null;
+  const { data: projectsData } = useSWR<ProjectsResponse>(projectsKey, fetcher);
+  const { data: clientsData } = useSWR<ClientsResponse>(clientsKey, fetcher);
+  const projects = projectsData?.data ?? [];
+  const clients = clientsData?.data ?? [];
 
   const copyReviewLink = useCallback(
     (token: string) => {
@@ -67,45 +65,14 @@ export default function AdminReviewsPage() {
     [t.copyLink],
   );
 
-  const loadOptions = useCallback(async () => {
-    try {
-      const [projRes, clientRes] = await Promise.all([
-        fetch('/api/admin/projects?limit=500'),
-        fetch('/api/admin/clients?limit=500'),
-      ]);
-      const projJson = await projRes.json();
-      const clientJson = await clientRes.json();
-      if (projJson.data)
-        setProjects(
-          projJson.data.map((p: { id: string; title: string }) => ({
-            id: p.id,
-            title: p.title,
-          })),
-        );
-      if (clientJson.data)
-        setClients(
-          clientJson.data.map((c: { id: string; name: string }) => ({
-            id: c.id,
-            name: c.name,
-          })),
-        );
-    } catch {
-      toast.error(dict.admin.common.error);
+  const handleCreateOpen = useCallback((open: boolean) => {
+    setCreateOpen(open);
+    if (open) {
+      setProjectId('');
+      setClientId('');
+      setExpiryDays(30);
     }
-  }, [dict.admin.common.error]);
-
-  const handleCreateOpen = useCallback(
-    (open: boolean) => {
-      setCreateOpen(open);
-      if (open) {
-        void loadOptions();
-        setProjectId('');
-        setClientId('');
-        setExpiryDays(30);
-      }
-    },
-    [loadOptions],
-  );
+  }, []);
 
   const handleCreateSubmit = useCallback(async () => {
     if (!projectId || !clientId) {
@@ -138,21 +105,17 @@ export default function AdminReviewsPage() {
     dict.admin.common.required,
   ]);
 
-  const config: DataGridConfig<ReviewRow> = {
+  const config: DataGridConfig<ProjectReviewAdminRow> = {
     swrKey: 'admin-reviews',
-    fetcher: async ([, params]) => {
-      const search = new URLSearchParams({
-        page: String(params.page),
-        limit: String(params.limit),
-        ...(params.status && params.status !== EMPTY_FILTER_VALUE
-          ? { status: params.status }
-          : {}),
-      });
-      const res = await fetch(`/api/admin/reviews?${search}`);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to fetch');
-      return json;
-    },
+    fetcher: async ([, params]) =>
+      projectReviewService.getList({
+        page: params.page,
+        limit: params.limit,
+        status:
+          params.status && params.status !== EMPTY_FILTER_VALUE
+            ? (params.status as 'pending' | 'submitted')
+            : undefined,
+      }),
     filters: [
       {
         name: 'status',
@@ -228,7 +191,7 @@ export default function AdminReviewsPage() {
         title={t.subtitle}
         description={dict.admin.reviews.title}
         actions={
-          <AlertDialog open={createOpen} onOpenChange={setCreateOpen}>
+          <AlertDialog open={createOpen} onOpenChange={handleCreateOpen}>
             <AlertDialogTrigger asChild>
               <Button
                 size="sm"
