@@ -4,7 +4,7 @@ import { blogServiceServer } from '@/lib/services/blog.service.server';
 import { getAllCategories } from '@/lib/services/category.service.server';
 import { getErrorMessage, getErrorStatus } from '@/lib/utils/api-error-handler';
 import { getDictionary } from '@/locales/dictionaries';
-import { defaultLocale } from '@/locales/i18n';
+import { Locale, defaultLocale } from '@/locales/i18n';
 import { NextRequest, NextResponse } from 'next/server';
 
 const SERVICE_KEYS = [
@@ -27,9 +27,9 @@ export async function GET(request: NextRequest) {
     const countParam = request.nextUrl.searchParams.get('count');
     const count = countParam
       ? Math.min(
-          MAX_SUGGESTIONS_COUNT,
-          Math.max(1, parseInt(countParam, 10) || DEFAULT_SUGGESTIONS_COUNT),
-        )
+        MAX_SUGGESTIONS_COUNT,
+        Math.max(1, parseInt(countParam, 10) || DEFAULT_SUGGESTIONS_COUNT),
+      )
       : DEFAULT_SUGGESTIONS_COUNT;
     const categoryIdsParam = request.nextUrl.searchParams.get('categoryIds');
     const categoryIds =
@@ -38,14 +38,12 @@ export async function GET(request: NextRequest) {
         .map((id) => id.trim())
         .filter(Boolean) ?? [];
 
-    const dict = await getDictionary(locale === 'en' ? 'en' : ('fr' as 'fr'));
-    const services = SERVICE_KEYS.map((key) => ({
-      key,
-      title:
-        (dict.services as Record<string, { title: string }>)[key]?.title ?? key,
-    }));
+    const dict = await getDictionary(locale as Locale);
+    const services = SERVICE_KEYS.map((key) => {
+      const service = (dict.services as unknown as Record<string, { title: string }>)[key];
+      return { key, title: service?.title ?? key };
+    });
     const serviceTitles = services.map((s) => s.title);
-
     const { data: latestBlogs } = await blogServiceServer.getAll({
       page: 1,
       limit: LATEST_ARTICLES_LIMIT,

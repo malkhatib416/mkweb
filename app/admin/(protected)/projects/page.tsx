@@ -7,7 +7,7 @@ import { PageHeader } from '@/components/admin/PageHeader';
 import { Button } from '@/components/ui/button';
 import { projectService } from '@/lib/services/project.service';
 import type { DataGridConfig } from '@/types/data-grid';
-import type { Project } from '@/types/entities';
+import type { Locale, Project, Status } from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
 import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
@@ -55,8 +55,14 @@ export default function ProjectsPage() {
       projectService.getAll({
         page: params.page,
         limit: params.limit,
-        status: params.status,
-        locale: params.locale,
+        status:
+          params.status && params.status !== '__all__'
+            ? (params.status as Status)
+            : undefined,
+        locale:
+          params.locale && params.locale !== '__all__'
+            ? (params.locale as Locale)
+            : undefined,
       }),
     filters: [
       {
