@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { RefObject } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import MKWEbLogo from './Icons/MKWebLogo';
 import LanguageSwitcher from './LanguageSwitcher';
 import NavLink from './NavLink';
@@ -165,7 +166,7 @@ const Navbar = () => {
   return (
     <header className={headerClassName} onKeyDown={handleKeyDown}>
       <nav className="w-full px-4 sm:px-6" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="relative z-50 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0 z-50 relative">
             <Link
@@ -221,52 +222,56 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation Overlay */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              ref={mobileMenuRef}
-              id={MOBILE_NAV_ID}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={menuVariants}
-              className="fixed inset-0 z-40 bg-white dark:bg-slate-950 md:hidden flex flex-col justify-center items-center"
-            >
-              <div className="w-full max-w-md px-6 py-8 flex flex-col items-center space-y-6">
-                {navigation.map((item) => (
-                  <motion.div key={item.id} variants={itemVariants}>
-                    <Link
-                      href={item.path}
-                      onClick={closeMenu}
-                      className="text-2xl font-medium text-gray-900 dark:text-slate-100 hover:text-myorange-100 transition-colors"
-                    >
-                      {item.title}
-                    </Link>
-                  </motion.div>
-                ))}
-
-                <motion.div variants={itemVariants} className="pt-4">
-                  <NavLink
-                    href={`/${currentLocale}/estimation`}
-                    onClick={closeMenu}
-                    className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-md"
-                  >
-                    {t.estimation}
-                  </NavLink>
-                </motion.div>
-
+        {/* Mobile Navigation Overlay - portaled to body so fixed inset-0 covers viewport (header has transform) */}
+        {typeof document !== 'undefined' &&
+          createPortal(
+            <AnimatePresence>
+              {isMenuOpen && (
                 <motion.div
-                  variants={itemVariants}
-                  className="pt-8 flex items-center gap-4"
+                  ref={mobileMenuRef}
+                  id={MOBILE_NAV_ID}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  variants={menuVariants}
+                  className="fixed inset-0 z-40 bg-white dark:bg-slate-950 md:hidden flex flex-col justify-center items-center"
                 >
-                  <ThemeToggle />
-                  <LanguageSwitcher currentLocale={currentLocale} />
+                  <div className="w-full max-w-md px-6 py-8 flex flex-col items-center space-y-6">
+                    {navigation.map((item) => (
+                      <motion.div key={item.id} variants={itemVariants}>
+                        <Link
+                          href={item.path}
+                          onClick={closeMenu}
+                          className="text-2xl font-medium text-gray-900 dark:text-slate-100 hover:text-myorange-100 transition-colors"
+                        >
+                          {item.title}
+                        </Link>
+                      </motion.div>
+                    ))}
+
+                    <motion.div variants={itemVariants} className="pt-4">
+                      <NavLink
+                        href={`/${currentLocale}/estimation`}
+                        onClick={closeMenu}
+                        className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-md"
+                      >
+                        {t.estimation}
+                      </NavLink>
+                    </motion.div>
+
+                    <motion.div
+                      variants={itemVariants}
+                      className="pt-8 flex items-center gap-4"
+                    >
+                      <ThemeToggle />
+                      <LanguageSwitcher currentLocale={currentLocale} />
+                    </motion.div>
+                  </div>
                 </motion.div>
-              </div>
-            </motion.div>
+              )}
+            </AnimatePresence>,
+            document.body,
           )}
-        </AnimatePresence>
       </nav>
     </header>
   );
