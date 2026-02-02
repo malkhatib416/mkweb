@@ -15,7 +15,7 @@ export default function Hero({ dict, locale }: Props) {
   return (
     <section
       className="relative overflow-hidden bg-white dark:bg-slate-950 dot-grid min-h-screen flex items-center justify-center pt-24"
-      id="main"
+      aria-label={dict.hero.badge}
     >
       {/* Background radial gradient for focus */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_70%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,theme(colors.slate.950)_70%)] pointer-events-none" />

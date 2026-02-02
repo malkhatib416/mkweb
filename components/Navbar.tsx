@@ -133,7 +133,7 @@ const Navbar = () => {
   const headerClassName =
     'fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/60 shadow-lg rounded-[2rem] transition-all duration-300';
   const desktopNavLinkClass =
-    'inline-flex items-center px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-myorange-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
+    'inline-flex items-center px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-slate-600 dark:text-slate-400 hover:text-myorange-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
 
   const menuVariants = {
     closed: {

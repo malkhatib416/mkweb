@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { PHONE } from '@/utils/consts';
-import { MessageCircle, X } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import type { Dictionary } from '@/locales/dictionaries';
+import { PHONE } from '@/utils/consts';
+import { motion } from 'framer-motion';
+import { MessageCircle, X } from 'lucide-react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 type Props = {
   dict: Dictionary;
@@ -94,6 +94,7 @@ export default function WhatsAppQuickContact({ dict }: Props) {
               onKeyDown={handleKeyDown}
               placeholder={dict.whatsapp.placeholder}
               className="flex-1 bg-background h-11"
+              aria-label={dict.whatsapp.placeholder}
             />
             <Button
               onClick={handleSend}

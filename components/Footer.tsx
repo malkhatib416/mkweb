@@ -25,7 +25,7 @@ const SubFooter = ({ locale }: { locale: Locale }) => {
 
   return (
     <div className="custom-screen">
-      <p className="my-6 text-center text-xs dark:text-slate-500">
+      <p className="my-6 text-center text-xs text-gray-600 dark:text-slate-400">
         © {date.getFullYear()} MKWeb. {dict.footer.rights}.
       </p>
     </div>
@@ -73,7 +73,11 @@ const FooterNewsletter = ({
         onSubmit={handleSubmit}
         className="mt-4 flex flex-col sm:flex-row gap-2 max-w-xs"
       >
+        <label htmlFor="footer-newsletter-email" className="sr-only">
+          {t.newsletterPlaceholder}
+        </label>
         <Input
+          id="footer-newsletter-email"
           type="email"
           placeholder={t.newsletterPlaceholder}
           value={email}
@@ -117,6 +121,8 @@ const Footer = () => {
                   href="https://www.linkedin.com/in/mohamad-alkhatib416/"
                   className=" inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-1.5 rounded-md me-2"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn profile"
                 >
                   <Linkedin />
                 </Link>
@@ -138,7 +144,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`/${locale}`}
-                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
+                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
                     {t.home}
                   </Link>
@@ -146,7 +152,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`/${locale}/mentions-legales`}
-                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
+                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
                     {t.legalNotice}
                   </Link>
@@ -154,7 +160,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`/${locale}#contact`}
-                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
+                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
                     {t.contact}
                   </Link>
@@ -169,7 +175,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`tel:${PHONE}`}
-                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
+                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                   >
                     <Phone size={16} />
                     {PHONE}
@@ -178,7 +184,7 @@ const Footer = () => {
                 <li>
                   <Link
                     href={`mailto:${EMAIL}`}
-                    className="text-gray-500 dark:text-slate-400 hover:text-gray-400 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
+                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
                   >
                     <Mail size={16} />
                     {EMAIL}

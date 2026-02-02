@@ -1,11 +1,11 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import WhatsAppQuickContact from '@/components/WhatsAppQuickContact';
 import type { Dictionary } from '@/locales/dictionaries';
+import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
 
 type Props = {
@@ -30,7 +30,7 @@ export default function PublicChrome({ dict, children }: Props) {
       <Suspense>
         <Navbar />
       </Suspense>
-      {children}
+      <main id="main">{children}</main>
       <ScrollToTopButton />
       <Footer />
       <WhatsAppQuickContact dict={dict} />

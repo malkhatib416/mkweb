@@ -1,8 +1,5 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
-import { locales, type Locale } from '@/locales/i18n';
-import { useCallback } from 'react';
 import {
   Select,
   SelectContent,
@@ -10,6 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { locales, type Locale } from '@/locales/i18n';
+import { usePathname, useRouter } from 'next/navigation';
+import { useCallback } from 'react';
 import CountryFlag from './CountryFlag';
 
 type Props = {
@@ -43,7 +43,7 @@ export default function LanguageSwitcher({ currentLocale }: Props) {
 
   return (
     <Select value={currentLocale} onValueChange={switchLocale}>
-      <SelectTrigger className="w-[140px]">
+      <SelectTrigger className="w-[140px]" aria-label="Select language">
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
       <SelectContent>

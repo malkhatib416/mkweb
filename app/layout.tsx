@@ -3,8 +3,8 @@ import PublicChrome from '@/components/PublicChrome';
 import Transition from '@/components/Transition';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { getDictionary } from '@/locales/dictionaries';
 import { getLocaleFromHeaders } from '@/lib/get-locale-from-headers';
+import { getDictionary } from '@/locales/dictionaries';
 import { isValidLocale } from '@/locales/i18n';
 import { APP_NAME, APP_URL, EMAIL, PHONE } from '@/utils/consts';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
@@ -14,7 +14,6 @@ import PlausibleProvider from 'next-plausible';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -91,7 +90,7 @@ export default async function RootLayout({ children }: Props) {
   };
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale ?? 'fr'} suppressHydrationWarning>
       <head>
         <PlausibleProvider domain="mk-web.fr" />
         {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
