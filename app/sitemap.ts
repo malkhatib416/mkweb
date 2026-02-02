@@ -6,6 +6,7 @@ import { MetadataRoute } from 'next';
 
 const baseUrl = APP_URL || 'https://mk-web.fr';
 
+/** Public sitemap only. Admin routes (/admin/*) are intentionally excluded. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     { path: '', priority: 1, changeFrequency: 'yearly' as const },
@@ -28,15 +29,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const [blogEntriesArrays, projectSlugsByLocale] = await Promise.all([
+    // Load all published blog articles (with pagination so we include every article)
     Promise.all(
       locales.map(async (locale) => {
-        const { data: posts } = await blogServiceServer.getAll({
-          status: 'published',
-          locale,
-          limit: 500,
-          page: 1,
-        });
-        return posts.map((post) => ({
+        const limit = 100;
+        let page = 1;
+        let allPosts: Awaited<
+          ReturnType<typeof blogServiceServer.getAll>
+        >['data'] = [];
+        let hasMore = true;
+        while (hasMore) {
+          const { data: posts, pagination } = await blogServiceServer.getAll({
+            status: 'published',
+            locale,
+            limit,
+            page,
+          });
+          const list = posts ?? [];
+          allPosts = allPosts.concat(list);
+          hasMore = page < (pagination?.pages ?? 1);
+          page += 1;
+        }
+        return allPosts.map((post) => ({
           url: `${baseUrl}/${locale}/blog/${post.slug}`,
           lastModified: new Date(post.updatedAt),
           changeFrequency: 'monthly' as const,
