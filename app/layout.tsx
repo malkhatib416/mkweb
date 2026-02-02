@@ -8,7 +8,6 @@ import { getDictionary } from '@/locales/dictionaries';
 import { isValidLocale } from '@/locales/i18n';
 import { APP_NAME, APP_URL, EMAIL, PHONE } from '@/utils/consts';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
@@ -117,7 +116,6 @@ export default async function RootLayout({ children }: Props) {
               <PublicChrome dict={dict}>{children}</PublicChrome>
             </ThemeProvider>
           </Transition>
-          <Analytics />
           <Toaster />
           <GoogleAnalytics gaId="G-9NPYEM4FGH" />
         </ReCaptchaProvider>

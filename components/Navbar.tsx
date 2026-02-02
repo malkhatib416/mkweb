@@ -3,278 +3,166 @@
 import enDict from '@/locales/dictionaries/en.json';
 import frDict from '@/locales/dictionaries/fr.json';
 import { isValidLocale, type Locale } from '@/locales/i18n';
-import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { RefObject } from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect, useState } from 'react';
 import MKWEbLogo from './Icons/MKWebLogo';
 import LanguageSwitcher from './LanguageSwitcher';
-import NavLink from './NavLink';
 import { ThemeToggle } from './ThemeToggle';
 
-const dictionaries = {
-  fr: frDict,
-  en: enDict,
-} as const;
+const dictionaries = { fr: frDict, en: enDict } as const;
 
-const useBodyScrollLock = (
-  isOpen: boolean,
-  menuRef: RefObject<HTMLDivElement | null>,
-) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('overflow-hidden');
-      const firstLink = menuRef.current?.querySelector('a');
-      firstLink?.focus();
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [isOpen, menuRef]);
-};
-
-// Constants
-const MOBILE_NAV_ID = 'mobile-nav';
-
-// Types
-interface NavigationItem {
-  title: string;
-  path: string;
-  id: string;
-}
-
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname() ?? '/';
 
-  // Extract locale from pathname
-  const currentLocale: Locale = useMemo(() => {
-    const pathSegments = pathname.split('/').filter(Boolean);
-    const localeFromPath = pathSegments[0];
-    return isValidLocale(localeFromPath) ? localeFromPath : 'fr';
-  }, [pathname]);
+  // Get locale from pathname
+  const locale: Locale = (() => {
+    const segment = pathname.split('/')[1];
+    return isValidLocale(segment) ? segment : 'fr';
+  })();
 
-  const dict = dictionaries[currentLocale];
-  const t = dict.nav;
+  const t = dictionaries[locale].nav;
 
-  const navigation: NavigationItem[] = useMemo(
-    () => [
-      {
-        title: t.home,
-        path: `/${currentLocale}/#main`,
-        id: 'home',
-      },
-      {
-        title: t.services,
-        path: `/${currentLocale}/#services`,
-        id: 'services',
-      },
-      {
-        title: t.blog,
-        path: `/${currentLocale}/blog`,
-        id: 'blog',
-      },
-      {
-        title: t.contact,
-        path: `/${currentLocale}/#contact`,
-        id: 'contact',
-      },
-    ],
-    [t, currentLocale],
-  );
+  const links = [
+    { href: `/${locale}/#main`, label: t.home },
+    { href: `/${locale}/#services`, label: t.services },
+    { href: `/${locale}/blog`, label: t.blog },
+    { href: `/${locale}/#contact`, label: t.contact },
+  ];
 
-  const closeMenu = useCallback(() => {
-    setIsMenuOpen(false);
-    // Return focus to menu button when closing
-    menuButtonRef.current?.focus();
-  }, []);
-
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen((prev) => !prev);
-  }, []);
-
-  // Handle keyboard navigation
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
-      if (event.key === 'Escape' && isMenuOpen) {
-        closeMenu();
-      }
-    },
-    [isMenuOpen, closeMenu],
-  );
-  // Manage body scroll and close menu when the route changes
-  useBodyScrollLock(isMenuOpen, mobileMenuRef);
+  // Lock body scroll when menu is open
   useEffect(() => {
-    closeMenu();
-  }, [pathname, closeMenu]);
-
-  // Handle escape key to close menu
-  useEffect(() => {
-    if (!isMenuOpen) return;
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeMenu();
-      }
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
     };
+  }, [isOpen]);
 
+  // Close on escape
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [isMenuOpen, closeMenu]);
-
-  const headerClassName =
-    'fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/60 shadow-lg rounded-[2rem] transition-all duration-300';
-  const desktopNavLinkClass =
-    'inline-flex items-center px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-slate-600 dark:text-slate-400 hover:text-myorange-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2';
-
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      scale: 0.95,
-      y: -20,
-      transition: {
-        duration: 0.2,
-        ease: 'easeInOut',
-      },
-    },
-    open: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: 'easeOut',
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    closed: { opacity: 0, y: 10 },
-    open: { opacity: 1, y: 0 },
-  };
+  }, []);
 
   return (
-    <header className={headerClassName} onKeyDown={handleKeyDown}>
-      <nav className="w-full px-4 sm:px-6" aria-label="Main navigation">
-        <div className="relative z-50 flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0 z-50 relative">
-            <Link
-              href={`/${currentLocale}/#main`}
-              aria-label="MK-Web home"
-              className="focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 rounded-lg block hover:scale-105 transition-transform"
-              onClick={() => isMenuOpen && closeMenu()}
-            >
+    <>
+      {/* Desktop navbar */}
+      <header className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/60 shadow-lg rounded-[2rem]">
+        <nav className="px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <Link href={`/${locale}/#main`} aria-label="MK-Web home">
               <MKWEbLogo />
             </Link>
-          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:gap-4">
-            {navigation.map((item) => (
+            {/* Desktop links */}
+            <div className="hidden md:flex items-center gap-1">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-slate-600 dark:text-slate-400 hover:text-myorange-100 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-all duration-200"
+                >
+                  {link.label}
+                </Link>
+              ))}
+
               <Link
-                key={item.id}
-                href={item.path}
-                className={desktopNavLinkClass}
+                href={`/${locale}/estimation`}
+                className="ml-3 px-5 py-2 text-[10px] font-mono uppercase tracking-widest text-white bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 dark:text-slate-950 rounded-full transition-all duration-200 hover:scale-105 active:scale-95 border border-slate-800 dark:border-white"
               >
-                {item.title}
+                {t.estimation}
               </Link>
-            ))}
 
-            <NavLink
-              href={`/${currentLocale}/estimation`}
-              className="ml-4 inline-flex items-center justify-center px-6 py-2.5 text-[10px] font-mono uppercase tracking-widest text-white bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 dark:text-slate-950 rounded-full transition-all duration-200 shadow-md dark:shadow-none focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950 hover:scale-105 active:scale-95 border border-slate-800 dark:border-white"
-            >
-              {t.estimation}
-            </NavLink>
-
-            <div className="flex items-center gap-2 pl-4 ml-4 border-l border-slate-200 dark:border-slate-800">
-              <ThemeToggle />
-              <LanguageSwitcher currentLocale={currentLocale} />
+              <div className="flex items-center gap-1 pl-3 ml-3 border-l border-slate-200 dark:border-slate-800">
+                <ThemeToggle />
+                <LanguageSwitcher currentLocale={locale} />
+              </div>
             </div>
-          </div>
-          <div className="md:hidden z-50 relative">
+
+            {/* Mobile hamburger */}
             <button
-              ref={menuButtonRef}
               type="button"
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMenuOpen}
-              aria-controls={MOBILE_NAV_ID}
-              className="text-gray-600 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-myorange-100/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
-              onClick={toggleMenu}
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-3 -mr-2 text-slate-600 dark:text-slate-400"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
-              {isMenuOpen ? (
-                <X className="h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="h-6 w-6" aria-hidden="true" />
-              )}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
+        </nav>
+      </header>
+
+      {/* Mobile menu overlay */}
+      <div
+        className={`fixed inset-0 z-[60] bg-white dark:bg-slate-950 md:hidden transition-all duration-300 ${
+          isOpen
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsOpen(false)}
+      >
+        {/* Top bar with logo and close */}
+        <div className="flex items-center justify-between h-16 px-4 border-b border-slate-200 dark:border-slate-800">
+          <Link
+            href={`/${locale}/#main`}
+            onClick={() => setIsOpen(false)}
+            aria-label="MK-Web home"
+          >
+            <MKWEbLogo />
+          </Link>
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            className="p-3 -mr-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
         </div>
 
-        {/* Mobile Navigation Overlay - portaled to body so fixed inset-0 covers viewport (header has transform) */}
-        {typeof document !== 'undefined' &&
-          createPortal(
-            <AnimatePresence>
-              {isMenuOpen && (
-                <motion.div
-                  ref={mobileMenuRef}
-                  id={MOBILE_NAV_ID}
-                  initial="closed"
-                  animate="open"
-                  exit="closed"
-                  variants={menuVariants}
-                  className="fixed inset-0 z-40 bg-white dark:bg-slate-950 md:hidden flex flex-col justify-center items-center"
-                >
-                  <div className="w-full max-w-md px-6 py-8 flex flex-col items-center space-y-6">
-                    {navigation.map((item) => (
-                      <motion.div key={item.id} variants={itemVariants}>
-                        <Link
-                          href={item.path}
-                          onClick={closeMenu}
-                          className="text-2xl font-medium text-gray-900 dark:text-slate-100 hover:text-myorange-100 transition-colors"
-                        >
-                          {item.title}
-                        </Link>
-                      </motion.div>
-                    ))}
+        {/* Menu content */}
+        <div
+          className={`flex flex-col items-center justify-center gap-8 pt-16 transition-all duration-300 ${
+            isOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {links.map((link, i) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="text-2xl font-medium text-slate-900 dark:text-slate-100 hover:text-myorange-100 transition-all duration-200 hover:scale-105"
+              style={{ transitionDelay: `${i * 50}ms` }}
+            >
+              {link.label}
+            </Link>
+          ))}
 
-                    <motion.div variants={itemVariants} className="pt-4">
-                      <NavLink
-                        href={`/${currentLocale}/estimation`}
-                        onClick={closeMenu}
-                        className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-colors duration-200 shadow-md"
-                      >
-                        {t.estimation}
-                      </NavLink>
-                    </motion.div>
+          <Link
+            href={`/${locale}/estimation`}
+            onClick={() => setIsOpen(false)}
+            className="px-8 py-3 text-lg font-semibold text-white bg-myorange-100 hover:bg-myorange-200 rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
+          >
+            {t.estimation}
+          </Link>
 
-                    <motion.div
-                      variants={itemVariants}
-                      className="pt-8 flex items-center gap-4"
-                    >
-                      <ThemeToggle />
-                      <LanguageSwitcher currentLocale={currentLocale} />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>,
-            document.body,
-          )}
-      </nav>
-    </header>
+          <div className="flex items-center gap-4 pt-4">
+            <ThemeToggle />
+            <LanguageSwitcher currentLocale={locale} />
+          </div>
+        </div>
+      </div>
+    </>
   );
-};
-
-export default Navbar;
+}

@@ -43,7 +43,10 @@ export default function LanguageSwitcher({ currentLocale }: Props) {
 
   return (
     <Select value={currentLocale} onValueChange={switchLocale}>
-      <SelectTrigger className="w-[140px]" aria-label="Select language">
+      <SelectTrigger
+        className="w-[140px] min-h-12"
+        aria-label="Select language"
+      >
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
       <SelectContent>

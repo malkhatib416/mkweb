@@ -65,10 +65,10 @@ export default function WhatsAppQuickContact({ dict }: Props) {
               onClick={() => {
                 setIsOpen(false);
               }}
-              className="p-1 rounded hover:bg-white/10 transition-colors"
+              className="min-w-12 min-h-12 inline-flex items-center justify-center p-2 rounded hover:bg-white/10 transition-colors"
               aria-label={dict.whatsapp.close}
             >
-              <X className="w-4 h-4 text-white" />
+              <X className="w-5 h-5 text-white" aria-hidden />
             </button>
           </div>
 

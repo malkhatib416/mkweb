@@ -119,20 +119,28 @@ const Footer = () => {
                 </Link>
                 <Link
                   href="https://www.linkedin.com/in/mohamad-alkhatib416/"
-                  className=" inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-1.5 rounded-md me-2"
+                  className="inline-flex items-center justify-center min-w-12 min-h-12 text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-3 rounded-md me-2"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn profile"
                 >
-                  <Linkedin />
+                  <Linkedin className="w-6 h-6" aria-hidden />
                 </Link>
 
                 <Link
                   href="https://www.malt.fr/profile/mohamadalkhatib"
-                  className="inline-block text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#FC5657] p-1.5 rounded-md"
+                  className="inline-flex items-center justify-center min-w-12 min-h-12 text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#FC5657] p-3 rounded-md"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Malt profile"
                 >
-                  <Image src="/malt.svg" alt="Malt" width={24} height={24} />
+                  <Image
+                    src="/malt.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                    aria-hidden
+                  />
                 </Link>
               </Suspense>
             </div>

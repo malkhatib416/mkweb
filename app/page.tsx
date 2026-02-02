@@ -15,10 +15,19 @@ import type { Locale } from '@/locales/i18n';
 export default async function Home() {
   const locale = (await getLocaleFromHeaders()) as Locale;
   const dict = await getDictionary(locale);
-  const [dbProjects, reviews] = await Promise.all([
-    projectServiceServer.getPublished(locale),
-    getSubmittedReviews(6),
-  ]);
+  let dbProjects: Awaited<
+    ReturnType<typeof projectServiceServer.getPublished>
+  > = [];
+  let reviews: Awaited<ReturnType<typeof getSubmittedReviews>> = [];
+  try {
+    [dbProjects, reviews] = await Promise.all([
+      projectServiceServer.getPublished(locale),
+      getSubmittedReviews(6),
+    ]);
+  } catch (e) {
+    // DB unreachable (e.g. connection terminated, wrong host when accessing from another device)
+    console.error('Home: failed to load projects/reviews', e);
+  }
   const reviewItems = reviews.map((r) => ({
     name: r.clientName ?? 'Client',
     title: r.projectTitle ?? '',

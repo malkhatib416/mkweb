@@ -4,6 +4,8 @@ import createMDX from '@next/mdx';
 const nextConfig = {
   output: 'standalone',
   pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
+  // Allow dev server requests from other devices on the network (e.g. 192.168.x.x)
+  allowedDevOrigins: ['http://192.168.1.28:3003', 'http://192.168.1.28:3000'],
   images: {
     remotePatterns: [
       {
