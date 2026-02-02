@@ -164,11 +164,7 @@ export default function ContactSection({
                     <FormItem>
                       <FormLabel>{dict.contact.form.firstName}</FormLabel>
                       <FormControl>
-                        <Input
-                          id="prenom"
-                          autoComplete="given-name"
-                          {...field}
-                        />
+                        <Input autoComplete="given-name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -182,7 +178,7 @@ export default function ContactSection({
                     <FormItem>
                       <FormLabel>{dict.contact.form.lastName}</FormLabel>
                       <FormControl>
-                        <Input id="nom" autoComplete="family-name" {...field} />
+                        <Input autoComplete="family-name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -196,12 +192,7 @@ export default function ContactSection({
                     <FormItem>
                       <FormLabel>{dict.contact.form.email}</FormLabel>
                       <FormControl>
-                        <Input
-                          id="email"
-                          type="email"
-                          autoComplete="email"
-                          {...field}
-                        />
+                        <Input type="email" autoComplete="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -215,12 +206,7 @@ export default function ContactSection({
                     <FormItem>
                       <FormLabel>{dict.contact.form.phone}</FormLabel>
                       <FormControl>
-                        <Input
-                          id="telephone"
-                          type="tel"
-                          autoComplete="tel"
-                          {...field}
-                        />
+                        <Input type="tel" autoComplete="tel" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -234,11 +220,7 @@ export default function ContactSection({
                     <FormItem className="sm:col-span-2">
                       <FormLabel>{dict.contact.form.company}</FormLabel>
                       <FormControl>
-                        <Input
-                          id="entreprise"
-                          autoComplete="organization"
-                          {...field}
-                        />
+                        <Input autoComplete="organization" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -252,7 +234,7 @@ export default function ContactSection({
                     <FormItem className="sm:col-span-2">
                       <FormLabel>{dict.contact.form.subject}</FormLabel>
                       <FormControl>
-                        <Input id="sujet" {...field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -266,7 +248,7 @@ export default function ContactSection({
                     <FormItem className="sm:col-span-2">
                       <FormLabel>{dict.contact.form.message}</FormLabel>
                       <FormControl>
-                        <Textarea id="message" rows={6} {...field} />
+                        <Textarea rows={6} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -277,7 +259,8 @@ export default function ContactSection({
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-myorange-100 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-myorange-100/30 transition hover:bg-myorange-200 disabled:cursor-not-allowed disabled:opacity-80"
+                aria-label={dict.contact.form.send}
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-myorange-200 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-myorange-200/30 transition hover:bg-myorange-200/90 disabled:cursor-not-allowed disabled:opacity-80"
               >
                 {isSubmitting ? (
                   <>

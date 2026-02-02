@@ -207,9 +207,10 @@ export default function LatestProjects({
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`${dict.projects.visitLiveSite}: ${project.title}`}
                         className="w-10 h-10 flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-xl hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-950 hover:border-slate-900 dark:hover:border-white transition-all duration-300"
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <ExternalLink className="w-4 h-4" aria-hidden />
                       </a>
                     )}
                   </div>
@@ -241,9 +242,10 @@ export default function LatestProjects({
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`${dict.projects.visitLiveSite}: ${project.title}`}
                           className="text-slate-400 hover:text-myorange-100 transition-colors"
                         >
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <ExternalLink className="w-3.5 h-3.5" aria-hidden />
                         </a>
                       )}
                     </div>
