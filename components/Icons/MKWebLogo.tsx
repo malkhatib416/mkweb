@@ -1,34 +1,32 @@
 'use client';
+
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const MKWEbLogo = () => {
-  const [pastHero, setPastHero] = useState(false);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const heroSection = document.querySelector('.hero-wrapper');
-      if (heroSection) {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        setPastHero(heroBottom <= 0);
-      }
-    };
+    setMounted(true);
+  }, []);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname, searchParams]);
-
-  const imgPath =
-    pastHero || pathname !== '/' ? '/logo.png' : '/logo-white.png';
+  // Dark mode: white logo. Light mode: colored logo (logo.png).
+  const isDark = mounted && resolvedTheme === 'dark';
+  const imgPath = isDark ? '/logo-white.png' : '/logo.png';
 
   return (
-    <Link href="/#main" className="flex items-center gap-3">
-      <Image src={imgPath} alt="logo" width={120} height={120} />
-    </Link>
+    <span className="flex items-center gap-3 shrink-0">
+      <Image
+        src={imgPath}
+        alt="MK-Web"
+        width={80}
+        height={80}
+        priority
+        className="h-5 w-auto md:h-6 object-contain object-left"
+      />
+    </span>
   );
 };
 

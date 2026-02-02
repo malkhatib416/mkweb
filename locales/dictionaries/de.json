@@ -1,0 +1,986 @@
+{
+  "nav": {
+    "home": "Willkommen",
+    "services": "Services\" in German is \"Dienstleistungen\".",
+    "blog": "Blog",
+    "contact": "Kontaktieren Sie uns",
+    "requestQuote": "Ein Angebot anfordern",
+    "estimation": "Mein Projekt einschätzen"
+  },
+  "hero": {
+    "badge": "Verfügbar für neue Projekte",
+    "title": "Verwandeln Sie Ihre Ideen in",
+    "titleHighlight": "leistungsstarke Webanwendungen",
+    "subtitle": "Ich begleite Startups und Unternehmen bei der Erstellung von maßgeschneiderten, leistungsstarken und skalierbaren Weblösungen.",
+    "cta": "Lassen Sie uns über Ihr Projekt sprechen.",
+    "estimationCta": "Mein Projekt einschätzen",
+    "feature1": "Antwort innerhalb von 24 Stunden",
+    "feature2": "+5 Jahre Erfahrung",
+    "feature3": "Fortlaufende Unterstützung"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten",
+    "legalNotice": "Rechtliche Hinweise",
+    "contact": "Kontakt",
+    "links": "Links",
+    "home": "Willkommen",
+    "newsletterTitle": "Newsletter",
+    "newsletterPlaceholder": "Ihre E-Mail",
+    "newsletterButton": "Registrieren",
+    "newsletterSuccess": "Danke, Sie sind angemeldet.",
+    "newsletterError": "Ein Fehler ist aufgetreten."
+  },
+  "review": {
+    "title": "Geben Sie Ihre Meinung ab",
+    "subtitle": "Teilen Sie Ihre Erfahrungen zum Projekt.",
+    "ratingLabel": "Notiz",
+    "reviewTextLabel": "Ihre Meinung (optional)",
+    "reviewTextPlaceholder": "Beschreiben Sie Ihre Erfahrung...",
+    "submit": "Meine Meinung senden",
+    "submitting": "Sendung...",
+    "success": "Vielen Dank! Ihre Meinung wurde erfolgreich erfasst.",
+    "expired": "Dieser Link ist abgelaufen.",
+    "alreadySubmitted": "Sie haben Ihre Bewertung bereits eingereicht.",
+    "error": "Ein Fehler ist aufgetreten."
+  },
+  "newsletterPublic": {
+    "success": "Vielen Dank, Sie sind angemeldet.",
+    "error": "Ein Fehler ist aufgetreten."
+  },
+  "testimonials": {
+    "title": "Was unsere Kunden sagen",
+    "subtitle": "Entdecken Sie die Rückmeldungen von denen, die uns ihr Vertrauen geschenkt haben."
+  },
+  "common": {
+    "readMore": " weiterlesen",
+    "learnMore": "Mehr erfahren",
+    "contactUs": "Kontaktieren Sie uns",
+    "backToHome": "Zurück zur Startseite",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "submit": "Senden",
+    "cancel": "Stornieren"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artikel & Tipps",
+    "description": "Finden Sie meine neuesten Artikel, Tutorials und Gedanken zur Webentwicklung, SEO und digitaler Innovation.",
+    "categories": "Kategorien",
+    "readTime": "Lesezeit",
+    "search": "Artikel suchen...",
+    "allCategories": "Alles",
+    "noResults": "Kein Artikel gefunden",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchbegriffe zu ändern oder durch alle Kategorien zu blättern.",
+    "resultsFor": "Ergebnisse für",
+    "article": "Artikel",
+    "articles": "Artikel",
+    "readArticle": "Artikel lesen",
+    "cta": {
+      "services": "Brauchst du technische Unterstützung oder SEO?",
+      "contact": "Kontaktiere mich direkt",
+      "schedule": "Reserviere einen 30-minütigen Anruf.",
+      "description": "Von der Erstellung leistungsstarker Webanwendungen bis hin zur Optimierung Ihrer Sichtbarkeit verwandle ich Ihre technischen Herausforderungen in Wachstumschancen."
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir sind hier, um جميع Ihre Fragen zu beantworten. Zögern Sie nicht, uns zu kontaktieren!",
+    "form": {
+      "lastName": "Name",
+      "firstName": "Vorname",
+      "email": "E-Mail",
+      "phone": "Telefonnummer",
+      "company": "Unternehmen",
+      "subject": "Thema",
+      "message": "Nachricht",
+      "helper": "Teilen Sie mir Ihre Ziele, Ihren Zeitrahmen und Ihre Einschränkungen mit, damit ich eine maßgeschneiderte Antwort vorbereiten kann.",
+      "send": "Schicken",
+      "sending": "Sendung läuft..."
+    },
+    "toast": {
+      "successTitle": "Nachricht gesendet!",
+      "successDescription": "Wir haben Ihre Nachricht erhalten und werden Ihnen so schnell wie möglich antworten.",
+      "errorTitle": "Fehler",
+      "errorDescription": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+    },
+    "email": {
+      "contactSubject": "Kontaktdaten",
+      "confirmationSubject": "Bestätigung des Empfangs",
+      "confirmationGreeting": "Hallo",
+      "confirmationMessage": "Wir haben Ihre Nachricht erhalten und werden Ihnen so schnell wie möglich antworten.",
+      "confirmationClosing": "Mit freundlichen Grüßen,",
+      "confirmationTeam": "Das Team von MK-Web",
+      "fields": {
+        "lastName": "Name",
+        "firstName": "Vorname",
+        "email": "E-Mail",
+        "company": "Unternehmen",
+        "phone": "Telefon"
+      }
+    },
+    "highlights": [
+      {
+        "title": "Maßgeschneiderter Fahrplan",
+        "description": "Jede Zusammenarbeit beginnt mit einem Austausch, um Ihre Zielsetzungen, Erfolgskriterien und technischen Einschränkungen zu rahmen."
+      },
+      {
+        "title": "Klares Budget und Planung",
+        "description": "Sie erhalten einen detaillierten Vorschlag mit Meilensteinen, Liefergegenständen und Investitionen, damit alle auf dem gleichen Stand bleiben."
+      },
+      {
+        "title": "Kollaborationstools",
+        "description": "Wir arbeiten in gemeinsamen Räumen mit transparenter Nachverfolgung und asynchronen Punkten, wann immer Sie sie benötigen."
+      },
+      {
+        "title": "Nachlieferungsverfolgung",
+        "description": "Wartungsangebote gewährleisten Sicherheit, Aktualisierungen und Entwicklungen entsprechend Ihren Prioritäten."
+      }
+    ],
+    "office": {
+      "title": "Mit Sitz in Chartres begleite ich Kunden in ganz Europa.",
+      "description": "Lassen Sie uns in der Nähe von Chartres treffen oder vollständig remote mit wöchentlichen Videokonferenzen und gemeinsam genutzter Dokumentation arbeiten.",
+      "hours": "Von Montag bis Freitag • 09:00 – 18:00 MEZ"
+    },
+    "privacy": "Ihre Informationen bleiben vertraulich und werden nur verwendet, um auf Ihre Nachricht zu antworten.",
+    "details": {
+      "emailLabel": "E-Mail",
+      "phoneLabel": "Telefon",
+      "responseTime": "Antwortzeit",
+      "responseTimeValue": "Weniger als 24 Stunden"
+    }
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Oups! Die Seite, die Sie suchen, existiert nicht oder wurde verschoben.",
+    "backHome": "Zurück zur Startseite"
+  },
+  "language": {
+    "fr": "Französisch",
+    "en": "Englisch",
+    "switchTo": "Sprache wechseln"
+  },
+  "metadata": {
+    "title": "MK-Web - Freiberuflicher Webentwickler",
+    "description": "Freelance Webentwickler. Erstellung von Internetseiten, Webanwendungen, Suchmaschinenoptimierung und Wartung von Webseiten.",
+    "keywords": "Webentwickler, Freiberufler, Chartres, Erstellung von Webseiten, Webanwendungen, Suchmaschinenoptimierung, Wartung von Webseiten, MK-Web, Webagentur, Freiberuflicher Webmaster"
+  },
+  "about": {
+    "imageAlt": "Ihre Web-Experte",
+    "intro": "Ich helfe Unternehmen, ihre Ideen in leistungsstarke und maßgeschneiderte Weblösungen zu verwandeln.",
+    "location": "Basierend auf",
+    "chartres": "Chartres",
+    "remote": "Online verfügbar",
+    "remoteDescription": "Fernzusammenarbeit auf der ganzen Welt",
+    "services": "Ich arbeite an der",
+    "creation": "Schöpfung",
+    "optimization": "Optimierung",
+    "maintenance": "Wartung",
+    "description": "von Webseiten und Anwendungen, mit einem benutzerzentrierten Ansatz und Leistung.",
+    "goal": "Mein Ziel: Ihnen zu bieten",
+    "uniqueSolutions": "einzigartige digitale Lösungen",
+    "adapted": ", perfekt auf Ihre Bedürfnisse und Ambitionen abgestimmt, um Ihre Online-Präsenz zu stärken und die Verwaltung Ihrer Projekte zu erleichtern.",
+    "expertise": "Von der Integration von",
+    "innovative": "innovative Funktionen",
+    "to": "à la\" in German is \"zu der\".",
+    "fluidUX": "Gestaltung von reibungslosen Nutzererlebnissen",
+    "commitment": ", ich setze mein Fachwissen und meine Sorgfalt in den Dienst Ihres Erfolgs."
+  },
+  "services": {
+    "badge": "Dienstleistungen",
+    "title": "Meine Dienstleistungen",
+    "subtitle": "Ich begleite Sie in jeder Phase Ihres digitalen Projekts: Website-Erstellung, E-Commerce, mobile Anwendungen, Redesign, Wartung, Hosting und Innovation.",
+    "website": {
+      "title": "Website-Erstellung",
+      "description": "Maßgeschneiderte Erstellung von Unternehmens- und Ausstellungshomepages, die darauf ausgelegt sind, Ihr Image zu stärken und Ihre Ziele zu erreichen.",
+      "feature1": "Responsives Design",
+      "feature2": "SEO-optimiert",
+      "feature3": "Maximale Leistung"
+    },
+    "ecommerce": {
+      "title": "E-Commerce",
+      "description": "Entwicklung leistungsstarker, skalierbarer und für die Konversion optimierter Online-Shops.",
+      "feature1": "Sichere Zahlungen",
+      "feature2": "Warenwirtschaft",
+      "feature3": "Erweiterte Analysen"
+    },
+    "redesign": {
+      "title": "Website-Relaunch",
+      "description": "Modernisierung Ihrer Website, um deren Wirkung, Leistung und Benutzererlebnis zu steigern.",
+      "feature1": "Vollständige Prüfung",
+      "feature2": "Sichere Migration",
+      "feature3": "Inklusive Ausbildung"
+    },
+    "maintenance": {
+      "title": "Unterkunft & Wartung",
+      "description": "Sichere Hosting-Lösungen, proaktive Überwachung, regelmäßige Updates und reaktionsschneller Support für eine stets leistungsfähige Website.",
+      "feature1": "SSL/CDN-Hosting",
+      "feature2": "Support 24/7\" in German is \"24/7 Unterstützung\".",
+      "feature3": "Sicherungen & Updates"
+    },
+    "innovation": {
+      "title": "Innovation\" in German is \"Innovation\".",
+      "description": "Integration der neuesten Webtechnologien für innovative und differenzierende Lösungen.",
+      "feature1": "Integrierte KI",
+      "feature2": "moderne APIs",
+      "feature3": "Emerging Technologies\" in German is \"Neue Technologien\"."
+    },
+    "mobileapp": {
+      "title": "Mobile Anwendungen",
+      "description": "Entwicklung von nativen und hybriden mobilen Anwendungen für iOS und Android, leistungsstark und intuitiv.",
+      "feature1": "iOS & Android",
+      "feature2": "Optimierte UX",
+      "feature3": "Fortlaufende Unterstützung"
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Häufig gestellte Fragen",
+    "subtitle": "Die Antworten auf die häufigsten Fragen, die mir gestellt werden, bevor ich ein Projekt starte.",
+    "items": [
+      {
+        "question": "Wie lange dauert es, eine Website oder eine Anwendung zu erstellen?",
+        "answer": "Eine Standard-Website wird in der Regel innerhalb einer Woche geliefert. Bei komplexeren Anwendungen (SaaS, Geschäftsinstrumente, Kundenbereich, Automatisierungen ...) kann der Zeitraum variieren, und eine kleine Planungsphase wird durchgeführt, um die Bedürfnisse und den Zeitplan genau zu definieren."
+      },
+      {
+        "question": "Können Sie eine bereits online befindliche Website verbessern oder umgestalten?",
+        "answer": "Ja, genau. Ich führe technische und UX-Audits durch, identifiziere Verbesserungsmöglichkeiten (Leistung, SEO, Sicherheit) und schlage einen Neugestaltungsplan vor. Der Übergang wird so gestaltet, dass Ihre Aktivitäten nicht unterbrochen werden und Ihr Ranking nicht beeinträchtigt wird."
+      },
+      {
+        "question": "Gibt es eine Unterstützung nach der Veröffentlichung?",
+        "answer": "Ja. Jedes Projekt umfasst 30 Tage kostenlose Anpassungen nach der Lieferung. Ich biete auch Wartungspakete an, die technische Updates, Sicherheitskorrekturen, Backups und kleine Weiterentwicklungen beinhalten."
+      },
+      {
+        "question": "Welche Technologien verwenden Sie?",
+        "answer": "Ich arbeite hauptsächlich mit Next.js, React, TypeScript und Tailwind CSS für das Frontend. Für das Backend verwende ich Node.js (Fastify/Express) mit Prisma sowie moderne Plattformen wie Vercel, Supabase oder PlanetScale, je nach Ihren Bedürfnissen."
+      },
+      {
+        "question": "Kümmern Sie sich um alles, auch wenn ich keine Ahnung habe?",
+        "answer": "Ja. Ich kümmere mich um den gesamten technischen Teil: Domainname, Hosting, Sicherheit, Designintegration, Optimierung, SEO, E-Mail-Konfiguration… Sie können sich ausschließlich auf Ihr Geschäft konzentrieren."
+      },
+      {
+        "question": "Können Sie auch die Texte, Bilder und das SEO verwalten?",
+        "answer": "Ja. Ich kann den Inhalt erstellen, Ihr SEO optimieren, Ihre Bilder integrieren oder sie mit KI generieren und die Website so strukturieren, dass sie sofort nach dem Online-Gang leistungsfähig ist."
+      }
+    ]
+  },
+  "projects": {
+    "badge": "Neueste Projekte",
+    "title": "Meine Letzten",
+    "titleHighlight": "Realisierungen",
+    "subtitle": "Entdecken Sie meine neuesten Projekte, die technische Innovation und modernes Design vereinen, um außergewöhnliche Web-Erlebnisse zu schaffen.",
+    "viewProject": "Projekt ansehen",
+    "sourceCode": "Quellcode",
+    "otherProjects": "Andere Projekte",
+    "demo": "Demo",
+    "code": "Code",
+    "cta": {
+      "title": "Bereit, Ihr nächstes Projekt zu erstellen?",
+      "subtitle": "Lassen Sie uns gemeinsam Ihre Ideen in innovative und leistungsstarke Weblösungen verwandeln.",
+      "button": "Ein Projekt starten"
+    },
+    "status": {
+      "online": "Online",
+      "development": "In Entwicklung",
+      "completed": "Fertig"
+    },
+    "items": {
+      "alertjo": {
+        "description": "Anwendung zur Überwachung der offiziellen Protokolle mit automatisiertem Scraping und Echtzeit-E-Mail-Benachrichtigungen.",
+        "longDescription": "Vollständige Plattform zur Überwachung der Veröffentlichungen des französischen Amtsblatts. Automatische Extraktion von PDF-Daten, erweiterte Suche und System für personalisierte Benachrichtigungen.",
+        "category": "Webanwendung"
+      },
+      "pcmge": {
+        "description": "Migration und Neugestaltung einer Schaufenster-Website in ein maßgeschneidertes internes CRM für ein kleines und mittelständisches Unternehmen.",
+        "longDescription": "Migration eines bestehenden, in PHP realisierten Projekts zu Laravel. Entwicklung eines internen CRM zur Verwaltung von Kunden und Kontakten. Integration von Bootstrap für ein klares und responsives Interface.",
+        "category": "CRM / Webanwendung"
+      },
+      "luxdrive": {
+        "description": "Premium-Plattform zur Autovermietung mit Buchungssystem, Administrations-Dashboard und Stripe-Zahlungsintegration",
+        "longDescription": "Vollständige Plattform für die Verwaltung von Autovermietungen, die ein mehrstufiges Buchungssystem, die Verfügbarkeit von Fahrzeugen in Echtzeit, die Zahlungsabwicklung über Stripe sowie ein Administrations-Dashboard zur Verwaltung der Flotte und der Buchungen bietet. Das System umfasst mehrsprachige Unterstützung (FR/DE), E-Mail-Benachrichtigungen, Dokumentenprüfungen und die Erstellung von Rechnungen. Entwickelt mit Next.js 15, TypeScript, PostgreSQL und den neuesten React-Praktiken.",
+        "category": "E-Commerce / SaaS-Plattform"
+      }
+    }
+  },
+  "estimation": {
+    "title": "Schätzen Sie Ihr Projekt",
+    "subtitle": "Füllen Sie dieses Formular aus, um eine detaillierte Schätzung zu erhalten.",
+    "steps": {
+      "step1": "Typ & Ziel",
+      "step2": "Inhalt & Funktionen",
+      "step3": "Identität & Design",
+      "step4": "Planung & Prioritäten",
+      "step5": "Koordinaten"
+    },
+    "step1": {
+      "title": "Projektart & Ziel",
+      "projectType": {
+        "label": "Projektart",
+        "placeholder": "Wählen Sie einen Typ aus",
+        "required": "Bitte wählen Sie einen Projekttyp aus.",
+        "options": {
+          "showcase": "Vitrine-Website",
+          "redesign": "Neugestaltung der Webseite",
+          "ecommerce": "E-Commerce",
+          "webapp": "Webanwendung / Kundenbereich",
+          "landing": "Landing page\" in German is \"Landingpage\".",
+          "other": "Andere"
+        },
+        "otherLabel": "Bitte geben Sie den Projekttyp an",
+        "otherPlaceholder": "Beschreiben Sie Ihren Projekttyp"
+      },
+      "mainObjective": {
+        "label": "Hauptziel",
+        "placeholder": "Wählen Sie ein Ziel aus",
+        "required": "Bitte wählen Sie ein Ziel aus",
+        "options": {
+          "presentation": "Die Aktivität vorstellen",
+          "leads": "Mehr Kunden / Leads gewinnen",
+          "sell": "Online verkaufen",
+          "modernize": "Das Bild modernisieren",
+          "automate": "Ein Verfahren automatisieren",
+          "client_area": "Ein Kundenbereich erstellen",
+          "other": "Andere"
+        },
+        "otherLabel": "Ziel angeben",
+        "otherPlaceholder": "Beschreiben Sie Ihr Ziel"
+      }
+    },
+    "step2": {
+      "title": "Inhalt & Funktionen",
+      "plannedContent": {
+        "label": "Geplante Inhalte",
+        "placeholder": "Anzahl der Seiten",
+        "required": "Bitte wählen Sie den vorgesehenen Inhalt aus",
+        "options": {
+          "1-3": "1–3 Seiten",
+          "4-7": "4–7 Seiten",
+          "8-15": "8–15 Seiten",
+          "15plus": "15+\" in German is \"15+\".",
+          "unknown": "Ich weiß noch nicht"
+        }
+      },
+      "features": {
+        "label": "Gewünschte Funktionen",
+        "sublabel": "(Mehrfachauswahl)",
+        "required": "Wählen Sie mindestens eine Funktion aus",
+        "options": {
+          "simple_form": "Einfaches Formular",
+          "advanced_form": "Erweitertes Formular",
+          "blog": "Blog",
+          "gallery": "Galerie / Portfolio",
+          "booking": "Terminvereinbarung",
+          "catalog": "Katalog (ohne Zahlung)",
+          "payment": "Online-Zahlung",
+          "client_area": "Kundenbereich",
+          "downloads": "Dokumente herunterladen",
+          "reviews": "Bewertungen von Kunden",
+          "newsletter": "Newsletter\" in German is \"Newsletter\".",
+          "chat": "Online-Chat",
+          "multilingual": "Mehrsprachig"
+        },
+        "otherLabel": "Eine weitere Funktion",
+        "otherPlaceholder": "Bitte geben Sie weitere Funktionen an."
+      }
+    },
+    "step3": {
+      "title": "Visuelle Identität & Design",
+      "contentAvailability": {
+        "label": "Verfügbare Inhalte",
+        "placeholder": "Verfügbarkeit des Inhalts",
+        "required": "Bitte geben Sie die Verfügbarkeit des Inhalts an.",
+        "options": {
+          "ready": "Alles ist bereit",
+          "partial": "Teilweise",
+          "none": "Nichts ist bereit"
+        }
+      },
+      "visualIdentity": {
+        "label": "Visuelle Identität",
+        "placeholder": "Status der visuellen Identität",
+        "required": "Bitte wählen Sie die visuelle Identität aus.",
+        "options": {
+          "logo_chart": "Logo + Charta",
+          "logo_only": "Nur Logo",
+          "redesign": "Visuelle Neugestaltung",
+          "create": "Vollständige Erstellung"
+        }
+      },
+      "currentWebsite": {
+        "label": "Der aktuelle Standort",
+        "sublabel": "(falls vorhanden)",
+        "placeholder": "https://votre-site.com"
+      },
+      "improvementNotes": {
+        "label": "Was Sie verbessern möchten",
+        "placeholder": "Beschreiben Sie, was Sie an Ihrer aktuellen Website verbessern möchten."
+      }
+    },
+    "step4": {
+      "title": "Planung & Prioritäten",
+      "deadline": {
+        "label": "Gewünschter Termin",
+        "placeholder": "Wählen Sie eine Frist aus",
+        "required": "Bitte wählen Sie eine Frist aus.",
+        "options": {
+          "asap": "Sobald wie möglich",
+          "2-4weeks": "2–4 Wochen",
+          "1-2months": "1–2 Monate",
+          "no_deadline": "Keine Frist"
+        }
+      },
+      "priorities": {
+        "label": "Prioritäten",
+        "sublabel": "(Mehrfachauswahl)",
+        "required": "Wählen Sie mindestens eine Priorität aus.",
+        "options": {
+          "speed": "Schnelligkeit",
+          "design": "Qualität des Designs",
+          "seo": "SEO",
+          "ux": "UX",
+          "autonomy": "Autonomie\" in German is \"Autonomie\".",
+          "support": "Langfristige Begleitung"
+        }
+      },
+      "additionalNotes": {
+        "label": "Zusätzliche Anmerkungen",
+        "placeholder": "Fügen Sie alle zusätzlichen Informationen hinzu, die Sie für nützlich halten."
+      }
+    },
+    "step5": {
+      "title": "Ihre Kontaktdaten",
+      "name": {
+        "label": "Vollständiger Name",
+        "placeholder": "Ihr vollständiger Name",
+        "required": "Der Name ist erforderlich"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "votre@email.com",
+        "required": "Ungültige E-Mail"
+      },
+      "phone": {
+        "label": "Telefon",
+        "sublabel": "(optional)",
+        "placeholder": "06 12 34 56 78"
+      }
+    },
+    "buttons": {
+      "previous": "Vorherig",
+      "next": "Folgen",
+      "submit": "Meine Anfrage senden",
+      "submitting": "Sendung läuft..."
+    },
+    "toast": {
+      "validationError": "Validierungsfehler",
+      "validationErrorDesc": "Bitte füllen Sie alle erforderlichen Felder aus.",
+      "success": "Anfrage gesendet!",
+      "successDesc": "Wir werden uns so schnell wie möglich bei Ihnen melden.",
+      "error": "Fehler",
+      "errorDesc": "Bei der Übermittlung Ihrer Anfrage ist ein Fehler aufgetreten."
+    },
+    "email": {
+      "newRequest": "Neue Anfrage zur Schätzung",
+      "projectInfo": "Projektinformationen",
+      "contactInfo": "Kontaktdaten",
+      "projectType": "Projektart",
+      "mainObjective": "Hauptziel",
+      "plannedContent": "Geplanter Inhalt",
+      "features": "Gewünschte Funktionen",
+      "contentAvailability": "Verfügbare Inhalte",
+      "visualIdentity": "Visuelle Identität",
+      "currentWebsite": "Aktuelle Seite",
+      "improvements": "Zu verbessern",
+      "deadline": "Gewünschter Termin",
+      "priorities": "Prioritäten",
+      "additionalNotes": "Zusätzliche Hinweise",
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "other": "Andere",
+      "confirmation": {
+        "subject": "Ihre Anfrage zur Schätzung - MK-Web",
+        "greeting": "Guten Tag",
+        "received": "Wir haben Ihre Anfrage für eine Schätzung Ihres Projekts erhalten.",
+        "followUp": "Wir werden uns so schnell wie möglich wieder bei Ihnen melden.",
+        "summary": "Zusammenfassung Ihrer Anfrage"
+      }
+    }
+  },
+  "whatsapp": {
+    "title": "WhatsApp-Chat",
+    "subtitle": "Lass uns zusammen diskutieren",
+    "greeting": "Hallo 👋 Wie kann ich Ihnen helfen?",
+    "willWriteTo": "Sie werden an ... schreiben",
+    "onWhatsApp": "über WhatsApp.",
+    "placeholder": "Eine Nachricht schreiben...",
+    "send": "Schicken",
+    "open": "WhatsApp-Chat öffnen",
+    "close": "Schließen"
+  },
+  "legal": {
+    "title": "Impressum",
+    "description": "Rechtliche Informationen zur Website",
+    "mainInfo": {
+      "title": "Hauptinformationen",
+      "denomination": "Bezeichnung",
+      "denominationValue": "MK-Web",
+      "headquarters": "Unternehmenssitz",
+      "address": "4 Mail des Petits Clos",
+      "city": "28000 Chartres",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "siret": "SIRET",
+      "siretValue": "93179152900015",
+      "vat": "Umsatzsteuer im Gemeinschaftsgebiet",
+      "vatValue": "FR81931791529"
+    },
+    "hosting": {
+      "title": "Unterkunft",
+      "description": "Die Seite {url} wird gehostet von :",
+      "provider": "IONOS",
+      "address": "7 Bahnhofplatz",
+      "city": "57200 Sarreguemines",
+      "contact": "Kontakt"
+    },
+    "creation": {
+      "title": "Schaffung & Entwicklung",
+      "company": "EI Mohamad AL-KHATIB",
+      "role": "Fullstack-Webentwickler und Webseiten-Ersteller"
+    },
+    "lastUpdate": "Letzte Aktualisierung:"
+  },
+  "admin": {
+    "title": "MK-Web Admin",
+    "brandingTitle": "MK-Web",
+    "brandingSubtitle": "Admin\" in German is \"Administrator\".",
+    "auth": {
+      "login": {
+        "title": "Melden Sie sich bei Ihrem Konto an",
+        "subtitle": "Oder",
+        "createAccount": "Ein neues Konto erstellen",
+        "email": "E-Mail-Adresse",
+        "password": "Passwort",
+        "signIn": "Einloggen",
+        "signingIn": "Verbindung...",
+        "loginFailed": "Verbindungsfehler",
+        "loginSuccess": "Erfolgreiche Verbindung"
+      },
+      "signup": {
+        "title": "Erstellen Sie Ihr Konto",
+        "subtitle": "oder",
+        "signIn": "melden Sie sich bei Ihrem bestehenden Konto an",
+        "name": "Vollständiger Name",
+        "email": "E-Mail-Adresse",
+        "password": "Passwort",
+        "createAccount": "Ein Konto erstellen",
+        "creating": "Kontoeinrichtung...",
+        "signupFailed": "Registrierungsfehler",
+        "signupSuccess": "Erfolgreich erstellt"
+      },
+      "signOut": "Abmelden",
+      "logOut": "Abmeldung",
+      "signOutSuccess": "Erfolgreich abgemeldet",
+      "signOutError": "Fehler beim Abmelden"
+    },
+    "dashboard": {
+      "title": "Armaturenbrett",
+      "welcome": "Willkommen zurück, {name} !",
+      "statistics": "Statistiken",
+      "viewSite": "Siehe die Seite",
+      "recentBlogs": "Neue Artikel",
+      "recentProjects": "Neue Projekte",
+      "recentActivity": "Letzte Aktivität",
+      "viewAll": "Alles ansehen",
+      "noRecentBlogs": "Momentan kein Artikel",
+      "noRecentProjects": "Im Moment kein Projekt",
+      "recentClientsSubtitle": "Letzte hinzugefügte Kunden",
+      "pendingReviewsSubtitle": "Wartende Bewertungslinks zur Einreichung",
+      "pendingReviewSingular": "Liaison",
+      "pendingReviewPlural": "Links",
+      "viewPendingReviews": "Links ansehen",
+      "justNow": "Gerade eben",
+      "minutesAgo": "Min\" in German is \"Min.",
+      "hoursAgo": "h",
+      "daysAgo": "ich",
+      "stats": {
+        "totalBlogs": "Gesamtanzahl der Artikel",
+        "publishedBlogs": "Veröffentlichte Artikel",
+        "draftBlogs": "Entwürfe",
+        "totalProjects": "Gesamtzahl der Projekte",
+        "publishedProjects": "Veröffentlichte Projekte",
+        "draftProjects": "Entwurfprojekte",
+        "publishedShort": "Veröffentlicht",
+        "draftsShort": "Entwürfe",
+        "pendingReviewsShort": "Ausstehende Links"
+      }
+    },
+    "sidebar": {
+      "dashboard": "Armaturenbrett",
+      "suggestions": "Artikelideen",
+      "blogs": "Artikel",
+      "categories": "Kategorien",
+      "projects": "Projekte",
+      "clients": "Kunden",
+      "languages": "Sprachen",
+      "reviews": "Kundenbewertungen",
+      "newsletter": "Newsletter\" in German is \"Newsletter\".",
+      "groupMain": "Direktor",
+      "groupContent": "Inhalt",
+      "groupPeople": "Personen",
+      "groupSettings": "Parameter"
+    },
+    "suggestions": {
+      "title": "Artikelideen",
+      "description": "Vom KI vorgeschlagene Themen, aktuelle Artikel und Dienstleistungen zur Inspiration Ihres Contents.",
+      "suggestionsTitle": "Vorgeschlagene Themen",
+      "suggestionsDescription": "Themen, um Kunden anzuziehen und die SEO zu verbessern.",
+      "latestArticles": "Letzte Artikel",
+      "services": "Dienste",
+      "createArticle": "Artikel erstellen",
+      "refresh": "Aktualisieren",
+      "noSuggestions": "Keine Vorschläge (configuriere OPENAI_API_KEY).",
+      "loading": "Laden…",
+      "generating": "Generation…",
+      "copyTopic": "Kopieren",
+      "copySuccess": "Betreff kopiert",
+      "localeFr": "FR",
+      "localeEn": "EN",
+      "suggestionsCount": "Anzahl der Themen",
+      "categoriesHint": "Wählen Sie die Kategorien aus, um die Vorschläge zu filtern. Aktualisieren Sie, um anzuwenden.",
+      "selectAll": "Alles auswählen",
+      "deselectAll": "Alles abwählen"
+    },
+    "clients": {
+      "title": "Klienten",
+      "subtitle": "Verwalten Sie Ihre Kunden und deren Projekte",
+      "newClient": "Neuer Kunde",
+      "createFirst": "Erstellen Sie Ihren ersten Kunden",
+      "noClients": "Kein Kunde gefunden",
+      "loading": "Laden...",
+      "backToClients": "Rücksendung an die Kunden",
+      "create": {
+        "title": "Einen neuen Kunden erstellen",
+        "createButton": "Kunden erstellen",
+        "creating": "Schöpfung..."
+      },
+      "edit": {
+        "title": "Client bearbeiten",
+        "updateButton": "Den Kunden aktualisieren",
+        "updating": "Update..."
+      },
+      "view": { "edit": "Modifizieren" },
+      "fields": {
+        "name": "Name",
+        "email": "E-Mail",
+        "company": "Unternehmen",
+        "photo": "Foto"
+      },
+      "placeholders": {
+        "name": "Kundenname",
+        "email": "email@beispiel.com",
+        "company": "Unternehmen",
+        "photoUrl": "URL des Fotos"
+      },
+      "uploadPhoto": "Ein Foto hochladen",
+      "orPasteUrl": "Oder eine URL einfügen",
+      "metadata": { "created": "Geschaffen", "updated": "Aktualisiert" },
+      "deleteConfirm": "Seid ihr sicher, dass ihr „{name}“ löschen wollt?",
+      "deleteSuccess": "Kunde erfolgreich gelöscht",
+      "deleteError": "Fehler beim Löschen des Kunden",
+      "createSuccess": "Client erfolgreich erstellt",
+      "createError": "Fehler bei der Erstellung des Kunden",
+      "updateSuccess": "Kunde erfolgreich aktualisiert",
+      "updateError": "Fehler bei der Aktualisierung des Clients",
+      "fetchSingleError": "Fehler beim Laden des Clients"
+    },
+    "languages": {
+      "title": "Sprachen",
+      "subtitle": "Verwalten Sie die Sprachen der Website (verwendet für die Generierung von KI-Artikeln)",
+      "newLanguage": "Neue Sprache",
+      "createFirst": "Erstellen Sie Ihre erste Sprache",
+      "noLanguages": "Keine Sprache gefunden",
+      "loading": "Laden...",
+      "backToLanguages": "Zurück zu den Sprachen",
+      "create": {
+        "title": "Eine neue Sprache erschaffen",
+        "createButton": "Die Sprache erstellen",
+        "creating": "Schöpfung...",
+        "chooseFromPalette": "Eine Sprache wählen",
+        "alreadyAdded": "Bereits hinzugefügt",
+        "addThisLanguage": "Diese Sprache hinzufügen",
+        "addCustom": "Eine benutzerdefinierte Sprache hinzufügen",
+        "searchPlaceholder": "Nach Name oder Code suchen…",
+        "noResults": "Keine Sprache hinzuzufügen. Alle sind bereits konfiguriert oder es gibt kein Ergebnis für die Suche."
+      },
+      "edit": {
+        "title": "Sprache ändern",
+        "updateButton": "Sprache aktualisieren",
+        "updating": "Update..."
+      },
+      "view": { "edit": "Ändern" },
+      "fields": { "code": "Code", "name": "Name" },
+      "placeholders": {
+        "code": "z. B. fr, en",
+        "name": "„z. B. Französisch, Englisch“"
+      },
+      "metadata": {
+        "created": "Schaffen",
+        "updated": "Auf den neuesten Stand gebracht"
+      },
+      "deleteConfirm": "Sind Sie sicher, dass Sie „{name}“ löschen möchten?",
+      "deleteSuccess": "Sprache erfolgreich entfernt",
+      "deleteError": "Fehler beim Löschen der Sprache",
+      "createSuccess": "Sprache erfolgreich erstellt",
+      "createError": "Erstellung der Sprache fehlgeschlagen",
+      "updateSuccess": "Sprache erfolgreich aktualisiert",
+      "updateError": "Fehler bei der Aktualisierung der Sprache",
+      "fetchSingleError": "Fehler beim Laden der Sprache"
+    },
+    "categories": {
+      "title": "Kategorien",
+      "subtitle": "Verwalten Sie die Kategorien von Blogartikeln",
+      "newCategory": "Neue Kategorie",
+      "createFirst": "Erstellen Sie Ihre erste Kategorie",
+      "noCategories": "Keine Kategorie gefunden",
+      "loading": "Laden...",
+      "backToCategories": "Zurück zu den Kategorien",
+      "create": {
+        "title": "Eine neue Kategorie erstellen",
+        "createButton": "Kategorie erstellen",
+        "creating": "Schöpfung..."
+      },
+      "edit": {
+        "title": "Kategorie ändern",
+        "updateButton": "Kategorie aktualisieren",
+        "updating": "Update..."
+      },
+      "view": { "edit": "Ändern" },
+      "fields": {
+        "name": "Name",
+        "slug": "Schnecke",
+        "description": "Beschreibung"
+      },
+      "placeholders": {
+        "name": "z.B. SEO, Neugestaltung",
+        "slug": "z.B. SEO, Website-Relaunch",
+        "slugHint": "Nur Kleinbuchstaben, Ziffern und Bindestriche.",
+        "description": "Kurze Beschreibung (optional)"
+      },
+      "metadata": { "created": "Erstellt", "updated": "Aktualisiert" },
+      "deleteConfirm": "Sind Sie sicher, dass Sie „{name}“ löschen möchten?",
+      "deleteSuccess": "Kategorie erfolgreich gelöscht",
+      "deleteError": "Fehler beim Löschen der Kategorie",
+      "createSuccess": "Kategorie erfolgreich erstellt",
+      "createError": "Fehler bei der Erstellung der Kategorie",
+      "updateSuccess": "Kategorie erfolgreich aktualisiert",
+      "updateError": "Fehler beim Aktualisieren der Kategorie",
+      "fetchSingleError": "Laden der Kategorie fehlgeschlagen"
+    },
+    "blogs": {
+      "title": "Artikel",
+      "subtitle": "Verwalten Sie Ihre Blogartikel",
+      "newBlog": "Neuer Artikel",
+      "createFirst": "Erstellen Sie Ihren ersten Artikel",
+      "noBlogs": "Keine Artikel gefunden",
+      "loading": "Laden...",
+      "backToBlogs": "Zurück zu den Artikeln",
+      "create": {
+        "title": "Neuen Artikel erstellen",
+        "createButton": "Artikel erstellen",
+        "creating": "Schaffung..."
+      },
+      "generateWithAI": {
+        "title": "Mit KI generieren",
+        "description": "Erstelle einen Entwurf eines Artikels für jede Sprache (fr, en) aus einem Thema.",
+        "topicLabel": "Artikelthema",
+        "topicPlaceholder": "z. B. Die besten SEO-Praktiken im Jahr 2025",
+        "generateButton": "Artikel generieren",
+        "generating": "Generierung läuft…",
+        "generatingHint": "Erstellung von Entwürfen für jede Sprache.",
+        "successMessage": "{count} Artikel(e) erstellt.",
+        "successTitle": "Erstellte Artikel",
+        "successDescription": "Die Entwürfe wurden erstellt. Sie können diese bearbeiten oder weitere erstellen.",
+        "viewDrafts": "Entwurf anzeigen",
+        "createAnother": "Ein anderes generieren",
+        "orCreateManually": "Oder einen Artikel manuell erstellen",
+        "errorMessage": "Fehler bei der Generierung"
+      },
+      "generateImage": {
+        "button": "Bild generieren",
+        "generating": "Bildgenerierung…",
+        "success": "Generiertes Bild",
+        "error": "Fehler beim Generieren des Bildes",
+        "hint": "Verwende den Titel und die Beschreibung, um ein Bild zu erstellen."
+      },
+      "uploadImage": {
+        "button": "Uploaden",
+        "uploading": "Upload...",
+        "success": "Bild hochgeladen",
+        "error": "Fehler beim Hochladen"
+      },
+      "edit": {
+        "title": "Artikel bearbeiten",
+        "updateButton": "Artikel aktualisieren",
+        "updating": "Update..."
+      },
+      "view": { "edit": "Ändern" },
+      "filterLanguage": "Sprache",
+      "image": "Bild",
+      "fields": {
+        "title": "Titel",
+        "slug": "Schnecke",
+        "locale": "Sprache",
+        "description": "Beschreibung",
+        "content": "Inhalt (Markdown)",
+        "status": "Status",
+        "image": "Coverbild",
+        "category": "Kategorie",
+        "readingTime": "Lesezeit (Min)"
+      },
+      "placeholders": {
+        "title": "Artikelüberschrift",
+        "slug": "Artikel-Schnecke",
+        "description": "Kurze Beschreibung",
+        "imageUrl": "https://… oder ein Bild hochladen"
+      },
+      "locale": {
+        "fr": "Französisch",
+        "en": "Englisch",
+        "select": "Sprache auswählen"
+      },
+      "status": { "draft": "Entwurf", "published": "Veröffentlicht" },
+      "slugHelper": "Slug-kompatible URL (Kleinbuchstaben, nur Bindestriche)",
+      "deleteConfirm": "Sind Sie sicher, dass Sie „{title}“ löschen möchten?",
+      "deleteSuccess": "Artikel erfolgreich entfernt",
+      "deleteError": "Fehler beim Entfernen des Artikels",
+      "createSuccess": "Artikel erfolgreich erstellt",
+      "createError": "Artikel-Erstellung fehlgeschlagen",
+      "updateSuccess": "Artikel erfolgreich aktualisiert",
+      "updateError": "Fehler beim Aktualisieren des Artikels",
+      "fetchError": "Laden der Artikel fehlgeschlagen",
+      "fetchSingleError": "Laden des Artikels fehlgeschlagen",
+      "metadata": {
+        "slug": "Schnecke",
+        "created": "Erstellt",
+        "updated": "Aktualisiert"
+      },
+      "pagination": {
+        "showing": "Anzeige von {from} bis {to} von {total} Artikeln",
+        "previous": "Vorherig",
+        "next": "Folgend"
+      }
+    },
+    "projects": {
+      "title": "Projekte",
+      "subtitle": "Verwalten Sie Ihre Projekte",
+      "newProject": "Neues Projekt",
+      "createFirst": "Erstellen Sie Ihr erstes Projekt",
+      "noProjects": "Kein Projekt gefunden",
+      "loading": "Laden...",
+      "backToProjects": "Rückkehr zu den Projekten",
+      "create": {
+        "title": "Ein neues Projekt erstellen",
+        "createButton": "Projekt erstellen",
+        "creating": "Schöpfung..."
+      },
+      "edit": {
+        "title": "Projekt bearbeiten",
+        "updateButton": "Projekt aktualisieren",
+        "updating": "Update..."
+      },
+      "view": { "edit": "Ändern" },
+      "fields": {
+        "title": "Titel",
+        "slug": "Schnecke",
+        "locale": "Sprache",
+        "description": "Beschreibung",
+        "content": "Inhalt (Markdown)",
+        "status": "Status"
+      },
+      "placeholders": {
+        "title": "„Projekttitel“",
+        "slug": "Projekt-Schnecke",
+        "description": "Kurzbeschreibung"
+      },
+      "status": { "draft": "Entwurf", "published": "Veröffentlicht" },
+      "locale": {
+        "fr": "Französisch",
+        "en": "Englisch",
+        "select": "Sprache auswählen"
+      },
+      "slugHelper": "Slug-kompatible URL (Kleinbuchstaben, nur Bindestriche)",
+      "deleteConfirm": "Are you sure you want to delete \"{title}\"?\" in German is: \"Sind Sie sicher, dass Sie „{0}“ löschen möchten?",
+      "deleteSuccess": "Projekt erfolgreich gelöscht",
+      "deleteError": "Fehler beim Löschen des Projekts",
+      "createSuccess": "Projekt erfolgreich erstellt",
+      "createError": "Fehler bei der Projekterstellung",
+      "updateSuccess": "Projekt erfolgreich aktualisiert",
+      "updateError": "Fehler beim Aktualisieren des Projekts",
+      "fetchError": "Fehler beim Laden der Projekte",
+      "fetchSingleError": "Projektladungsfehler",
+      "metadata": {
+        "slug": "Schnecke",
+        "created": "Erstellt",
+        "updated": "Aktualisiert"
+      },
+      "pagination": {
+        "showing": "Anzeige von {from} bis {to} von {total} Projekten",
+        "previous": "Vorherige",
+        "next": "Nachfolgend"
+      }
+    },
+    "reviews": {
+      "title": "Kundenbewertungen",
+      "subtitle": "Bewertungslinks nach Projekt / Kunde",
+      "createLink": "Einen Link erstellen",
+      "noReviews": "Keine Bewertung",
+      "project": "Projekt",
+      "client": "Klient",
+      "status": "Status",
+      "pending": "Ausstehend",
+      "submitted": "Unterworfen",
+      "expiresAt": "Abgelaufen am",
+      "submittedAt": "Einreichdatum",
+      "copyLink": "Link kopieren",
+      "linkCopied": "Link kopiert",
+      "createSuccess": "Link erstellt",
+      "createError": "Fehler beim Erstellen des Links",
+      "filterAll": "Alle",
+      "filterPending": "Warten",
+      "filterSubmitted": "Unterworfen"
+    },
+    "newsletter": {
+      "title": "Newsletter\" in German is \"Newsletter\".",
+      "subtitle": "Für den Newsletter angemeldet",
+      "noSubscribers": "Keine Anmeldung",
+      "email": "E-Mail",
+      "locale": "Sprache",
+      "createdAt": "Eingetragen am"
+    },
+    "common": {
+      "required": "Erforderlich",
+      "optional": "Optional",
+      "actions": "Aktionen",
+      "view": "Sehen",
+      "edit": "Modifier\" in German is \"Modifizieren\".",
+      "delete": "Löschen",
+      "save": "Registrieren",
+      "cancel": "Stornieren",
+      "back": "Rückkehr",
+      "loading": "Laden...",
+      "error": "Fehler",
+      "success": "Erfolg",
+      "all": "Alle",
+      "filter": "Filter",
+      "search": "Recherchieren",
+      "columns": "Säulen",
+      "resetColumns": "Spalten zurücksetzen",
+      "emptyState": { "noResults": "Kein Ergebnis" },
+      "pagination": {
+        "pageOf": "Seite {current} von {total}",
+        "perPage": "pro Seite"
+      }
+    }
+  }
+}

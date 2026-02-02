@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { BlogPost } from '@/types';
 import { Locale } from '@/locales/i18n';
+import { BlogPost } from '@/types';
+import fs from 'fs';
+import matter from 'gray-matter';
+import path from 'path';
 
 const contentDirectory = path.join(process.cwd(), 'content/blog');
 
@@ -47,7 +47,7 @@ export async function getAllBlogPosts(locale: Locale): Promise<BlogPost[]> {
 
 export async function getBlogPostById(
   id: string,
-  locale: Locale
+  locale: Locale,
 ): Promise<BlogPost | null> {
   try {
     const postsDirectory = path.join(contentDirectory, locale);
@@ -59,6 +59,7 @@ export async function getBlogPostById(
       id,
       title: data.title,
       description: data.description,
+      slug: data.slug,
       content,
       categories: data.categories,
       author: data.author,

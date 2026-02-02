@@ -8,9 +8,19 @@
   @apply max-w-screen-xl mx-auto px-4 md:px-8;
 }
 
+.dot-grid {
+  background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .dot-grid {
+  background-image: radial-gradient(circle, #334155 1px, transparent 1px);
+}
+
 .gradient-border {
   border: 1px solid transparent;
-  background: linear-gradient(white, white),
+  background:
+    linear-gradient(white, white),
     linear-gradient(
       25deg,
       rgba(209, 213, 219, 1),
@@ -18,6 +28,21 @@
       rgba(0, 0, 0, 0.63),
       rgba(209, 213, 219, 1),
       rgba(209, 213, 219, 1)
+    );
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+
+.dark .gradient-border {
+  background:
+    linear-gradient(theme(colors.slate.950), theme(colors.slate.950)),
+    linear-gradient(
+      25deg,
+      rgba(51, 65, 85, 1),
+      rgba(51, 65, 85, 1),
+      rgba(148, 163, 184, 0.4),
+      rgba(51, 65, 85, 1),
+      rgba(51, 65, 85, 1)
     );
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
@@ -54,36 +79,61 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --sidebar-background: 220 14% 96%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 222 47% 11%;
+    --foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 16%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -94,14 +144,18 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Homepage: body must match Tailwind slate-950 exactly so separators don’t show a band */
+  .dark body {
+    background-color: rgb(2 6 23);
+  }
 }
 
-html{
+html {
   scroll-behavior: smooth;
   scroll-padding-top: 140px;
 }
 
-.hero-wrapper{
+.hero-wrapper {
   position: relative;
   background-image: url('/hero-bg.webp');
   background-size: cover;
@@ -116,9 +170,21 @@ html{
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
   z-index: 1;
   backdrop-filter: blur(2px);
+}
+
+.dark .hero-wrapper::before {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
 }
 
 .hero-wrapper > * {
@@ -128,8 +194,13 @@ html{
 
 /* Custom animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .animate-float {
@@ -145,23 +216,40 @@ html{
   background: #f1f1f1;
 }
 
+.dark ::-webkit-scrollbar-track {
+  background: hsl(240 10% 6%);
+}
+
 ::-webkit-scrollbar-thumb {
-  background: #FF4A17;
+  background: #ff4a17;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E33200;
+  background: #e33200;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(14 100% 57% / 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #ff4a17;
 }
 
 /* Text selection */
 ::selection {
-  background-color: #FF4A17;
+  background-color: #ff4a17;
+  color: white;
+}
+
+.dark ::selection {
+  background-color: hsl(14 100% 57% / 0.9);
   color: white;
 }
 
 /* Focus styles */
 .focus-visible:focus {
-  outline: 2px solid #FF4A17;
+  outline: 2px solid #ff4a17;
   outline-offset: 2px;
 }

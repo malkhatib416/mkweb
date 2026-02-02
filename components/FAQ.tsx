@@ -27,7 +27,7 @@ const FAQ = ({ faq, id = 'faq', className }: FAQProps) => {
     <section
       id={id}
       className={cn(
-        'bg-gray-50 py-20 transition-colors duration-200',
+        'bg-gray-50 dark:bg-slate-950 py-20 transition-colors duration-200',
         className,
       )}
     >
@@ -36,11 +36,13 @@ const FAQ = ({ faq, id = 'faq', className }: FAQProps) => {
           <p className="text-sm font-semibold uppercase tracking-wide text-myorange-100">
             {faq.badge}
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
             {faq.title}
           </h2>
           {faq.subtitle ? (
-            <p className="mt-4 text-lg text-gray-600">{faq.subtitle}</p>
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+              {faq.subtitle}
+            </p>
           ) : null}
         </div>
 
@@ -48,15 +50,15 @@ const FAQ = ({ faq, id = 'faq', className }: FAQProps) => {
           {faq.items.map((item) => (
             <details
               key={item.question}
-              className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+              className="group rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-6 shadow-sm transition-shadow hover:shadow-md dark:shadow-none"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-lg font-medium text-gray-900 focus:outline-none">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-lg font-medium text-gray-900 dark:text-white focus:outline-none">
                 <span>{item.question}</span>
                 <span className="text-myorange-100 transition-transform group-open:-rotate-45">
                   +
                 </span>
               </summary>
-              <div className="mt-3 text-base leading-relaxed text-gray-600">
+              <div className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
                 {item.answer}
               </div>
             </details>

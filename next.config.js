@@ -14,7 +14,8 @@ const nextConfig = {
       },
     ],
   },
-  trailingSlash: true,
+  // Disabled: trailing slash breaks Better Auth API route matching (/api/auth/sign-in/email/ 404)
+  trailingSlash: false,
 };
 
 const withMDX = createMDX({

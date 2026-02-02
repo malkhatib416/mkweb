@@ -127,6 +127,7 @@ The site uses Next.js App Router with custom locale-based routing via dynamic `[
 - **Static generation**: `generateStaticParams()` pre-renders all locale variants at build time
 
 **When adding new pages:**
+
 1. Create them inside `app/[locale]/` directory
 2. Access the locale via `params.locale` in Server Components
 3. Use the `Locale` type from `locales/i18n.ts` for type safety
@@ -146,6 +147,7 @@ The site uses JSON-based translations stored in `locales/dictionaries/`:
   - Highlights the current language in the dropdown
 
 **Using translations in Server Components:**
+
 ```typescript
 import { getDictionary } from '@/locales/dictionaries';
 import type { Locale } from '@/locales/i18n';
@@ -163,12 +165,14 @@ export default async function MyPage({ params }: Props) {
 ```
 
 **Using translations in Client Components:**
+
 - For client components, either:
   1. Pass translations as props from a parent Server Component
   2. Use inline translation objects (see `app/[locale]/not-found.tsx` for example)
   3. Extract locale from pathname using `usePathname()` hook
 
 **Adding new translations:**
+
 1. Add the key-value pairs to both `locales/dictionaries/fr.json` and `locales/dictionaries/en.json`
 2. Keep the structure consistent between both files
 3. Use nested objects to organize translations by feature/page
@@ -207,12 +211,14 @@ export default async function MyPage({ params }: Props) {
 ### Layout & Providers
 
 The root layout (`app/layout.tsx`) wraps the application with multiple providers:
+
 1. **ReCaptchaProvider**: Bot protection for forms
 2. **ThemeProvider**: Dark/light mode support
 3. **PlausibleProvider**: Privacy-friendly analytics
 4. **Suspense boundaries**: For navbar and async components
 
 Key features in layout:
+
 - Google Tag Manager and Google Analytics integration
 - Vercel Analytics
 - Page transitions via `Transition` component
@@ -248,6 +254,7 @@ Key features in layout:
 
 1. Create the page inside the `app/[locale]/` directory (e.g., `app/[locale]/my-page/page.tsx`)
 2. Access the locale parameter in your page component:
+
    ```typescript
    type Props = {
      params: Promise<{ locale: string }>;
@@ -258,6 +265,7 @@ Key features in layout:
      // Use locale for content/translations
    }
    ```
+
 3. Add metadata for SEO (can be locale-specific)
 4. Update `app/sitemap.ts` to include all locale variants
 5. Test navigation works for both `/fr/my-page` and `/en/my-page`
@@ -271,15 +279,16 @@ Blog posts are organized by locale in `content/blog/[locale]/` directories.
    - English: `content/blog/en/my-post-slug.mdx`
 
 2. Add frontmatter metadata at the top:
+
    ```mdx
    ---
-   title: "Your Post Title"
-   description: "Brief description"
-   categories: ["seo", "tech"]
-   author: "Mohamad Al-Khatib"
-   publishedAt: "2025-06-20"
+   title: 'Your Post Title'
+   description: 'Brief description'
+   categories: ['seo', 'tech']
+   author: 'Mohamad Al-Khatib'
+   publishedAt: '2025-06-20'
    readTime: 5
-   image: "/blog-image.png"
+   image: '/blog-image.png'
    ---
    ```
 
@@ -294,6 +303,7 @@ Blog posts are organized by locale in `content/blog/[locale]/` directories.
 ### Environment Variables
 
 Required for full functionality:
+
 - `REPLICATE_API_KEY`: For AI features (QR code generation, etc.)
 - `BLOB_READ_WRITE_TOKEN`: Vercel Blob storage
 - `KV_URL`, `KV_REST_API_URL`, `KV_REST_API_TOKEN`, `KV_REST_API_READ_ONLY_TOKEN`: Vercel KV for rate limiting

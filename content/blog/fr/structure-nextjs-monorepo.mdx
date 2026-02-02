@@ -1,11 +1,11 @@
 ---
 title: "Structurer un projet Next.js en monorepo : bonnes pratiques et retour d'expérience"
-description: "Comment organiser un projet Next.js en architecture monorepo ? Avantages, outils, structure de dossiers, et conseils issus de mon expérience sur des applications à fort volume."
-categories: ["nextjs", "architecture", "typescript"]
-author: "Mohamad Al-Khatib"
-publishedAt: "2025-06-17"
+description: 'Comment organiser un projet Next.js en architecture monorepo ? Avantages, outils, structure de dossiers, et conseils issus de mon expérience sur des applications à fort volume.'
+categories: ['nextjs', 'architecture', 'typescript']
+author: 'Mohamad Al-Khatib'
+publishedAt: '2025-06-17'
 readTime: 3
-image: "/nextjs-monorepo.png"
+image: '/nextjs-monorepo.png'
 ---
 
 ![Structure monorepo Next.js](/nextjs-monorepo.png)
@@ -65,7 +65,7 @@ export function Button({ children }) {
 Ensuite, tu l'importes depuis `apps/web` :
 
 ```tsx
-import { Button } from "@ui/button";
+import { Button } from '@ui/button';
 ```
 
 ### 🧪 Tests et typage partagé
