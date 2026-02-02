@@ -27,9 +27,9 @@ export async function GET(request: NextRequest) {
     const countParam = request.nextUrl.searchParams.get('count');
     const count = countParam
       ? Math.min(
-          MAX_SUGGESTIONS_COUNT,
-          Math.max(1, parseInt(countParam, 10) || DEFAULT_SUGGESTIONS_COUNT),
-        )
+        MAX_SUGGESTIONS_COUNT,
+        Math.max(1, parseInt(countParam, 10) || DEFAULT_SUGGESTIONS_COUNT),
+      )
       : DEFAULT_SUGGESTIONS_COUNT;
     const categoryIdsParam = request.nextUrl.searchParams.get('categoryIds');
     const categoryIds =
@@ -40,9 +40,7 @@ export async function GET(request: NextRequest) {
 
     const dict = await getDictionary(locale as Locale);
     const services = SERVICE_KEYS.map((key) => {
-      const service = (
-        dict.services as unknown as Record<string, { title: string }>
-      )[key];
+      const service = (dict.services as unknown as Record<string, { title: string }>)[key];
       return { key, title: service?.title ?? key };
     });
     const serviceTitles = services.map((s) => s.title);
