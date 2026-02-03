@@ -1,5 +1,5 @@
 import { requireAuth } from '@/lib/auth-utils';
-import { CLIENT_PHOTOS_BUCKET, supabaseAdmin } from '@/lib/supabase';
+import { ensureBucket, getStorageClient, upload } from '@/lib/storage';
 import { NextRequest, NextResponse } from 'next/server';
 
 const BLOG_COVERS_PREFIX = 'blog-covers';
@@ -10,9 +10,9 @@ export async function POST(request: NextRequest) {
   try {
     await requireAuth();
 
-    if (!supabaseAdmin) {
+    if (!getStorageClient()) {
       return NextResponse.json(
-        { error: 'Supabase is not configured' },
+        { error: 'Storage (MinIO) is not configured' },
         { status: 503 },
       );
     }
@@ -45,27 +45,22 @@ export async function POST(request: NextRequest) {
     const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}.${ext}`;
     const storagePath = `${BLOG_COVERS_PREFIX}/${safeName}`;
 
-    const bytes = await file.arrayBuffer();
-    const { data: uploadData, error } = await supabaseAdmin.storage
-      .from(CLIENT_PHOTOS_BUCKET)
-      .upload(storagePath, bytes, {
-        contentType: file.type,
-        upsert: false,
-      });
-
-    if (error) {
-      console.error('Supabase upload error:', error);
+    const ok = await ensureBucket();
+    if (!ok) {
       return NextResponse.json(
-        { error: error.message || 'Upload failed' },
-        { status: 500 },
+        { error: 'Storage bucket unavailable' },
+        { status: 503 },
       );
     }
 
-    const { data: urlData } = supabaseAdmin.storage
-      .from(CLIENT_PHOTOS_BUCKET)
-      .getPublicUrl(uploadData.path);
+    const bytes = await file.arrayBuffer();
+    const result = await upload(storagePath, bytes, file.type);
 
-    return NextResponse.json({ url: urlData.publicUrl });
+    if (!result) {
+      return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+    }
+
+    return NextResponse.json({ url: result.url });
   } catch (error) {
     console.error('Blog cover upload error:', error);
     return NextResponse.json(

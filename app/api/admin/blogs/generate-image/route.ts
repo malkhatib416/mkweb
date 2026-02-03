@@ -16,15 +16,15 @@ export async function POST(request: NextRequest) {
 
     if (!url) {
       const hasOpenAI = Boolean(process.env.OPENAI_API_KEY?.trim());
-      const hasSupabase = Boolean(
-        process.env.NEXT_PUBLIC_SUPABASE_URL?.trim() &&
-        process.env.SUPABASE_SERVICE_ROLE_KEY?.trim(),
-      );
+      const hasMinIO =
+        Boolean(process.env.MINIO_ENDPOINT?.trim()) &&
+        Boolean(process.env.MINIO_ACCESS_KEY?.trim()) &&
+        Boolean(process.env.MINIO_SECRET_KEY?.trim());
       const reason = !hasOpenAI
         ? 'OPENAI_API_KEY is not set or is empty.'
-        : !hasSupabase
-          ? 'Supabase (NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY) is not configured.'
-          : 'Image generation or upload failed. Try a different title/description.';
+        : !hasMinIO
+          ? 'MinIO storage (MINIO_ENDPOINT, MINIO_ACCESS_KEY, MINIO_SECRET_KEY) is not configured.'
+          : 'Image generation or upload failed. Try a different title/description. Check server logs for details.';
       return NextResponse.json(
         {
           error: `Image generation failed. ${reason}`,

@@ -14,6 +14,8 @@ const nextConfig = {
       {
         hostname: 'g4yqcv8qdhf169fk.public.blob.vercel-storage.com',
       },
+      // MinIO (local or custom host). Add your MinIO host if different.
+      { hostname: '0.0.0.0', pathname: '/uploads/**' },
     ],
   },
   // Disabled: trailing slash breaks Better Auth API route matching (/api/auth/sign-in/email/ 404)

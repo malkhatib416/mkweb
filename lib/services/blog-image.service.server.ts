@@ -1,9 +1,9 @@
 /**
- * Server-only: generate a blog cover image via OpenAI GPT Image API and upload to Supabase.
+ * Server-only: generate a blog cover image via OpenAI GPT Image API and upload to MinIO.
  * Uses gpt-image-1.5 for editorial-style covers. Used by the generate-image API route and article generation.
  */
 
-import { CLIENT_PHOTOS_BUCKET, supabaseAdmin } from '@/lib/supabase';
+import { ensureBucket, getStorageClient, upload } from '@/lib/storage';
 
 const BLOG_COVERS_PREFIX = 'blog-covers';
 const OPENAI_IMAGES_URL = 'https://api.openai.com/v1/images/generations';
@@ -46,15 +46,22 @@ type OpenAIImagesResponse = {
 };
 
 /**
- * Generates a cover image with the GPT Image API (gpt-image-1.5), uploads it to Supabase, and returns the public URL.
- * Returns null if OPENAI_API_KEY or Supabase is not configured, or if generation/upload fails.
+ * Generates a cover image with the GPT Image API (gpt-image-1.5), uploads it to MinIO, and returns the public URL.
+ * Returns null if OPENAI_API_KEY or MinIO is not configured, or if generation/upload fails.
  */
 export async function generateAndUploadBlogCoverImage(
   title: string,
   description: string,
 ): Promise<string | null> {
   const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey?.trim() || !supabaseAdmin) {
+  if (!apiKey?.trim()) {
+    console.warn('[blog-image] OPENAI_API_KEY missing or empty');
+    return null;
+  }
+  if (!getStorageClient()) {
+    console.warn(
+      '[blog-image] MinIO not configured (MINIO_ENDPOINT, MINIO_ACCESS_KEY, MINIO_SECRET_KEY)',
+    );
     return null;
   }
 
@@ -79,7 +86,7 @@ export async function generateAndUploadBlogCoverImage(
   const json = (await res.json()) as OpenAIImagesResponse;
   if (!res.ok) {
     console.error(
-      'OpenAI images API error:',
+      '[blog-image] OpenAI images API error:',
       res.status,
       json?.error?.message ?? json,
     );
@@ -89,32 +96,29 @@ export async function generateAndUploadBlogCoverImage(
   const first = json.data?.[0];
   const b64 = first?.b64_json;
   if (!b64) {
-    console.error('OpenAI images API: no image in response');
+    console.error('[blog-image] OpenAI images API: no image in response', json);
     return null;
   }
 
-  const bytes = Buffer.from(b64, 'base64').buffer;
+  const bytes = Buffer.from(b64, 'base64');
   const contentType = 'image/png';
 
   const ext = contentType.includes('png') ? 'png' : 'jpg';
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}.${ext}`;
-  const path = `${BLOG_COVERS_PREFIX}/${safeName}`;
+  const key = `${BLOG_COVERS_PREFIX}/${safeName}`;
 
-  const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
-    .from(CLIENT_PHOTOS_BUCKET)
-    .upload(path, bytes, {
-      contentType,
-      upsert: false,
-    });
-
-  if (uploadError) {
-    console.error('Supabase upload error:', uploadError);
+  const bucketOk = await ensureBucket();
+  if (!bucketOk) {
+    console.error('[blog-image] MinIO ensureBucket failed');
     return null;
   }
 
-  const { data: urlData } = supabaseAdmin.storage
-    .from(CLIENT_PHOTOS_BUCKET)
-    .getPublicUrl(uploadData.path);
+  const result = await upload(key, bytes, contentType);
 
-  return urlData.publicUrl;
+  if (!result) {
+    console.error('[blog-image] MinIO upload failed for key:', key);
+    return null;
+  }
+
+  return result.url;
 }
