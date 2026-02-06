@@ -476,9 +476,9 @@ export default function EstimationForm({ dict }: Props) {
                                 {t.step1.projectType.options.webapp}
                               </SelectItem>
                               <SelectItem
-                                value={t.step1.projectType.options.landing}
+                                value={t.step1.projectType.options.mobileapp}
                               >
-                                {t.step1.projectType.options.landing}
+                                {t.step1.projectType.options.mobileapp}
                               </SelectItem>
                               <SelectItem
                                 value={t.step1.projectType.options.other}

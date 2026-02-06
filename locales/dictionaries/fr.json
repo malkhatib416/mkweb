@@ -324,7 +324,7 @@
           "redesign": "Refonte de site",
           "ecommerce": "E-commerce",
           "webapp": "Application web / espace client",
-          "landing": "Landing page",
+          "mobileapp": "Application mobile",
           "other": "Autre"
         },
         "otherLabel": "Précisez le type de projet",

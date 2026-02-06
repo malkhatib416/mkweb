@@ -2,7 +2,6 @@
 
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import ScrollToTopButton from '@/components/ScrollToTopButton';
 import WhatsAppQuickContact from '@/components/WhatsAppQuickContact';
 import type { Dictionary } from '@/locales/dictionaries';
 import { usePathname } from 'next/navigation';
@@ -31,7 +30,6 @@ export default function PublicChrome({ dict, children }: Props) {
         <Navbar />
       </Suspense>
       <main id="main">{children}</main>
-      <ScrollToTopButton />
       <Footer />
       <WhatsAppQuickContact dict={dict} />
     </>

@@ -324,7 +324,7 @@
           "redesign": "Website redesign",
           "ecommerce": "E-commerce",
           "webapp": "Web application / client area",
-          "landing": "Landing page",
+          "mobileapp": "Mobile app",
           "other": "Other"
         },
         "otherLabel": "Specify the project type",
