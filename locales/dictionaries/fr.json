@@ -76,6 +76,11 @@
     "article": "Article",
     "articles": "Articles",
     "readArticle": "Lire L'article",
+    "meta": {
+      "author": "Auteur",
+      "published": "Publié",
+      "readTime": "Temps de lecture"
+    },
     "cta": {
       "services": "Besoin d'un accompagnement technique ou SEO ?",
       "contact": "Contacte-moi directement",

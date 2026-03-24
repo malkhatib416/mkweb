@@ -51,96 +51,14 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
       />
 
-      {/* Hero: image + overlays clipped; card sits outside overflow so title isn’t cut off */}
-      <div className="relative w-full h-[70vh] min-h-[500px]">
-        <div className="absolute inset-0 overflow-hidden">
-          {blog.image ? (
-            <img
-              src={blog.image}
-              alt={blog.title}
-              className="absolute inset-0 w-full h-full object-cover scale-105"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-slate-900" />
-          )}
-          <div className="absolute inset-0 bg-black/20 z-10" />
-          <div
-            className="absolute inset-0 z-10 bg-gradient-to-t from-white from-30% via-white/5 to-transparent dark:bg-transparent"
-            aria-hidden
-          />
-        </div>
+      <ArticleHero
+        blog={blog}
+        dict={dict}
+        locale={locale}
+        publishedAt={publishedAt}
+      />
 
-        {/* Card outside overflow so it’s never clipped (fixes “title half broken”) */}
-        <div className="absolute inset-x-0 bottom-0 z-20 translate-y-1/2 px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white/90 dark:bg-slate-900 backdrop-blur-xl dark:backdrop-blur-none p-8 md:p-12 rounded-[3.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] dark:shadow-2xl dark:shadow-black/50 border border-white/50 dark:border-slate-800">
-              <div className="max-w-3xl space-y-8">
-                {/* Category & Badge */}
-                <div className="flex items-center gap-4">
-                  {blog.category && (
-                    <span className="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-myorange-100 text-white shadow-xl shadow-myorange-100/20">
-                      {blog.category.name}
-                    </span>
-                  )}
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                    {dict.blog.article}
-                  </span>
-                </div>
-
-                {/* Title: break-words + line-height so long words (e.g. E-commerce) don’t break mid-word or get clipped */}
-                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-slate-900 dark:text-white leading-tight tracking-tight break-words min-w-0">
-                  {blog.title}
-                </h1>
-
-                {/* Refined Meta */}
-                <div className="flex flex-wrap items-center gap-x-10 gap-y-4 pt-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-slate-900 dark:bg-slate-700 flex items-center justify-center">
-                      <User className="h-5 w-5 text-white" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                        Author
-                      </span>
-                      <span className="text-sm font-bold text-slate-900 dark:text-white">
-                        MK-Web
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                      Published
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-myorange-100" />
-                      <span className="text-sm font-bold text-slate-900 dark:text-white">
-                        {formatDate(publishedAt, locale)}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                      Read Time
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-myorange-100" />
-                      <span className="text-sm font-bold text-slate-900 dark:text-white">
-                        {(blog as { readingTime?: number | null })
-                          .readingTime ?? 5}{' '}
-                        {dict.blog.readTime}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6 pt-52 pb-24">
+      <div className="max-w-6xl mx-auto px-6 pt-24 md:pt-28 pb-24">
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Main Content */}
           <div className="lg:w-2/3">
@@ -194,6 +112,98 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   );
 };
 
+type ArticleHeroProps = {
+  blog: Awaited<ReturnType<typeof blogServiceServer.getBySlug>>['data'];
+  dict: Awaited<ReturnType<typeof getDictionary>>;
+  locale: Locale;
+  publishedAt: string;
+};
+
+const ArticleHero = ({ blog, dict, locale, publishedAt }: ArticleHeroProps) => {
+  return (
+    <section className="relative pb-10 md:pb-14">
+      <div className="relative h-[54vh] min-h-[360px] sm:min-h-[420px] md:min-h-[500px] overflow-hidden">
+        {blog.image ? (
+          <img
+            src={blog.image}
+            alt={blog.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-slate-900" />
+        )}
+        <div className="absolute inset-0 z-10 bg-black/25" />
+        <div
+          className="absolute inset-0 z-10 bg-gradient-to-t from-white via-white/25 to-transparent dark:from-slate-950 dark:via-slate-950/35 dark:to-transparent"
+          aria-hidden
+        />
+      </div>
+
+      <div className="mx-auto -mt-20 md:-mt-28 max-w-6xl px-6 relative z-20">
+        <div className="rounded-[2.25rem] border border-white/60 bg-white/90 p-6 shadow-[0_24px_60px_-24px_rgba(2,6,23,0.45)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900 md:p-10">
+          <div className="max-w-4xl space-y-6">
+            <div className="flex items-center gap-3">
+              {blog.category && (
+                <span className="rounded-full bg-myorange-100 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+                  {blog.category.name}
+                </span>
+              )}
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                {dict.blog.article}
+              </span>
+            </div>
+
+            <h1 className="max-w-[22ch] text-[clamp(2rem,4.2vw,4.25rem)] font-black leading-[1.08] tracking-tight text-slate-900 dark:text-white [overflow-wrap:anywhere]">
+              {blog.title}
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-x-10 gap-y-4 pt-2">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 dark:bg-slate-700">
+                  <User className="h-5 w-5 text-white" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                    {dict.blog.meta.author}
+                  </span>
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">
+                    MK-Web
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                  {dict.blog.meta.published}
+                </span>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-myorange-100" />
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">
+                    {formatDate(publishedAt, locale)}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                  {dict.blog.meta.readTime}
+                </span>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-myorange-100" />
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">
+                    {(blog as { readingTime?: number | null }).readingTime ?? 5}{' '}
+                    {dict.blog.readTime}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Internal Helper Component for Related Articles
 const RelatedArticles = async ({
   currentSlug,
@@ -229,7 +239,9 @@ const RelatedArticles = async ({
             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-myorange-100">
               <span>{formatDate(post.createdAt, locale)}</span>
               <span className="text-slate-300 dark:text-slate-600">•</span>
-              <span>5 min</span>
+              <span>
+                5 {dict.blog.readTime}
+              </span>
             </div>
             <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors line-clamp-2 leading-tight">
               {post.title}
