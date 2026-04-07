@@ -584,6 +584,8 @@
         "signupFailed": "Signup failed",
         "signupSuccess": "Account created successfully"
       },
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
       "signOut": "Sign out",
       "logOut": "Log out",
       "signOutSuccess": "Signed out successfully",
