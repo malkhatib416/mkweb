@@ -4,6 +4,7 @@ import type { Dictionary } from '@/locales/dictionaries';
 import type { Locale } from '@/locales/i18n';
 import type { BlogPost } from '@/types';
 import { Search } from 'lucide-react';
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import BlogCard from './blog-card';
 import CategoryFilter from './category-filter';
@@ -105,9 +106,12 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
                 <p className="text-sm text-white/60 leading-relaxed">
                   {dict.blog.cta.description}
                 </p>
-                <button className="w-full py-3 px-4 rounded-xl bg-myorange-100 text-white text-xs font-black uppercase tracking-widest hover:bg-myorange-200 transition-colors">
+                <Link
+                  href={`/${locale}#contact`}
+                  className="block w-full rounded-xl bg-myorange-100 px-4 py-3 text-center text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-myorange-200"
+                >
                   {dict.common.contactUs}
-                </button>
+                </Link>
               </div>
             </div>
           </aside>

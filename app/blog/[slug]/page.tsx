@@ -6,6 +6,7 @@ import type { Locale } from '@/locales/i18n';
 import { APP_URL } from '@/utils/consts';
 import { formatDate } from '@/utils/format-date';
 import { Calendar, Clock, User } from 'lucide-react';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { ReadingProgressBar } from '../_components/reading-progress-bar';
@@ -100,9 +101,12 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
                 <p className="text-sm text-white/60 leading-relaxed">
                   {dict.blog.cta.description}
                 </p>
-                <button className="w-full py-3 px-4 rounded-xl bg-myorange-100 text-white text-xs font-black uppercase tracking-widest hover:bg-myorange-200 transition-colors">
+                <Link
+                  href={`/${locale}#contact`}
+                  className="block w-full py-3 px-4 rounded-xl bg-myorange-100 text-white text-xs font-black uppercase tracking-widest hover:bg-myorange-200 transition-colors"
+                >
                   {dict.common.contactUs}
-                </button>
+                </Link>
               </div>
             </div>
           </aside>
@@ -239,9 +243,7 @@ const RelatedArticles = async ({
             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-myorange-100">
               <span>{formatDate(post.createdAt, locale)}</span>
               <span className="text-slate-300 dark:text-slate-600">•</span>
-              <span>
-                5 {dict.blog.readTime}
-              </span>
+              <span>5 {dict.blog.readTime}</span>
             </div>
             <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-myorange-100 transition-colors line-clamp-2 leading-tight">
               {post.title}
