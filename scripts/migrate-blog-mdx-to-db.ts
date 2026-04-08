@@ -14,12 +14,12 @@
  * Uses the first slug to look up category in DB and set categoryId. Run db:seed first for categories.
  */
 
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 import { db } from '../db';
-import { blog, category } from '../db/schema';
+import { blog, category, translation } from '../db/schema';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content/blog');
 const LOCALES = ['fr', 'en'] as const;
@@ -87,11 +87,17 @@ function loadMdxPosts(): MdxPost[] {
 /** Load all categories from DB and return a map slug -> id */
 async function loadCategorySlugToId(): Promise<Map<string, string>> {
   const rows = await db
-    .select({ id: category.id, slug: category.slug })
-    .from(category);
+    .select({
+      id: category.id,
+      slug: translation.slug,
+      locale: translation.locale,
+    })
+    .from(translation)
+    .innerJoin(category, eq(translation.categoryId, category.id))
+    .where(eq(translation.entityType, 'category'));
   const map = new Map<string, string>();
   for (const row of rows) {
-    map.set(row.slug, row.id);
+    map.set(`${row.locale}:${row.slug}`, row.id);
   }
   return map;
 }
@@ -126,7 +132,9 @@ async function main() {
 
   for (const post of posts) {
     const categoryId = post.categorySlug
-      ? (categorySlugToId.get(post.categorySlug) ?? null)
+      ? (categorySlugToId.get(`${post.locale}:${post.categorySlug}`) ??
+        categorySlugToId.get(`fr:${post.categorySlug}`) ??
+        null)
       : null;
     if (post.categorySlug && !categoryId) {
       console.warn(
@@ -134,27 +142,39 @@ async function main() {
       );
     }
 
-    const existing = await db.query.blog.findFirst({
-      where: (b, { eq: e, and: a }) =>
-        a(e(b.slug, post.slug), e(b.locale, post.locale)),
+    const existing = await db.query.translation.findFirst({
+      where: (t, { eq: e, and: a }) =>
+        a(
+          e(t.entityType, 'blog'),
+          e(t.slug, post.slug),
+          e(t.locale, post.locale),
+        ),
     });
 
-    if (existing) {
+    if (existing?.blogId) {
       if (overwrite && !dryRun) {
         await db
           .update(blog)
           .set({
-            title: post.title,
-            description: post.description,
             image: post.image,
-            content: post.content,
             categoryId,
             updatedAt: new Date(),
           })
-          .where(eq(blog.id, existing.id));
+          .where(eq(blog.id, existing.blogId));
+        await db
+          .update(translation)
+          .set({
+            title: post.title,
+            description: post.description,
+            content: post.content,
+            updatedAt: new Date(),
+          })
+          .where(eq(translation.id, existing.id));
         updated++;
         console.log(
-          `  Updated: [${post.locale}] ${post.slug}${categoryId ? ` (category: ${post.categorySlug})` : ''}`,
+          `  Updated: [${post.locale}] ${post.slug}${
+            categoryId ? ` (category: ${post.categorySlug})` : ''
+          }`,
         );
       } else {
         skipped++;
@@ -168,23 +188,34 @@ async function main() {
     }
 
     if (!dryRun) {
-      await db.insert(blog).values({
-        title: post.title,
-        slug: post.slug,
+      const [createdBlog] = await db
+        .insert(blog)
+        .values({
+          image: post.image,
+          status: 'published',
+          categoryId,
+        })
+        .returning();
+      await db.insert(translation).values({
+        entityType: 'blog',
+        blogId: createdBlog.id,
         locale: post.locale,
+        slug: post.slug,
+        title: post.title,
         description: post.description,
-        image: post.image,
         content: post.content,
-        status: 'published',
-        categoryId,
       });
       inserted++;
       console.log(
-        `  Inserted: [${post.locale}] ${post.slug}${categoryId ? ` (category: ${post.categorySlug})` : ''}`,
+        `  Inserted: [${post.locale}] ${post.slug}${
+          categoryId ? ` (category: ${post.categorySlug})` : ''
+        }`,
       );
     } else {
       console.log(
-        `  Would insert: [${post.locale}] ${post.slug}${categoryId ? ` (category: ${post.categorySlug})` : ''}`,
+        `  Would insert: [${post.locale}] ${post.slug}${
+          categoryId ? ` (category: ${post.categorySlug})` : ''
+        }`,
       );
       inserted++;
     }
@@ -193,7 +224,9 @@ async function main() {
   console.log('');
   if (dryRun) {
     console.log(
-      `Dry run: would insert ${inserted}, ${overwrite ? `update ${updated}, ` : ''}skip ${skipped}`,
+      `Dry run: would insert ${inserted}, ${
+        overwrite ? `update ${updated}, ` : ''
+      }skip ${skipped}`,
     );
   } else {
     console.log(

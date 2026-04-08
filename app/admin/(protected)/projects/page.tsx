@@ -5,6 +5,7 @@ import { DataGrid } from '@/components/admin/DataGrid';
 import { DeleteConfirmDialog } from '@/components/admin/DeleteConfirmDialog';
 import { PageHeader } from '@/components/admin/PageHeader';
 import { Button } from '@/components/ui/button';
+import { useEntityDelete } from '@/lib/hooks/use-entity-delete';
 import { projectService } from '@/lib/services/project.service';
 import type { DataGridConfig } from '@/types/data-grid';
 import type { Locale, Project, Status } from '@/types/entities';
@@ -12,42 +13,24 @@ import { formatDate } from '@/utils/format-date';
 import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
 
 export default function ProjectsPage() {
   const dict = useAdminDictionary();
   const router = useRouter();
   const t = dict.admin.projects;
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<{
-    id: string;
-    title: string;
-  } | null>(null);
-  const gridMutateRef = useRef<(() => Promise<unknown>) | null>(null);
-
-  const handleDeleteClick = (project: Project) => {
-    setItemToDelete({ id: project.id, title: project.title });
-    setDeleteDialogOpen(true);
-  };
-
-  const handleDeleteConfirm = async () => {
-    if (!itemToDelete) return;
-    try {
-      await projectService.delete(itemToDelete.id);
-      toast.success(t.deleteSuccess);
-      await gridMutateRef.current?.();
-      setDeleteDialogOpen(false);
-      setItemToDelete(null);
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t.deleteError);
-      console.error(err);
-    }
-  };
-
-  const onMutateReady = useCallback((mutateFn: () => Promise<unknown>) => {
-    gridMutateRef.current = mutateFn;
-  }, []);
+  const {
+    isDeleteDialogOpen,
+    setIsDeleteDialogOpen,
+    selectedItem,
+    requestDelete,
+    confirmDelete,
+    onMutateReady,
+  } = useEntityDelete<Project>({
+    deleteEntity: projectService.delete.bind(projectService),
+    getSelection: (project) => ({ id: project.id, label: project.title }),
+    successMessage: t.deleteSuccess,
+    errorMessage: t.deleteError,
+  });
 
   const config: DataGridConfig<Project> = {
     swrKey: 'admin-projects',
@@ -162,7 +145,7 @@ export default function ProjectsPage() {
         variant: 'destructive',
         className:
           'text-destructive hover:bg-destructive/10 hover:text-destructive',
-        onClick: (row) => handleDeleteClick(row),
+        onClick: (row) => requestDelete(row),
       },
     ],
     empty: {
@@ -195,17 +178,17 @@ export default function ProjectsPage() {
       <DataGrid config={config} onMutateReady={onMutateReady} />
 
       <DeleteConfirmDialog
-        open={deleteDialogOpen}
-        onOpenChange={setDeleteDialogOpen}
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
         title={dict.admin.common.delete}
         description={
-          itemToDelete
-            ? t.deleteConfirm.replace('{title}', itemToDelete.title)
+          selectedItem
+            ? t.deleteConfirm.replace('{title}', selectedItem.label)
             : ''
         }
         cancelLabel={dict.admin.common.cancel}
         confirmLabel={dict.admin.common.delete}
-        onConfirm={handleDeleteConfirm}
+        onConfirm={confirmDelete}
       />
     </div>
   );

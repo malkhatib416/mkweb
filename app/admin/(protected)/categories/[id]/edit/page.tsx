@@ -1,17 +1,26 @@
 'use client';
 
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
+import { TranslationCoverage } from '@/components/admin/TranslationCoverage';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loading } from '@/components/ui/loading';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
 import { categoryService } from '@/lib/services/category.service';
 import { fetcher } from '@/lib/swr-fetcher';
-import type { CategoryResponse } from '@/types/entities';
+import type { CategoryResponse, Locale } from '@/types/entities';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import * as React from 'react';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -19,36 +28,44 @@ import useSWR from 'swr';
 
 export default function EditCategoryPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const params = useParams();
   const id = params.id as string;
   const dict = useAdminDictionary();
   const t = dict.admin.categories;
+  const localeT = dict.admin.blogs.locale;
+  const translationT = t.translation;
+  const initialLocale = searchParams.get('locale');
+  const [locale, setLocale] = useState<Locale>(initialLocale ?? 'fr');
 
   const {
     data,
     error,
     isLoading: isFetching,
   } = useSWR<CategoryResponse>(
-    id ? `/api/admin/categories/${id}` : null,
+    id ? `/api/admin/categories/${id}?locale=${locale}` : null,
     fetcher,
   );
 
   const category = data?.data;
+  const { localeLabels } = useAdminLanguages({
+    adminLocaleLabels: localeT,
+    includeLocales: [locale, category?.locale],
+  });
 
   const [name, setName] = useState('');
   const [slug, setSlug] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   React.useEffect(() => {
-    if (category && !isInitialized) {
+    if (category) {
+      setLocale(category.locale);
       setName(category.name);
       setSlug(category.slug);
       setDescription(category.description ?? '');
-      setIsInitialized(true);
     }
-  }, [category, isInitialized]);
+  }, [category]);
 
   if (error) {
     toast.error(t.fetchSingleError);
@@ -60,9 +77,10 @@ export default function EditCategoryPage() {
     setIsLoading(true);
     try {
       await categoryService.update(id, {
+        locale,
         name: name.trim(),
         slug: slug.trim(),
-        description: description.trim() || undefined,
+        description: description.trim() || null,
       });
       toast.success(t.updateSuccess);
       router.push('/admin/categories');
@@ -84,6 +102,21 @@ export default function EditCategoryPage() {
 
   if (!category) return null;
 
+  const localeOptions = Array.from(
+    new Set([
+      ...Object.keys(localeLabels),
+      ...(category.translations?.map((item) => item.locale) ?? []),
+      category.locale,
+      locale,
+    ]),
+  );
+
+  const hasSelectedTranslation =
+    category.translations?.some((item) => item.locale === locale) ?? false;
+  const displayName = hasSelectedTranslation
+    ? category.name
+    : translationT.missingTitle;
+
   return (
     <div className="flex flex-col gap-8">
       <Link
@@ -99,13 +132,56 @@ export default function EditCategoryPage() {
           {t.edit.title}
         </p>
         <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-          {category.name}
+          {displayName}
         </h1>
+        <div className="mt-4 space-y-3">
+          <TranslationCoverage
+            translations={category.translations}
+            currentLocale={locale}
+            localeLabels={localeLabels}
+            locales={localeOptions}
+            labels={translationT}
+          />
+          {!hasSelectedTranslation ? (
+            <div className="rounded-xl border border-dashed border-amber-300 bg-amber-50/70 px-4 py-3 text-sm text-amber-900 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-100">
+              {translationT.missingEditHint.replace(
+                '{locale}',
+                localeLabels[locale] ?? locale.toUpperCase(),
+              )}
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <Card>
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-1 rounded-lg border border-border/60 bg-muted/30 px-4 py-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {translationT.translatedFieldsTitle}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {translationT.translatedFieldsDescription.replace(
+                  '{locale}',
+                  localeLabels[locale] ?? locale.toUpperCase(),
+                )}
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="locale">{dict.admin.blogs.fields.locale} *</Label>
+              <Select value={locale} onValueChange={setLocale}>
+                <SelectTrigger id="locale">
+                  <SelectValue placeholder={dict.admin.blogs.fields.locale} />
+                </SelectTrigger>
+                <SelectContent>
+                  {localeOptions.map((localeOption) => (
+                    <SelectItem key={localeOption} value={localeOption}>
+                      {localeLabels[localeOption] ?? localeOption.toUpperCase()}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="name">{t.fields.name} *</Label>
               <Input

@@ -3,12 +3,11 @@
  */
 
 import type {
-  CreateProjectDto,
   ProjectListParams,
   ProjectListResponse,
   ProjectResponse,
-  UpdateProjectDto,
-} from '@/types/entities';
+} from '@/types/api';
+import type { CreateProjectDto, UpdateProjectDto } from '@/types/dto';
 
 class ProjectService {
   private baseUrl = '/api/admin/projects';

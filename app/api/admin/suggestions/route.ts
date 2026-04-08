@@ -49,12 +49,16 @@ export async function GET(request: NextRequest) {
     const { data: latestBlogs } = await blogServiceServer.getAll({
       page: 1,
       limit: LATEST_ARTICLES_LIMIT,
+      locale: locale === 'en' ? 'en' : 'fr',
     });
     const recentArticleTitles = latestBlogs.map((b) => b.title);
 
     let categoryNames: string[] = [];
     if (categoryIds.length > 0) {
-      const { data: allCategories } = await getAllCategories({ limit: 100 });
+      const { data: allCategories } = await getAllCategories({
+        limit: 100,
+        locale: locale === 'en' ? 'en' : 'fr',
+      });
       const selected = allCategories.filter((c) => categoryIds.includes(c.id));
       categoryNames = selected.map((c) => c.name);
     }

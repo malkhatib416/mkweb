@@ -1,67 +1,44 @@
-import { requireAuth } from '@/lib/auth-utils';
 import {
   deleteCategory,
   getCategoryById,
   updateCategory,
 } from '@/lib/services/category.service.server';
-import { getErrorMessage, getErrorStatus } from '@/lib/utils/api-error-handler';
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { getOptionalLocale, withAuthenticatedAdminRoute } from '../../_helpers';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  try {
-    await requireAuth();
+export const GET = withAuthenticatedAdminRoute(
+  async (
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> },
+  ) => {
     const { id } = await params;
-    const result = await getCategoryById(id);
+    const result = await getCategoryById(id, getOptionalLocale(request));
     return NextResponse.json(result);
-  } catch (error) {
-    console.error('Error fetching category:', error);
-    return NextResponse.json(
-      { error: getErrorMessage(error, 'Failed to fetch category') },
-      { status: getErrorStatus(error) },
-    );
-  }
-}
+  },
+  'Failed to fetch category',
+);
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  try {
-    await requireAuth();
+export const PUT = withAuthenticatedAdminRoute(
+  async (
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> },
+  ) => {
     const { id } = await params;
     const body = await request.json();
     const result = await updateCategory(id, body);
     return NextResponse.json(result);
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
-    }
-    console.error('Error updating category:', error);
-    return NextResponse.json(
-      { error: getErrorMessage(error, 'Failed to update category') },
-      { status: getErrorStatus(error) },
-    );
-  }
-}
+  },
+  'Failed to update category',
+);
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  try {
-    await requireAuth();
+export const DELETE = withAuthenticatedAdminRoute(
+  async (
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> },
+  ) => {
     const { id } = await params;
     await deleteCategory(id);
     return NextResponse.json({ message: 'Category deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting category:', error);
-    return NextResponse.json(
-      { error: getErrorMessage(error, 'Failed to delete category') },
-      { status: getErrorStatus(error) },
-    );
-  }
-}
+  },
+  'Failed to delete category',
+);

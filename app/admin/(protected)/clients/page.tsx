@@ -5,6 +5,7 @@ import { DataGrid } from '@/components/admin/DataGrid';
 import { DeleteConfirmDialog } from '@/components/admin/DeleteConfirmDialog';
 import { PageHeader } from '@/components/admin/PageHeader';
 import { Button } from '@/components/ui/button';
+import { useEntityDelete } from '@/lib/hooks/use-entity-delete';
 import { clientService } from '@/lib/services/client.service';
 import type { DataGridConfig } from '@/types/data-grid';
 import type { Client } from '@/types/entities';
@@ -13,42 +14,24 @@ import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
 
 export default function ClientsPage() {
   const dict = useAdminDictionary();
   const router = useRouter();
   const t = dict.admin.clients;
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<{
-    id: string;
-    name: string;
-  } | null>(null);
-  const gridMutateRef = useRef<(() => Promise<unknown>) | null>(null);
-
-  const handleDeleteClick = (client: Client) => {
-    setItemToDelete({ id: client.id, name: client.name });
-    setDeleteDialogOpen(true);
-  };
-
-  const handleDeleteConfirm = async () => {
-    if (!itemToDelete) return;
-    try {
-      await clientService.delete(itemToDelete.id);
-      toast.success(t.deleteSuccess);
-      await gridMutateRef.current?.();
-      setDeleteDialogOpen(false);
-      setItemToDelete(null);
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t.deleteError);
-      console.error(err);
-    }
-  };
-
-  const onMutateReady = useCallback((mutateFn: () => Promise<unknown>) => {
-    gridMutateRef.current = mutateFn;
-  }, []);
+  const {
+    isDeleteDialogOpen,
+    setIsDeleteDialogOpen,
+    selectedItem,
+    requestDelete,
+    confirmDelete,
+    onMutateReady,
+  } = useEntityDelete<Client>({
+    deleteEntity: clientService.delete.bind(clientService),
+    getSelection: (client) => ({ id: client.id, label: client.name }),
+    successMessage: t.deleteSuccess,
+    errorMessage: t.deleteError,
+  });
 
   const config: DataGridConfig<Client> = {
     swrKey: 'admin-clients',
@@ -135,7 +118,7 @@ export default function ClientsPage() {
         variant: 'destructive',
         className:
           'text-destructive hover:bg-destructive/10 hover:text-destructive',
-        onClick: (row) => handleDeleteClick(row),
+        onClick: (row) => requestDelete(row),
       },
     ],
     empty: {
@@ -168,17 +151,17 @@ export default function ClientsPage() {
       <DataGrid config={config} onMutateReady={onMutateReady} />
 
       <DeleteConfirmDialog
-        open={deleteDialogOpen}
-        onOpenChange={setDeleteDialogOpen}
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
         title={dict.admin.common.delete}
         description={
-          itemToDelete
-            ? t.deleteConfirm.replace('{name}', itemToDelete.name)
+          selectedItem
+            ? t.deleteConfirm.replace('{name}', selectedItem.label)
             : ''
         }
         cancelLabel={dict.admin.common.cancel}
         confirmLabel={dict.admin.common.delete}
-        onConfirm={handleDeleteConfirm}
+        onConfirm={confirmDelete}
       />
     </div>
   );

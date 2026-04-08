@@ -6,9 +6,8 @@ import type {
   LanguageListParams,
   LanguageListResponse,
   LanguageResponse,
-  CreateLanguageDto,
-  UpdateLanguageDto,
-} from '@/types/entities';
+} from '@/types/api';
+import type { CreateLanguageDto, UpdateLanguageDto } from '@/types/dto';
 
 class LanguageService {
   private baseUrl = '/api/admin/languages';

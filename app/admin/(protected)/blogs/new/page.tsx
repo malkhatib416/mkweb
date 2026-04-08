@@ -13,12 +13,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
 import { Separator } from '@/components/ui/separator';
 import { blogService } from '@/lib/services/blog.service';
 import { fetcher } from '@/lib/swr-fetcher';
-import { Locale } from '@/locales/i18n';
-import type { CategoryListResponse } from '@/types/entities';
-import { Status } from '@/types/entities';
+import type { CategoryListResponse, Locale, Status } from '@/types/entities';
 import { generateSlug } from '@/utils/utils';
 import { motion } from 'framer-motion';
 import {
@@ -59,10 +58,14 @@ export default function NewBlogPage() {
   const [aiTopic, setAiTopic] = useState('');
 
   const { data: categoriesData } = useSWR<CategoryListResponse>(
-    '/api/admin/categories',
+    `/api/admin/categories?locale=${locale}`,
     fetcher,
   );
   const categories = categoriesData?.data ?? [];
+  const { localeLabels, localeCodes: localeOptions } = useAdminLanguages({
+    adminLocaleLabels: t.locale,
+    includeLocales: [locale],
+  });
 
   useEffect(() => {
     const topic = searchParams.get('topic');
@@ -180,11 +183,11 @@ export default function NewBlogPage() {
         slug,
         locale,
         description: description || null,
-        image: image || undefined,
+        image: image || null,
         content,
         status,
-        categoryId: categoryId || undefined,
-        readingTime: typeof readingTime === 'number' ? readingTime : undefined,
+        categoryId: categoryId || null,
+        readingTime: typeof readingTime === 'number' ? readingTime : null,
       });
       toast.success(t.createSuccess);
       router.push('/admin/blogs');
@@ -236,6 +239,13 @@ export default function NewBlogPage() {
         </div>
 
         <CardContent className="px-6 pb-8 sm:px-8">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleFileChange}
+          />
           {generatedCreated ? (
             <div className="space-y-6">
               <motion.div
@@ -256,13 +266,13 @@ export default function NewBlogPage() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {generatedCreated.map((a, i) => (
                   <motion.div
-                    key={a.id}
+                    key={`${a.id}-${a.locale}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                   >
                     <Link
-                      href={`/admin/blogs/${a.id}/edit`}
+                      href={`/admin/blogs/${a.id}/edit?locale=${a.locale}`}
                       className="group flex items-center justify-between rounded-xl border border-border/50 bg-background/50 p-4 transition-all hover:border-myorange-100/30 hover:bg-background hover:shadow-md dark:bg-muted/20"
                     >
                       <div className="flex items-center gap-3 min-w-0">
@@ -545,16 +555,17 @@ export default function NewBlogPage() {
                   <Label className="text-xs font-semibold uppercase tracking-wider opacity-70">
                     {t.fields.locale} *
                   </Label>
-                  <Select
-                    value={locale}
-                    onValueChange={(v) => setLocale(v as Locale)}
-                  >
+                  <Select value={locale} onValueChange={setLocale}>
                     <SelectTrigger className="h-10">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="fr">{t.locale.fr}</SelectItem>
-                      <SelectItem value="en">{t.locale.en}</SelectItem>
+                      {localeOptions.map((localeOption) => (
+                        <SelectItem key={localeOption} value={localeOption}>
+                          {localeLabels[localeOption] ??
+                            localeOption.toUpperCase()}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>

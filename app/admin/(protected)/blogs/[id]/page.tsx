@@ -1,29 +1,41 @@
 'use client';
 
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
+import { TranslationCoverage } from '@/components/admin/TranslationCoverage';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Loading } from '@/components/ui/loading';
+import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
 import { getBlogImageUrl, useBlog } from '@/lib/hooks/use-blog';
 import { MarkdownRenderer } from '@/lib/markdown';
+import type { Locale } from '@/types/entities';
 import { formatDateTime } from '@/utils/format-date';
 import { ArrowLeft, Edit } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 export default function ViewBlogPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const id = (params?.id as string) ?? null;
   const dict = useAdminDictionary();
   const t = dict.admin.blogs;
+  const translationT = t.translation;
+  const initialLocale = searchParams.get('locale') ?? undefined;
+  const [locale, setLocale] = useState<Locale | undefined>(initialLocale);
 
-  const { blog, error, isLoading } = useBlog(id);
+  const { blog, error, isLoading } = useBlog(id, locale);
   const [imgError, setImgError] = useState(false);
   const imageUrl = blog ? getBlogImageUrl(blog) : null;
+  const selectedLocale = locale ?? blog?.locale;
+  const { localeLabels } = useAdminLanguages({
+    adminLocaleLabels: t.locale,
+    includeLocales: [selectedLocale],
+  });
 
   if (error) {
     toast.error(t.fetchSingleError);
@@ -40,6 +52,23 @@ export default function ViewBlogPage() {
 
   if (!blog) return null;
 
+  const localeOptions = Array.from(
+    new Set([
+      ...Object.keys(localeLabels),
+      ...(blog.translations?.map((item) => item.locale) ?? []),
+      blog.locale,
+      ...(selectedLocale ? [selectedLocale] : []),
+    ]),
+  );
+
+  const hasSelectedTranslation = selectedLocale
+    ? (blog.translations?.some((item) => item.locale === selectedLocale) ??
+      false)
+    : true;
+  const displayTitle = hasSelectedTranslation
+    ? blog.title
+    : translationT.missingTitle;
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between gap-4">
@@ -55,7 +84,9 @@ export default function ViewBlogPage() {
           className="gap-1.5 bg-myorange-100 hover:bg-myorange-100/90"
           asChild
         >
-          <Link href={`/admin/blogs/${id}/edit`}>
+          <Link
+            href={`/admin/blogs/${id}/edit${selectedLocale ? `?locale=${selectedLocale}` : ''}`}
+          >
             <Edit className="h-4 w-4" />
             {t.view.edit}
           </Link>
@@ -85,7 +116,7 @@ export default function ViewBlogPage() {
                 {t.status[blog.status as keyof typeof t.status]}
               </span>
               <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
-                {blog.title}
+                {displayTitle}
               </h1>
             </div>
           </div>
@@ -105,9 +136,9 @@ export default function ViewBlogPage() {
               </span>
             </div>
             <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              {blog.title}
+              {displayTitle}
             </h1>
-            {blog.description && (
+            {hasSelectedTranslation && blog.description && (
               <p className="max-w-3xl text-lg text-muted-foreground">
                 {blog.description}
               </p>
@@ -115,7 +146,7 @@ export default function ViewBlogPage() {
           </CardHeader>
         ) : (
           <div className="border-b border-border/50 bg-muted/10 px-6 py-6 sm:px-8">
-            {blog.description && (
+            {hasSelectedTranslation && blog.description && (
               <p className="max-w-3xl text-lg font-medium text-foreground/80 italic border-l-4 border-myorange-100 pl-4 py-1">
                 {blog.description}
               </p>
@@ -124,40 +155,71 @@ export default function ViewBlogPage() {
         )}
 
         <div className="bg-muted/5 px-6 py-4 sm:px-8">
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-muted-foreground uppercase tracking-widest">
-            <div className="flex items-center gap-1.5">
-              <span className="opacity-50">{t.fields.locale}:</span>
-              <span className="text-foreground">
-                {t.locale[blog.locale as keyof typeof t.locale]}
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="opacity-50">{t.metadata.slug}:</span>
-              <span className="text-foreground">{blog.slug}</span>
-            </div>
-            {(blog as { readingTime?: number | null }).readingTime != null && (
+          <div className="flex flex-col gap-4">
+            <TranslationCoverage
+              translations={blog.translations}
+              currentLocale={selectedLocale}
+              localeLabels={localeLabels}
+              locales={localeOptions}
+              labels={translationT}
+            />
+
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-muted-foreground uppercase tracking-widest">
+              <div className="flex items-center gap-2">
+                <span className="opacity-50">{t.fields.locale}:</span>
+                <select
+                  value={selectedLocale ?? blog.locale}
+                  onChange={(event) => setLocale(event.target.value)}
+                  className="rounded-md border border-border bg-background px-2 py-1 text-xs font-medium text-foreground"
+                >
+                  {localeOptions.map((localeOption) => (
+                    <option key={localeOption} value={localeOption}>
+                      {localeLabels[localeOption] ?? localeOption.toUpperCase()}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="flex items-center gap-1.5">
-                <span className="opacity-50">
-                  {t.fields.readingTime ?? 'Reading time'}:
-                </span>
+                <span className="opacity-50">{t.metadata.slug}:</span>
+                <span className="text-foreground">{blog.slug}</span>
+              </div>
+              {(blog as { readingTime?: number | null }).readingTime !=
+                null && (
+                <div className="flex items-center gap-1.5">
+                  <span className="opacity-50">
+                    {t.fields.readingTime ?? 'Reading time'}:
+                  </span>
+                  <span className="text-foreground">
+                    {(blog as { readingTime: number }).readingTime} min
+                  </span>
+                </div>
+              )}
+              <div className="flex items-center gap-1.5">
+                <span className="opacity-50">{t.metadata.created}:</span>
                 <span className="text-foreground">
-                  {(blog as { readingTime: number }).readingTime} min
+                  {formatDateTime(blog.createdAt, 'fr')}
                 </span>
               </div>
-            )}
-            <div className="flex items-center gap-1.5">
-              <span className="opacity-50">{t.metadata.created}:</span>
-              <span className="text-foreground">
-                {formatDateTime(blog.createdAt, 'fr')}
-              </span>
             </div>
           </div>
         </div>
 
         <CardContent className="px-6 py-10 sm:px-10">
-          <div className="prose prose-slate max-w-none dark:prose-invert prose-headings:font-bold prose-a:text-myorange-100">
-            <MarkdownRenderer content={blog.content} />
-          </div>
+          {hasSelectedTranslation ? (
+            <div className="prose prose-slate max-w-none dark:prose-invert prose-headings:font-bold prose-a:text-myorange-100">
+              <MarkdownRenderer content={blog.content} />
+            </div>
+          ) : (
+            <div className="rounded-xl border border-dashed border-amber-300 bg-amber-50/70 px-5 py-6 text-sm text-amber-900 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-100">
+              {translationT.missingDescription.replace(
+                '{locale}',
+                selectedLocale
+                  ? (localeLabels[selectedLocale] ??
+                      selectedLocale.toUpperCase())
+                  : '',
+              )}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

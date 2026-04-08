@@ -1,15 +1,20 @@
 /**
  * Shared validation schemas for entities
- * Reuses common enums for locale and status
+ * DB-backed content locales are dynamic; status remains fixed.
  */
 
-import type { Locale } from '@/locales/i18n';
-import { locales } from '@/locales/i18n';
-import type { Status } from '@/types/entities';
+import type { Locale, Status } from '@/types/entities';
 import { z } from 'zod';
 
-// Shared enum validators
-export const localeEnum = z.enum(locales) satisfies z.ZodType<Locale>;
+// Shared validators
+export const localeEnum = z
+  .string()
+  .trim()
+  .min(2, 'Locale is required')
+  .max(16, 'Locale must be at most 16 characters')
+  .regex(/^[a-z]{2,10}(?:-[a-z0-9]{2,10})*$/i, 'Invalid locale format')
+  .transform((value) => value.toLowerCase()) satisfies z.ZodType<Locale>;
+
 export const statusEnum = z.enum([
   'draft',
   'published',

@@ -7,12 +7,11 @@ import { db } from '@/db';
 import { project } from '@/db/schema';
 import {
   contentValidator,
-  localeEnum,
   slugValidator,
   statusEnum,
   titleValidator,
 } from '@/lib/validations/entities';
-import { Locale, isValidLocale } from '@/locales/i18n';
+import { isValidLocale, locales, type Locale } from '@/locales/i18n';
 import type {
   CreateProjectDto,
   Project,
@@ -24,10 +23,12 @@ import type {
 import { and, count, eq } from 'drizzle-orm';
 import { z } from 'zod';
 
+const projectLocaleEnum = z.enum(locales);
+
 export const projectSchema = z.object({
   title: titleValidator,
   slug: slugValidator,
-  locale: localeEnum,
+  locale: projectLocaleEnum,
   description: z.string().optional(),
   content: contentValidator,
   status: statusEnum,
@@ -37,7 +38,7 @@ export const projectSchema = z.object({
 export const projectUpdateSchema = z.object({
   title: titleValidator.optional(),
   slug: slugValidator.optional(),
-  locale: localeEnum.optional(),
+  locale: projectLocaleEnum.optional(),
   description: z.string().optional(),
   content: contentValidator.optional(),
   status: statusEnum.optional(),

@@ -18,7 +18,7 @@ export default async function Blog() {
       limit: 1000,
       page: 1,
     }),
-    getAllCategories({ limit: 100 }),
+    getAllCategories({ limit: 100, locale: safeLocale }),
   ]);
   const posts: BlogPost[] = (
     blogs as (Blog & { category?: { id: string; name: string } | null })[]

@@ -2,7 +2,7 @@
  * Newsletter service - handles newsletter subscriber API calls (admin)
  */
 
-import type { NewsletterSubscriberListResponse } from '@/types/entities';
+import type { NewsletterSubscriberListResponse } from '@/types/api';
 
 export interface NewsletterListParams {
   page?: number;

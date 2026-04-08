@@ -1,5 +1,6 @@
 import { fetcher } from '@/lib/swr-fetcher';
-import type { Blog, BlogResponse } from '@/types/entities';
+import type { Blog } from '@/types/entities';
+import type { BlogResponse } from '@/types/api';
 import useSWR from 'swr';
 
 const BLOG_API = '/api/admin/blogs';
@@ -16,9 +17,9 @@ export function getBlogImageUrl(blog: Blog | null | undefined): string | null {
 /**
  * Fetches a single blog by id from the API using SWR.
  */
-export function useBlog(id: string | null) {
+export function useBlog(id: string | null, locale?: string) {
   const { data, error, isLoading, mutate } = useSWR<BlogResponse>(
-    id ? `${BLOG_API}/${id}` : null,
+    id ? `${BLOG_API}/${id}${locale ? `?locale=${locale}` : ''}` : null,
     fetcher,
   );
   const blog = data?.data ?? null;

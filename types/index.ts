@@ -27,3 +27,7 @@ export interface Category {
   name: string;
   color: string;
 }
+
+export type * from './api';
+export type * from './dto';
+export type * from './entities';

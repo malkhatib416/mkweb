@@ -1,43 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@/lib/auth-utils';
 import { clientServiceServer } from '@/lib/services/client.service.server';
-import { getErrorStatus, getErrorMessage } from '@/lib/utils/api-error-handler';
-import { z } from 'zod';
+import { parsePaginationQuery, withAuthenticatedAdminRoute } from '../_helpers';
 
-export async function GET(request: NextRequest) {
-  try {
-    await requireAuth();
+export const GET = withAuthenticatedAdminRoute(async (request: NextRequest) => {
+  const result = await clientServiceServer.getAll(
+    parsePaginationQuery(request),
+  );
+  return NextResponse.json(result);
+}, 'Failed to fetch clients');
 
-    const searchParams = request.nextUrl.searchParams;
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
-
-    const result = await clientServiceServer.getAll({ page, limit });
-    return NextResponse.json(result);
-  } catch (error) {
-    console.error('Error fetching clients:', error);
-    return NextResponse.json(
-      { error: getErrorMessage(error, 'Failed to fetch clients') },
-      { status: getErrorStatus(error) },
-    );
-  }
-}
-
-export async function POST(request: NextRequest) {
-  try {
-    await requireAuth();
-
+export const POST = withAuthenticatedAdminRoute(
+  async (request: NextRequest) => {
     const body = await request.json();
     const result = await clientServiceServer.create(body);
     return NextResponse.json(result, { status: 201 });
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
-    }
-    console.error('Error creating client:', error);
-    return NextResponse.json(
-      { error: getErrorMessage(error, 'Failed to create client') },
-      { status: getErrorStatus(error) },
-    );
-  }
-}
+  },
+  'Failed to create client',
+);

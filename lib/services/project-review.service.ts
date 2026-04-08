@@ -2,7 +2,7 @@
  * Project review service - handles review link API calls (admin)
  */
 
-import type { ProjectReviewListResponse } from '@/types/entities';
+import type { ProjectReviewListResponse } from '@/types/api';
 
 export type ReviewListStatus = 'pending' | 'submitted';
 

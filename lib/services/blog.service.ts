@@ -6,9 +6,8 @@ import type {
   BlogListParams,
   BlogListResponse,
   BlogResponse,
-  CreateBlogDto,
-  UpdateBlogDto,
-} from '@/types/entities';
+} from '@/types/api';
+import type { CreateBlogDto, UpdateBlogDto } from '@/types/dto';
 
 class BlogService {
   private baseUrl = '/api/admin/blogs';
@@ -46,8 +45,17 @@ class BlogService {
   /**
    * Get a single blog by ID
    */
-  async getById(id: string): Promise<BlogResponse> {
-    const response = await fetch(`${this.baseUrl}/${id}`);
+  async getById(id: string, locale?: string): Promise<BlogResponse> {
+    const queryParams = new URLSearchParams();
+    if (locale) {
+      queryParams.append('locale', locale);
+    }
+
+    const response = await fetch(
+      `${this.baseUrl}/${id}${
+        queryParams.size ? `?${queryParams.toString()}` : ''
+      }`,
+    );
     const data = await response.json();
 
     if (!response.ok) {

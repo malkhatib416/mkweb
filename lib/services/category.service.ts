@@ -6,19 +6,23 @@ import type {
   CategoryListParams,
   CategoryListResponse,
   CategoryResponse,
-  CreateCategoryDto,
-  UpdateCategoryDto,
-} from '@/types/entities';
+} from '@/types/api';
+import type { CreateCategoryDto, UpdateCategoryDto } from '@/types/dto';
+import type { Locale } from '@/types/entities';
 
 class CategoryService {
   private baseUrl = '/api/admin/categories';
 
   async getAll(params: CategoryListParams = {}): Promise<CategoryListResponse> {
-    const { page = 1, limit = 10 } = params;
+    const { page = 1, limit = 10, locale } = params;
     const queryParams = new URLSearchParams({
       page: page.toString(),
       limit: limit.toString(),
     });
+
+    if (locale) {
+      queryParams.append('locale', locale);
+    }
 
     const response = await fetch(`${this.baseUrl}?${queryParams.toString()}`);
     const data = await response.json();
@@ -30,8 +34,17 @@ class CategoryService {
     return data;
   }
 
-  async getById(id: string): Promise<CategoryResponse> {
-    const response = await fetch(`${this.baseUrl}/${id}`);
+  async getById(id: string, locale?: Locale): Promise<CategoryResponse> {
+    const queryParams = new URLSearchParams();
+    if (locale) {
+      queryParams.append('locale', locale);
+    }
+
+    const response = await fetch(
+      `${this.baseUrl}/${id}${
+        queryParams.size ? `?${queryParams.toString()}` : ''
+      }`,
+    );
     const data = await response.json();
 
     if (!response.ok) {

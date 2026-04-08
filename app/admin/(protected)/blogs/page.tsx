@@ -4,20 +4,21 @@ import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import { DataGrid } from '@/components/admin/DataGrid';
 import { DeleteConfirmDialog } from '@/components/admin/DeleteConfirmDialog';
 import { PageHeader } from '@/components/admin/PageHeader';
+import { TranslationCoverage } from '@/components/admin/TranslationCoverage';
 import { Button } from '@/components/ui/button';
+import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
+import { useEntityDelete } from '@/lib/hooks/use-entity-delete';
 import { getBlogImageUrl } from '@/lib/hooks/use-blog';
 import { blogService } from '@/lib/services/blog.service';
 import { fetcher } from '@/lib/swr-fetcher';
-import type { Locale } from '@/locales/i18n';
 import type { DataGridConfig } from '@/types/data-grid';
-import type { Blog, CategoryListResponse, Status } from '@/types/entities';
+import type { Blog, CategoryListResponse, Locale, Status } from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
 import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 /** Thumbnail or letter placeholder; never shows broken/red image. */
@@ -66,41 +67,30 @@ export default function BlogsPage() {
   const dict = useAdminDictionary();
   const router = useRouter();
   const t = dict.admin.blogs;
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<{
-    id: string;
-    title: string;
-  } | null>(null);
-  const gridMutateRef = useRef<(() => Promise<unknown>) | null>(null);
+  const translationT = t.translation;
 
   const { data: categoriesData } = useSWR<CategoryListResponse>(
     '/api/admin/categories',
     fetcher,
   );
   const categories = categoriesData?.data ?? [];
-
-  const handleDeleteClick = (blog: Blog) => {
-    setItemToDelete({ id: blog.id, title: blog.title });
-    setDeleteDialogOpen(true);
-  };
-
-  const handleDeleteConfirm = async () => {
-    if (!itemToDelete) return;
-    try {
-      await blogService.delete(itemToDelete.id);
-      toast.success(t.deleteSuccess);
-      await gridMutateRef.current?.();
-      setDeleteDialogOpen(false);
-      setItemToDelete(null);
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t.deleteError);
-      console.error(err);
-    }
-  };
-
-  const onMutateReady = useCallback((mutateFn: () => Promise<unknown>) => {
-    gridMutateRef.current = mutateFn;
-  }, []);
+  const { localeLabels, localeOptions: localeFilterOptions } =
+    useAdminLanguages({
+      adminLocaleLabels: t.locale,
+    });
+  const {
+    isDeleteDialogOpen,
+    setIsDeleteDialogOpen,
+    selectedItem,
+    requestDelete,
+    confirmDelete,
+    onMutateReady,
+  } = useEntityDelete<Blog>({
+    deleteEntity: blogService.delete.bind(blogService),
+    getSelection: (blog) => ({ id: blog.id, label: blog.title }),
+    successMessage: t.deleteSuccess,
+    errorMessage: t.deleteError,
+  });
 
   const config: DataGridConfig<Blog> = {
     swrKey: 'admin-blogs',
@@ -137,10 +127,7 @@ export default function BlogsPage() {
         type: 'select',
         name: 'locale',
         placeholder: t.filterLanguage ?? t.fields.locale,
-        options: [
-          { value: 'fr', label: t.locale.fr },
-          { value: 'en', label: t.locale.en },
-        ],
+        options: localeFilterOptions,
         allowEmpty: true,
         emptyLabel: dict.admin.common.all,
       },
@@ -165,7 +152,7 @@ export default function BlogsPage() {
         label: t.fields.title,
         cell: (row) => (
           <Link
-            href={`/admin/blogs/${row.id}`}
+            href={`/admin/blogs/${row.id}?locale=${row.locale}`}
             className="font-medium text-foreground hover:text-foreground hover:underline"
           >
             {row.title}
@@ -194,6 +181,20 @@ export default function BlogsPage() {
           <span className="text-xs uppercase tracking-wider text-muted-foreground">
             {row.locale}
           </span>
+        ),
+      },
+      {
+        name: 'translations',
+        label: translationT.title,
+        cell: (row) => (
+          <TranslationCoverage
+            translations={row.translations}
+            currentLocale={row.locale}
+            localeLabels={localeLabels}
+            locales={localeFilterOptions.map((option) => option.value)}
+            labels={translationT}
+            compact
+          />
         ),
       },
       {
@@ -244,13 +245,15 @@ export default function BlogsPage() {
         name: 'view',
         label: dict.admin.common.view,
         icon: Eye,
-        onClick: (row) => router.push(`/admin/blogs/${row.id}`),
+        onClick: (row) =>
+          router.push(`/admin/blogs/${row.id}?locale=${row.locale}`),
       },
       {
         name: 'edit',
         label: dict.admin.common.edit,
         icon: Edit,
-        onClick: (row) => router.push(`/admin/blogs/${row.id}/edit`),
+        onClick: (row) =>
+          router.push(`/admin/blogs/${row.id}/edit?locale=${row.locale}`),
       },
       {
         name: 'delete',
@@ -259,7 +262,7 @@ export default function BlogsPage() {
         variant: 'ghost',
         className:
           'h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive',
-        onClick: (row) => handleDeleteClick(row),
+        onClick: (row) => requestDelete(row),
       },
     ],
     empty: {
@@ -292,17 +295,17 @@ export default function BlogsPage() {
       <DataGrid config={config} onMutateReady={onMutateReady} />
 
       <DeleteConfirmDialog
-        open={deleteDialogOpen}
-        onOpenChange={setDeleteDialogOpen}
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
         title={dict.admin.common.delete}
         description={
-          itemToDelete
-            ? t.deleteConfirm.replace('{title}', itemToDelete.title)
+          selectedItem
+            ? t.deleteConfirm.replace('{title}', selectedItem.label)
             : ''
         }
         cancelLabel={dict.admin.common.cancel}
         confirmLabel={dict.admin.common.delete}
-        onConfirm={handleDeleteConfirm}
+        onConfirm={confirmDelete}
       />
     </div>
   );

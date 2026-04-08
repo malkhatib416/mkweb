@@ -46,39 +46,42 @@ export {
   projectUpdateSchema,
 } from './project.service.server';
 
-// Re-export types from entities (for convenience)
 export type {
   Blog,
+  Category,
+  Client,
+  Language,
+  Project,
+  Status,
+} from '@/types/entities';
+export type {
   BlogListParams,
   BlogListResponse,
   BlogResponse,
-  Category,
   CategoryListParams,
   CategoryListResponse,
   CategoryResponse,
-  Client,
   ClientListParams,
   ClientListResponse,
   ClientResponse,
-  CreateBlogDto,
-  CreateCategoryDto,
-  CreateClientDto,
-  CreateLanguageDto,
-  CreateProjectDto,
-  Language,
   LanguageListParams,
   LanguageListResponse,
   LanguageResponse,
-  Project,
   ProjectListParams,
   ProjectListResponse,
   ProjectResponse,
   ProjectReviewAdminRow,
   ProjectReviewListResponse,
-  Status,
+} from '@/types/api';
+export type {
+  CreateBlogDto,
+  CreateCategoryDto,
+  CreateClientDto,
+  CreateLanguageDto,
+  CreateProjectDto,
   UpdateBlogDto,
   UpdateCategoryDto,
   UpdateClientDto,
   UpdateLanguageDto,
   UpdateProjectDto,
-} from '@/types/entities';
+} from '@/types/dto';

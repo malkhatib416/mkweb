@@ -2,6 +2,7 @@
 
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import MarkdownEditor from '@/components/admin/MarkdownEditor';
+import { TranslationCoverage } from '@/components/admin/TranslationCoverage';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -14,11 +15,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
 import { useBlog } from '@/lib/hooks/use-blog';
 import { blogService } from '@/lib/services/blog.service';
 import { fetcher } from '@/lib/swr-fetcher';
-import { Locale } from '@/locales/i18n';
-import type { CategoryListResponse, Status } from '@/types/entities';
+import type { CategoryListResponse, Locale, Status } from '@/types/entities';
 import {
   ArrowLeft,
   ImagePlus,
@@ -28,7 +29,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import * as React from 'react';
 import { useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -36,16 +37,20 @@ import useSWR from 'swr';
 
 export default function EditBlogPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const params = useParams();
   const id = (params?.id as string) ?? null;
   const dict = useAdminDictionary();
   const t = dict.admin.blogs;
+  const localeT = t.locale;
+  const translationT = t.translation;
 
-  const { blog, error, isLoading: isFetching } = useBlog(id);
+  const initialLocale = searchParams.get('locale') ?? undefined;
+  const [locale, setLocale] = useState<Locale | undefined>(initialLocale);
+  const { blog, error, isLoading: isFetching } = useBlog(id, locale);
 
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
-  const [locale, setLocale] = useState<Locale>('fr');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [content, setContent] = useState('');
@@ -53,22 +58,27 @@ export default function EditBlogPage() {
   const [categoryId, setCategoryId] = useState<string>('');
   const [readingTime, setReadingTime] = useState<number | ''>('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { data: categoriesData } = useSWR<CategoryListResponse>(
-    '/api/admin/categories',
+    locale ? `/api/admin/categories?locale=${locale}` : null,
     fetcher,
   );
   const categories = categoriesData?.data ?? [];
+  const { localeLabels } = useAdminLanguages({
+    adminLocaleLabels: localeT,
+    includeLocales: [locale, blog?.locale],
+  });
 
   React.useEffect(() => {
-    if (blog && !isInitialized) {
+    if (blog) {
+      if (!locale) {
+        setLocale(blog.locale);
+      }
       setTitle(blog.title);
       setSlug(blog.slug);
-      setLocale(blog.locale);
       setDescription(blog.description || '');
       setImage((blog as { image?: string | null }).image ?? '');
       setContent(blog.content);
@@ -76,9 +86,8 @@ export default function EditBlogPage() {
       setCategoryId((blog as { categoryId?: string | null }).categoryId ?? '');
       const rt = (blog as { readingTime?: number | null }).readingTime;
       setReadingTime(rt != null ? rt : '');
-      setIsInitialized(true);
     }
-  }, [blog, isInitialized]);
+  }, [blog, locale]);
 
   if (error) {
     toast.error(t.fetchSingleError);
@@ -93,13 +102,13 @@ export default function EditBlogPage() {
       await blogService.update(id, {
         title,
         slug,
-        locale,
+        locale: locale ?? 'fr',
         description: description || null,
-        image: image || undefined,
+        image: image || null,
         content,
         status,
-        categoryId: categoryId || undefined,
-        readingTime: typeof readingTime === 'number' ? readingTime : undefined,
+        categoryId: categoryId || null,
+        readingTime: typeof readingTime === 'number' ? readingTime : null,
       });
       toast.success(t.updateSuccess);
       router.push('/admin/blogs');
@@ -172,6 +181,23 @@ export default function EditBlogPage() {
 
   if (!blog) return null;
 
+  const selectedLocale = locale ?? blog.locale;
+  const localeOptions = Array.from(
+    new Set([
+      ...Object.keys(localeLabels),
+      ...(blog.translations?.map((item) => item.locale) ?? []),
+      blog.locale,
+      ...(locale ? [locale] : []),
+    ]),
+  );
+  const hasSelectedTranslation = selectedLocale
+    ? (blog.translations?.some((item) => item.locale === selectedLocale) ??
+      false)
+    : true;
+  const displayTitle = hasSelectedTranslation
+    ? blog.title
+    : translationT.missingTitle;
+
   return (
     <div className="flex flex-col gap-8">
       <Link
@@ -187,17 +213,77 @@ export default function EditBlogPage() {
           {t.edit.title}
         </p>
         <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-          {blog.title}
+          {displayTitle}
         </h1>
+        <div className="mt-4 space-y-3">
+          <TranslationCoverage
+            translations={blog.translations}
+            currentLocale={selectedLocale}
+            localeLabels={localeLabels}
+            locales={localeOptions}
+            labels={translationT}
+          />
+          {!hasSelectedTranslation ? (
+            <div className="rounded-xl border border-dashed border-amber-300 bg-amber-50/70 px-4 py-3 text-sm text-amber-900 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-100">
+              {translationT.missingEditHint.replace(
+                '{locale}',
+                selectedLocale
+                  ? (localeLabels[selectedLocale] ??
+                      selectedLocale.toUpperCase())
+                  : '',
+              )}
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 gap-8 lg:grid-cols-3"
       >
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleFileChange}
+        />
         <div className="lg:col-span-2 space-y-6">
+          <div className="space-y-1 px-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {translationT.translatedFieldsTitle}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {translationT.translatedFieldsDescription.replace(
+                '{locale}',
+                selectedLocale
+                  ? (localeLabels[selectedLocale] ??
+                      selectedLocale.toUpperCase())
+                  : '',
+              )}
+            </p>
+          </div>
           <Card className="border-none shadow-lg">
             <CardContent className="pt-6 space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="locale" className="text-sm font-semibold">
+                  {t.fields.locale} *
+                </Label>
+                <Select value={locale ?? blog.locale} onValueChange={setLocale}>
+                  <SelectTrigger id="locale">
+                    <SelectValue placeholder={t.fields.locale} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {localeOptions.map((localeOption) => (
+                      <SelectItem key={localeOption} value={localeOption}>
+                        {localeLabels[localeOption] ??
+                          localeOption.toUpperCase()}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="title" className="text-sm font-semibold">
                   {t.fields.title} *
@@ -253,6 +339,14 @@ export default function EditBlogPage() {
         </div>
 
         <div className="space-y-6">
+          <div className="space-y-1 px-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {translationT.sharedFieldsTitle}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {translationT.sharedFieldsDescription}
+            </p>
+          </div>
           {/* Cover Photo Card */}
           <Card className="overflow-hidden border-none shadow-lg">
             <div className="bg-muted px-4 py-3 border-b border-border/50">
@@ -371,16 +465,17 @@ export default function EditBlogPage() {
                 <Label className="text-xs font-semibold uppercase tracking-wider opacity-70">
                   {t.fields.locale} *
                 </Label>
-                <Select
-                  value={locale}
-                  onValueChange={(v) => setLocale(v as Locale)}
-                >
+                <Select value={locale} onValueChange={setLocale}>
                   <SelectTrigger className="h-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="fr">{t.locale.fr}</SelectItem>
-                    <SelectItem value="en">{t.locale.en}</SelectItem>
+                    {localeOptions.map((localeOption) => (
+                      <SelectItem key={localeOption} value={localeOption}>
+                        {localeLabels[localeOption] ??
+                          localeOption.toUpperCase()}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>

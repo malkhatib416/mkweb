@@ -66,10 +66,54 @@ const articleSchemaZod = z.object({
     ),
 });
 
+const translatedBlogSchemaZod = z.object({
+  title: z.string().describe('Translated article title'),
+  slug: z
+    .string()
+    .describe('Localized URL slug: lowercase, hyphens only, no spaces'),
+  description: z
+    .string()
+    .nullable()
+    .describe('Translated meta description, or null when absent'),
+  content: z
+    .string()
+    .describe('Translated Markdown content preserving structure and links'),
+});
+
+const translatedCategorySchemaZod = z.object({
+  name: z.string().describe('Translated category name'),
+  slug: z
+    .string()
+    .describe('Localized URL slug: lowercase, hyphens only, no spaces'),
+  description: z
+    .string()
+    .nullable()
+    .describe('Translated category description, or null when absent'),
+});
+
 export type GenerateBlogArticleInput = {
   topic: string;
   languageCode: string;
   languageName: string;
+};
+
+export type TranslateBlogContentInput = {
+  sourceLanguageCode: string;
+  targetLanguageCode: string;
+  targetLanguageName: string;
+  title: string;
+  slug: string;
+  description?: string | null;
+  content: string;
+};
+
+export type TranslateCategoryContentInput = {
+  sourceLanguageCode: string;
+  targetLanguageCode: string;
+  targetLanguageName: string;
+  name: string;
+  slug: string;
+  description?: string | null;
 };
 
 function getCurrentYear() {
@@ -93,7 +137,9 @@ function getSEOAndClientSystem() {
 
 4. CONTENT: Concrete and actionable. Prefer "how to" and "why". Avoid generic fluff. Use **bold** for emphasis on key terms in lists.
 
-5. CURRENT YEAR: Use ${year} when referring to the present or future. Do not use ${year - 1} or ${year - 2} as the current year.`;
+5. CURRENT YEAR: Use ${year} when referring to the present or future. Do not use ${
+    year - 1
+  } or ${year - 2} as the current year.`;
 }
 
 /**
@@ -117,6 +163,75 @@ Current year: ${year}. Make it useful for business owners and attractive to sear
 Provide title, slug, description (meta, 150–160 chars), and full content in Markdown including the CTA at the end.`,
   });
   return object as GeneratedArticle;
+}
+
+export async function translateBlogContent(
+  input: TranslateBlogContentInput,
+): Promise<GeneratedArticle> {
+  const {
+    sourceLanguageCode,
+    targetLanguageCode,
+    targetLanguageName,
+    title,
+    slug,
+    description,
+    content,
+  } = input;
+
+  const object = await generateObjectFromAI({
+    schema: translatedBlogSchemaZod,
+    system: `You translate MK-Web blog content from ${sourceLanguageCode} to ${targetLanguageName} (${targetLanguageCode}). Preserve the original meaning, Markdown structure, heading hierarchy, CTA links, and overall tone. Translate only the human-readable text. Slug must be lowercase and hyphenated.`,
+    prompt: `Translate this blog article into ${targetLanguageName} (${targetLanguageCode}). Return only the translated fields.
+
+Source language: ${sourceLanguageCode}
+Title: ${title}
+Slug: ${slug}
+Description: ${description ?? '(none)'}
+
+Markdown content:
+${content}`,
+  });
+
+  return {
+    title: object.title,
+    slug: object.slug,
+    description: object.description ?? '',
+    content: object.content,
+  };
+}
+
+export async function translateCategoryContent(
+  input: TranslateCategoryContentInput,
+): Promise<{
+  name: string;
+  slug: string;
+  description: string | null;
+}> {
+  const {
+    sourceLanguageCode,
+    targetLanguageCode,
+    targetLanguageName,
+    name,
+    slug,
+    description,
+  } = input;
+
+  const object = await generateObjectFromAI({
+    schema: translatedCategorySchemaZod,
+    system: `You translate MK-Web blog taxonomy labels from ${sourceLanguageCode} to ${targetLanguageName} (${targetLanguageCode}). Keep names concise, natural, and SEO-friendly. Slug must be lowercase and hyphenated.`,
+    prompt: `Translate this blog category into ${targetLanguageName} (${targetLanguageCode}). Return only the translated fields.
+
+Source language: ${sourceLanguageCode}
+Name: ${name}
+Slug: ${slug}
+Description: ${description ?? '(none)'}`,
+  });
+
+  return {
+    name: object.name,
+    slug: object.slug,
+    description: object.description,
+  };
 }
 
 /** Input for AI topic suggestions */
@@ -156,20 +271,38 @@ export async function suggestArticleTopics(
       : 'Suggest topics in French (primary audience: France, Chartres region).';
   const categoryLine =
     categoryNames.length > 0
-      ? `3b. ALIGN WITH CATEGORIES: Prefer topics that fit these blog categories: ${categoryNames.join(', ')}.`
+      ? `3b. ALIGN WITH CATEGORIES: Prefer topics that fit these blog categories: ${categoryNames.join(
+          ', ',
+        )}.`
       : '';
   const object = await generateObjectFromAI({
     schema: suggestTopicsSchemaZod,
     system: `You are a content strategist for a freelance web developer (MK-Web). Suggest blog article topics that:
 1. ATTRACT CLIENTS: Address small business pain points (visibility, no leads, old site, need for e-commerce, SEO, performance). Topics should be practical and lead naturally to the freelancer's services.
 2. SEO: Focus on intent-rich topics (how-to, guides, mistakes to avoid, checklists) with clear keyword potential (création site, refonte, SEO, référencement, site qui convertit, etc. for FR).
-3. ALIGN WITH SERVICES: Prefer topics that relate to these services: ${serviceTitles.join(', ')}. Do not repeat or closely mimic existing articles.
+3. ALIGN WITH SERVICES: Prefer topics that relate to these services: ${serviceTitles.join(
+      ', ',
+    )}. Do not repeat or closely mimic existing articles.
 ${categoryLine}
-4. AVOID DUPLICATION: Do not suggest topics already covered. Recent article titles: ${recentArticleTitles.length ? recentArticleTitles.slice(0, 20).join(' | ') : '(none)'}.
-5. YEAR: The current year is ${year}. Include the year in a topic only when it adds value (e.g. trends, predictions, "guide ${year}", "pour ${year}"). Most topics should NOT mention the year—prefer evergreen titles like "5 erreurs SEO qui font fuir vos clients" or "Pourquoi refaire son site web". Do not use ${year - 1} or ${year - 2} as the current year.
+4. AVOID DUPLICATION: Do not suggest topics already covered. Recent article titles: ${
+      recentArticleTitles.length
+        ? recentArticleTitles.slice(0, 20).join(' | ')
+        : '(none)'
+    }.
+5. YEAR: The current year is ${year}. Include the year in a topic only when it adds value (e.g. trends, predictions, "guide ${year}", "pour ${year}"). Most topics should NOT mention the year—prefer evergreen titles like "5 erreurs SEO qui font fuir vos clients" or "Pourquoi refaire son site web". Do not use ${
+      year - 1
+    } or ${year - 2} as the current year.
 ${langNote}
 Return only the "topics" array with short, clear topic phrases. Mix evergreen topics (no year) with a few year-specific ones when relevant.`,
-    prompt: `Suggest exactly ${count} new blog topic ideas. Current year: ${year}. Services: ${serviceTitles.join(', ')}.${categoryNames.length > 0 ? ` Categories to focus on: ${categoryNames.join(', ')}.` : ''} Recent articles to avoid: ${recentArticleTitles.join(' | ') || 'none'}. Only some topics should mention ${year} (e.g. trends or annual guides); most should be evergreen without a year.`,
+    prompt: `Suggest exactly ${count} new blog topic ideas. Current year: ${year}. Services: ${serviceTitles.join(
+      ', ',
+    )}.${
+      categoryNames.length > 0
+        ? ` Categories to focus on: ${categoryNames.join(', ')}.`
+        : ''
+    } Recent articles to avoid: ${
+      recentArticleTitles.join(' | ') || 'none'
+    }. Only some topics should mention ${year} (e.g. trends or annual guides); most should be evergreen without a year.`,
   });
   const result = object as { topics: string[] };
   return {

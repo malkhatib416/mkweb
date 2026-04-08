@@ -84,41 +84,63 @@ export const category = pgTable('category', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
-  name: text('name').notNull(),
-  slug: text('slug').notNull().unique(),
-  description: text('description'),
   createdAt: timestamp('createdAt').notNull().defaultNow(),
   updatedAt: timestamp('updatedAt').notNull().defaultNow(),
 });
 
 // Blog posts table
-export const blog = pgTable(
-  'blog',
+export const blog = pgTable('blog', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  image: text('image'), // Shared cover/thumbnail URL across translations
+  status: text('status', { enum: ['draft', 'published'] })
+    .notNull()
+    .default('draft'),
+  categoryId: text('categoryId').references(() => category.id, {
+    onDelete: 'set null',
+  }),
+  readingTime: integer('reading_time'), // shared estimated reading time in minutes
+  createdAt: timestamp('createdAt').notNull().defaultNow(),
+  updatedAt: timestamp('updatedAt').notNull().defaultNow(),
+});
+
+export const translation = pgTable(
+  'translation',
   {
     id: text('id')
       .primaryKey()
       .$defaultFn(() => createId()),
-    title: text('title').notNull(),
-    slug: text('slug').notNull(),
-    locale: text('locale', { enum: ['fr', 'en'] })
+    entityType: text('entityType', { enum: ['blog', 'category'] }).notNull(),
+    locale: text('locale')
       .notNull()
-      .default('fr'),
-    description: text('description'),
-    image: text('image'), // Optional cover/thumbnail URL
-    content: text('content').notNull(), // Markdown content
-    status: text('status', { enum: ['draft', 'published'] })
-      .notNull()
-      .default('draft'),
-    categoryId: text('categoryId').references(() => category.id, {
-      onDelete: 'set null',
+      .default('fr')
+      .references(() => language.code, {
+        onDelete: 'restrict',
+        onUpdate: 'cascade',
+      }),
+    blogId: text('blogId').references(() => blog.id, {
+      onDelete: 'cascade',
     }),
-    readingTime: integer('reading_time'), // estimated reading time in minutes
+    categoryId: text('categoryId').references(() => category.id, {
+      onDelete: 'cascade',
+    }),
+    slug: text('slug').notNull(),
+    title: text('title'),
+    name: text('name'),
+    description: text('description'),
+    content: text('content'),
     createdAt: timestamp('createdAt').notNull().defaultNow(),
     updatedAt: timestamp('updatedAt').notNull().defaultNow(),
   },
   (table) => ({
-    // Unique constraint on slug + locale combination
-    uniqueSlugLocale: unique().on(table.slug, table.locale),
+    uniqueEntitySlugLocale: unique().on(
+      table.entityType,
+      table.slug,
+      table.locale,
+    ),
+    uniqueBlogLocale: unique().on(table.blogId, table.locale),
+    uniqueCategoryLocale: unique().on(table.categoryId, table.locale),
   }),
 );
 
@@ -204,12 +226,27 @@ export const newsletterSubscriber = pgTable('newsletter_subscriber', {
 // Relations (for db.query API)
 export const categoryRelations = relations(category, ({ many }) => ({
   blogs: many(blog),
+  translations: many(translation, { relationName: 'categoryTranslations' }),
 }));
 
-export const blogRelations = relations(blog, ({ one }) => ({
+export const blogRelations = relations(blog, ({ one, many }) => ({
   category: one(category, {
     fields: [blog.categoryId],
     references: [category.id],
+  }),
+  translations: many(translation, { relationName: 'blogTranslations' }),
+}));
+
+export const translationRelations = relations(translation, ({ one }) => ({
+  blog: one(blog, {
+    fields: [translation.blogId],
+    references: [blog.id],
+    relationName: 'blogTranslations',
+  }),
+  category: one(category, {
+    fields: [translation.categoryId],
+    references: [category.id],
+    relationName: 'categoryTranslations',
   }),
 }));
 

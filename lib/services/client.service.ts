@@ -6,9 +6,8 @@ import type {
   ClientListParams,
   ClientListResponse,
   ClientResponse,
-  CreateClientDto,
-  UpdateClientDto,
-} from '@/types/entities';
+} from '@/types/api';
+import type { CreateClientDto, UpdateClientDto } from '@/types/dto';
 
 class ClientService {
   private baseUrl = '/api/admin/clients';

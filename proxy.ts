@@ -42,7 +42,8 @@ export function proxy(req: NextRequest) {
     const rest = localeMatch[2] ?? '';
     // Rewrite /fr/blog -> /blog, /en -> / (URL stays /fr/blog in browser)
     const rewritePath = rest || '/';
-    const url = new URL(rewritePath + req.nextUrl.search, req.url);
+    const url = req.nextUrl.clone();
+    url.pathname = rewritePath;
     const requestHeaders = new Headers(req.headers);
     requestHeaders.set('x-next-locale', locale);
     return NextResponse.rewrite(url, {

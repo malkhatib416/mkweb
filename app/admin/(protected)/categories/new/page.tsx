@@ -5,6 +5,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
+import type { Locale } from '@/types/entities';
 import { categoryService } from '@/lib/services/category.service';
 import { generateSlug } from '@/utils/utils';
 import { ArrowLeft } from 'lucide-react';
@@ -17,7 +26,13 @@ export default function NewCategoryPage() {
   const dict = useAdminDictionary();
   const router = useRouter();
   const t = dict.admin.categories;
+  const localeT = dict.admin.blogs.locale;
 
+  const [locale, setLocale] = useState<Locale>('fr');
+  const { localeLabels, localeCodes: localeOptions } = useAdminLanguages({
+    adminLocaleLabels: localeT,
+    includeLocales: [locale],
+  });
   const [name, setName] = useState('');
   const [slug, setSlug] = useState('');
   const [description, setDescription] = useState('');
@@ -41,9 +56,10 @@ export default function NewCategoryPage() {
     setIsLoading(true);
     try {
       await categoryService.create({
+        locale,
         name: trimmedName,
         slug: trimmedSlug,
-        description: description.trim() || undefined,
+        description: description.trim() || null,
       });
       toast.success(t.createSuccess);
       router.push('/admin/categories');
@@ -77,6 +93,21 @@ export default function NewCategoryPage() {
       <Card>
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="locale">{dict.admin.blogs.fields.locale} *</Label>
+              <Select value={locale} onValueChange={setLocale}>
+                <SelectTrigger id="locale">
+                  <SelectValue placeholder={dict.admin.blogs.fields.locale} />
+                </SelectTrigger>
+                <SelectContent>
+                  {localeOptions.map((localeOption) => (
+                    <SelectItem key={localeOption} value={localeOption}>
+                      {localeLabels[localeOption] ?? localeOption.toUpperCase()}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="name">{t.fields.name} *</Label>
               <Input

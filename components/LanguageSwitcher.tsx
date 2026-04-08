@@ -26,17 +26,39 @@ export default function LanguageSwitcher({ currentLocale }: Props) {
   const router = useRouter();
 
   const switchLocale = useCallback(
-    (newLocale: Locale) => {
+    async (newLocale: Locale) => {
       if (newLocale === currentLocale) return;
 
       // Set cookie for locale preference
       document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000`;
 
-      // Get the path without the current locale prefix
-      const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '');
+      const fallbackPath = pathname.replace(
+        `/${currentLocale}`,
+        `/${newLocale}`,
+      );
+      let targetPath = fallbackPath || `/${newLocale}`;
 
-      // Redirect to the same path with the new locale
-      router.push(`/${newLocale}${pathWithoutLocale || ''}`);
+      try {
+        const response = await fetch(
+          `/api/i18n/resolve-path?pathname=${encodeURIComponent(
+            pathname,
+          )}&targetLocale=${newLocale}`,
+        );
+
+        if (response.ok) {
+          const data = (await response.json()) as { pathname?: string };
+          if (data.pathname) {
+            targetPath = data.pathname;
+          }
+        }
+      } catch {
+        // Ignore lookup failures and fall back to a simple locale prefix swap.
+      }
+
+      // Navigate to the new locale URL, then refresh so server components
+      // re-run with the new locale header from the proxy
+      router.push(targetPath);
+      router.refresh();
     },
     [currentLocale, pathname, router],
   );

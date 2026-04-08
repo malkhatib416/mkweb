@@ -791,6 +791,20 @@
         "created": "Créé",
         "updated": "Mis à jour"
       },
+      "translation": {
+        "title": "Traductions",
+        "coverage": "{count}/{total} langues",
+        "available": "Disponible",
+        "missing": "Manquante",
+        "currentMissing": "La traduction {locale} n'existe pas encore.",
+        "missingTitle": "Traduction absente",
+        "missingDescription": "Ajoutez le contenu de la traduction {locale} depuis l'écran d'édition.",
+        "translatedFieldsTitle": "Champs de traduction",
+        "translatedFieldsDescription": "Ces valeurs ne s'appliquent qu'à la langue {locale}.",
+        "sharedFieldsTitle": "Champs partagés",
+        "sharedFieldsDescription": "Ces valeurs sont utilisées par toutes les langues de cet élément.",
+        "missingEditHint": "Vous créez la traduction {locale} pour cet élément partagé."
+      },
       "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{name}\" ?",
       "deleteSuccess": "Catégorie supprimée avec succès",
       "deleteError": "Échec de la suppression de la catégorie",
@@ -892,6 +906,20 @@
         "slug": "Slug",
         "created": "Créé",
         "updated": "Mis à jour"
+      },
+      "translation": {
+        "title": "Traductions",
+        "coverage": "{count}/{total} langues",
+        "available": "Disponible",
+        "missing": "Manquante",
+        "currentMissing": "La traduction {locale} n'existe pas encore.",
+        "missingTitle": "Traduction absente",
+        "missingDescription": "Ajoutez le contenu de la traduction {locale} depuis l'écran d'édition.",
+        "translatedFieldsTitle": "Champs de traduction",
+        "translatedFieldsDescription": "Ces valeurs ne s'appliquent qu'à la langue {locale}.",
+        "sharedFieldsTitle": "Champs partagés",
+        "sharedFieldsDescription": "Ces valeurs sont utilisées par toutes les langues de cet élément.",
+        "missingEditHint": "Vous créez la traduction {locale} pour cet élément partagé."
       },
       "pagination": {
         "showing": "Affichage de {from} à {to} sur {total} articles",

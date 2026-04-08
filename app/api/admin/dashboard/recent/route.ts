@@ -2,6 +2,7 @@ import { requireAuth } from '@/lib/auth-utils';
 import { blogServiceServer } from '@/lib/services/blog.service.server';
 import { projectServiceServer } from '@/lib/services/project.service.server';
 import { getErrorMessage, getErrorStatus } from '@/lib/utils/api-error-handler';
+import { locales } from '@/locales/i18n';
 import { NextRequest, NextResponse } from 'next/server';
 
 export type RecentActivityItem = {
@@ -30,12 +31,18 @@ export async function GET(request: NextRequest) {
     );
     const offset = (page - 1) * limit;
 
-    const [blogRes, projectRes] = await Promise.all([
-      blogServiceServer.getAll({ page: 1, limit: 500 }),
+    const [blogResults, projectRes] = await Promise.all([
+      Promise.all(
+        locales.map((locale) =>
+          blogServiceServer.getAll({ page: 1, limit: 500, locale }),
+        ),
+      ),
       projectServiceServer.getAll({ page: 1, limit: 500 }),
     ]);
 
-    const blogItems: RecentActivityItem[] = blogRes.data.map((b) => ({
+    const blogRes = blogResults.flatMap((result) => result.data);
+
+    const blogItems: RecentActivityItem[] = blogRes.map((b) => ({
       id: b.id,
       type: 'blog' as const,
       title: b.title,

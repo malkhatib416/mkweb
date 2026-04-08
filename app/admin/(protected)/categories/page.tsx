@@ -4,62 +4,65 @@ import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import { DataGrid } from '@/components/admin/DataGrid';
 import { DeleteConfirmDialog } from '@/components/admin/DeleteConfirmDialog';
 import { PageHeader } from '@/components/admin/PageHeader';
+import { TranslationCoverage } from '@/components/admin/TranslationCoverage';
 import { Button } from '@/components/ui/button';
+import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
+import { useEntityDelete } from '@/lib/hooks/use-entity-delete';
 import { categoryService } from '@/lib/services/category.service';
 import type { DataGridConfig } from '@/types/data-grid';
-import type { Category } from '@/types/entities';
+import type { Category, Locale } from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
 import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
 
 export default function CategoriesPage() {
   const dict = useAdminDictionary();
   const router = useRouter();
   const t = dict.admin.categories;
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<{
-    id: string;
-    name: string;
-  } | null>(null);
-  const gridMutateRef = useRef<(() => Promise<unknown>) | null>(null);
-
-  const handleDeleteClick = (cat: Category) => {
-    setItemToDelete({ id: cat.id, name: cat.name });
-    setDeleteDialogOpen(true);
-  };
-
-  const handleDeleteConfirm = async () => {
-    if (!itemToDelete) return;
-    try {
-      await categoryService.delete(itemToDelete.id);
-      toast.success(t.deleteSuccess);
-      await gridMutateRef.current?.();
-      setDeleteDialogOpen(false);
-      setItemToDelete(null);
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t.deleteError);
-      console.error(err);
-    }
-  };
-
-  const onMutateReady = useCallback((mutateFn: () => Promise<unknown>) => {
-    gridMutateRef.current = mutateFn;
-  }, []);
+  const localeT = dict.admin.blogs.locale;
+  const translationT = t.translation;
+  const { localeLabels, localeOptions: localeFilterOptions } =
+    useAdminLanguages({
+      adminLocaleLabels: localeT,
+    });
+  const {
+    isDeleteDialogOpen,
+    setIsDeleteDialogOpen,
+    selectedItem,
+    requestDelete,
+    confirmDelete,
+    onMutateReady,
+  } = useEntityDelete<Category>({
+    deleteEntity: categoryService.delete.bind(categoryService),
+    getSelection: (category) => ({ id: category.id, label: category.name }),
+    successMessage: t.deleteSuccess,
+    errorMessage: t.deleteError,
+  });
 
   const config: DataGridConfig<Category> = {
     swrKey: 'admin-categories',
     fetcher: async ([, params]) =>
-      categoryService.getAll({ page: params.page, limit: params.limit }),
+      categoryService.getAll({
+        page: params.page,
+        limit: params.limit,
+        locale: (params.locale as Locale | undefined) ?? 'fr',
+      }),
+    filters: [
+      {
+        type: 'select',
+        name: 'locale',
+        placeholder: dict.admin.blogs.fields.locale,
+        options: localeFilterOptions,
+      },
+    ],
     columns: [
       {
         name: 'name',
         label: t.fields.name,
         cell: (row) => (
           <Link
-            href={`/admin/categories/${row.id}`}
+            href={`/admin/categories/${row.id}?locale=${row.locale}`}
             className="font-medium text-foreground hover:text-foreground hover:underline"
           >
             {row.name}
@@ -85,6 +88,20 @@ export default function CategoriesPage() {
         ),
       },
       {
+        name: 'translations',
+        label: translationT.title,
+        cell: (row) => (
+          <TranslationCoverage
+            translations={row.translations}
+            currentLocale={row.locale}
+            localeLabels={localeLabels}
+            locales={localeFilterOptions.map((option) => option.value)}
+            labels={translationT}
+            compact
+          />
+        ),
+      },
+      {
         name: 'createdAt',
         label: t.metadata.created,
         cell: (row) => (
@@ -99,13 +116,15 @@ export default function CategoriesPage() {
         name: 'view',
         label: dict.admin.common.view,
         icon: Eye,
-        onClick: (row) => router.push(`/admin/categories/${row.id}`),
+        onClick: (row) =>
+          router.push(`/admin/categories/${row.id}?locale=${row.locale}`),
       },
       {
         name: 'edit',
         label: dict.admin.common.edit,
         icon: Edit,
-        onClick: (row) => router.push(`/admin/categories/${row.id}/edit`),
+        onClick: (row) =>
+          router.push(`/admin/categories/${row.id}/edit?locale=${row.locale}`),
       },
       {
         name: 'delete',
@@ -114,7 +133,7 @@ export default function CategoriesPage() {
         variant: 'destructive',
         className:
           'text-destructive hover:bg-destructive/10 hover:text-destructive',
-        onClick: (row) => handleDeleteClick(row),
+        onClick: (row) => requestDelete(row),
       },
     ],
     empty: {
@@ -147,17 +166,17 @@ export default function CategoriesPage() {
       <DataGrid config={config} onMutateReady={onMutateReady} />
 
       <DeleteConfirmDialog
-        open={deleteDialogOpen}
-        onOpenChange={setDeleteDialogOpen}
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
         title={dict.admin.common.delete}
         description={
-          itemToDelete
-            ? t.deleteConfirm.replace('{name}', itemToDelete.name)
+          selectedItem
+            ? t.deleteConfirm.replace('{name}', selectedItem.label)
             : ''
         }
         cancelLabel={dict.admin.common.cancel}
         confirmLabel={dict.admin.common.delete}
-        onConfirm={handleDeleteConfirm}
+        onConfirm={confirmDelete}
       />
     </div>
   );
