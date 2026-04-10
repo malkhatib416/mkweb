@@ -3,7 +3,7 @@ import { defaultLocale, isValidLocale, type Locale } from '@/locales/i18n';
 import { NextResponse } from 'next/server';
 
 function swapLocalePrefix(pathname: string, targetLocale: Locale): string {
-  const localeMatch = pathname.match(/^\/(fr|en)(\/.*)?$/);
+  const localeMatch = pathname.match(/^\/(fr|en|de|it|es)(\/.*)?$/);
   if (!localeMatch) {
     return `/${targetLocale}${pathname === '/' ? '' : pathname}`;
   }
@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     ? targetLocaleParam
     : defaultLocale;
 
-  const localeMatch = pathname.match(/^\/(fr|en)(\/.*)?$/);
+  const localeMatch = pathname.match(/^\/(fr|en|de|it|es)(\/.*)?$/);
   const localeSegment = localeMatch?.[1];
   const currentLocale = isValidLocale(localeSegment)
     ? localeSegment
@@ -28,7 +28,7 @@ export async function GET(request: Request) {
 
   const normalizedFallbackPath = swapLocalePrefix(pathname, targetLocale);
 
-  const blogMatch = pathname.match(/^\/(fr|en)\/blog\/([^/]+)$/);
+  const blogMatch = pathname.match(/^\/(fr|en|de|it|es)\/blog\/([^/]+)$/);
 
   if (!blogMatch) {
     return NextResponse.json({ pathname: normalizedFallbackPath });

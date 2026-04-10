@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { locales, defaultLocale, isValidLocale } from '@/locales/i18n';
+import { defaultLocale, isValidLocale } from '@/locales/i18n';
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -36,7 +36,7 @@ export function proxy(req: NextRequest) {
   }
 
   // Check if pathname starts with a valid locale (e.g. /fr, /fr/blog)
-  const localeMatch = pathname.match(/^\/(fr|en)(\/.*)?$/);
+  const localeMatch = pathname.match(/^\/(fr|en|de|it|es)(\/.*)?$/);
   if (localeMatch) {
     const locale = localeMatch[1];
     const rest = localeMatch[2] ?? '';

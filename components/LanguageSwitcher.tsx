@@ -10,15 +10,18 @@ import {
 import { locales, type Locale } from '@/locales/i18n';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
-import CountryFlag from './CountryFlag';
+import CountryFlag, { type CountryCode } from './CountryFlag';
 
 type Props = {
   currentLocale: Locale;
 };
 
-const localeData: Record<Locale, { name: string; flagCode: 'FR' | 'GB' }> = {
+const localeData: Record<Locale, { name: string; flagCode: CountryCode }> = {
   fr: { name: 'Français', flagCode: 'FR' },
   en: { name: 'English', flagCode: 'GB' },
+  de: { name: 'Deutsch', flagCode: 'DE' },
+  it: { name: 'Italiano', flagCode: 'IT' },
+  es: { name: 'Español', flagCode: 'ES' },
 };
 
 export default function LanguageSwitcher({ currentLocale }: Props) {

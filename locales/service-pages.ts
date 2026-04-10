@@ -1,8 +1,11 @@
 import en from './dictionaries/service-pages-en.json';
 import fr from './dictionaries/service-pages-fr.json';
+import de from './dictionaries/service-pages-de.json';
+import it from './dictionaries/service-pages-it.json';
+import es from './dictionaries/service-pages-es.json';
 import type { Locale } from './i18n';
 
-const dictionaries = { fr, en } as const;
+const dictionaries = { fr, en, de, it, es } as const;
 const pageOrder = [
   'showcase',
   'webapp',

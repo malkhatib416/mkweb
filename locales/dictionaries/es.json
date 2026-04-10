@@ -1,0 +1,1065 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "blog": "Blog",
+    "contact": "Contáctanos",
+    "requestQuote": "Solicitar presupuesto",
+    "estimation": "Estimar proyecto"
+  },
+  "hero": {
+    "badge": "Disponible para nuevos proyectos",
+    "title": "Transforma tus ideas en",
+    "titleHighlight": "aplicaciones web de alto rendimiento",
+    "subtitle": "Acompaño a startups y empresas en la creación de soluciones web personalizadas, eficientes y escalables.",
+    "cta": "Hablemos de tu proyecto",
+    "estimationCta": "Estimar proyecto",
+    "feature1": "Respuesta en 24 h",
+    "feature2": "+5 años de experiencia",
+    "feature3": "Soporte continuo"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "legalNotice": "Aviso legal",
+    "contact": "Contacto",
+    "links": "Enlaces",
+    "home": "Inicio",
+    "newsletterTitle": "Newsletter",
+    "newsletterPlaceholder": "Tu email",
+    "newsletterButton": "Suscribirme",
+    "newsletterSuccess": "Gracias, estás suscrito.",
+    "newsletterError": "Se ha producido un error."
+  },
+  "review": {
+    "title": "Deja tu opinión",
+    "subtitle": "Comparte tu experiencia sobre el proyecto.",
+    "ratingLabel": "Puntuación",
+    "reviewTextLabel": "Tu opinión (opcional)",
+    "reviewTextPlaceholder": "Describe tu experiencia...",
+    "submit": "Enviar mi opinión",
+    "submitting": "Enviando...",
+    "success": "¡Gracias! Tu opinión ha sido registrada.",
+    "expired": "Este enlace ha expirado.",
+    "alreadySubmitted": "Ya has enviado tu opinión.",
+    "error": "Se ha producido un error."
+  },
+  "newsletterPublic": {
+    "success": "Gracias, estás suscrito.",
+    "error": "Se ha producido un error."
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros clientes",
+    "subtitle": "Descubre las opiniones de quienes confiaron en nosotros."
+  },
+  "common": {
+    "readMore": "Leer más",
+    "learnMore": "Saber más",
+    "contactUs": "Contáctanos",
+    "backToHome": "Volver al inicio",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "submit": "Enviar",
+    "cancel": "Cancelar"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artículos & Consejos",
+    "description": "Descubre mis últimos artículos, tutoriales y reflexiones sobre desarrollo web, SEO e innovación digital.",
+    "categories": "Categorías",
+    "readTime": "min de lectura",
+    "search": "Buscar un artículo...",
+    "allCategories": "Todo",
+    "noResults": "No se encontraron artículos",
+    "noResultsDescription": "Prueba a modificar los términos de búsqueda o navega por todas las categorías.",
+    "resultsFor": "Resultados para",
+    "article": "Artículo",
+    "articles": "Artículos",
+    "readArticle": "Leer el artículo",
+    "meta": {
+      "author": "Autor",
+      "published": "Publicado",
+      "readTime": "Tiempo de lectura"
+    },
+    "cta": {
+      "services": "¿Necesitas apoyo técnico o SEO?",
+      "contact": "Contáctame directamente",
+      "schedule": "Reserva una llamada de 30 minutos",
+      "description": "Desde la creación de aplicaciones web hasta la optimización de tu visibilidad."
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Estamos aquí para responder todas tus preguntas.",
+    "form": {
+      "lastName": "Apellido",
+      "firstName": "Nombre",
+      "email": "Email",
+      "phone": "Número de teléfono",
+      "company": "Empresa",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "helper": "Comparte tus objetivos, plazos y restricciones.",
+      "send": "Enviar",
+      "sending": "Enviando..."
+    },
+    "toast": {
+      "successTitle": "¡Mensaje enviado!",
+      "successDescription": "Hemos recibido tu mensaje y te responderemos lo antes posible.",
+      "errorTitle": "Error",
+      "errorDescription": "Se produjo un error al enviar el mensaje."
+    },
+    "email": {
+      "contactSubject": "Información de contacto",
+      "confirmationSubject": "Confirmación de recepción",
+      "confirmationGreeting": "Hola",
+      "confirmationMessage": "Hemos recibido tu mensaje y te responderemos lo antes posible.",
+      "confirmationClosing": "Atentamente,",
+      "confirmationTeam": "El equipo de MK-Web",
+      "fields": {
+        "lastName": "Apellido",
+        "firstName": "Nombre",
+        "email": "Email",
+        "company": "Empresa",
+        "phone": "Teléfono"
+      }
+    },
+    "highlights": [
+      {
+        "title": "Hoja de ruta personalizada",
+        "description": "Cada colaboración comienza con una conversación para definir objetivos y restricciones."
+      },
+      {
+        "title": "Presupuesto y planificación claros",
+        "description": "Recibirás una propuesta detallada con hitos, entregables e inversión."
+      },
+      {
+        "title": "Herramientas de colaboración",
+        "description": "Trabajamos en espacios compartidos con seguimiento transparente."
+      },
+      {
+        "title": "Seguimiento post-entrega",
+        "description": "Paquetes de mantenimiento para seguridad, actualizaciones y evoluciones."
+      }
+    ],
+    "office": {
+      "title": "Con sede en Chartres, acompaño a clientes por toda Europa.",
+      "description": "Nos reunimos en Chartres o trabajamos completamente en remoto.",
+      "hours": "Lunes a viernes • 09:00–18:00 CET"
+    },
+    "privacy": "Tu información es confidencial.",
+    "details": {
+      "emailLabel": "Email",
+      "phoneLabel": "Teléfono",
+      "responseTime": "Tiempo de respuesta",
+      "responseTimeValue": "Menos de 24 horas"
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "¡Ups! La página que buscas no existe o ha sido movida.",
+    "backHome": "Volver al inicio"
+  },
+  "language": {
+    "fr": "Francés",
+    "en": "Inglés",
+    "de": "Alemán",
+    "it": "Italiano",
+    "es": "Español",
+    "switchTo": "Cambiar idioma"
+  },
+  "metadata": {
+    "title": "MK-Web – Desarrollador Web Freelance",
+    "description": "Desarrollador Web Freelance. Creación de sitios web, aplicaciones web, SEO y mantenimiento.",
+    "keywords": "Desarrollador Web, Freelance, Chartres, Creación de sitios web, Aplicaciones web, SEO, Mantenimiento, MK-Web"
+  },
+  "about": {
+    "imageAlt": "Tu experto web",
+    "intro": "Ayudo a empresas a transformar sus ideas en soluciones web eficientes y personalizadas.",
+    "location": "Con sede en",
+    "chartres": "Chartres",
+    "remote": "Disponible online",
+    "remoteDescription": "Colaboración remota en todo el mundo",
+    "services": "Trabajo en la",
+    "creation": "creación",
+    "optimization": "optimización",
+    "maintenance": "mantenimiento",
+    "description": "de sitios web y aplicaciones, con un enfoque centrado en el usuario y el rendimiento.",
+    "goal": "Mi objetivo: ofrecerte",
+    "uniqueSolutions": "soluciones digitales únicas",
+    "adapted": ", perfectamente adaptadas a tus necesidades y ambiciones.",
+    "expertise": "Desde la integración de",
+    "innovative": "funcionalidades innovadoras",
+    "to": "hasta el",
+    "fluidUX": "diseño de experiencias de usuario fluidas",
+    "commitment": ", pongo mi experiencia al servicio de tu éxito."
+  },
+  "services": {
+    "badge": "Servicios",
+    "title": "Mis Servicios",
+    "subtitle": "Te acompaño en la creación de sitios web, aplicaciones web & SaaS, apps móviles, e-commerce, rediseño y mantenimiento.",
+    "website": {
+      "title": "Creación de sitio web",
+      "description": "Creación personalizada de sitios corporativos y escaparate.",
+      "feature1": "Diseño responsive",
+      "feature2": "SEO optimizado",
+      "feature3": "Máxima performance"
+    },
+    "ecommerce": {
+      "title": "E-Commerce",
+      "description": "Desarrollo de tiendas online eficientes, escalables y optimizadas para la conversión.",
+      "feature1": "Pagos seguros",
+      "feature2": "Gestión de stock",
+      "feature3": "Analytics avanzados"
+    },
+    "redesign": {
+      "title": "Rediseño de sitio",
+      "description": "Modernización de tu sitio para mejorar su impacto, rendimiento y experiencia de usuario.",
+      "feature1": "Auditoría completa",
+      "feature2": "Migración segura",
+      "feature3": "Formación incluida"
+    },
+    "maintenance": {
+      "title": "Hosting & Mantenimiento",
+      "description": "Soluciones de hosting seguras, monitoreo proactivo y soporte reactivo.",
+      "feature1": "Hosting SSL/CDN",
+      "feature2": "Soporte 24/7",
+      "feature3": "Copias de seguridad & Actualizaciones"
+    },
+    "innovation": {
+      "title": "Innovación",
+      "description": "Integración de las últimas tecnologías web para soluciones innovadoras.",
+      "feature1": "IA integrada",
+      "feature2": "APIs modernas",
+      "feature3": "Tecnologías emergentes"
+    },
+    "mobileapp": {
+      "title": "Aplicaciones móviles",
+      "description": "Desarrollo de aplicaciones móviles nativas e híbridas para iOS y Android.",
+      "feature1": "iOS & Android",
+      "feature2": "UX optimizada",
+      "feature3": "Soporte continuo"
+    },
+    "webapp": {
+      "title": "Aplicaciones web & SaaS",
+      "description": "Desarrollo de aplicaciones web, herramientas de negocio y SaaS personalizadas.",
+      "feature1": "Arquitectura escalable",
+      "feature2": "UX de producto clara",
+      "feature3": "Desarrollo iterativo"
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Preguntas frecuentes",
+    "subtitle": "Respuestas a las preguntas más comunes antes de iniciar un proyecto.",
+    "items": [
+      {
+        "question": "¿Cuánto tiempo lleva crear un sitio o una app?",
+        "answer": "Un sitio escaparate estándar se entrega en una semana. Para proyectos más complejos el plazo varía y se define en una fase de planificación."
+      },
+      {
+        "question": "¿Puedes mejorar o rediseñar un sitio ya en línea?",
+        "answer": "Sí. Realizo auditorías técnicas y UX, identifico puntos de mejora y propongo un plan de rediseño sin interrumpir tu actividad."
+      },
+      {
+        "question": "¿Hay soporte después del lanzamiento?",
+        "answer": "Sí. Cada proyecto incluye 30 días de ajustes gratuitos más paquetes de mantenimiento opcionales."
+      },
+      {
+        "question": "¿Qué tecnologías utilizas?",
+        "answer": "Next.js, React, TypeScript y Tailwind CSS para el frontend. Node.js con Prisma para el backend."
+      },
+      {
+        "question": "¿Te ocupas de todo aunque no entienda de tecnología?",
+        "answer": "Sí. Me encargo de dominio, hosting, seguridad, diseño, SEO y configuración de email."
+      },
+      {
+        "question": "¿Puedes gestionar textos, imágenes y SEO?",
+        "answer": "Sí. Puedo crear contenidos, optimizar el SEO e integrar imágenes o generarlas con IA."
+      }
+    ]
+  },
+  "projects": {
+    "badge": "Proyectos Recientes",
+    "title": "Mis Últimas",
+    "titleHighlight": "Realizaciones",
+    "subtitle": "Descubre mis proyectos más recientes, combinando innovación técnica y diseño moderno.",
+    "viewProject": "Ver el proyecto",
+    "sourceCode": "Código fuente",
+    "otherProjects": "Otros proyectos",
+    "demo": "Demo",
+    "code": "Código",
+    "cta": {
+      "title": "¿Listo para crear tu próximo proyecto?",
+      "subtitle": "Transformemos juntos tus ideas en soluciones web innovadoras.",
+      "button": "Iniciar un proyecto"
+    },
+    "visitLiveSite": "Visitar el sitio del proyecto",
+    "status": {
+      "online": "En línea",
+      "development": "En desarrollo",
+      "completed": "Completado"
+    },
+    "items": {
+      "alertjo": {
+        "description": "Aplicación de vigilancia de diarios oficiales con scraping automatizado.",
+        "longDescription": "Plataforma completa para monitorear publicaciones del Diario Oficial francés.",
+        "category": "Aplicación Web"
+      },
+      "pcmge": {
+        "description": "Migración y rediseño de un sitio escaparate a un CRM interno personalizado.",
+        "longDescription": "Migración de PHP a Laravel. Desarrollo de CRM interno para gestión de clientes.",
+        "category": "CRM / Aplicación Web"
+      },
+      "luxdrive": {
+        "description": "Plataforma premium de alquiler de coches con sistema de reservas e integración Stripe.",
+        "longDescription": "Plataforma completa con reservas paso a paso y pagos via Stripe.",
+        "category": "E-Commerce / SaaS Platform"
+      }
+    }
+  },
+  "estimation": {
+    "title": "Estimar proyecto",
+    "subtitle": "Rellena este formulario para obtener una estimación detallada.",
+    "steps": {
+      "step1": "Tipo & Objetivo",
+      "step2": "Contenido & Funcionalidades",
+      "step3": "Identidad & Diseño",
+      "step4": "Planificación & Prioridades",
+      "step5": "Datos de contacto"
+    },
+    "step1": {
+      "title": "Tipo de proyecto & Objetivo",
+      "projectType": {
+        "label": "Tipo de proyecto",
+        "placeholder": "Selecciona un tipo",
+        "required": "Selecciona un tipo de proyecto.",
+        "options": {
+          "showcase": "Sitio escaparate",
+          "redesign": "Rediseño de sitio",
+          "ecommerce": "E-Commerce",
+          "webapp": "Aplicación web / área cliente",
+          "mobileapp": "App móvil",
+          "other": "Otro"
+        },
+        "otherLabel": "Especifica el tipo",
+        "otherPlaceholder": "Describe el tipo de proyecto"
+      },
+      "mainObjective": {
+        "label": "Objetivo principal",
+        "placeholder": "Selecciona un objetivo",
+        "required": "Selecciona un objetivo.",
+        "options": {
+          "presentation": "Presentar la actividad",
+          "leads": "Obtener más clientes / leads",
+          "sell": "Vender online",
+          "modernize": "Modernizar la imagen",
+          "automate": "Automatizar un proceso",
+          "client_area": "Crear un área cliente",
+          "other": "Otro"
+        },
+        "otherLabel": "Especifica el objetivo",
+        "otherPlaceholder": "Describe tu objetivo"
+      }
+    },
+    "step2": {
+      "title": "Contenido & Funcionalidades",
+      "plannedContent": {
+        "label": "Contenido previsto",
+        "placeholder": "Número de páginas",
+        "required": "Selecciona el contenido previsto.",
+        "options": {
+          "1-3": "1–3 páginas",
+          "4-7": "4–7 páginas",
+          "8-15": "8–15 páginas",
+          "15plus": "15+",
+          "unknown": "Aún no lo sé"
+        }
+      },
+      "features": {
+        "label": "Funcionalidades deseadas",
+        "sublabel": "(selección múltiple)",
+        "required": "Selecciona al menos una funcionalidad.",
+        "options": {
+          "simple_form": "Formulario simple",
+          "advanced_form": "Formulario avanzado",
+          "blog": "Blog",
+          "gallery": "Galería / portfolio",
+          "booking": "Citas online",
+          "catalog": "Catálogo (sin pago)",
+          "payment": "Pago online",
+          "client_area": "Área cliente",
+          "downloads": "Descarga de documentos",
+          "reviews": "Opiniones de clientes",
+          "newsletter": "Newsletter",
+          "chat": "Chat online",
+          "multilingual": "Multilingüe"
+        },
+        "otherLabel": "Otra funcionalidad",
+        "otherPlaceholder": "Especifica otras funcionalidades"
+      }
+    },
+    "step3": {
+      "title": "Identidad visual & Diseño",
+      "contentAvailability": {
+        "label": "Contenidos disponibles",
+        "placeholder": "Disponibilidad del contenido",
+        "required": "Indica la disponibilidad del contenido.",
+        "options": {
+          "ready": "Todo listo",
+          "partial": "Parcialmente listo",
+          "none": "Nada está listo"
+        }
+      },
+      "visualIdentity": {
+        "label": "Identidad visual",
+        "placeholder": "Estado de la identidad visual",
+        "required": "Selecciona la identidad visual.",
+        "options": {
+          "logo_chart": "Logo + manual de marca",
+          "logo_only": "Solo logo",
+          "redesign": "Rediseño visual",
+          "create": "Creación completa"
+        }
+      },
+      "currentWebsite": {
+        "label": "Sitio actual",
+        "sublabel": "(si existe)",
+        "placeholder": "https://tu-sitio.com"
+      },
+      "improvementNotes": {
+        "label": "Qué quieres mejorar",
+        "placeholder": "Describe qué te gustaría mejorar de tu sitio actual."
+      }
+    },
+    "step4": {
+      "title": "Planificación & Prioridades",
+      "deadline": {
+        "label": "Fecha límite deseada",
+        "placeholder": "Elige una fecha límite",
+        "required": "Selecciona una fecha límite.",
+        "options": {
+          "asap": "Lo antes posible",
+          "2-4weeks": "2–4 semanas",
+          "1-2months": "1–2 meses",
+          "no_deadline": "Sin fecha límite"
+        }
+      },
+      "priorities": {
+        "label": "Prioridades",
+        "sublabel": "(selección múltiple)",
+        "required": "Selecciona al menos una prioridad.",
+        "options": {
+          "speed": "Rapidez",
+          "design": "Calidad del diseño",
+          "seo": "SEO",
+          "ux": "UX",
+          "autonomy": "Autonomía",
+          "support": "Acompañamiento a largo plazo"
+        }
+      },
+      "additionalNotes": {
+        "label": "Notas adicionales",
+        "placeholder": "Añade cualquier información adicional."
+      }
+    },
+    "step5": {
+      "title": "Tus datos de contacto",
+      "name": {
+        "label": "Nombre completo",
+        "placeholder": "Tu nombre completo",
+        "required": "El nombre es obligatorio"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "tu@email.com",
+        "required": "Email inválido"
+      },
+      "phone": {
+        "label": "Teléfono",
+        "sublabel": "(opcional)",
+        "placeholder": "+34 123 456 789"
+      }
+    },
+    "buttons": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "submit": "Enviar mi solicitud",
+      "submitting": "Enviando..."
+    },
+    "toast": {
+      "validationError": "Error de validación",
+      "validationErrorDesc": "Rellena todos los campos obligatorios.",
+      "success": "¡Solicitud enviada!",
+      "successDesc": "Te responderemos lo antes posible.",
+      "error": "Error",
+      "errorDesc": "Se produjo un error al enviar la solicitud."
+    },
+    "email": {
+      "newRequest": "Nueva solicitud de estimación",
+      "projectInfo": "Información del proyecto",
+      "contactInfo": "Datos de contacto",
+      "projectType": "Tipo de proyecto",
+      "mainObjective": "Objetivo principal",
+      "plannedContent": "Contenido previsto",
+      "features": "Funcionalidades deseadas",
+      "contentAvailability": "Contenidos disponibles",
+      "visualIdentity": "Identidad visual",
+      "currentWebsite": "Sitio actual",
+      "improvements": "A mejorar",
+      "deadline": "Fecha límite",
+      "priorities": "Prioridades",
+      "additionalNotes": "Notas adicionales",
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "other": "Otro",
+      "confirmation": {
+        "subject": "Tu solicitud de estimación – MK-Web",
+        "greeting": "Hola",
+        "received": "Hemos recibido tu solicitud de estimación.",
+        "followUp": "Te responderemos lo antes posible.",
+        "summary": "Resumen de tu solicitud"
+      }
+    }
+  },
+  "whatsapp": {
+    "title": "Chat de WhatsApp",
+    "subtitle": "Hablemos",
+    "greeting": "Hola 👋 ¿En qué puedo ayudarte?",
+    "willWriteTo": "Escribirás a",
+    "onWhatsApp": "en WhatsApp.",
+    "placeholder": "Escribe un mensaje...",
+    "send": "Enviar",
+    "open": "Abrir chat de WhatsApp",
+    "close": "Cerrar"
+  },
+  "legal": {
+    "title": "Aviso Legal",
+    "description": "Información legal sobre el sitio",
+    "mainInfo": {
+      "title": "Información principal",
+      "denomination": "Denominación",
+      "denominationValue": "MK-Web",
+      "headquarters": "Sede social",
+      "address": "4 Mail des Petits Clos",
+      "city": "28000 Chartres",
+      "phone": "Teléfono",
+      "email": "Email",
+      "siret": "SIRET",
+      "siretValue": "93179152900015",
+      "vat": "NIF-IVA intracomunitario",
+      "vatValue": "FR81931791529"
+    },
+    "hosting": {
+      "title": "Alojamiento",
+      "description": "El sitio {url} está alojado por:",
+      "provider": "IONOS",
+      "address": "7 Place de la Gare",
+      "city": "57200 Sarreguemines",
+      "contact": "Contacto"
+    },
+    "creation": {
+      "title": "Creación & Desarrollo",
+      "company": "EI Mohamad AL-KHATIB",
+      "role": "Desarrollador web Fullstack y creador del sitio"
+    },
+    "lastUpdate": "Última actualización:"
+  },
+  "admin": {
+    "title": "MK-Web Admin",
+    "brandingTitle": "MK-Web",
+    "brandingSubtitle": "Admin",
+    "auth": {
+      "login": {
+        "title": "Inicia sesión en tu cuenta",
+        "subtitle": "O",
+        "createAccount": "crea una nueva cuenta",
+        "email": "Dirección de email",
+        "password": "Contraseña",
+        "signIn": "Iniciar sesión",
+        "signingIn": "Iniciando sesión...",
+        "loginFailed": "Error al iniciar sesión",
+        "loginSuccess": "Sesión iniciada"
+      },
+      "signup": {
+        "title": "Crea tu cuenta",
+        "subtitle": "O",
+        "signIn": "inicia sesión en tu cuenta existente",
+        "name": "Nombre completo",
+        "email": "Dirección de email",
+        "password": "Contraseña",
+        "createAccount": "Crear cuenta",
+        "creating": "Creando...",
+        "signupFailed": "Error al registrarse",
+        "signupSuccess": "Cuenta creada"
+      },
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
+      "signOut": "Cerrar sesión",
+      "logOut": "Cierre de sesión",
+      "signOutSuccess": "Sesión cerrada",
+      "signOutError": "Error al cerrar sesión"
+    },
+    "dashboard": {
+      "title": "Panel de control",
+      "welcome": "Bienvenido, {name}!",
+      "statistics": "Estadísticas",
+      "viewSite": "Ver el sitio",
+      "recentBlogs": "Artículos recientes",
+      "recentProjects": "Proyectos recientes",
+      "recentActivity": "Actividad reciente",
+      "viewAll": "Ver todo",
+      "noRecentBlogs": "Sin artículos",
+      "noRecentProjects": "Sin proyectos",
+      "recentClientsSubtitle": "Últimos clientes añadidos",
+      "pendingReviewsSubtitle": "Links de reseñas pendientes",
+      "pendingReviewSingular": "link",
+      "pendingReviewPlural": "links",
+      "viewPendingReviews": "Ver links",
+      "justNow": "Ahora",
+      "minutesAgo": "min",
+      "hoursAgo": "h",
+      "daysAgo": "d",
+      "stats": {
+        "totalBlogs": "Total artículos",
+        "publishedBlogs": "Artículos publicados",
+        "draftBlogs": "Borradores",
+        "totalProjects": "Total proyectos",
+        "publishedProjects": "Proyectos publicados",
+        "draftProjects": "Borradores proyectos",
+        "publishedShort": "Publicados",
+        "draftsShort": "Borradores",
+        "pendingReviewsShort": "Links pendientes"
+      }
+    },
+    "sidebar": {
+      "dashboard": "Panel de control",
+      "suggestions": "Ideas de artículos",
+      "blogs": "Artículos",
+      "categories": "Categorías",
+      "projects": "Proyectos",
+      "clients": "Clientes",
+      "languages": "Idiomas",
+      "reviews": "Reseñas",
+      "newsletter": "Newsletter",
+      "groupMain": "Principal",
+      "groupContent": "Contenido",
+      "groupPeople": "Personas",
+      "groupSettings": "Configuración"
+    },
+    "suggestions": {
+      "title": "Ideas de artículos",
+      "description": "Temas sugeridos por IA.",
+      "suggestionsTitle": "Temas sugeridos",
+      "suggestionsDescription": "Temas para atraer clientes.",
+      "latestArticles": "Últimos artículos",
+      "services": "Servicios",
+      "createArticle": "Crear artículo",
+      "refresh": "Actualizar",
+      "noSuggestions": "Sin sugerencias (configura OPENAI_API_KEY).",
+      "loading": "Cargando…",
+      "generating": "Generando…",
+      "copyTopic": "Copiar",
+      "copySuccess": "Copiado",
+      "localeFr": "FR",
+      "localeEn": "EN",
+      "suggestionsCount": "Número de temas",
+      "categoriesHint": "Selecciona categorías para filtrar.",
+      "selectAll": "Seleccionar todo",
+      "deselectAll": "Deseleccionar todo"
+    },
+    "clients": {
+      "title": "Clientes",
+      "subtitle": "Gestiona tus clientes",
+      "newClient": "Nuevo cliente",
+      "createFirst": "Crea el primer cliente",
+      "noClients": "Sin clientes",
+      "loading": "Cargando...",
+      "backToClients": "Volver a clientes",
+      "create": {
+        "title": "Crear cliente",
+        "createButton": "Crear",
+        "creating": "Creando..."
+      },
+      "edit": {
+        "title": "Editar cliente",
+        "updateButton": "Actualizar",
+        "updating": "Actualizando..."
+      },
+      "view": {
+        "edit": "Editar"
+      },
+      "fields": {
+        "name": "Nombre",
+        "email": "Email",
+        "company": "Empresa",
+        "photo": "Foto"
+      },
+      "placeholders": {
+        "name": "Nombre del cliente",
+        "email": "email@ejemplo.com",
+        "company": "Empresa",
+        "photoUrl": "URL de la foto"
+      },
+      "uploadPhoto": "Subir foto",
+      "orPasteUrl": "O pegar una URL",
+      "metadata": {
+        "created": "Creado",
+        "updated": "Actualizado"
+      },
+      "deleteConfirm": "¿Seguro que quieres eliminar \"{name}\"?",
+      "deleteSuccess": "Cliente eliminado",
+      "deleteError": "Error",
+      "createSuccess": "Cliente creado",
+      "createError": "Error",
+      "updateSuccess": "Cliente actualizado",
+      "updateError": "Error",
+      "fetchSingleError": "Error de carga"
+    },
+    "languages": {
+      "title": "Idiomas",
+      "subtitle": "Gestiona los idiomas del sitio",
+      "newLanguage": "Nuevo idioma",
+      "createFirst": "Crear primer idioma",
+      "noLanguages": "Sin idiomas",
+      "loading": "Cargando...",
+      "backToLanguages": "Volver a idiomas",
+      "create": {
+        "title": "Crear idioma",
+        "createButton": "Crear",
+        "creating": "Creando...",
+        "chooseFromPalette": "Elegir idioma",
+        "alreadyAdded": "Ya añadido",
+        "addThisLanguage": "Añadir este idioma",
+        "addCustom": "Añadir idioma personalizado",
+        "searchPlaceholder": "Buscar por nombre o código…",
+        "noResults": "Sin resultados."
+      },
+      "edit": {
+        "title": "Editar idioma",
+        "updateButton": "Actualizar",
+        "updating": "Actualizando..."
+      },
+      "view": {
+        "edit": "Editar"
+      },
+      "fields": {
+        "code": "Código",
+        "name": "Nombre"
+      },
+      "placeholders": {
+        "code": "ej. fr, en",
+        "name": "ej. Français, English"
+      },
+      "metadata": {
+        "created": "Creado",
+        "updated": "Actualizado"
+      },
+      "deleteConfirm": "¿Eliminar \"{name}\"?",
+      "deleteSuccess": "Eliminado",
+      "deleteError": "Error",
+      "createSuccess": "Creado",
+      "createError": "Error",
+      "updateSuccess": "Actualizado",
+      "updateError": "Error",
+      "fetchSingleError": "Error"
+    },
+    "categories": {
+      "title": "Categorías",
+      "subtitle": "Gestiona las categorías del blog",
+      "newCategory": "Nueva categoría",
+      "createFirst": "Crear primera categoría",
+      "noCategories": "Sin categorías",
+      "loading": "Cargando...",
+      "backToCategories": "Volver a categorías",
+      "create": {
+        "title": "Crear categoría",
+        "createButton": "Crear",
+        "creating": "Creando..."
+      },
+      "edit": {
+        "title": "Editar",
+        "updateButton": "Actualizar",
+        "updating": "Actualizando..."
+      },
+      "view": {
+        "edit": "Editar"
+      },
+      "fields": {
+        "name": "Nombre",
+        "slug": "Slug",
+        "description": "Descripción"
+      },
+      "placeholders": {
+        "name": "ej. SEO, Rediseño",
+        "slug": "ej. seo",
+        "slugHint": "Solo minúsculas, números y guiones.",
+        "description": "Descripción breve (opcional)"
+      },
+      "metadata": {
+        "created": "Creado",
+        "updated": "Actualizado"
+      },
+      "translation": {
+        "title": "Traducciones",
+        "coverage": "{count}/{total} idiomas",
+        "available": "Disponible",
+        "missing": "Faltante",
+        "currentMissing": "La traducción {locale} no existe aún.",
+        "missingTitle": "Faltante",
+        "missingDescription": "Añade el contenido para {locale}.",
+        "translatedFieldsTitle": "Campos traducidos",
+        "translatedFieldsDescription": "Valores para {locale}.",
+        "sharedFieldsTitle": "Campos compartidos",
+        "sharedFieldsDescription": "Para todos los idiomas.",
+        "missingEditHint": "Estás creando la traducción {locale}."
+      },
+      "deleteConfirm": "¿Eliminar \"{name}\"?",
+      "deleteSuccess": "Eliminado",
+      "deleteError": "Error",
+      "createSuccess": "Creado",
+      "createError": "Error",
+      "updateSuccess": "Actualizado",
+      "updateError": "Error",
+      "fetchSingleError": "Error"
+    },
+    "blogs": {
+      "title": "Artículos",
+      "subtitle": "Gestiona los artículos del blog",
+      "newBlog": "Nuevo artículo",
+      "createFirst": "Crear primer artículo",
+      "noBlogs": "Sin artículos",
+      "loading": "Cargando...",
+      "backToBlogs": "Volver a artículos",
+      "create": {
+        "title": "Crear artículo",
+        "createButton": "Crear",
+        "creating": "Creando..."
+      },
+      "generateWithAI": {
+        "title": "Generar con IA",
+        "description": "Crea borradores para cada idioma.",
+        "topicLabel": "Tema",
+        "topicPlaceholder": "ej. SEO Best Practices 2025",
+        "generateButton": "Generar",
+        "generating": "Generando…",
+        "generatingHint": "Creando borradores.",
+        "successMessage": "{count} artículo(s) creado(s).",
+        "successTitle": "Artículos creados",
+        "successDescription": "Borradores creados.",
+        "viewDrafts": "Ver borradores",
+        "createAnother": "Generar otro",
+        "orCreateManually": "O crear manualmente",
+        "errorMessage": "Error"
+      },
+      "generateImage": {
+        "button": "Generar imagen",
+        "generating": "Generando…",
+        "success": "Imagen generada",
+        "error": "Error",
+        "hint": "Usa título y descripción."
+      },
+      "uploadImage": {
+        "button": "Subir",
+        "uploading": "Subiendo…",
+        "success": "Subido",
+        "error": "Error"
+      },
+      "edit": {
+        "title": "Editar artículo",
+        "updateButton": "Actualizar",
+        "updating": "Actualizando..."
+      },
+      "view": {
+        "edit": "Editar"
+      },
+      "filterLanguage": "Idioma",
+      "image": "Imagen",
+      "fields": {
+        "title": "Título",
+        "slug": "Slug",
+        "locale": "Idioma",
+        "description": "Descripción",
+        "content": "Contenido (Markdown)",
+        "status": "Estado",
+        "image": "Imagen portada",
+        "category": "Categoría",
+        "readingTime": "Tiempo de lectura (min)"
+      },
+      "placeholders": {
+        "title": "Título del artículo",
+        "slug": "slug-articulo",
+        "description": "Descripción breve",
+        "imageUrl": "https://… o subir"
+      },
+      "locale": {
+        "fr": "Francés",
+        "en": "Inglés",
+        "de": "Alemán",
+        "it": "Italiano",
+        "es": "Español",
+        "select": "Seleccionar idioma"
+      },
+      "status": {
+        "draft": "Borrador",
+        "published": "Publicado"
+      },
+      "slugHelper": "Slug compatible con URL",
+      "deleteConfirm": "¿Eliminar \"{title}\"?",
+      "deleteSuccess": "Eliminado",
+      "deleteError": "Error",
+      "createSuccess": "Creado",
+      "createError": "Error",
+      "updateSuccess": "Actualizado",
+      "updateError": "Error",
+      "fetchError": "Error",
+      "fetchSingleError": "Error",
+      "metadata": {
+        "slug": "Slug",
+        "created": "Creado",
+        "updated": "Actualizado"
+      },
+      "translation": {
+        "title": "Traducciones",
+        "coverage": "{count}/{total} idiomas",
+        "available": "Disponible",
+        "missing": "Faltante",
+        "currentMissing": "No existe aún.",
+        "missingTitle": "Faltante",
+        "missingDescription": "Añade el contenido.",
+        "translatedFieldsTitle": "Campos traducidos",
+        "translatedFieldsDescription": "Para {locale}.",
+        "sharedFieldsTitle": "Campos compartidos",
+        "sharedFieldsDescription": "Para todos los idiomas.",
+        "missingEditHint": "Creas la traducción {locale}."
+      },
+      "pagination": {
+        "showing": "De {from} a {to} de {total} artículos",
+        "previous": "Anterior",
+        "next": "Siguiente"
+      }
+    },
+    "projects": {
+      "title": "Proyectos",
+      "subtitle": "Gestiona tus proyectos",
+      "newProject": "Nuevo proyecto",
+      "createFirst": "Crear primer proyecto",
+      "noProjects": "Sin proyectos",
+      "loading": "Cargando...",
+      "backToProjects": "Volver a proyectos",
+      "create": {
+        "title": "Crear proyecto",
+        "createButton": "Crear",
+        "creating": "Creando..."
+      },
+      "edit": {
+        "title": "Editar proyecto",
+        "updateButton": "Actualizar",
+        "updating": "Actualizando..."
+      },
+      "view": {
+        "edit": "Editar"
+      },
+      "fields": {
+        "title": "Título",
+        "slug": "Slug",
+        "locale": "Idioma",
+        "description": "Descripción",
+        "content": "Contenido (Markdown)",
+        "status": "Estado"
+      },
+      "placeholders": {
+        "title": "Título del proyecto",
+        "slug": "slug-proyecto",
+        "description": "Descripción breve"
+      },
+      "status": {
+        "draft": "Borrador",
+        "published": "Publicado"
+      },
+      "locale": {
+        "fr": "Francés",
+        "en": "Inglés",
+        "de": "Alemán",
+        "it": "Italiano",
+        "es": "Español",
+        "select": "Seleccionar idioma"
+      },
+      "slugHelper": "Slug compatible con URL",
+      "deleteConfirm": "¿Eliminar \"{title}\"?",
+      "deleteSuccess": "Eliminado",
+      "deleteError": "Error",
+      "createSuccess": "Creado",
+      "createError": "Error",
+      "updateSuccess": "Actualizado",
+      "updateError": "Error",
+      "fetchError": "Error",
+      "fetchSingleError": "Error",
+      "metadata": {
+        "slug": "Slug",
+        "created": "Creado",
+        "updated": "Actualizado"
+      },
+      "pagination": {
+        "showing": "De {from} a {to} de {total} proyectos",
+        "previous": "Anterior",
+        "next": "Siguiente"
+      }
+    },
+    "reviews": {
+      "title": "Reseñas de clientes",
+      "subtitle": "Links de reseñas por proyecto / cliente",
+      "createLink": "Crear link",
+      "noReviews": "Sin reseñas",
+      "project": "Proyecto",
+      "client": "Cliente",
+      "status": "Estado",
+      "pending": "Pendiente",
+      "submitted": "Enviada",
+      "expiresAt": "Expira el",
+      "submittedAt": "Enviada el",
+      "copyLink": "Copiar link",
+      "linkCopied": "Copiado",
+      "createSuccess": "Creado",
+      "createError": "Error",
+      "filterAll": "Todos",
+      "filterPending": "Pendiente",
+      "filterSubmitted": "Enviada"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "subtitle": "Suscriptores del newsletter",
+      "noSubscribers": "Sin suscriptores",
+      "email": "Email",
+      "locale": "Idioma",
+      "createdAt": "Suscrito el"
+    },
+    "common": {
+      "required": "Obligatorio",
+      "optional": "Opcional",
+      "actions": "Acciones",
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "back": "Volver",
+      "loading": "Cargando...",
+      "error": "Error",
+      "success": "Éxito",
+      "all": "Todos",
+      "filter": "Filtros",
+      "search": "Buscar",
+      "columns": "Columnas",
+      "resetColumns": "Restablecer columnas",
+      "emptyState": {
+        "noResults": "Sin resultados"
+      },
+      "pagination": {
+        "pageOf": "Página {current} de {total}",
+        "perPage": "por página"
+      }
+    }
+  }
+}

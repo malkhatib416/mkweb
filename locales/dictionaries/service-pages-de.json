@@ -1,0 +1,736 @@
+{
+  "labels": {
+    "heroBadge": "Premium freelance delivery",
+    "heroHighlights": [
+      "Clear scoping",
+      "Direct execution",
+      "Reliable follow-up"
+    ],
+    "valueCards": [
+      "Performance",
+      "Product clarity",
+      "Strong foundation"
+    ],
+    "territoryLabel": "Service area",
+    "territoryValue": "Eure-et-Loir and remote",
+    "proofLabel": "Trust signals",
+    "problemSection": "Common problems",
+    "solutionSection": "Approach",
+    "expertiseSection": "Technical expertise",
+    "processSection": "Process",
+    "faqSection": "Frequently asked questions",
+    "ctaSection": "Take the next step",
+    "whyChooseLabel": "Why work with me",
+    "technologiesLabel": "Technologies"
+  },
+  "pages": {
+    "showcase": {
+      "slug": "showcase-website-development",
+      "title": "Showcase website development",
+      "metaTitle": "Custom showcase website development | MK-Web",
+      "metaDescription": "Premium showcase website development for independents, SMEs and brands. Based in Eure-et-Loir, I work locally and remotely with clear scoping and direct execution.",
+      "heroTitle": "A showcase website that builds trust, clarifies your offer and drives inquiries",
+      "heroSubtitle": "I design custom showcase websites for companies, firms and brands that need a clear, fast and credible online presence, locally or remotely.",
+      "primaryCta": "Discuss your website",
+      "secondaryCta": "Estimate the project",
+      "problemTitle": "An average business website rarely makes people want to reach out",
+      "problemItems": [
+        "A generic design weakens your positioning and makes your offer feel interchangeable.",
+        "Slow or poorly structured pages cost both visibility and inquiries.",
+        "Unclear messaging leaves visitors without direction or confidence.",
+        "A difficult codebase turns every update into a small project."
+      ],
+      "solutionTitle": "A showcase website designed as a useful business asset",
+      "solutionText": [
+        "I shape the project around your offer, your proof points and your conversion path so every section has a clear role.",
+        "The result prioritizes readability, speed, search visibility and ease of management so the site becomes useful from day one.",
+        "You work directly with the developer who scopes, designs and delivers the project, without strategy and execution being split apart."
+      ],
+      "proofItems": [
+        "Lean architecture, clean SEO setup and performance treated as a first-order concern.",
+        "Direct collaboration with one technical point of contact from scope to launch.",
+        "Smooth collaboration in Eure-et-Loir, in Paris or fully remote.",
+        "A modern base that can evolve without forcing a rebuild later."
+      ],
+      "techTitle": "What I typically include in this kind of project",
+      "techItems": [
+        "Presentation pages, service pages, contact flows and SEO-ready content structures.",
+        "Custom components, restrained motion and a smooth mobile experience.",
+        "CMS or simple content editing based on how autonomous you want to be after delivery.",
+        "Clean deployment, analytics setup and maintainable foundations."
+      ],
+      "processTitle": "A simple method to move fast without losing quality",
+      "processSteps": [
+        {
+          "title": "Scoping",
+          "description": "We clarify your goals, target audience, content and launch constraints."
+        },
+        {
+          "title": "Direction",
+          "description": "I define page structure, messaging, SEO priorities and the visual direction."
+        },
+        {
+          "title": "Production",
+          "description": "The website is built with close attention to detail, performance and responsive quality."
+        },
+        {
+          "title": "Launch",
+          "description": "I handle the final setup, checks and a clean handoff for what comes next."
+        }
+      ],
+      "whyChooseTitle": "A clear and demanding working setup",
+      "whyChooseItems": [
+        "Product direction and technical execution stay aligned within one collaboration.",
+        "Decisions are reasoned, priorities stay visible and delivery remains focused.",
+        "Clean launch process with post-launch follow-up when needed."
+      ],
+      "technologiesTitle": "Typical stack",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "MDX",
+        "PostgreSQL"
+      ],
+      "faqTitle": "Questions about showcase website development",
+      "faqIntro": "These are the points most often discussed before starting this kind of project.",
+      "faqMain": [
+        {
+          "question": "How long does it take to launch a showcase website?",
+          "answer": "With a well-scoped project, launch can happen within days or a few weeks depending on page count, content readiness and validation cycles."
+        },
+        {
+          "question": "Can you write or refine the website copy?",
+          "answer": "Yes. I can restructure the messaging, condense what matters and help shape clearer, more persuasive content."
+        },
+        {
+          "question": "Will the website be SEO-friendly?",
+          "answer": "Yes. Structure, performance, metadata and content are all designed to support search visibility from launch."
+        },
+        {
+          "question": "Can the website evolve later?",
+          "answer": "Yes. The base is prepared for new pages, sections or forms without forcing a rebuild."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Do you only work with local clients?",
+          "answer": "No. I can work locally in Eure-et-Loir when useful, but many projects run smoothly in a fully remote setup with a clear process."
+        },
+        {
+          "question": "Can you take over an existing website?",
+          "answer": "Yes, after a quick review. Depending on the current state, I may recommend targeted improvements or a cleaner rebuild."
+        },
+        {
+          "question": "Will the website be easy to manage?",
+          "answer": "Yes. When relevant, I can provide simple editing capabilities so you remain autonomous on useful content."
+        },
+        {
+          "question": "Can you also handle hosting?",
+          "answer": "Yes. I can manage deployment, technical setup and propose a maintenance framework afterward."
+        },
+        {
+          "question": "How do feedback loops work during the project?",
+          "answer": "Validation points are built into the process so decisions stay clear and end-of-project back-and-forth is reduced."
+        },
+        {
+          "question": "Do you offer post-launch support?",
+          "answer": "Yes. Maintenance, support, optimization and further evolutions can all be planned depending on your needs."
+        }
+      ],
+      "finalCtaTitle": "Need a cleaner, faster and more credible business website?",
+      "finalCtaText": "I can help you frame the project clearly, set a realistic timeline and deliver a polished website that actually supports your business."
+    },
+    "webapp": {
+      "slug": "web-application-saas-development",
+      "title": "Web application & SaaS development",
+      "metaTitle": "Web application and SaaS development | MK-Web",
+      "metaDescription": "Custom web applications, internal tools and SaaS products with a product-first and maintainable approach. I work with local and remote teams alike.",
+      "heroTitle": "Web applications and SaaS built around real workflows, not feature accumulation",
+      "heroSubtitle": "I build internal tools, client platforms and SaaS products with clear product logic, strong foundations and progressive delivery, locally or remotely.",
+      "primaryCta": "Discuss the product",
+      "secondaryCta": "Estimate the project",
+      "problemTitle": "A useful web product is not just a list of features",
+      "problemItems": [
+        "A poorly scoped MVP quickly becomes difficult to evolve.",
+        "A confusing interface slows adoption and increases support load.",
+        "Improvised integrations make the product fragile and expensive to maintain.",
+        "Lack of prioritization spreads the budget thin and delays value."
+      ],
+      "solutionTitle": "I build a product base that is usable now and scalable later",
+      "solutionText": [
+        "Each application is designed around the most critical workflows, with a clear line between what is essential, useful and secondary.",
+        "The goal is to deliver a clear, reliable and extensible version that serves real business use cases without unnecessary complexity.",
+        "You keep visibility on trade-offs, delivery rhythm and the actual state of the product throughout the project."
+      ],
+      "proofItems": [
+        "Functional scoping, prioritization and technical choices aligned with real usage.",
+        "Maintainable architecture that can evolve without early technical debt.",
+        "Smooth collaboration with founders and teams, on site or remotely.",
+        "Useful incremental delivery instead of long opaque production tunnels."
+      ],
+      "techTitle": "Typical scope on a web application",
+      "techItems": [
+        "Authentication, roles, dashboards, client areas and internal back offices.",
+        "Business forms, automations, payments, notifications and API integrations.",
+        "Analytics, technical quality and a clean base for future iterations.",
+        "Architecture matched to product maturity and operational constraints."
+      ],
+      "processTitle": "A process focused on results and clarity",
+      "processSteps": [
+        {
+          "title": "Scoping",
+          "description": "We turn business goals into user flows, screens and product priorities."
+        },
+        {
+          "title": "Architecture",
+          "description": "I define the technical structure, data models and required integrations."
+        },
+        {
+          "title": "Iterative delivery",
+          "description": "The product moves forward in short batches with regular validation and explicit trade-offs."
+        },
+        {
+          "title": "Consolidation",
+          "description": "We stabilize, document and prepare what comes next based on observed usage."
+        }
+      ],
+      "whyChooseTitle": "An approach suited to products still taking shape",
+      "whyChooseItems": [
+        "Product thinking and technical execution stay aligned and focused.",
+        "Pragmatic scope splitting helps deliver value without waiting for a perfect version.",
+        "Documentation and decisions stay clear so you keep control of the project."
+      ],
+      "technologiesTitle": "Technologies suited to modern web platforms",
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "Drizzle ORM",
+        "REST API"
+      ],
+      "faqTitle": "Questions about web applications and SaaS",
+      "faqIntro": "A few useful answers to frame a custom web product properly.",
+      "faqMain": [
+        {
+          "question": "Do you work on MVPs or only on mature products?",
+          "answer": "Both. I can scope a useful first version or take over an existing product to make it more reliable, clearer and easier to evolve."
+        },
+        {
+          "question": "Can you connect external services?",
+          "answer": "Yes. Payments, CRM, emailing, storage, analytics or internal tools can be integrated when they support a real use case."
+        },
+        {
+          "question": "How do you define the right initial scope?",
+          "answer": "By starting from critical workflows, business constraints and product risk. The goal is to deliver what unlocks real value first."
+        },
+        {
+          "question": "Can you take over an existing codebase?",
+          "answer": "Yes, after an audit. Depending on the current state, I may recommend consolidating the base or rebuilding some parts more cleanly."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "How do you handle projects with remote teams?",
+          "answer": "With clear scope splitting, regular validation points and lightweight but useful documentation. It works well even when the team is distributed."
+        },
+        {
+          "question": "What happens after the first delivery?",
+          "answer": "I can stay involved for support, new iterations, maintenance or technical consolidation based on your rhythm."
+        },
+        {
+          "question": "Do you also work on product UX?",
+          "answer": "Yes. I contribute to flow structure, screen hierarchy and interface clarity, not only implementation."
+        },
+        {
+          "question": "Can the product be SEO-friendly?",
+          "answer": "Yes, when public pages need search visibility. In that case SEO is handled in the architecture and rendering strategy from the start."
+        },
+        {
+          "question": "How do you approach security?",
+          "answer": "Data validation, access control, secret handling, updates and deployment hygiene are treated as part of the core foundation."
+        },
+        {
+          "question": "Can you deliver in batches?",
+          "answer": "Yes. It is often the healthiest way to keep visibility and correct course quickly when needed."
+        }
+      ],
+      "finalCtaTitle": "Need to structure a web product without drifting into avoidable complexity?",
+      "finalCtaText": "I can help you scope a solid version, make the right trade-offs and deliver a web application or SaaS that is useful quickly."
+    },
+    "mobileapp": {
+      "slug": "mobile-app-development",
+      "title": "Mobile app development",
+      "metaTitle": "iOS and Android mobile app development | MK-Web",
+      "metaDescription": "Custom mobile app development for iOS and Android with strong focus on usability, smooth performance and reliable delivery. I work with local and remote teams alike.",
+      "heroTitle": "A mobile app that feels useful, fast and sustainable beyond the first launch",
+      "heroSubtitle": "I design and build mobile applications for iOS and Android with a strong focus on user flows, product quality and long-term maintainability, locally or remotely.",
+      "primaryCta": "Discuss your app",
+      "secondaryCta": "Estimate the project",
+      "problemTitle": "A mobile app cannot afford approximation",
+      "problemItems": [
+        "A confusing UX is penalized immediately by users.",
+        "Weak performance hurts usage, retention and product perception.",
+        "Unclear technical choices make maintenance and future releases harder.",
+        "App Store and Play Store delivery becomes painful without a clean process."
+      ],
+      "solutionTitle": "I treat the app as a product, not just a mobile screen",
+      "solutionText": [
+        "I first map the most important flows, platform constraints and friction points so the application stays clear in real usage.",
+        "Development follows a logic of reliability, readability and long-term maintainability, not just the need to ship a first version quickly.",
+        "The goal is to launch an app that is useful now and still viable six months or a year later."
+      ],
+      "proofItems": [
+        "Work centered on real usage flows, not only on visual polish.",
+        "Explicit trade-offs between delivery speed, native quality and maintainability.",
+        "Support on publishing, product evolution and post-launch follow-up.",
+        "Collaboration compatible with internal product, design or engineering teams, locally or remotely."
+      ],
+      "techTitle": "What a well-scoped mobile engagement typically covers",
+      "techItems": [
+        "React Native apps or another approach based on actual product needs.",
+        "Auth, notifications, forms, synchronization, embedded flows and APIs.",
+        "Rendering quality, usage testing and close attention to performance on real devices.",
+        "Store preparation and support with iOS and Android publishing constraints."
+      ],
+      "processTitle": "A mobile process centered on real usage",
+      "processSteps": [
+        {
+          "title": "Product framing",
+          "description": "We define target users, priority flows, scope and store-related constraints."
+        },
+        {
+          "title": "Mobile UX",
+          "description": "I structure screens, transitions and critical actions so the app remains readable and fast."
+        },
+        {
+          "title": "Development",
+          "description": "The app is built with strong attention to reliability, rendering quality and integrations."
+        },
+        {
+          "title": "Publishing",
+          "description": "I prepare the required deliverables, technical setup and app store release process."
+        }
+      ],
+      "whyChooseTitle": "An approach suited to apps that need to be truly used",
+      "whyChooseItems": [
+        "Priority goes to actual user experience, not cosmetic demo effects.",
+        "Clean technical execution keeps future iterations from becoming fragile.",
+        "Direct working relationship that stays clear and remote-friendly."
+      ],
+      "technologiesTitle": "Technologies often involved",
+      "technologies": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "REST API",
+        "PostgreSQL",
+        "Push Notifications"
+      ],
+      "faqTitle": "Questions about mobile app development",
+      "faqIntro": "The main points worth clarifying before starting a custom mobile product.",
+      "faqMain": [
+        {
+          "question": "Should we target iOS and Android from the start?",
+          "answer": "Not always. It depends on your users, budget and business priorities. The right answer comes from scoping, not from habit."
+        },
+        {
+          "question": "Can you work on an existing mobile app?",
+          "answer": "Yes, after an audit. I can take over an existing base, fix critical issues or stabilize the structure before adding more features."
+        },
+        {
+          "question": "Do you handle store publishing?",
+          "answer": "Yes. I can prepare the release flow, check prerequisites and support the publication process."
+        },
+        {
+          "question": "How is post-launch follow-up handled?",
+          "answer": "As with web products, the healthiest setup is usually a clear maintenance and evolution framework so the app stays stable over time."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Can you handle push notifications?",
+          "answer": "Yes, when they serve a real use case. They are integrated as part of product logic, not as decorative extras."
+        },
+        {
+          "question": "Can the app work with an existing API?",
+          "answer": "Yes. I can rely on your current backend or recommend cleanup if the technical interface is too brittle."
+        },
+        {
+          "question": "How do you choose between native and cross-platform?",
+          "answer": "Based on usage, budget, timeline and interaction requirements. The choice should serve the product, not a fixed preference."
+        },
+        {
+          "question": "Do you work remotely on this kind of project?",
+          "answer": "Yes. Remote collaboration works very well for mobile projects when scope, validation and delivery batches are well structured."
+        },
+        {
+          "question": "Can you integrate analytics and tracking?",
+          "answer": "Yes, to monitor adoption, retention and friction points without overloading the product."
+        },
+        {
+          "question": "What if the scope changes during the project?",
+          "answer": "The process is built for that. We re-prioritize batches and keep visibility on the impact in time and budget."
+        }
+      ],
+      "finalCtaTitle": "Need a serious mobile app rather than a fragile prototype?",
+      "finalCtaText": "I can help you frame the right scope, choose the right approach and launch a mobile app that is useful, reliable and ready to evolve."
+    },
+    "ecommerce": {
+      "slug": "ecommerce-development",
+      "title": "E-commerce development",
+      "metaTitle": "Custom e-commerce development | MK-Web",
+      "metaDescription": "Fast, reliable and structured e-commerce websites built to sell better. I work in Eure-et-Loir and remotely on stores designed for conversion and day-to-day operations.",
+      "heroTitle": "An e-commerce website built to sell more cleanly and run with less friction",
+      "heroSubtitle": "I build custom e-commerce websites for brands and merchants who need a credible, fast and easier-to-evolve storefront, locally or remotely.",
+      "primaryCta": "Discuss your store",
+      "secondaryCta": "Estimate the project",
+      "problemTitle": "An online store quickly loses revenue when the fundamentals are weak",
+      "problemItems": [
+        "A confusing checkout flow increases cart abandonment.",
+        "Weak mobile performance damages conversion.",
+        "Poorly structured product pages make SEO, trust and buying harder.",
+        "A messy back office or bad integrations make daily operations painful."
+      ],
+      "solutionTitle": "I build stores that are clearer, faster and easier to run",
+      "solutionText": [
+        "The work covers both buying experience and the technical structure and integrations that support the business every day.",
+        "The goal is to simplify the path to purchase, reinforce trust and build a base that can support your catalog, traffic and operations over time.",
+        "The project stays focused on what improves sales and saves time, not on feature accumulation."
+      ],
+      "proofItems": [
+        "Purchase journeys clarified to reduce friction at the decisive moment.",
+        "Performance treated as a priority, especially on mobile and conversion pages.",
+        "Integrations selected to support the store, not to complicate it.",
+        "Execution compatible with local collaboration or a fully remote setup."
+      ],
+      "techTitle": "What a well-structured e-commerce project covers",
+      "techItems": [
+        "Catalog, product pages, category pages, checkout and useful content sections.",
+        "Payments, transactional emails, analytics, automations and business integrations.",
+        "SEO and performance work to support acquisition and conversion.",
+        "A clean base that can evolve without breaking things at every new request."
+      ],
+      "processTitle": "A process centered on selling and operating cleanly",
+      "processSteps": [
+        {
+          "title": "Audit & scoping",
+          "description": "We clarify catalog structure, business priorities, technical constraints and conversion goals."
+        },
+        {
+          "title": "E-commerce structure",
+          "description": "I work on navigation, product pages, reassurance and checkout with clarity as the main principle."
+        },
+        {
+          "title": "Development",
+          "description": "The store is built with the right integrations and reliable foundations."
+        },
+        {
+          "title": "Optimization",
+          "description": "I finalize performance, setup, quality checks and launch guidance."
+        }
+      ],
+      "whyChooseTitle": "An e-commerce approach that is pragmatic rather than decorative",
+      "whyChooseItems": [
+        "The project stays focused on conversion, speed and operational clarity.",
+        "Technical trade-offs serve the store and your real organization.",
+        "You keep one direct and committed point of contact."
+      ],
+      "technologiesTitle": "Technologies often involved",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Stripe",
+        "PostgreSQL",
+        "Analytics",
+        "Transactional Email"
+      ],
+      "faqTitle": "Questions about custom e-commerce development",
+      "faqIntro": "The key topics worth clarifying before launching or rebuilding an online store.",
+      "faqMain": [
+        {
+          "question": "What budget should be expected for a custom store?",
+          "answer": "It depends on the catalog, checkout complexity, integrations and level of customization. The first step is always to scope priorities properly."
+        },
+        {
+          "question": "Can you take over an existing store?",
+          "answer": "Yes. I can audit the current setup and recommend either focused improvements or a deeper redesign depending on technical debt and business goals."
+        },
+        {
+          "question": "Do you also work on e-commerce SEO?",
+          "answer": "Yes. Category structure, product pages, performance and content foundations are all part of the work."
+        },
+        {
+          "question": "Will the back office stay simple?",
+          "answer": "That matters a lot. A store should not only convert well for users but also remain easy to operate for the team behind it."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Can you connect payments, CRM or email tools?",
+          "answer": "Yes, when those integrations support a concrete use case and fit cleanly into your operations."
+        },
+        {
+          "question": "Will the store be mobile-friendly?",
+          "answer": "Yes. It is treated as a priority because a major part of browsing and buying happens on mobile."
+        },
+        {
+          "question": "How do you reduce cart abandonment?",
+          "answer": "By clarifying the checkout, strengthening reassurance and removing unnecessary friction."
+        },
+        {
+          "question": "Can you work with a remote team?",
+          "answer": "Yes. Most e-commerce projects move very well in a remote setup with a clean validation process."
+        },
+        {
+          "question": "Do you provide post-launch follow-up?",
+          "answer": "Yes. Maintenance, optimization and further iterations can be planned after launch."
+        },
+        {
+          "question": "Can the store evolve later?",
+          "answer": "Yes. The base is designed to support new categories, content, integrations or flows over time."
+        }
+      ],
+      "finalCtaTitle": "Need a store that is stronger, faster and easier to operate?",
+      "finalCtaText": "I can help you scope a custom e-commerce website that supports both your sales and your day-to-day operations more effectively."
+    },
+    "redesign": {
+      "slug": "website-redesign-audit",
+      "title": "Website redesign & audit",
+      "metaTitle": "Website redesign and audit | MK-Web",
+      "metaDescription": "Technical, UX and SEO audit followed by a cleaner website redesign. I work in Eure-et-Loir and remotely to bring websites back in line with real business goals.",
+      "heroTitle": "A useful redesign starts by understanding what is actually blocking results",
+      "heroSubtitle": "I analyze the current website, isolate the real SEO, UX and technical friction points, then propose a redesign proportionate to your goals, locally or remotely.",
+      "primaryCta": "Request an audit",
+      "secondaryCta": "Estimate the project",
+      "problemTitle": "Redesigning without diagnosis usually leads to bad trade-offs",
+      "problemItems": [
+        "A website can age badly without the root cause being obvious.",
+        "Visible symptoms often hide deeper structural or technical debt issues.",
+        "A visual redesign alone may leave SEO and conversion problems untouched.",
+        "Poorly prepared migrations can break more than they improve."
+      ],
+      "solutionTitle": "I start with a useful audit before deciding what should change",
+      "solutionText": [
+        "The work begins with a structured diagnosis of performance, SEO, UX, content and technical foundations so the essential is separated from the secondary.",
+        "I then recommend the right level of redesign: focused improvements, partial rebuild or broader reconstruction when that is clearly the healthier path.",
+        "The goal is to rebuild visibility, clarity and maintainability without pushing the wrong investment."
+      ],
+      "proofItems": [
+        "Audits are readable, prioritized and tied to concrete traffic, conversion and maintenance impact.",
+        "Redesign decisions are guided by facts, not only by the desire to look more modern.",
+        "Migration is handled carefully to avoid avoidable SEO losses and regressions.",
+        "The whole process works well in a remote collaboration model too."
+      ],
+      "techTitle": "What a serious redesign actually covers",
+      "techItems": [
+        "Performance audit, technical SEO review, page structure and journey clarity.",
+        "Redesign of components, content and calls to action when needed.",
+        "Technical reset when the existing base is blocking too many future changes.",
+        "Migration plan and verification before production launch."
+      ],
+      "processTitle": "A useful redesign follows a simple order",
+      "processSteps": [
+        {
+          "title": "Audit",
+          "description": "I analyze the current setup, its limits and their real impact on your business."
+        },
+        {
+          "title": "Prioritization",
+          "description": "I rank what should be fixed first based on impact and effort."
+        },
+        {
+          "title": "Redesign",
+          "description": "I rebuild the most important parts on a clearer, more modern foundation."
+        },
+        {
+          "title": "Launch",
+          "description": "I secure migration, quality checks and the move to production."
+        }
+      ],
+      "whyChooseTitle": "A redesign approach that is more lucid than cosmetic",
+      "whyChooseItems": [
+        "Diagnosis prevents decisions based only on intuition or visual taste.",
+        "Prioritization helps invest first where the gains will actually matter.",
+        "The project stays understandable, structured and compatible with phased delivery."
+      ],
+      "technologiesTitle": "Tools and technologies typically involved",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Lighthouse",
+        "Search Console",
+        "Analytics",
+        "Tailwind CSS"
+      ],
+      "faqTitle": "Questions about website redesign and audit",
+      "faqIntro": "The topics that matter most when a website no longer delivers the expected results.",
+      "faqMain": [
+        {
+          "question": "When should a redesign be considered?",
+          "answer": "When the website no longer matches your positioning, blocks evolution or stops supporting visibility and conversion properly."
+        },
+        {
+          "question": "Can an audit be enough?",
+          "answer": "Yes. In some cases, focused corrections create more value than a full redesign."
+        },
+        {
+          "question": "Can a redesign hurt SEO?",
+          "answer": "Yes if it is handled poorly. That is why structure, redirects and migration checks matter."
+        },
+        {
+          "question": "Can you audit a website built by another agency?",
+          "answer": "Yes. The analysis is based on technical and business facts, not on who built the site."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "How do you choose between improvement and rebuild?",
+          "answer": "I compare the cost of correction, the level of technical debt and the realistic improvement potential before recommending the healthiest path."
+        },
+        {
+          "question": "Is the design always rebuilt?",
+          "answer": "Not necessarily. Sometimes the biggest gains come from structure, content or technical foundations instead."
+        },
+        {
+          "question": "Can local SEO be improved during the redesign?",
+          "answer": "Yes. Redesign is often the right moment to rework structure, content and geographic relevance signals."
+        },
+        {
+          "question": "How does the handoff work?",
+          "answer": "With a clear summary of decisions, completed checks and the points that should still be monitored after launch."
+        },
+        {
+          "question": "Can the redesign happen in phases?",
+          "answer": "Yes. When it makes more sense, the work can be split to reduce risk and spread the investment."
+        },
+        {
+          "question": "Can you manage the project remotely?",
+          "answer": "Yes. Audit, trade-offs, validation and follow-up all work very well remotely with a useful level of documentation."
+        }
+      ],
+      "finalCtaTitle": "Does your website feel like more of a blocker than a lever?",
+      "finalCtaText": "I can help you identify what is actually wrong and choose a redesign path that is healthier, clearer and more profitable."
+    },
+    "maintenance": {
+      "slug": "website-maintenance-support",
+      "title": "Website maintenance & support",
+      "metaTitle": "Website maintenance and support | MK-Web",
+      "metaDescription": "Website maintenance, technical support and focused evolutions for stable and secure platforms. I work in Eure-et-Loir and remotely to keep websites reliable over time.",
+      "heroTitle": "A reliable website is maintained over time, not only built once",
+      "heroSubtitle": "I handle maintenance, support and targeted evolutions so a website does not become slow, fragile or blocking, whether you are in Eure-et-Loir or working with me remotely.",
+      "primaryCta": "Discuss maintenance",
+      "secondaryCta": "Estimate the project",
+      "problemTitle": "Without follow-up, a website quickly accumulates small issues and real emergencies",
+      "problemItems": [
+        "Updates get postponed until a bug or security issue appears.",
+        "Performance gradually degrades without real monitoring.",
+        "Small changes become difficult to scope and resolve quickly.",
+        "Every issue turns into an emergency because no support framework exists."
+      ],
+      "solutionTitle": "I provide technical follow-up that is simple, clear and useful",
+      "solutionText": [
+        "Maintenance covers what keeps your website healthy over time: updates, monitoring, fixes, targeted improvements and support on blocking points.",
+        "The aim is not to accumulate support hours but to keep a clean foundation that reduces emergencies and makes useful interventions faster.",
+        "You keep a direct point of contact who already knows the platform and does not need to rediscover it from scratch each time."
+      ],
+      "proofItems": [
+        "Support is more direct and more readable than ad hoc interventions.",
+        "Work benefits from real familiarity with the underlying codebase.",
+        "Maintenance can cover a showcase website, business platform or e-commerce store.",
+        "The model works for both local and remote collaboration."
+      ],
+      "techTitle": "What serious technical follow-up includes",
+      "techItems": [
+        "Updates, monitoring, fixes and stabilization of sensitive areas.",
+        "Targeted improvements on performance, UX and technical foundations.",
+        "Takeover of existing projects after a proper reading and stabilization phase.",
+        "Preparation of future evolutions on a cleaner base."
+      ],
+      "processTitle": "Ongoing follow-up is more useful than recurring emergencies",
+      "processSteps": [
+        {
+          "title": "Takeover",
+          "description": "I review the codebase, hosting, risks and recurring needs."
+        },
+        {
+          "title": "Stabilization",
+          "description": "I first address urgent or overly fragile parts to reset the baseline."
+        },
+        {
+          "title": "Follow-up",
+          "description": "I manage updates, monitoring and reasonable change requests."
+        },
+        {
+          "title": "Improvement",
+          "description": "I recommend useful optimizations as your priorities shift."
+        }
+      ],
+      "whyChooseTitle": "Support that is more direct, contextual and sustainable",
+      "whyChooseItems": [
+        "You do not need to re-explain the site history every time something happens.",
+        "Interventions happen within a readable framework rather than constant reaction mode.",
+        "You keep strong technical coverage without internalizing the whole burden."
+      ],
+      "technologiesTitle": "Technologies and topics often involved",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Monitoring",
+        "Deployment",
+        "Backups",
+        "Analytics"
+      ],
+      "faqTitle": "Questions about maintenance and technical support",
+      "faqIntro": "The main points worth clarifying before handing over the technical follow-up of a website.",
+      "faqMain": [
+        {
+          "question": "Can you maintain a website you did not build?",
+          "answer": "Yes, after a takeover phase. The goal is to understand the base before entering a real support rhythm."
+        },
+        {
+          "question": "Does maintenance include improvements?",
+          "answer": "Yes, within reason. Larger changes are then handled through dedicated scoping."
+        },
+        {
+          "question": "Can maintenance help SEO too?",
+          "answer": "Indirectly yes, because a fast, stable and technically clean site supports visibility better over time."
+        },
+        {
+          "question": "How are urgent bugs handled?",
+          "answer": "A support framework helps resolve urgent issues faster because the base is already known and monitored."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Do you handle backups and monitoring?",
+          "answer": "Yes, depending on the environment and project needs, to reduce risk and shorten reaction time when something goes wrong."
+        },
+        {
+          "question": "Can you take over a very unstable website?",
+          "answer": "Yes, but an initial stabilization phase is often needed before regular maintenance becomes effective."
+        },
+        {
+          "question": "Does support work remotely too?",
+          "answer": "Yes. It is in fact the most common setup, with simple follow-up and prioritized requests."
+        },
+        {
+          "question": "Can you maintain an e-commerce store as well as a showcase website?",
+          "answer": "Yes, although the points of attention differ. E-commerce often requires closer attention to integrations and operational continuity."
+        },
+        {
+          "question": "How do I know whether I need an audit first?",
+          "answer": "If the base is unclear, slow or full of uncertainty, a quick audit often helps reset things more cleanly."
+        },
+        {
+          "question": "Can you stay involved over time?",
+          "answer": "Yes, depending on the framework we define. The goal is to keep follow-up aligned with your rhythm and priorities."
+        }
+      ],
+      "finalCtaTitle": "Looking for technical support that is more reliable and less emergency-driven?",
+      "finalCtaText": "I can help you reset the technical baseline and maintain the platform inside a simple, stable and sustainable framework."
+    }
+  }
+}
