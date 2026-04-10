@@ -1,86 +1,86 @@
 {
   "labels": {
-    "heroBadge": "Premium freelance delivery",
+    "heroBadge": "Acompanamiento freelance premium",
     "heroHighlights": [
-      "Clear scoping",
-      "Direct execution",
-      "Reliable follow-up"
+      "Scoping claro",
+      "Ejecucion directa",
+      "Seguimiento fiable"
     ],
-    "valueCards": ["Performance", "Product clarity", "Strong foundation"],
-    "territoryLabel": "Service area",
-    "territoryValue": "Eure-et-Loir and remote",
-    "proofLabel": "Trust signals",
-    "problemSection": "Common problems",
-    "solutionSection": "Approach",
-    "expertiseSection": "Technical expertise",
-    "processSection": "Process",
-    "faqSection": "Frequently asked questions",
-    "ctaSection": "Take the next step",
-    "whyChooseLabel": "Why work with me",
-    "technologiesLabel": "Technologies"
+    "valueCards": ["Rendimiento", "Claridad de producto", "Base solida"],
+    "territoryLabel": "Zona de servicio",
+    "territoryValue": "Eure-et-Loir y remoto",
+    "proofLabel": "Senales de confianza",
+    "problemSection": "Problemas frecuentes",
+    "solutionSection": "Enfoque",
+    "expertiseSection": "Experiencia tecnica",
+    "processSection": "Proceso",
+    "faqSection": "Preguntas frecuentes",
+    "ctaSection": "Dar el siguiente paso",
+    "whyChooseLabel": "Por que trabajar conmigo",
+    "technologiesLabel": "Tecnologias"
   },
   "pages": {
     "showcase": {
       "slug": "showcase-website-development",
-      "title": "Showcase website development",
-      "metaTitle": "Custom showcase website development | MK-Web",
-      "metaDescription": "Premium showcase website development for independents, SMEs and brands. Based in Eure-et-Loir, I work locally and remotely with clear scoping and direct execution.",
-      "heroTitle": "A showcase website that builds trust, clarifies your offer and drives inquiries",
-      "heroSubtitle": "I design custom showcase websites for companies, firms and brands that need a clear, fast and credible online presence, locally or remotely.",
-      "primaryCta": "Discuss your website",
-      "secondaryCta": "Estimate the project",
-      "problemTitle": "An average business website rarely makes people want to reach out",
+      "title": "Desarrollo de sitios web corporativos",
+      "metaTitle": "Desarrollo de sitios web corporativos a medida | MK-Web",
+      "metaDescription": "Desarrollo premium de sitios web corporativos para freelancers, pymes y marcas. Trabajo desde Eure-et-Loir en local y en remoto con scoping claro y ejecucion directa.",
+      "heroTitle": "Un sitio web corporativo que genera confianza, aclara tu oferta y consigue contactos",
+      "heroSubtitle": "Diseno sitios web corporativos a medida para empresas, despachos y marcas que necesitan una presencia online clara, rapida y creible, en local o en remoto.",
+      "primaryCta": "Hablar de tu sitio",
+      "secondaryCta": "Estimar el proyecto",
+      "problemTitle": "Un sitio web empresarial mediocre rara vez anima a contactar",
       "problemItems": [
-        "A generic design weakens your positioning and makes your offer feel interchangeable.",
-        "Slow or poorly structured pages cost both visibility and inquiries.",
-        "Unclear messaging leaves visitors without direction or confidence.",
-        "A difficult codebase turns every update into a small project."
+        "Un diseno generico debilita tu posicionamiento y hace que tu oferta parezca intercambiable.",
+        "Paginas lentas o mal estructuradas cuestan visibilidad y oportunidades.",
+        "Un mensaje poco claro deja a los visitantes sin direccion ni confianza.",
+        "Una base tecnica dificil de evolucionar convierte cada cambio en un pequeno proyecto."
       ],
-      "solutionTitle": "A showcase website designed as a useful business asset",
+      "solutionTitle": "Un sitio web corporativo pensado como un activo comercial util",
       "solutionText": [
-        "I shape the project around your offer, your proof points and your conversion path so every section has a clear role.",
-        "The result prioritizes readability, speed, search visibility and ease of management so the site becomes useful from day one.",
-        "You work directly with the developer who scopes, designs and delivers the project, without strategy and execution being split apart."
+        "Estructuro el proyecto alrededor de tu oferta, tus pruebas y tu recorrido de conversion para que cada seccion cumpla una funcion clara.",
+        "El resultado prioriza legibilidad, velocidad, visibilidad organica y facilidad de gestion, para que el sitio sea util desde el primer dia.",
+        "Trabajas directamente con el desarrollador que encuadra, disena y entrega el proyecto, sin separar estrategia y ejecucion."
       ],
       "proofItems": [
-        "Lean architecture, clean SEO setup and performance treated as a first-order concern.",
-        "Direct collaboration with one technical point of contact from scope to launch.",
-        "Smooth collaboration in Eure-et-Loir, in Paris or fully remote.",
-        "A modern base that can evolve without forcing a rebuild later."
+        "Arquitectura ligera, SEO limpio y rendimiento tratados como prioridad real.",
+        "Colaboracion directa con un unico interlocutor tecnico desde el alcance hasta el lanzamiento.",
+        "Colaboracion fluida en Eure-et-Loir, en Paris o totalmente en remoto.",
+        "Una base moderna que puede evolucionar sin obligar a rehacerlo todo."
       ],
-      "techTitle": "What I typically include in this kind of project",
+      "techTitle": "Lo que suelo incluir en este tipo de proyecto",
       "techItems": [
-        "Presentation pages, service pages, contact flows and SEO-ready content structures.",
-        "Custom components, restrained motion and a smooth mobile experience.",
-        "CMS or simple content editing based on how autonomous you want to be after delivery.",
-        "Clean deployment, analytics setup and maintainable foundations."
+        "Paginas de presentacion, paginas de servicios, recorridos de contacto y estructuras de contenido preparadas para SEO.",
+        "Componentes a medida, animaciones sobrias y una experiencia movil fluida.",
+        "CMS o edicion sencilla segun el nivel de autonomia que quieras despues de la entrega.",
+        "Deploy limpio, analitica y bases tecnicas faciles de mantener."
       ],
-      "processTitle": "A simple method to move fast without losing quality",
+      "processTitle": "Un metodo simple para avanzar rapido sin perder calidad",
       "processSteps": [
         {
           "title": "Scoping",
-          "description": "We clarify your goals, target audience, content and launch constraints."
+          "description": "Aclaramos objetivos, publico objetivo, contenidos y restricciones de lanzamiento."
         },
         {
-          "title": "Direction",
-          "description": "I define page structure, messaging, SEO priorities and the visual direction."
+          "title": "Direccion",
+          "description": "Defino la estructura de las paginas, los mensajes, las prioridades SEO y la direccion visual."
         },
         {
-          "title": "Production",
-          "description": "The website is built with close attention to detail, performance and responsive quality."
+          "title": "Produccion",
+          "description": "El sitio se desarrolla con mucha atencion al detalle, al rendimiento y a la calidad responsive."
         },
         {
-          "title": "Launch",
-          "description": "I handle the final setup, checks and a clean handoff for what comes next."
+          "title": "Lanzamiento",
+          "description": "Me encargo de la configuracion final, las comprobaciones y una entrega clara para el despues."
         }
       ],
-      "whyChooseTitle": "A clear and demanding working setup",
+      "whyChooseTitle": "Una forma de trabajar clara y exigente",
       "whyChooseItems": [
-        "Product direction and technical execution stay aligned within one collaboration.",
-        "Decisions are reasoned, priorities stay visible and delivery remains focused.",
-        "Clean launch process with post-launch follow-up when needed."
+        "La direccion de producto y la ejecucion tecnica permanecen alineadas dentro de una sola colaboracion.",
+        "Las decisiones estan justificadas, las prioridades siguen visibles y la entrega se mantiene enfocada.",
+        "Lanzamiento limpio con seguimiento post salida cuando hace falta."
       ],
-      "technologiesTitle": "Typical stack",
+      "technologiesTitle": "Stack habitual",
       "technologies": [
         "Next.js",
         "TypeScript",
@@ -89,116 +89,116 @@
         "MDX",
         "PostgreSQL"
       ],
-      "faqTitle": "Questions about showcase website development",
-      "faqIntro": "These are the points most often discussed before starting this kind of project.",
+      "faqTitle": "Preguntas sobre desarrollo de sitios web corporativos",
+      "faqIntro": "Estos son los puntos que mas suelen aparecer antes de iniciar este tipo de proyecto.",
       "faqMain": [
         {
-          "question": "How long does it take to launch a showcase website?",
-          "answer": "With a well-scoped project, launch can happen within days or a few weeks depending on page count, content readiness and validation cycles."
+          "question": "Cuanto tiempo hace falta para lanzar un sitio corporativo?",
+          "answer": "Con un alcance bien definido, el lanzamiento puede hacerse en pocos dias o en algunas semanas segun el numero de paginas, la preparacion de contenidos y los ciclos de validacion."
         },
         {
-          "question": "Can you write or refine the website copy?",
-          "answer": "Yes. I can restructure the messaging, condense what matters and help shape clearer, more persuasive content."
+          "question": "Puedes escribir o revisar los textos del sitio?",
+          "answer": "Si. Puedo reestructurar los mensajes, condensar lo importante y ayudarte a producir contenidos mas claros y convincentes."
         },
         {
-          "question": "Will the website be SEO-friendly?",
-          "answer": "Yes. Structure, performance, metadata and content are all designed to support search visibility from launch."
+          "question": "El sitio sera SEO-friendly?",
+          "answer": "Si. Estructura, rendimiento, metadatos y contenidos se piensan para sostener la visibilidad organica desde el lanzamiento."
         },
         {
-          "question": "Can the website evolve later?",
-          "answer": "Yes. The base is prepared for new pages, sections or forms without forcing a rebuild."
+          "question": "El sitio podra evolucionar despues?",
+          "answer": "Si. La base esta preparada para nuevas paginas, secciones o formularios sin tener que empezar de cero."
         }
       ],
       "faqAdvanced": [
         {
-          "question": "Do you only work with local clients?",
-          "answer": "No. I can work locally in Eure-et-Loir when useful, but many projects run smoothly in a fully remote setup with a clear process."
+          "question": "Trabajas solo con clientes locales?",
+          "answer": "No. Puedo trabajar en local en Eure-et-Loir cuando tenga sentido, pero muchos proyectos funcionan muy bien totalmente en remoto con un proceso claro."
         },
         {
-          "question": "Can you take over an existing website?",
-          "answer": "Yes, after a quick review. Depending on the current state, I may recommend targeted improvements or a cleaner rebuild."
+          "question": "Puedes tomar el relevo de un sitio existente?",
+          "answer": "Si, tras una revision rapida. Segun el estado del sitio puedo recomendar mejoras puntuales o una reconstruccion mas limpia."
         },
         {
-          "question": "Will the website be easy to manage?",
-          "answer": "Yes. When relevant, I can provide simple editing capabilities so you remain autonomous on useful content."
+          "question": "El sitio sera facil de administrar?",
+          "answer": "Si. Cuando es pertinente, preparo herramientas de edicion simples para que sigas siendo autonomo en los contenidos utiles."
         },
         {
-          "question": "Can you also handle hosting?",
-          "answer": "Yes. I can manage deployment, technical setup and propose a maintenance framework afterward."
+          "question": "Puedes encargarte tambien del hosting y del despliegue?",
+          "answer": "Si. Puedo gestionar el despliegue, la configuracion tecnica y proponer despues un marco de mantenimiento."
         },
         {
-          "question": "How do feedback loops work during the project?",
-          "answer": "Validation points are built into the process so decisions stay clear and end-of-project back-and-forth is reduced."
+          "question": "Como funcionan los ciclos de feedback durante el proyecto?",
+          "answer": "Los puntos de validacion se integran en el proceso para mantener claras las decisiones y reducir los idas y vueltas al final del proyecto."
         },
         {
-          "question": "Do you offer post-launch support?",
-          "answer": "Yes. Maintenance, support, optimization and further evolutions can all be planned depending on your needs."
+          "question": "Ofreces soporte despues del lanzamiento?",
+          "answer": "Si. Mantenimiento, soporte, optimizaciones y evoluciones posteriores pueden planificarse segun tus necesidades."
         }
       ],
-      "finalCtaTitle": "Need a cleaner, faster and more credible business website?",
-      "finalCtaText": "I can help you frame the project clearly, set a realistic timeline and deliver a polished website that actually supports your business."
+      "finalCtaTitle": "Necesitas un sitio mas claro, mas rapido y mas creible?",
+      "finalCtaText": "Puedo ayudarte a encuadrar el proyecto, definir un calendario realista y entregar un sitio cuidado que apoye de verdad tu actividad."
     },
     "webapp": {
       "slug": "web-application-saas-development",
-      "title": "Web application & SaaS development",
-      "metaTitle": "Web application and SaaS development | MK-Web",
-      "metaDescription": "Custom web applications, internal tools and SaaS products with a product-first and maintainable approach. I work with local and remote teams alike.",
-      "heroTitle": "Web applications and SaaS built around real workflows, not feature accumulation",
-      "heroSubtitle": "I build internal tools, client platforms and SaaS products with clear product logic, strong foundations and progressive delivery, locally or remotely.",
-      "primaryCta": "Discuss the product",
-      "secondaryCta": "Estimate the project",
-      "problemTitle": "A useful web product is not just a list of features",
+      "title": "Desarrollo de aplicaciones web y SaaS",
+      "metaTitle": "Desarrollo de aplicaciones web y SaaS | MK-Web",
+      "metaDescription": "Aplicaciones web, herramientas internas y productos SaaS a medida con un enfoque orientado al producto y facil de mantener. Trabajo con equipos locales y remotos.",
+      "heroTitle": "Aplicaciones web y SaaS construidos alrededor de flujos reales, no de la acumulacion de funciones",
+      "heroSubtitle": "Desarrollo herramientas internas, plataformas para clientes y productos SaaS con una logica de producto clara, bases solidas y entregas progresivas, en local o en remoto.",
+      "primaryCta": "Hablar del producto",
+      "secondaryCta": "Estimar el proyecto",
+      "problemTitle": "Un buen producto web no es solo una lista de funcionalidades",
       "problemItems": [
-        "A poorly scoped MVP quickly becomes difficult to evolve.",
-        "A confusing interface slows adoption and increases support load.",
-        "Improvised integrations make the product fragile and expensive to maintain.",
-        "Lack of prioritization spreads the budget thin and delays value."
+        "Un MVP mal definido se vuelve rapido dificil de evolucionar.",
+        "Una interfaz confusa frena la adopcion y aumenta la carga de soporte.",
+        "Integraciones improvisadas vuelven el producto fragil y costoso de mantener.",
+        "La falta de priorizacion dispersa el presupuesto y retrasa el valor real."
       ],
-      "solutionTitle": "I build a product base that is usable now and scalable later",
+      "solutionTitle": "Construyo una base de producto util ahora y escalable despues",
       "solutionText": [
-        "Each application is designed around the most critical workflows, with a clear line between what is essential, useful and secondary.",
-        "The goal is to deliver a clear, reliable and extensible version that serves real business use cases without unnecessary complexity.",
-        "You keep visibility on trade-offs, delivery rhythm and the actual state of the product throughout the project."
+        "Cada aplicacion se diseña alrededor de los flujos mas criticos, distinguiendo claramente lo esencial, lo util y lo secundario.",
+        "El objetivo es entregar una version clara, fiable y extensible que sirva casos de uso reales sin complejidad innecesaria.",
+        "Mantienes visibilidad sobre decisiones, ritmo de entrega y estado real del producto durante todo el proyecto."
       ],
       "proofItems": [
-        "Functional scoping, prioritization and technical choices aligned with real usage.",
-        "Maintainable architecture that can evolve without early technical debt.",
-        "Smooth collaboration with founders and teams, on site or remotely.",
-        "Useful incremental delivery instead of long opaque production tunnels."
+        "Scoping funcional, priorizacion y decisiones tecnicas alineadas con el uso real.",
+        "Arquitectura mantenible capaz de evolucionar sin deuda tecnica temprana.",
+        "Colaboracion fluida con founders y equipos, en persona o en remoto.",
+        "Entrega incremental util en lugar de largos tuneles opacos de produccion."
       ],
-      "techTitle": "Typical scope on a web application",
+      "techTitle": "Alcance tipico de una aplicacion web",
       "techItems": [
-        "Authentication, roles, dashboards, client areas and internal back offices.",
-        "Business forms, automations, payments, notifications and API integrations.",
-        "Analytics, technical quality and a clean base for future iterations.",
-        "Architecture matched to product maturity and operational constraints."
+        "Autenticacion, roles, dashboards, areas de cliente y back offices internos.",
+        "Formularios de negocio, automatizaciones, pagos, notificaciones e integraciones API.",
+        "Analitica, calidad tecnica y una base limpia para futuras iteraciones.",
+        "Arquitectura adaptada a la madurez del producto y a los condicionantes operativos."
       ],
-      "processTitle": "A process focused on results and clarity",
+      "processTitle": "Un proceso centrado en resultados y claridad",
       "processSteps": [
         {
           "title": "Scoping",
-          "description": "We turn business goals into user flows, screens and product priorities."
+          "description": "Convertimos los objetivos de negocio en user flows, pantallas y prioridades de producto."
         },
         {
-          "title": "Architecture",
-          "description": "I define the technical structure, data models and required integrations."
+          "title": "Arquitectura",
+          "description": "Defino la estructura tecnica, los modelos de datos y las integraciones necesarias."
         },
         {
-          "title": "Iterative delivery",
-          "description": "The product moves forward in short batches with regular validation and explicit trade-offs."
+          "title": "Entrega iterativa",
+          "description": "El producto avanza en lotes cortos con validaciones regulares y trade-offs explicitos."
         },
         {
-          "title": "Consolidation",
-          "description": "We stabilize, document and prepare what comes next based on observed usage."
+          "title": "Consolidacion",
+          "description": "Estabilizamos, documentamos y preparamos lo siguiente segun el uso observado."
         }
       ],
-      "whyChooseTitle": "An approach suited to products still taking shape",
+      "whyChooseTitle": "Un enfoque adecuado para productos todavia en construccion",
       "whyChooseItems": [
-        "Product thinking and technical execution stay aligned and focused.",
-        "Pragmatic scope splitting helps deliver value without waiting for a perfect version.",
-        "Documentation and decisions stay clear so you keep control of the project."
+        "Pensamiento de producto y ejecucion tecnica permanecen alineados y enfocados.",
+        "La division pragmatica del alcance ayuda a entregar valor sin esperar una version perfecta.",
+        "La documentacion y las decisiones se mantienen claras para que conserves el control del proyecto."
       ],
-      "technologiesTitle": "Technologies suited to modern web platforms",
+      "technologiesTitle": "Tecnologias adaptadas a plataformas web modernas",
       "technologies": [
         "Next.js",
         "React",
@@ -207,116 +207,116 @@
         "Drizzle ORM",
         "REST API"
       ],
-      "faqTitle": "Questions about web applications and SaaS",
-      "faqIntro": "A few useful answers to frame a custom web product properly.",
+      "faqTitle": "Preguntas sobre aplicaciones web y SaaS",
+      "faqIntro": "Algunas respuestas utiles para encuadrar bien un producto web a medida.",
       "faqMain": [
         {
-          "question": "Do you work on MVPs or only on mature products?",
-          "answer": "Both. I can scope a useful first version or take over an existing product to make it more reliable, clearer and easier to evolve."
+          "question": "Trabajas en MVP o solo en productos maduros?",
+          "answer": "Ambos. Puedo definir una primera version util o tomar un producto existente para hacerlo mas fiable, mas claro y mas facil de evolucionar."
         },
         {
-          "question": "Can you connect external services?",
-          "answer": "Yes. Payments, CRM, emailing, storage, analytics or internal tools can be integrated when they support a real use case."
+          "question": "Puedes conectar servicios externos?",
+          "answer": "Si. Pagos, CRM, emailing, almacenamiento, analytics o herramientas internas pueden integrarse cuando responden a un caso de uso real."
         },
         {
-          "question": "How do you define the right initial scope?",
-          "answer": "By starting from critical workflows, business constraints and product risk. The goal is to deliver what unlocks real value first."
+          "question": "Como defines el alcance inicial correcto?",
+          "answer": "Partiendo de los flujos criticos, las restricciones de negocio y el riesgo del producto. La idea es entregar primero lo que desbloquea valor real."
         },
         {
-          "question": "Can you take over an existing codebase?",
-          "answer": "Yes, after an audit. Depending on the current state, I may recommend consolidating the base or rebuilding some parts more cleanly."
+          "question": "Puedes tomar el relevo de una base de codigo existente?",
+          "answer": "Si, tras un audit. Segun el estado actual puedo recomendar consolidar la base o reconstruir ciertas partes de forma mas limpia."
         }
       ],
       "faqAdvanced": [
         {
-          "question": "How do you handle projects with remote teams?",
-          "answer": "With clear scope splitting, regular validation points and lightweight but useful documentation. It works well even when the team is distributed."
+          "question": "Como trabajas con equipos remotos?",
+          "answer": "Con un reparto claro del trabajo, puntos de validacion regulares y documentacion ligera pero util. Funciona muy bien incluso con equipos distribuidos."
         },
         {
-          "question": "What happens after the first delivery?",
-          "answer": "I can stay involved for support, new iterations, maintenance or technical consolidation based on your rhythm."
+          "question": "Que pasa despues de la primera entrega?",
+          "answer": "Puedo seguir implicado en soporte, nuevas iteraciones, mantenimiento o consolidacion tecnica segun vuestro ritmo."
         },
         {
-          "question": "Do you also work on product UX?",
-          "answer": "Yes. I contribute to flow structure, screen hierarchy and interface clarity, not only implementation."
+          "question": "Trabajas tambien la UX de producto?",
+          "answer": "Si. Intervengo en la estructura de flujos, la jerarquia de pantallas y la claridad de la interfaz, no solo en la implementacion."
         },
         {
-          "question": "Can the product be SEO-friendly?",
-          "answer": "Yes, when public pages need search visibility. In that case SEO is handled in the architecture and rendering strategy from the start."
+          "question": "El producto puede ser SEO-friendly?",
+          "answer": "Si, cuando algunas paginas publicas necesitan visibilidad organica. En ese caso la SEO se trata desde el inicio en la arquitectura y el rendering."
         },
         {
-          "question": "How do you approach security?",
-          "answer": "Data validation, access control, secret handling, updates and deployment hygiene are treated as part of the core foundation."
+          "question": "Como abordas la seguridad?",
+          "answer": "Validacion de datos, control de accesos, gestion de secretos, actualizaciones y buenas practicas de despliegue forman parte de la base tecnica."
         },
         {
-          "question": "Can you deliver in batches?",
-          "answer": "Yes. It is often the healthiest way to keep visibility and correct course quickly when needed."
+          "question": "Puedes entregar por lotes?",
+          "answer": "Si. A menudo es la forma mas sana de mantener visibilidad y corregir el rumbo rapidamente cuando hace falta."
         }
       ],
-      "finalCtaTitle": "Need to structure a web product without drifting into avoidable complexity?",
-      "finalCtaText": "I can help you scope a solid version, make the right trade-offs and deliver a web application or SaaS that is useful quickly."
+      "finalCtaTitle": "Necesitas estructurar un producto web sin caer en complejidad evitable?",
+      "finalCtaText": "Puedo ayudarte a definir una version solida, tomar los trade-offs correctos y entregar una aplicacion web o un SaaS util con rapidez."
     },
     "mobileapp": {
       "slug": "mobile-app-development",
-      "title": "Mobile app development",
-      "metaTitle": "iOS and Android mobile app development | MK-Web",
-      "metaDescription": "Custom mobile app development for iOS and Android with strong focus on usability, smooth performance and reliable delivery. I work with local and remote teams alike.",
-      "heroTitle": "A mobile app that feels useful, fast and sustainable beyond the first launch",
-      "heroSubtitle": "I design and build mobile applications for iOS and Android with a strong focus on user flows, product quality and long-term maintainability, locally or remotely.",
-      "primaryCta": "Discuss your app",
-      "secondaryCta": "Estimate the project",
-      "problemTitle": "A mobile app cannot afford approximation",
+      "title": "Desarrollo de apps moviles",
+      "metaTitle": "Desarrollo de apps moviles para iOS y Android | MK-Web",
+      "metaDescription": "Desarrollo de aplicaciones moviles a medida para iOS y Android con fuerte enfoque en usabilidad, fluidez y fiabilidad. Trabajo con equipos locales y remotos.",
+      "heroTitle": "Una app movil util, fluida y sostenible mas alla del primer lanzamiento",
+      "heroSubtitle": "Diseno y desarrollo aplicaciones moviles para iOS y Android con una atencion fuerte a los flujos de usuario, la calidad de producto y la mantenibilidad a largo plazo, en local o en remoto.",
+      "primaryCta": "Hablar de tu app",
+      "secondaryCta": "Estimar el proyecto",
+      "problemTitle": "Una app movil no puede permitirse aproximaciones",
       "problemItems": [
-        "A confusing UX is penalized immediately by users.",
-        "Weak performance hurts usage, retention and product perception.",
-        "Unclear technical choices make maintenance and future releases harder.",
-        "App Store and Play Store delivery becomes painful without a clean process."
+        "Una UX confusa es penalizada de inmediato por los usuarios.",
+        "Un rendimiento pobre perjudica uso, retencion y percepcion del producto.",
+        "Decisiones tecnicas poco claras dificultan mantenimiento y futuras releases.",
+        "Sin un proceso limpio, publicar en App Store y Play Store se vuelve doloroso."
       ],
-      "solutionTitle": "I treat the app as a product, not just a mobile screen",
+      "solutionTitle": "Trato la app como un producto, no como una simple pantalla movil",
       "solutionText": [
-        "I first map the most important flows, platform constraints and friction points so the application stays clear in real usage.",
-        "Development follows a logic of reliability, readability and long-term maintainability, not just the need to ship a first version quickly.",
-        "The goal is to launch an app that is useful now and still viable six months or a year later."
+        "Empiezo por mapear los flujos mas importantes, las restricciones de plataforma y los puntos de friccion para que la aplicacion siga siendo clara en el uso real.",
+        "El desarrollo sigue una logica de fiabilidad, legibilidad y mantenibilidad a largo plazo, no solo la necesidad de sacar una primera version deprisa.",
+        "La meta es lanzar una app util hoy y que siga siendo viable dentro de seis meses o un ano."
       ],
       "proofItems": [
-        "Work centered on real usage flows, not only on visual polish.",
-        "Explicit trade-offs between delivery speed, native quality and maintainability.",
-        "Support on publishing, product evolution and post-launch follow-up.",
-        "Collaboration compatible with internal product, design or engineering teams, locally or remotely."
+        "Trabajo centrado en flujos de uso reales, no solo en el acabado visual.",
+        "Trade-offs explicitos entre velocidad de entrega, calidad nativa y mantenibilidad.",
+        "Acompanamiento en publicacion, evolucion del producto y seguimiento post lanzamiento.",
+        "Colaboracion compatible con equipos internos de producto, diseno o engineering, en local o en remoto."
       ],
-      "techTitle": "What a well-scoped mobile engagement typically covers",
+      "techTitle": "Lo que suele cubrir un alcance movil bien definido",
       "techItems": [
-        "React Native apps or another approach based on actual product needs.",
-        "Auth, notifications, forms, synchronization, embedded flows and APIs.",
-        "Rendering quality, usage testing and close attention to performance on real devices.",
-        "Store preparation and support with iOS and Android publishing constraints."
+        "Apps en React Native u otro enfoque segun las necesidades reales del producto.",
+        "Auth, notificaciones, formularios, sincronizacion, flujos embebidos y APIs.",
+        "Calidad de render, pruebas de uso y gran atencion al rendimiento en dispositivos reales.",
+        "Preparacion para las tiendas y soporte con los requisitos de publicacion en iOS y Android."
       ],
-      "processTitle": "A mobile process centered on real usage",
+      "processTitle": "Un proceso movil centrado en el uso real",
       "processSteps": [
         {
-          "title": "Product framing",
-          "description": "We define target users, priority flows, scope and store-related constraints."
+          "title": "Marco de producto",
+          "description": "Definimos usuarios objetivo, flujos prioritarios, alcance y restricciones ligadas a las stores."
         },
         {
           "title": "Mobile UX",
-          "description": "I structure screens, transitions and critical actions so the app remains readable and fast."
+          "description": "Estructuro pantallas, transiciones y acciones criticas para que la app siga siendo clara y rapida."
         },
         {
-          "title": "Development",
-          "description": "The app is built with strong attention to reliability, rendering quality and integrations."
+          "title": "Desarrollo",
+          "description": "La app se construye con gran atencion a fiabilidad, calidad visual e integraciones."
         },
         {
-          "title": "Publishing",
-          "description": "I prepare the required deliverables, technical setup and app store release process."
+          "title": "Publicacion",
+          "description": "Preparo los entregables necesarios, la configuracion tecnica y el proceso de release en las stores."
         }
       ],
-      "whyChooseTitle": "An approach suited to apps that need to be truly used",
+      "whyChooseTitle": "Un enfoque pensado para apps que deben usarse de verdad",
       "whyChooseItems": [
-        "Priority goes to actual user experience, not cosmetic demo effects.",
-        "Clean technical execution keeps future iterations from becoming fragile.",
-        "Direct working relationship that stays clear and remote-friendly."
+        "La prioridad es la experiencia real del usuario, no un efecto demo cosmetico.",
+        "Una ejecucion tecnica limpia evita que las futuras iteraciones se vuelvan fragiles.",
+        "Relacion de trabajo directa, clara y compatible con el remoto."
       ],
-      "technologiesTitle": "Technologies often involved",
+      "technologiesTitle": "Tecnologias que suelen intervenir",
       "technologies": [
         "React Native",
         "Expo",
@@ -325,116 +325,116 @@
         "PostgreSQL",
         "Push Notifications"
       ],
-      "faqTitle": "Questions about mobile app development",
-      "faqIntro": "The main points worth clarifying before starting a custom mobile product.",
+      "faqTitle": "Preguntas sobre desarrollo de apps moviles",
+      "faqIntro": "Los puntos principales que conviene aclarar antes de iniciar un producto movil a medida.",
       "faqMain": [
         {
-          "question": "Should we target iOS and Android from the start?",
-          "answer": "Not always. It depends on your users, budget and business priorities. The right answer comes from scoping, not from habit."
+          "question": "Conviene cubrir iOS y Android desde el principio?",
+          "answer": "No siempre. Depende de los usuarios, el presupuesto y las prioridades de negocio. La respuesta correcta sale del scoping, no de la costumbre."
         },
         {
-          "question": "Can you work on an existing mobile app?",
-          "answer": "Yes, after an audit. I can take over an existing base, fix critical issues or stabilize the structure before adding more features."
+          "question": "Puedes trabajar sobre una app ya existente?",
+          "answer": "Si, tras un audit. Puedo tomar una base existente, corregir problemas criticos o estabilizar la estructura antes de anadir nuevas funcionalidades."
         },
         {
-          "question": "Do you handle store publishing?",
-          "answer": "Yes. I can prepare the release flow, check prerequisites and support the publication process."
+          "question": "Te encargas tambien de publicar en las stores?",
+          "answer": "Si. Puedo preparar el flujo de release, revisar prerrequisitos y acompanar el proceso de publicacion."
         },
         {
-          "question": "How is post-launch follow-up handled?",
-          "answer": "As with web products, the healthiest setup is usually a clear maintenance and evolution framework so the app stays stable over time."
+          "question": "Como se gestiona el seguimiento despues del lanzamiento?",
+          "answer": "Como en los productos web, lo mas sano suele ser un marco claro de mantenimiento y evolucion para que la app permanezca estable con el tiempo."
         }
       ],
       "faqAdvanced": [
         {
-          "question": "Can you handle push notifications?",
-          "answer": "Yes, when they serve a real use case. They are integrated as part of product logic, not as decorative extras."
+          "question": "Puedes integrar push notifications?",
+          "answer": "Si, cuando sirven a un caso de uso real. Se integran como parte de la logica del producto, no como un extra decorativo."
         },
         {
-          "question": "Can the app work with an existing API?",
-          "answer": "Yes. I can rely on your current backend or recommend cleanup if the technical interface is too brittle."
+          "question": "La app puede trabajar con una API existente?",
+          "answer": "Si. Puedo apoyarme en tu backend actual o recomendar una limpieza si la interfaz tecnica es demasiado fragil."
         },
         {
-          "question": "How do you choose between native and cross-platform?",
-          "answer": "Based on usage, budget, timeline and interaction requirements. The choice should serve the product, not a fixed preference."
+          "question": "Como eliges entre nativo y cross-platform?",
+          "answer": "Segun uso, presupuesto, calendario y requisitos de interaccion. La eleccion debe servir al producto, no a una preferencia fija."
         },
         {
-          "question": "Do you work remotely on this kind of project?",
-          "answer": "Yes. Remote collaboration works very well for mobile projects when scope, validation and delivery batches are well structured."
+          "question": "Trabajas en remoto en este tipo de proyecto?",
+          "answer": "Si. La colaboracion remota funciona muy bien en proyectos moviles cuando el alcance, la validacion y los lotes de entrega estan bien estructurados."
         },
         {
-          "question": "Can you integrate analytics and tracking?",
-          "answer": "Yes, to monitor adoption, retention and friction points without overloading the product."
+          "question": "Puedes integrar analytics y tracking?",
+          "answer": "Si, para medir adopcion, retencion y puntos de friccion sin sobrecargar el producto."
         },
         {
-          "question": "What if the scope changes during the project?",
-          "answer": "The process is built for that. We re-prioritize batches and keep visibility on the impact in time and budget."
+          "question": "Que pasa si el alcance cambia durante el proyecto?",
+          "answer": "El proceso esta preparado para ello. Repriorizamos los lotes y mantenemos visibilidad sobre el impacto en tiempo y presupuesto."
         }
       ],
-      "finalCtaTitle": "Need a serious mobile app rather than a fragile prototype?",
-      "finalCtaText": "I can help you frame the right scope, choose the right approach and launch a mobile app that is useful, reliable and ready to evolve."
+      "finalCtaTitle": "Necesitas una app movil seria en lugar de un prototipo fragil?",
+      "finalCtaText": "Puedo ayudarte a definir el alcance correcto, elegir el enfoque adecuado y lanzar una app util, fiable y preparada para evolucionar."
     },
     "ecommerce": {
       "slug": "ecommerce-development",
-      "title": "E-commerce development",
-      "metaTitle": "Custom e-commerce development | MK-Web",
-      "metaDescription": "Fast, reliable and structured e-commerce websites built to sell better. I work in Eure-et-Loir and remotely on stores designed for conversion and day-to-day operations.",
-      "heroTitle": "An e-commerce website built to sell more cleanly and run with less friction",
-      "heroSubtitle": "I build custom e-commerce websites for brands and merchants who need a credible, fast and easier-to-evolve storefront, locally or remotely.",
-      "primaryCta": "Discuss your store",
-      "secondaryCta": "Estimate the project",
-      "problemTitle": "An online store quickly loses revenue when the fundamentals are weak",
+      "title": "Desarrollo e-commerce",
+      "metaTitle": "Desarrollo e-commerce a medida | MK-Web",
+      "metaDescription": "Sitios e-commerce rapidos, fiables y bien estructurados, pensados para vender mejor. Trabajo en Eure-et-Loir y en remoto en tiendas orientadas a conversion y operativa diaria.",
+      "heroTitle": "Un e-commerce construido para vender mejor y funcionar con menos friccion",
+      "heroSubtitle": "Desarrollo sitios e-commerce a medida para marcas y comercios que necesitan un storefront creible, rapido y mas facil de evolucionar, en local o en remoto.",
+      "primaryCta": "Hablar de tu tienda",
+      "secondaryCta": "Estimar el proyecto",
+      "problemTitle": "Una tienda online pierde ingresos rapidamente cuando los fundamentos son debiles",
       "problemItems": [
-        "A confusing checkout flow increases cart abandonment.",
-        "Weak mobile performance damages conversion.",
-        "Poorly structured product pages make SEO, trust and buying harder.",
-        "A messy back office or bad integrations make daily operations painful."
+        "Un checkout confuso aumenta el abandono del carrito.",
+        "Un mal rendimiento movil perjudica la conversion.",
+        "Paginas de producto mal estructuradas dificultan SEO, confianza y compra.",
+        "Un back office desordenado o malas integraciones complican la operativa diaria."
       ],
-      "solutionTitle": "I build stores that are clearer, faster and easier to run",
+      "solutionTitle": "Construyo tiendas mas claras, mas rapidas y mas faciles de operar",
       "solutionText": [
-        "The work covers both buying experience and the technical structure and integrations that support the business every day.",
-        "The goal is to simplify the path to purchase, reinforce trust and build a base that can support your catalog, traffic and operations over time.",
-        "The project stays focused on what improves sales and saves time, not on feature accumulation."
+        "El trabajo cubre tanto la experiencia de compra como la estructura tecnica y las integraciones que sostienen el negocio cada dia.",
+        "El objetivo es simplificar el camino hacia la compra, reforzar la confianza y crear una base capaz de soportar catalogo, trafico y operacion a largo plazo.",
+        "El proyecto se mantiene enfocado en lo que mejora ventas y ahorra tiempo, no en acumular funciones."
       ],
       "proofItems": [
-        "Purchase journeys clarified to reduce friction at the decisive moment.",
-        "Performance treated as a priority, especially on mobile and conversion pages.",
-        "Integrations selected to support the store, not to complicate it.",
-        "Execution compatible with local collaboration or a fully remote setup."
+        "Los recorridos de compra se aclaran para reducir friccion en el momento decisivo.",
+        "El rendimiento se trata como prioridad, sobre todo en movil y en las paginas de conversion.",
+        "Las integraciones se eligen para apoyar la tienda, no para complicarla.",
+        "La ejecucion encaja tanto con trabajo local como con una colaboracion completamente remota."
       ],
-      "techTitle": "What a well-structured e-commerce project covers",
+      "techTitle": "Lo que cubre un proyecto e-commerce bien estructurado",
       "techItems": [
-        "Catalog, product pages, category pages, checkout and useful content sections.",
-        "Payments, transactional emails, analytics, automations and business integrations.",
-        "SEO and performance work to support acquisition and conversion.",
-        "A clean base that can evolve without breaking things at every new request."
+        "Catalogo, paginas de producto, paginas de categoria, checkout y secciones de contenido utiles.",
+        "Pagos, emails transaccionales, analitica, automatizaciones e integraciones de negocio.",
+        "Trabajo de SEO y rendimiento para apoyar adquisicion y conversion.",
+        "Una base limpia que pueda evolucionar sin romperse con cada nueva necesidad."
       ],
-      "processTitle": "A process centered on selling and operating cleanly",
+      "processTitle": "Un proceso centrado en ventas y operativa limpia",
       "processSteps": [
         {
-          "title": "Audit & scoping",
-          "description": "We clarify catalog structure, business priorities, technical constraints and conversion goals."
+          "title": "Audit y scoping",
+          "description": "Aclaramos estructura del catalogo, prioridades de negocio, restricciones tecnicas y objetivos de conversion."
         },
         {
-          "title": "E-commerce structure",
-          "description": "I work on navigation, product pages, reassurance and checkout with clarity as the main principle."
+          "title": "Estructura e-commerce",
+          "description": "Trabajo en navegacion, paginas de producto, elementos de confianza y checkout con la claridad como principio central."
         },
         {
-          "title": "Development",
-          "description": "The store is built with the right integrations and reliable foundations."
+          "title": "Desarrollo",
+          "description": "La tienda se construye con las integraciones adecuadas y fundamentos fiables."
         },
         {
-          "title": "Optimization",
-          "description": "I finalize performance, setup, quality checks and launch guidance."
+          "title": "Optimizacion",
+          "description": "Cierro rendimiento, configuracion, controles de calidad y apoyo al lanzamiento."
         }
       ],
-      "whyChooseTitle": "An e-commerce approach that is pragmatic rather than decorative",
+      "whyChooseTitle": "Un enfoque e-commerce pragmatico, no decorativo",
       "whyChooseItems": [
-        "The project stays focused on conversion, speed and operational clarity.",
-        "Technical trade-offs serve the store and your real organization.",
-        "You keep one direct and committed point of contact."
+        "El proyecto se mantiene centrado en conversion, velocidad y claridad operativa.",
+        "Los trade-offs tecnicos sirven a la tienda y a tu organizacion real.",
+        "Mantienes un interlocutor directo y comprometido."
       ],
-      "technologiesTitle": "Technologies often involved",
+      "technologiesTitle": "Tecnologias que suelen intervenir",
       "technologies": [
         "Next.js",
         "TypeScript",
@@ -443,116 +443,116 @@
         "Analytics",
         "Transactional Email"
       ],
-      "faqTitle": "Questions about custom e-commerce development",
-      "faqIntro": "The key topics worth clarifying before launching or rebuilding an online store.",
+      "faqTitle": "Preguntas sobre desarrollo e-commerce a medida",
+      "faqIntro": "Los temas principales que conviene aclarar antes de lanzar o rehacer una tienda online.",
       "faqMain": [
         {
-          "question": "What budget should be expected for a custom store?",
-          "answer": "It depends on the catalog, checkout complexity, integrations and level of customization. The first step is always to scope priorities properly."
+          "question": "Que presupuesto hay que prever para una tienda a medida?",
+          "answer": "Depende del catalogo, la complejidad del checkout, las integraciones y el nivel de personalizacion. El primer paso siempre es definir bien las prioridades."
         },
         {
-          "question": "Can you take over an existing store?",
-          "answer": "Yes. I can audit the current setup and recommend either focused improvements or a deeper redesign depending on technical debt and business goals."
+          "question": "Puedes retomar una tienda existente?",
+          "answer": "Si. Puedo auditar la configuracion actual y recomendar mejoras focalizadas o un rediseño mas profundo segun deuda tecnica y objetivos de negocio."
         },
         {
-          "question": "Do you also work on e-commerce SEO?",
-          "answer": "Yes. Category structure, product pages, performance and content foundations are all part of the work."
+          "question": "Trabajas tambien el SEO e-commerce?",
+          "answer": "Si. La estructura de categorias, las paginas de producto, el rendimiento y las bases de contenido forman parte del trabajo."
         },
         {
-          "question": "Will the back office stay simple?",
-          "answer": "That matters a lot. A store should not only convert well for users but also remain easy to operate for the team behind it."
+          "question": "El back office seguira siendo sencillo?",
+          "answer": "Eso importa mucho. Una tienda no solo debe convertir bien para los usuarios, tambien debe ser facil de operar para el equipo que esta detras."
         }
       ],
       "faqAdvanced": [
         {
-          "question": "Can you connect payments, CRM or email tools?",
-          "answer": "Yes, when those integrations support a concrete use case and fit cleanly into your operations."
+          "question": "Puedes conectar pagos, CRM o herramientas de email?",
+          "answer": "Si, cuando esas integraciones responden a un caso de uso concreto y encajan limpiamente en la operativa."
         },
         {
-          "question": "Will the store be mobile-friendly?",
-          "answer": "Yes. It is treated as a priority because a major part of browsing and buying happens on mobile."
+          "question": "La tienda estara optimizada para movil?",
+          "answer": "Si. Es prioritario porque una gran parte de la navegacion y de las compras se realiza desde movil."
         },
         {
-          "question": "How do you reduce cart abandonment?",
-          "answer": "By clarifying the checkout, strengthening reassurance and removing unnecessary friction."
+          "question": "Como reduces el abandono del carrito?",
+          "answer": "Aclarando el checkout, reforzando la confianza y eliminando fricciones innecesarias."
         },
         {
-          "question": "Can you work with a remote team?",
-          "answer": "Yes. Most e-commerce projects move very well in a remote setup with a clean validation process."
+          "question": "Puedes trabajar con un equipo remoto?",
+          "answer": "Si. La mayoria de proyectos e-commerce avanzan muy bien en remoto con un proceso de validacion limpio."
         },
         {
-          "question": "Do you provide post-launch follow-up?",
-          "answer": "Yes. Maintenance, optimization and further iterations can be planned after launch."
+          "question": "Ofreces seguimiento despues del lanzamiento?",
+          "answer": "Si. Mantenimiento, optimizacion e iteraciones posteriores pueden planificarse tras el go-live."
         },
         {
-          "question": "Can the store evolve later?",
-          "answer": "Yes. The base is designed to support new categories, content, integrations or flows over time."
+          "question": "La tienda podra evolucionar en el futuro?",
+          "answer": "Si. La base esta pensada para soportar nuevas categorias, contenidos, integraciones o flujos con el tiempo."
         }
       ],
-      "finalCtaTitle": "Need a store that is stronger, faster and easier to operate?",
-      "finalCtaText": "I can help you scope a custom e-commerce website that supports both your sales and your day-to-day operations more effectively."
+      "finalCtaTitle": "Necesitas una tienda mas fuerte, mas rapida y mas facil de operar?",
+      "finalCtaText": "Puedo ayudarte a definir un e-commerce a medida que apoye mejor tanto tus ventas como tu operativa diaria."
     },
     "redesign": {
       "slug": "website-redesign-audit",
-      "title": "Website redesign & audit",
-      "metaTitle": "Website redesign and audit | MK-Web",
-      "metaDescription": "Technical, UX and SEO audit followed by a cleaner website redesign. I work in Eure-et-Loir and remotely to bring websites back in line with real business goals.",
-      "heroTitle": "A useful redesign starts by understanding what is actually blocking results",
-      "heroSubtitle": "I analyze the current website, isolate the real SEO, UX and technical friction points, then propose a redesign proportionate to your goals, locally or remotely.",
-      "primaryCta": "Request an audit",
-      "secondaryCta": "Estimate the project",
-      "problemTitle": "Redesigning without diagnosis usually leads to bad trade-offs",
+      "title": "Rediseno y audit del sitio web",
+      "metaTitle": "Rediseno y audit del sitio web | MK-Web",
+      "metaDescription": "Audit tecnico, UX y SEO seguido de un rediseno mas limpio del sitio. Trabajo en Eure-et-Loir y en remoto para volver a alinear los sitios con objetivos reales de negocio.",
+      "heroTitle": "Un rediseno util empieza por entender que esta bloqueando realmente los resultados",
+      "heroSubtitle": "Analizo el sitio actual, identifico los verdaderos puntos de friccion SEO, UX y tecnicos y luego propongo un rediseno proporcionado a tus objetivos, en local o en remoto.",
+      "primaryCta": "Solicitar un audit",
+      "secondaryCta": "Estimar el proyecto",
+      "problemTitle": "Redisenar sin diagnostico suele llevar a trade-offs equivocados",
       "problemItems": [
-        "A website can age badly without the root cause being obvious.",
-        "Visible symptoms often hide deeper structural or technical debt issues.",
-        "A visual redesign alone may leave SEO and conversion problems untouched.",
-        "Poorly prepared migrations can break more than they improve."
+        "Un sitio puede envejecer mal sin que la causa sea evidente a primera vista.",
+        "Los sintomas visibles suelen esconder deuda estructural o tecnica mas profunda.",
+        "Un rediseno solo visual puede dejar intactos los problemas de SEO y conversion.",
+        "Migraciones mal preparadas pueden romper mas de lo que mejoran."
       ],
-      "solutionTitle": "I start with a useful audit before deciding what should change",
+      "solutionTitle": "Empiezo con un audit util antes de decidir que debe cambiar",
       "solutionText": [
-        "The work begins with a structured diagnosis of performance, SEO, UX, content and technical foundations so the essential is separated from the secondary.",
-        "I then recommend the right level of redesign: focused improvements, partial rebuild or broader reconstruction when that is clearly the healthier path.",
-        "The goal is to rebuild visibility, clarity and maintainability without pushing the wrong investment."
+        "El trabajo comienza con un diagnostico estructurado de rendimiento, SEO, UX, contenido y bases tecnicas para separar lo esencial de lo secundario.",
+        "Despues recomiendo el nivel correcto de rediseno: mejoras puntuales, reconstruccion parcial o una reconstruccion mas amplia cuando sea claramente la opcion mas sana.",
+        "La meta es recuperar visibilidad, claridad y mantenibilidad sin empujar hacia la inversion equivocada."
       ],
       "proofItems": [
-        "Audits are readable, prioritized and tied to concrete traffic, conversion and maintenance impact.",
-        "Redesign decisions are guided by facts, not only by the desire to look more modern.",
-        "Migration is handled carefully to avoid avoidable SEO losses and regressions.",
-        "The whole process works well in a remote collaboration model too."
+        "Los audits son legibles, priorizados y conectados con impacto concreto en trafico, conversion y mantenimiento.",
+        "Las decisiones de rediseno se basan en hechos, no solo en el deseo de parecer mas moderno.",
+        "La migracion se gestiona con cuidado para evitar perdidas SEO y regresiones evitables.",
+        "Todo el proceso funciona muy bien tambien en colaboracion remota."
       ],
-      "techTitle": "What a serious redesign actually covers",
+      "techTitle": "Lo que realmente cubre un rediseno serio",
       "techItems": [
-        "Performance audit, technical SEO review, page structure and journey clarity.",
-        "Redesign of components, content and calls to action when needed.",
-        "Technical reset when the existing base is blocking too many future changes.",
-        "Migration plan and verification before production launch."
+        "Audit de rendimiento, revision de SEO tecnico, estructura de paginas y claridad de recorridos.",
+        "Rediseno de componentes, contenido y llamadas a la accion cuando hace falta.",
+        "Reset tecnico cuando la base existente bloquea demasiados cambios futuros.",
+        "Plan de migracion y verificaciones antes de salir a produccion."
       ],
-      "processTitle": "A useful redesign follows a simple order",
+      "processTitle": "Un rediseno util sigue un orden simple",
       "processSteps": [
         {
           "title": "Audit",
-          "description": "I analyze the current setup, its limits and their real impact on your business."
+          "description": "Analizo la situacion actual, sus limites y su impacto real sobre el negocio."
         },
         {
-          "title": "Prioritization",
-          "description": "I rank what should be fixed first based on impact and effort."
+          "title": "Priorizacion",
+          "description": "Ordeno lo que conviene corregir primero segun impacto y esfuerzo."
         },
         {
-          "title": "Redesign",
-          "description": "I rebuild the most important parts on a clearer, more modern foundation."
+          "title": "Rediseno",
+          "description": "Reconstruyo las partes mas importantes sobre una base mas clara y moderna."
         },
         {
-          "title": "Launch",
-          "description": "I secure migration, quality checks and the move to production."
+          "title": "Lanzamiento",
+          "description": "Aseguro la migracion, los controles de calidad y el paso a produccion."
         }
       ],
-      "whyChooseTitle": "A redesign approach that is more lucid than cosmetic",
+      "whyChooseTitle": "Un enfoque de rediseno mas lucido que cosmetico",
       "whyChooseItems": [
-        "Diagnosis prevents decisions based only on intuition or visual taste.",
-        "Prioritization helps invest first where the gains will actually matter.",
-        "The project stays understandable, structured and compatible with phased delivery."
+        "El diagnostico evita decisiones basadas solo en intuicion o gusto visual.",
+        "La priorizacion ayuda a invertir primero donde la mejora importa de verdad.",
+        "El proyecto sigue siendo comprensible, estructurado y compatible con entregas por fases."
       ],
-      "technologiesTitle": "Tools and technologies typically involved",
+      "technologiesTitle": "Herramientas y tecnologias que suelen intervenir",
       "technologies": [
         "Next.js",
         "TypeScript",
@@ -561,116 +561,116 @@
         "Analytics",
         "Tailwind CSS"
       ],
-      "faqTitle": "Questions about website redesign and audit",
-      "faqIntro": "The topics that matter most when a website no longer delivers the expected results.",
+      "faqTitle": "Preguntas sobre rediseno y audit del sitio web",
+      "faqIntro": "Los temas que mas importan cuando un sitio ya no ofrece los resultados esperados.",
       "faqMain": [
         {
-          "question": "When should a redesign be considered?",
-          "answer": "When the website no longer matches your positioning, blocks evolution or stops supporting visibility and conversion properly."
+          "question": "Cuando conviene plantearse un rediseno?",
+          "answer": "Cuando el sitio ya no encaja con tu posicionamiento, bloquea la evolucion o deja de apoyar bien visibilidad y conversion."
         },
         {
-          "question": "Can an audit be enough?",
-          "answer": "Yes. In some cases, focused corrections create more value than a full redesign."
+          "question": "Puede bastar un audit?",
+          "answer": "Si. En algunos casos, correcciones muy enfocadas generan mas valor que un rediseno completo."
         },
         {
-          "question": "Can a redesign hurt SEO?",
-          "answer": "Yes if it is handled poorly. That is why structure, redirects and migration checks matter."
+          "question": "Puede un rediseno perjudicar la SEO?",
+          "answer": "Si, si se gestiona mal. Por eso importan tanto la estructura, los redirects y los controles de migracion."
         },
         {
-          "question": "Can you audit a website built by another agency?",
-          "answer": "Yes. The analysis is based on technical and business facts, not on who built the site."
+          "question": "Puedes auditar un sitio hecho por otra agencia?",
+          "answer": "Si. El analisis se basa en hechos tecnicos y de negocio, no en quien desarrollo el sitio."
         }
       ],
       "faqAdvanced": [
         {
-          "question": "How do you choose between improvement and rebuild?",
-          "answer": "I compare the cost of correction, the level of technical debt and the realistic improvement potential before recommending the healthiest path."
+          "question": "Como eliges entre mejorar y reconstruir?",
+          "answer": "Comparo el coste de corregir, el nivel de deuda tecnica y el potencial realista de mejora antes de recomendar el camino mas sano."
         },
         {
-          "question": "Is the design always rebuilt?",
-          "answer": "Not necessarily. Sometimes the biggest gains come from structure, content or technical foundations instead."
+          "question": "Se rehace siempre todo el diseno?",
+          "answer": "No necesariamente. A veces las mayores mejoras vienen de la estructura, el contenido o las bases tecnicas."
         },
         {
-          "question": "Can local SEO be improved during the redesign?",
-          "answer": "Yes. Redesign is often the right moment to rework structure, content and geographic relevance signals."
+          "question": "Se puede mejorar el SEO local durante el rediseno?",
+          "answer": "Si. El rediseno suele ser el momento adecuado para revisar estructura, contenido y senales de relevancia geografica."
         },
         {
-          "question": "How does the handoff work?",
-          "answer": "With a clear summary of decisions, completed checks and the points that should still be monitored after launch."
+          "question": "Como funciona la entrega final?",
+          "answer": "Con un resumen claro de decisiones, comprobaciones completadas y puntos que conviene seguir vigilando despues del lanzamiento."
         },
         {
-          "question": "Can the redesign happen in phases?",
-          "answer": "Yes. When it makes more sense, the work can be split to reduce risk and spread the investment."
+          "question": "El rediseno puede hacerse por fases?",
+          "answer": "Si. Cuando tiene mas sentido, el trabajo puede dividirse para reducir riesgo y repartir la inversion."
         },
         {
-          "question": "Can you manage the project remotely?",
-          "answer": "Yes. Audit, trade-offs, validation and follow-up all work very well remotely with a useful level of documentation."
+          "question": "Puedes gestionar el proyecto en remoto?",
+          "answer": "Si. Audit, trade-offs, validacion y seguimiento funcionan muy bien en remoto con el nivel de documentacion adecuado."
         }
       ],
-      "finalCtaTitle": "Does your website feel like more of a blocker than a lever?",
-      "finalCtaText": "I can help you identify what is actually wrong and choose a redesign path that is healthier, clearer and more profitable."
+      "finalCtaTitle": "Tu sitio se siente mas como un freno que como una palanca?",
+      "finalCtaText": "Puedo ayudarte a identificar lo que realmente falla y a elegir un camino de rediseno mas sano, mas claro y mas rentable."
     },
     "maintenance": {
       "slug": "website-maintenance-support",
-      "title": "Website maintenance & support",
-      "metaTitle": "Website maintenance and support | MK-Web",
-      "metaDescription": "Website maintenance, technical support and focused evolutions for stable and secure platforms. I work in Eure-et-Loir and remotely to keep websites reliable over time.",
-      "heroTitle": "A reliable website is maintained over time, not only built once",
-      "heroSubtitle": "I handle maintenance, support and targeted evolutions so a website does not become slow, fragile or blocking, whether you are in Eure-et-Loir or working with me remotely.",
-      "primaryCta": "Discuss maintenance",
-      "secondaryCta": "Estimate the project",
-      "problemTitle": "Without follow-up, a website quickly accumulates small issues and real emergencies",
+      "title": "Mantenimiento y soporte web",
+      "metaTitle": "Mantenimiento y soporte web | MK-Web",
+      "metaDescription": "Mantenimiento web, soporte tecnico y evoluciones enfocadas para plataformas estables y seguras. Trabajo en Eure-et-Loir y en remoto para mantener los sitios fiables con el tiempo.",
+      "heroTitle": "Un sitio fiable se mantiene en el tiempo, no se construye una sola vez",
+      "heroSubtitle": "Me encargo del mantenimiento, el soporte y las evoluciones necesarias para que un sitio no se vuelva lento, fragil o bloqueante, tanto en local como en remoto.",
+      "primaryCta": "Hablar de mantenimiento",
+      "secondaryCta": "Estimar el proyecto",
+      "problemTitle": "Sin seguimiento, un sitio acumula rapido pequenos problemas y emergencias reales",
       "problemItems": [
-        "Updates get postponed until a bug or security issue appears.",
-        "Performance gradually degrades without real monitoring.",
-        "Small changes become difficult to scope and resolve quickly.",
-        "Every issue turns into an emergency because no support framework exists."
+        "Las actualizaciones se posponen hasta que aparece un bug o un problema de seguridad.",
+        "El rendimiento se degrada poco a poco sin un monitoreo real.",
+        "Los pequenos cambios se vuelven dificiles de acotar y resolver con rapidez.",
+        "Cada incidencia se convierte en una emergencia porque no existe un marco de soporte."
       ],
-      "solutionTitle": "I provide technical follow-up that is simple, clear and useful",
+      "solutionTitle": "Ofrezco un seguimiento tecnico simple, claro y util",
       "solutionText": [
-        "Maintenance covers what keeps your website healthy over time: updates, monitoring, fixes, targeted improvements and support on blocking points.",
-        "The aim is not to accumulate support hours but to keep a clean foundation that reduces emergencies and makes useful interventions faster.",
-        "You keep a direct point of contact who already knows the platform and does not need to rediscover it from scratch each time."
+        "El mantenimiento cubre lo que mantiene tu sitio sano con el tiempo: actualizaciones, monitoreo, correcciones, mejoras concretas y soporte en puntos bloqueantes.",
+        "La idea no es acumular horas de soporte, sino mantener una base limpia que reduzca emergencias y acelere las intervenciones utiles.",
+        "Conservas un interlocutor directo que ya conoce la plataforma y no necesita redescubrirla cada vez desde cero."
       ],
       "proofItems": [
-        "Support is more direct and more readable than ad hoc interventions.",
-        "Work benefits from real familiarity with the underlying codebase.",
-        "Maintenance can cover a showcase website, business platform or e-commerce store.",
-        "The model works for both local and remote collaboration."
+        "El soporte es mas directo y mas claro que las intervenciones puntuales.",
+        "El trabajo se beneficia de un conocimiento real de la base tecnica.",
+        "El mantenimiento puede cubrir un sitio corporativo, una plataforma de negocio o una tienda e-commerce.",
+        "El modelo funciona tanto en colaboracion local como remota."
       ],
-      "techTitle": "What serious technical follow-up includes",
+      "techTitle": "Lo que incluye un seguimiento tecnico serio",
       "techItems": [
-        "Updates, monitoring, fixes and stabilization of sensitive areas.",
-        "Targeted improvements on performance, UX and technical foundations.",
-        "Takeover of existing projects after a proper reading and stabilization phase.",
-        "Preparation of future evolutions on a cleaner base."
+        "Actualizaciones, monitoreo, correcciones y estabilizacion de las zonas sensibles.",
+        "Mejoras enfocadas en rendimiento, UX y fundamentos tecnicos.",
+        "Toma de relevo de proyectos existentes tras una lectura y estabilizacion serias.",
+        "Preparacion de futuras evoluciones sobre una base mas limpia."
       ],
-      "processTitle": "Ongoing follow-up is more useful than recurring emergencies",
+      "processTitle": "Un seguimiento continuo es mas util que emergencias recurrentes",
       "processSteps": [
         {
-          "title": "Takeover",
-          "description": "I review the codebase, hosting, risks and recurring needs."
+          "title": "Toma de relevo",
+          "description": "Reviso la base de codigo, el hosting, los riesgos y las necesidades recurrentes."
         },
         {
-          "title": "Stabilization",
-          "description": "I first address urgent or overly fragile parts to reset the baseline."
+          "title": "Estabilizacion",
+          "description": "Abordo primero las partes urgentes o demasiado fragiles para restablecer la base."
         },
         {
-          "title": "Follow-up",
-          "description": "I manage updates, monitoring and reasonable change requests."
+          "title": "Seguimiento",
+          "description": "Gestiono actualizaciones, monitoreo y solicitudes razonables de cambio."
         },
         {
-          "title": "Improvement",
-          "description": "I recommend useful optimizations as your priorities shift."
+          "title": "Mejora",
+          "description": "Propongo optimizaciones utiles a medida que cambian tus prioridades."
         }
       ],
-      "whyChooseTitle": "Support that is more direct, contextual and sustainable",
+      "whyChooseTitle": "Un soporte mas directo, contextual y sostenible",
       "whyChooseItems": [
-        "You do not need to re-explain the site history every time something happens.",
-        "Interventions happen within a readable framework rather than constant reaction mode.",
-        "You keep strong technical coverage without internalizing the whole burden."
+        "No necesitas volver a explicar la historia del sitio cada vez que ocurre algo.",
+        "Las intervenciones se realizan dentro de un marco legible y no en reaccion permanente.",
+        "Mantienes una cobertura tecnica fuerte sin internalizar toda la carga."
       ],
-      "technologiesTitle": "Technologies and topics often involved",
+      "technologiesTitle": "Tecnologias y temas que suelen intervenir",
       "technologies": [
         "Next.js",
         "TypeScript",
@@ -679,54 +679,54 @@
         "Backups",
         "Analytics"
       ],
-      "faqTitle": "Questions about maintenance and technical support",
-      "faqIntro": "The main points worth clarifying before handing over the technical follow-up of a website.",
+      "faqTitle": "Preguntas sobre mantenimiento y soporte tecnico",
+      "faqIntro": "Los puntos principales que conviene aclarar antes de delegar el seguimiento tecnico de un sitio.",
       "faqMain": [
         {
-          "question": "Can you maintain a website you did not build?",
-          "answer": "Yes, after a takeover phase. The goal is to understand the base before entering a real support rhythm."
+          "question": "Puedes mantener un sitio que no has desarrollado tu?",
+          "answer": "Si, tras una fase de toma de relevo. El objetivo es comprender bien la base antes de entrar en un verdadero ritmo de soporte."
         },
         {
-          "question": "Does maintenance include improvements?",
-          "answer": "Yes, within reason. Larger changes are then handled through dedicated scoping."
+          "question": "El mantenimiento incluye tambien mejoras?",
+          "answer": "Si, dentro de un marco razonable. Los cambios mas amplios se gestionan entonces con un scoping especifico."
         },
         {
-          "question": "Can maintenance help SEO too?",
-          "answer": "Indirectly yes, because a fast, stable and technically clean site supports visibility better over time."
+          "question": "El mantenimiento puede ayudar tambien al SEO?",
+          "answer": "Indirectamente si, porque un sitio rapido, estable y tecnicamente limpio sostiene mejor la visibilidad a largo plazo."
         },
         {
-          "question": "How are urgent bugs handled?",
-          "answer": "A support framework helps resolve urgent issues faster because the base is already known and monitored."
+          "question": "Como se gestionan los bugs urgentes?",
+          "answer": "Un marco de soporte ayuda a resolver incidencias urgentes mas rapido, porque la base ya se conoce y se monitoriza."
         }
       ],
       "faqAdvanced": [
         {
-          "question": "Do you handle backups and monitoring?",
-          "answer": "Yes, depending on the environment and project needs, to reduce risk and shorten reaction time when something goes wrong."
+          "question": "Gestionas copias de seguridad y monitoreo?",
+          "answer": "Si, segun el entorno y las necesidades del proyecto, para reducir riesgo y acortar el tiempo de reaccion cuando algo falla."
         },
         {
-          "question": "Can you take over a very unstable website?",
-          "answer": "Yes, but an initial stabilization phase is often needed before regular maintenance becomes effective."
+          "question": "Puedes tomar el relevo de un sitio muy inestable?",
+          "answer": "Si, pero a menudo hace falta una primera fase de estabilizacion antes de que el mantenimiento regular sea realmente eficaz."
         },
         {
-          "question": "Does support work remotely too?",
-          "answer": "Yes. It is in fact the most common setup, with simple follow-up and prioritized requests."
+          "question": "El soporte funciona tambien en remoto?",
+          "answer": "Si. De hecho es la configuracion mas habitual, con seguimiento simple y solicitudes priorizadas."
         },
         {
-          "question": "Can you maintain an e-commerce store as well as a showcase website?",
-          "answer": "Yes, although the points of attention differ. E-commerce often requires closer attention to integrations and operational continuity."
+          "question": "Puedes mantener tanto una tienda e-commerce como un sitio corporativo?",
+          "answer": "Si, aunque los puntos de atencion cambian. El e-commerce suele exigir una vigilancia mas cercana sobre integraciones y continuidad operativa."
         },
         {
-          "question": "How do I know whether I need an audit first?",
-          "answer": "If the base is unclear, slow or full of uncertainty, a quick audit often helps reset things more cleanly."
+          "question": "Como se si necesito primero un audit?",
+          "answer": "Si la base es confusa, lenta o esta llena de incertidumbre, un audit rapido suele ayudar a poner orden de forma mas limpia."
         },
         {
-          "question": "Can you stay involved over time?",
-          "answer": "Yes, depending on the framework we define. The goal is to keep follow-up aligned with your rhythm and priorities."
+          "question": "Puedes seguir implicado a largo plazo?",
+          "answer": "Si, segun el marco que definamos juntos. La idea es mantener el seguimiento alineado con tu ritmo y tus prioridades."
         }
       ],
-      "finalCtaTitle": "Looking for technical support that is more reliable and less emergency-driven?",
-      "finalCtaText": "I can help you reset the technical baseline and maintain the platform inside a simple, stable and sustainable framework."
+      "finalCtaTitle": "Buscas un soporte tecnico mas fiable y menos guiado por emergencias?",
+      "finalCtaText": "Puedo ayudarte a restablecer la base tecnica y mantener la plataforma dentro de un marco simple, estable y sostenible."
     }
   }
 }
