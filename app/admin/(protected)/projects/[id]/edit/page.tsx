@@ -14,9 +14,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { PROJECT_LOCALE_OPTIONS } from '../../locale-options';
 import { projectService } from '@/lib/services/project.service';
 import { fetcher } from '@/lib/swr-fetcher';
-import { Locale } from '@/locales/i18n';
+import type { Locale } from '@/locales/i18n';
 import type { ProjectResponse, Status } from '@/types/entities';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -54,7 +55,7 @@ export default function EditProjectPage() {
     if (project && !isInitialized) {
       setTitle(project.title);
       setSlug(project.slug);
-      setLocale(project.locale);
+      setLocale(project.locale as Locale);
       setDescription(project.description || '');
       setContent(project.content);
       setStatus(project.status);
@@ -156,8 +157,11 @@ export default function EditProjectPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="fr">{t.locale.fr}</SelectItem>
-                    <SelectItem value="en">{t.locale.en}</SelectItem>
+                    {PROJECT_LOCALE_OPTIONS.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>

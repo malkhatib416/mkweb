@@ -126,7 +126,10 @@ export default function ServiceShowCase({ dict, locale }: Props) {
               transition={{ duration: 0.5, delay: index * 0.05 }}
               className="group"
             >
-              <Link href={service.href ?? "/" + locale + "/#contact"} className="block h-full">
+              <Link
+                href={service.href ?? '/' + locale + '/#contact'}
+                className="block h-full"
+              >
                 <Card className="h-full p-8 md:p-10 flex flex-col items-start bg-slate-50/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-900 transition-all duration-500 border border-slate-200/60 dark:border-slate-800/60 rounded-[2rem] hover:shadow-[0_0_50px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-none hover:border-myorange-100/20 dark:hover:border-myorange-100/30 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-myorange-100/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

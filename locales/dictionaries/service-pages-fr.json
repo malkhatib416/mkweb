@@ -1,16 +1,8 @@
 {
   "labels": {
     "heroBadge": "Accompagnement freelance premium",
-    "heroHighlights": [
-      "Cadrage clair",
-      "Execution directe",
-      "Suivi fiable"
-    ],
-    "valueCards": [
-      "Performance",
-      "Clarte produit",
-      "Base solide"
-    ],
+    "heroHighlights": ["Cadrage clair", "Execution directe", "Suivi fiable"],
+    "valueCards": ["Performance", "Clarte produit", "Base solide"],
     "territoryLabel": "Zone d'intervention",
     "territoryValue": "Eure-et-Loir et a distance",
     "proofLabel": "Points de confiance",

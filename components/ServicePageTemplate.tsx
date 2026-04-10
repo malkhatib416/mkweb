@@ -44,13 +44,20 @@ export default function ServicePageTemplate({ content, locale }: Props) {
               {content.heroSubtitle}
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Button asChild className="h-12 rounded-full bg-slate-950 px-6 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
+              <Button
+                asChild
+                className="h-12 rounded-full bg-slate-950 px-6 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
+              >
                 <Link href={`/${locale}/#contact`}>
                   {content.primaryCta}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="h-12 rounded-full border-slate-300 px-6 dark:border-slate-700 dark:bg-transparent">
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 rounded-full border-slate-300 px-6 dark:border-slate-700 dark:bg-transparent"
+              >
                 <Link href={`/${locale}/estimation`}>
                   {content.secondaryCta}
                   <ChevronRight className="ml-2 h-4 w-4" />
@@ -179,7 +186,10 @@ export default function ServicePageTemplate({ content, locale }: Props) {
               </h2>
               <ul className="mt-8 space-y-4">
                 {content.techItems.map((item) => (
-                  <li key={item} className="flex gap-3 text-slate-600 dark:text-slate-300">
+                  <li
+                    key={item}
+                    className="flex gap-3 text-slate-600 dark:text-slate-300"
+                  >
                     <Cpu className="mt-0.5 h-5 w-5 shrink-0 text-myorange-100" />
                     <span>{item}</span>
                   </li>
@@ -191,10 +201,15 @@ export default function ServicePageTemplate({ content, locale }: Props) {
                 <p className="mb-4 text-[11px] font-mono uppercase tracking-[0.22em] text-myorange-100">
                   {labels.whyChooseLabel}
                 </p>
-                <h3 className="text-xl font-semibold">{content.whyChooseTitle}</h3>
+                <h3 className="text-xl font-semibold">
+                  {content.whyChooseTitle}
+                </h3>
                 <ul className="mt-5 space-y-4">
                   {content.whyChooseItems.map((item) => (
-                    <li key={item} className="flex gap-3 text-slate-600 dark:text-slate-300">
+                    <li
+                      key={item}
+                      className="flex gap-3 text-slate-600 dark:text-slate-300"
+                    >
                       <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-myorange-100" />
                       <span>{item}</span>
                     </li>
@@ -206,7 +221,9 @@ export default function ServicePageTemplate({ content, locale }: Props) {
                 <p className="mb-4 text-[11px] font-mono uppercase tracking-[0.22em] text-myorange-100">
                   {labels.technologiesLabel}
                 </p>
-                <h3 className="text-xl font-semibold">{content.technologiesTitle}</h3>
+                <h3 className="text-xl font-semibold">
+                  {content.technologiesTitle}
+                </h3>
                 <div className="mt-5 flex flex-wrap gap-3">
                   {content.technologies.map((technology) => (
                     <span
@@ -293,11 +310,20 @@ export default function ServicePageTemplate({ content, locale }: Props) {
                 {content.finalCtaText}
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Button asChild className="h-12 rounded-full bg-myorange-100 px-6 text-white hover:bg-myorange-200">
+                <Button
+                  asChild
+                  className="h-12 rounded-full bg-myorange-100 px-6 text-white hover:bg-myorange-200"
+                >
                   <Link href={`/${locale}/#contact`}>{content.primaryCta}</Link>
                 </Button>
-                <Button asChild variant="outline" className="h-12 rounded-full border-white/20 bg-transparent px-6 text-white hover:bg-white/10 dark:border-slate-300 dark:text-slate-950 dark:hover:bg-slate-100">
-                  <Link href={`/${locale}/estimation`}>{content.secondaryCta}</Link>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="h-12 rounded-full border-white/20 bg-transparent px-6 text-white hover:bg-white/10 dark:border-slate-300 dark:text-slate-950 dark:hover:bg-slate-100"
+                >
+                  <Link href={`/${locale}/estimation`}>
+                    {content.secondaryCta}
+                  </Link>
                 </Button>
               </div>
             </div>

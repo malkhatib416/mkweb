@@ -1,5 +1,6 @@
 'use client';
 
+import { PROJECT_LOCALE_LABELS } from '../locale-options';
 import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -89,7 +90,8 @@ export default function ViewProjectPage() {
               {t.metadata.slug}: {project.slug}
             </span>
             <span>
-              {t.fields.locale}: {t.locale[project.locale]}
+              {t.fields.locale}:{' '}
+              {PROJECT_LOCALE_LABELS[project.locale] ?? project.locale}
             </span>
             <span>
               {t.metadata.created}: {formatDateTime(project.createdAt, 'fr')}

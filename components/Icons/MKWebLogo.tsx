@@ -2,18 +2,12 @@
 
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 const MKWEbLogo = () => {
-  const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   // Dark mode: white logo. Light mode: colored logo (logo.png).
-  const isDark = mounted && resolvedTheme === 'dark';
+  const isDark = resolvedTheme === 'dark';
   const imgPath = isDark ? '/logo-white.png' : '/logo.png';
 
   return (

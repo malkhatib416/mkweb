@@ -2,22 +2,49 @@
  * Project review service - create review links, get by token, submit review
  */
 
-import { db } from '@/db';
-import { projectReview } from '@/db/schema';
-import { eq, and, count, isNull, isNotNull } from 'drizzle-orm';
-import { randomBytes } from 'crypto';
-import type { ProjectReview, ProjectReviewResponse } from '@/types/entities';
+import { db } from "@/db";
+import { projectReview } from "@/db/schema";
+import { buildProjectSummaryMap } from "@/lib/services/project-translations";
+import { eq, and, count, isNull, isNotNull } from "drizzle-orm";
+import { randomBytes } from "crypto";
+import type {
+  ProjectReview,
+  ProjectReviewResponse,
+  ProjectTranslation,
+} from "@/types/entities";
 
 const TOKEN_BYTES = 32;
 const DEFAULT_EXPIRY_DAYS = 30;
+const DEFAULT_LOCALE = "fr";
 
 function generateToken(): string {
-  return randomBytes(TOKEN_BYTES).toString('hex');
+  return randomBytes(TOKEN_BYTES).toString("hex");
+}
+
+async function getProjectTranslationMap(projectIds: string[]) {
+  if (projectIds.length === 0) {
+    return new Map<string, { title: string; slug: string }>();
+  }
+
+  const rows = await db.query.project.findMany({
+    where: (p, { inArray: inArr }) => inArr(p.id, projectIds),
+    with: {
+      translations: {
+        where: (t, { eq: e }) => e(t.entityType, "project"),
+      },
+    },
+  });
+
+  const translations = rows.flatMap(
+    (row) => row.translations as ProjectTranslation[]
+  );
+
+  return buildProjectSummaryMap(translations, DEFAULT_LOCALE);
 }
 
 export async function createReviewLink(
   data: { projectId: string; clientId: string },
-  expiryDays: number = DEFAULT_EXPIRY_DAYS,
+  expiryDays: number = DEFAULT_EXPIRY_DAYS
 ): Promise<ProjectReviewResponse> {
   const { projectId, clientId } = data;
   const token = generateToken();
@@ -66,7 +93,7 @@ export async function getReviewByToken(token: string): Promise<{
   const row = await db.query.projectReview.findFirst({
     where: (r, { eq: e }) => e(r.token, token),
     with: {
-      project: { columns: { title: true, slug: true } },
+      project: true,
       client: { columns: { name: true } },
     },
   });
@@ -75,30 +102,36 @@ export async function getReviewByToken(token: string): Promise<{
     return null;
   }
 
+  const translationMap = await getProjectTranslationMap([row.projectId]);
+  const projectData = translationMap.get(row.projectId);
+  if (!projectData) {
+    return null;
+  }
+
   return {
     review: row as unknown as ProjectReview,
-    project: { title: row.project.title, slug: row.project.slug },
+    project: projectData,
     client: { name: row.client.name },
   };
 }
 
 export async function submitReview(
   token: string,
-  data: { rating: string; reviewText?: string },
+  data: { rating: string; reviewText?: string }
 ): Promise<ProjectReviewResponse> {
   const existing = await db.query.projectReview.findFirst({
     where: (r, { eq: e }) => e(r.token, token),
   });
 
-  if (!existing) throw new Error('Review link not found');
+  if (!existing) throw new Error("Review link not found");
   if (new Date(existing.tokenExpiresAt) < new Date())
-    throw new Error('Review link expired');
-  if (existing.submittedAt) throw new Error('Review already submitted');
+    throw new Error("Review link expired");
+  if (existing.submittedAt) throw new Error("Review already submitted");
 
   const [updated] = await db
     .update(projectReview)
     .set({
-      rating: data.rating as '1' | '2' | '3' | '4' | '5',
+      rating: data.rating as "1" | "2" | "3" | "4" | "5",
       reviewText: data.reviewText || null,
       submittedAt: new Date(),
       updatedAt: new Date(),
@@ -123,7 +156,12 @@ export async function getSubmittedReviewsForProject(projectId: string) {
       a(e(r.projectId, projectId), inn(r.submittedAt)),
     orderBy: (r, { desc: d }) => [d(r.submittedAt!)],
     with: { client: { columns: { name: true, photo: true } } },
-    columns: { reviewText: true, rating: true, submittedAt: true },
+    columns: {
+      reviewText: true,
+      rating: true,
+      submittedAt: true,
+      projectId: true,
+    },
   });
   return rows.map((r) => ({
     reviewText: r.reviewText,
@@ -139,36 +177,42 @@ export async function getSubmittedReviews(limit: number = 10) {
     where: (r, { isNotNull: inn }) => inn(r.submittedAt),
     orderBy: (r, { desc: d }) => [d(r.submittedAt!)],
     limit,
-    with: {
-      client: { columns: { name: true, photo: true } },
-      project: { columns: { title: true } },
+    with: { client: { columns: { name: true, photo: true } } },
+    columns: {
+      reviewText: true,
+      rating: true,
+      submittedAt: true,
+      projectId: true,
     },
-    columns: { reviewText: true, rating: true, submittedAt: true },
   });
+
+  const projectIds = rows.map((r) => r.projectId);
+  const translationMap = await getProjectTranslationMap(projectIds);
+
   return rows.map((r) => ({
     reviewText: r.reviewText,
     rating: r.rating,
     submittedAt: r.submittedAt,
     clientName: r.client.name,
     clientPhoto: r.client.photo,
-    projectTitle: r.project.title,
+    projectTitle: translationMap.get(r.projectId)?.title ?? "Projet",
   }));
 }
 
-export type ReviewListStatus = 'all' | 'pending' | 'submitted';
+export type ReviewListStatus = "all" | "pending" | "submitted";
 
 export async function getAllForAdmin(params: {
   page?: number;
   limit?: number;
   status?: ReviewListStatus;
 }) {
-  const { page = 1, limit = 10, status = 'all' } = params;
+  const { page = 1, limit = 10, status = "all" } = params;
   const offset = (page - 1) * limit;
 
   const baseConditions = [];
-  if (status === 'pending')
+  if (status === "pending")
     baseConditions.push(isNull(projectReview.submittedAt));
-  if (status === 'submitted')
+  if (status === "submitted")
     baseConditions.push(isNotNull(projectReview.submittedAt));
   const whereClause =
     baseConditions.length > 0 ? and(...baseConditions) : undefined;
@@ -179,10 +223,12 @@ export async function getAllForAdmin(params: {
     limit,
     offset,
     with: {
-      project: { columns: { title: true } },
       client: { columns: { name: true } },
     },
   });
+
+  const projectIds = rows.map((r) => r.projectId);
+  const translationMap = await getProjectTranslationMap(projectIds);
 
   const [totalRow] = await db
     .select({ count: count() })
@@ -200,7 +246,7 @@ export async function getAllForAdmin(params: {
     rating: r.rating,
     submittedAt: r.submittedAt,
     createdAt: r.createdAt,
-    projectTitle: r.project.title,
+    projectTitle: translationMap.get(r.projectId)?.title ?? "Projet",
     clientName: r.client.name,
   }));
 

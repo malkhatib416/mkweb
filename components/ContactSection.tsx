@@ -52,7 +52,7 @@ const contactMail = async (formData: IContactForm, dict: Dictionary) => {
   <p>${formData.message}</p>
   `,
     });
-  } catch (error) {
+  } catch {
     throw new Error('Error sending contact mail');
   }
 };

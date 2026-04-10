@@ -8,6 +8,7 @@ import { Loading } from '@/components/ui/loading';
 import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
 import { getBlogImageUrl, useBlog } from '@/lib/hooks/use-blog';
 import { MarkdownRenderer } from '@/lib/markdown';
+import { resolveLocale } from '@/locales/i18n';
 import type { Locale } from '@/types/entities';
 import { formatDateTime } from '@/utils/format-date';
 import { ArrowLeft, Edit } from 'lucide-react';
@@ -25,8 +26,9 @@ export default function ViewBlogPage() {
   const dict = useAdminDictionary();
   const t = dict.admin.blogs;
   const translationT = t.translation;
-  const initialLocale = searchParams.get('locale') ?? undefined;
-  const [locale, setLocale] = useState<Locale | undefined>(initialLocale);
+  const [locale, setLocale] = useState<Locale | undefined>(() =>
+    resolveLocale(searchParams.get('locale')),
+  );
 
   const { blog, error, isLoading } = useBlog(id, locale);
   const [imgError, setImgError] = useState(false);
@@ -169,7 +171,7 @@ export default function ViewBlogPage() {
                 <span className="opacity-50">{t.fields.locale}:</span>
                 <select
                   value={selectedLocale ?? blog.locale}
-                  onChange={(event) => setLocale(event.target.value)}
+                  onChange={(event) => setLocale(event.target.value as Locale)}
                   className="rounded-md border border-border bg-background px-2 py-1 text-xs font-medium text-foreground"
                 >
                   {localeOptions.map((localeOption) => (

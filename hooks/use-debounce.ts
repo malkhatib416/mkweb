@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 /**
  * Returns a debounced value that updates after `delayMs` when `value` changes.
@@ -8,7 +8,6 @@ export function useDebounce<T>(value: T, delayMs: number): T {
 
   useEffect(() => {
     if (delayMs <= 0) {
-      setDebouncedValue(value);
       return;
     }
     const timer = setTimeout(() => setDebouncedValue(value), delayMs);

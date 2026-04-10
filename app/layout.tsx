@@ -58,9 +58,9 @@ export async function generateMetadata(): Promise<Metadata> {
       languages: {
         fr: `${APP_URL}/fr`,
         en: `${APP_URL}/en`,
-          de: `${APP_URL}/de`,
-          it: `${APP_URL}/it`,
-          es: `${APP_URL}/es`,
+        de: `${APP_URL}/de`,
+        it: `${APP_URL}/it`,
+        es: `${APP_URL}/es`,
       },
     },
   };

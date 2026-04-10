@@ -2,13 +2,14 @@
  * Newsletter subscriber service - server-side
  */
 
-import { db } from '@/db';
-import { newsletterSubscriber } from '@/db/schema';
-import { count } from 'drizzle-orm';
+import { db } from "@/db";
+import { newsletterSubscriber } from "@/db/schema";
+import { defaultLocale, type Locale } from "@/locales/i18n";
+import { count } from "drizzle-orm";
 import type {
   NewsletterSubscriber,
   NewsletterSubscriberListResponse,
-} from '@/types/entities';
+} from "@/types/entities";
 
 export interface NewsletterListParams {
   page?: number;
@@ -16,7 +17,7 @@ export interface NewsletterListParams {
 }
 
 export async function getAllSubscribers(
-  params: NewsletterListParams = {},
+  params: NewsletterListParams = {}
 ): Promise<NewsletterSubscriberListResponse> {
   const { page = 1, limit = 50 } = params;
   const offset = (page - 1) * limit;
@@ -45,10 +46,10 @@ export async function getAllSubscribers(
 
 export async function subscribe(
   email: string,
-  locale: 'fr' | 'en' = 'fr',
+  locale: Locale = defaultLocale
 ): Promise<{ subscribed: true } | { subscribed: false; error: string }> {
   const normalized = email.trim().toLowerCase();
-  if (!normalized) return { subscribed: false, error: 'Email is required' };
+  if (!normalized) return { subscribed: false, error: "Email is required" };
 
   const existing = await db.query.newsletterSubscriber.findFirst({
     where: (n, { eq: e }) => e(n.email, normalized),

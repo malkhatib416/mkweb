@@ -555,7 +555,10 @@ export default function NewBlogPage() {
                   <Label className="text-xs font-semibold uppercase tracking-wider opacity-70">
                     {t.fields.locale} *
                   </Label>
-                  <Select value={locale} onValueChange={setLocale}>
+                  <Select
+                    value={locale}
+                    onValueChange={(value) => setLocale(value as Locale)}
+                  >
                     <SelectTrigger className="h-10">
                       <SelectValue />
                     </SelectTrigger>

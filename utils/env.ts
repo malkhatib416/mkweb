@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 export enum ENV_KEY {
-  REPLICATE_API_KEY = 'REPLICATE_API_KEY',
+  REPLICATE_API_KEY = "REPLICATE_API_KEY",
 }
 
 /**

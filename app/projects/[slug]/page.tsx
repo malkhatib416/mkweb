@@ -18,10 +18,6 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   if (!project) return notFound();
 
-  const t = dict.projects ?? {
-    viewProject: 'View project',
-    backToHome: 'Back',
-  };
   const backLabel = dict.common?.backToHome ?? 'Back to home';
 
   return (

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Loading } from '@/components/ui/loading';
 import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
+import { resolveLocale } from '@/locales/i18n';
 import { fetcher } from '@/lib/swr-fetcher';
 import type { CategoryResponse, Locale } from '@/types/entities';
 import { formatDateTime } from '@/utils/format-date';
@@ -25,8 +26,9 @@ export default function ViewCategoryPage() {
   const t = dict.admin.categories;
   const localeT = dict.admin.blogs.locale;
   const translationT = t.translation;
-  const initialLocale = searchParams.get('locale') ?? undefined;
-  const [locale, setLocale] = useState<Locale | undefined>(initialLocale);
+  const [locale, setLocale] = useState<Locale | undefined>(() =>
+    resolveLocale(searchParams.get('locale')),
+  );
 
   const { data, error, isLoading } = useSWR<CategoryResponse>(
     id
@@ -118,7 +120,7 @@ export default function ViewCategoryPage() {
             <span>{dict.admin.blogs.fields.locale}:</span>
             <select
               value={selectedLocale ?? category.locale}
-              onChange={(event) => setLocale(event.target.value)}
+              onChange={(event) => setLocale(event.target.value as Locale)}
               className="rounded-md border border-border bg-background px-2 py-1 text-sm text-foreground"
             >
               {localeOptions.map((localeOption) => (

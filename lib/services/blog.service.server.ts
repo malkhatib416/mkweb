@@ -5,6 +5,7 @@
 
 import { db } from '@/db';
 import { blog, category, translation } from '@/db/schema';
+import { defaultLocale } from '@/locales/i18n';
 import {
   contentValidator,
   localeEnum,
@@ -27,8 +28,6 @@ import type {
 } from '@/types/entities';
 import { and, count, desc, eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
-
-const DEFAULT_LOCALE: Locale = 'fr';
 
 export const blogSchema = z.object({
   title: titleValidator,
@@ -64,7 +63,7 @@ function pickBlogTranslation(
   }
 
   return (
-    translations.find((item) => item.locale === DEFAULT_LOCALE) ??
+    translations.find((item) => item.locale === defaultLocale) ??
     translations[0] ??
     null
   );
@@ -80,7 +79,7 @@ function pickCategoryTranslation(
   }
 
   return (
-    translations.find((item) => item.locale === DEFAULT_LOCALE) ??
+    translations.find((item) => item.locale === defaultLocale) ??
     translations[0] ??
     null
   );
@@ -236,7 +235,7 @@ class BlogServiceServer {
       page = 1,
       limit = 10,
       status,
-      locale = DEFAULT_LOCALE,
+      locale = defaultLocale,
       categoryId,
     } = params;
     const offset = (page - 1) * limit;

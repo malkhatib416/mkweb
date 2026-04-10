@@ -22,7 +22,7 @@ export function AdminDictionaryProvider({
   children: ReactNode;
 }) {
   const key = initialDict == null ? `${DICTIONARY_API}?locale=${locale}` : null;
-  const { data, error, isLoading } = useSWR<Dictionary>(key, fetcher, {
+  const { data, error } = useSWR<Dictionary>(key, fetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: true,
   });

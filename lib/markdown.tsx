@@ -3,7 +3,7 @@
 import { Loading } from '@/components/ui/loading';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 interface MarkdownRendererProps {
   content: string;
@@ -18,9 +18,7 @@ export function MarkdownRenderer({
   content,
   className = '',
 }: MarkdownRendererProps) {
-  const [html, setHtml] = useState<string>('');
-
-  useEffect(() => {
+  const html = useMemo(() => {
     if (typeof window === 'undefined') return;
 
     // Configure marked options
@@ -67,7 +65,7 @@ export function MarkdownRenderer({
       ALLOW_DATA_ATTR: false,
     });
 
-    setHtml(sanitizedHtml);
+    return sanitizedHtml;
   }, [content]);
 
   if (!html) {

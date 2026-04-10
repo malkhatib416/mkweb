@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { fetcher } from '@/lib/swr-fetcher';
+import { locales, type Locale } from '@/locales/i18n';
 import type { Blog } from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
 import { motion } from 'framer-motion';
@@ -93,14 +94,15 @@ function useSuggestions(
     () => selectedCategoryIds.slice().sort(),
     [selectedCategoryIds],
   );
+  const categoryIdsKey = useMemo(() => categoryIds.join(','), [categoryIds]);
   const key = useMemo(
     () =>
-      `/api/admin/suggestions?locale=${locale}&count=${count}&categoryIds=${categoryIds.join(',')}`,
-    [locale, count, categoryIds.join(',')],
+      `/api/admin/suggestions?locale=${locale}&count=${count}&categoryIds=${categoryIdsKey}`,
+    [locale, count, categoryIdsKey],
   );
   const fallback = useMemo(
     () => loadCachedSuggestions(locale, count, categoryIds),
-    [locale, count, categoryIds.join(',')],
+    [locale, count, categoryIds],
   );
   return useSWR<SuggestionsResponse>(key, fetcher, {
     revalidateOnFocus: false,
@@ -134,7 +136,7 @@ export default function SuggestionsPage() {
     deselectAll: 'Deselect all',
   };
 
-  const [locale, setLocale] = useState<'fr' | 'en'>('fr');
+  const [locale, setLocale] = useState<Locale>('fr');
   const [count, setCount] = useState<number>(8);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<Set<string>>(
     () => new Set(),
@@ -145,7 +147,10 @@ export default function SuggestionsPage() {
     '/api/admin/categories?limit=100',
     fetcher,
   );
-  const categories = categoriesData?.data ?? [];
+  const categories = useMemo(
+    () => categoriesData?.data ?? [],
+    [categoriesData],
+  );
 
   useEffect(() => {
     if (categories.length > 0 && !categoriesInitializedRef.current) {
@@ -164,7 +169,7 @@ export default function SuggestionsPage() {
     selectedCategoryIdsList,
   );
 
-  const suggestionsRaw = data?.data?.suggestions ?? [];
+  const suggestionsRaw = useMemo(() => data?.data?.suggestions ?? [], [data]);
   const [removedSuggestions, setRemovedSuggestions] = useState<Set<string>>(
     () => new Set(),
   );
@@ -281,14 +286,17 @@ export default function SuggestionsPage() {
           <div className="flex flex-wrap items-center gap-2">
             <Select
               value={locale}
-              onValueChange={(v) => setLocale(v as 'fr' | 'en')}
+              onValueChange={(value) => setLocale(value as Locale)}
             >
               <SelectTrigger className="w-[90px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="fr">{t.localeFr ?? 'FR'}</SelectItem>
-                <SelectItem value="en">{t.localeEn ?? 'EN'}</SelectItem>
+                {locales.map((localeOption) => (
+                  <SelectItem key={localeOption} value={localeOption}>
+                    {localeOption.toUpperCase()}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <Select

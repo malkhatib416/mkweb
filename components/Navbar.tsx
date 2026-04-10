@@ -1,7 +1,10 @@
 'use client';
 
+import deDict from '@/locales/dictionaries/de.json';
 import enDict from '@/locales/dictionaries/en.json';
+import esDict from '@/locales/dictionaries/es.json';
 import frDict from '@/locales/dictionaries/fr.json';
+import itDict from '@/locales/dictionaries/it.json';
 import { isValidLocale, type Locale } from '@/locales/i18n';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
@@ -11,7 +14,13 @@ import MKWEbLogo from './Icons/MKWebLogo';
 import LanguageSwitcher from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 
-const dictionaries = { fr: frDict, en: enDict } as const;
+const dictionaries: Record<Locale, typeof frDict> = {
+  fr: frDict,
+  en: enDict,
+  de: deDict,
+  it: itDict,
+  es: esDict,
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

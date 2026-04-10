@@ -1,8 +1,9 @@
-import type { LucideIcon } from 'lucide-react';
-import type { ReactNode } from 'react';
+/* eslint-disable no-unused-vars */
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 /** Filter types supported by DataGrid */
-export type DataGridFilterType = 'text' | 'select';
+export type DataGridFilterType = "text" | "select";
 
 /** Options for select filter: string[] or { value, label }[] */
 export type DataGridSelectOption = string | { value: string; label: string };
@@ -15,13 +16,13 @@ export interface DataGridFilterBase {
 }
 
 export interface DataGridFilterText extends DataGridFilterBase {
-  type: 'text';
+  type: "text";
   /** Initial value or for controlled use */
   defaultValue?: string;
 }
 
 export interface DataGridFilterSelect extends DataGridFilterBase {
-  type: 'select';
+  type: "select";
   options: DataGridSelectOption[];
   /** Optional "all" / empty value for clearing the filter */
   allowEmpty?: boolean;
@@ -32,7 +33,7 @@ export type DataGridFilter = DataGridFilterText | DataGridFilterSelect;
 
 /** Params built by the grid: filter values + page + limit. F is the shape of extra filter fields. */
 export type DataGridParams<
-  F extends Record<string, unknown> = Record<string, unknown>,
+  F extends Record<string, unknown> = Record<string, unknown>
 > = F & {
   page: number;
   limit: number;
@@ -59,7 +60,7 @@ export interface DataGridColumn<T> {
   /** Optional width, e.g. "w-[120px]" or "150px" */
   width?: string;
   /** Align: default "left" */
-  align?: 'left' | 'center' | 'right';
+  align?: "left" | "center" | "right";
 }
 
 export interface DataGridAction<T> {
@@ -67,12 +68,12 @@ export interface DataGridAction<T> {
   label: string;
   onClick: (row: T) => void;
   variant?:
-    | 'default'
-    | 'destructive'
-    | 'ghost'
-    | 'outline'
-    | 'link'
-    | 'secondary';
+    | "default"
+    | "destructive"
+    | "ghost"
+    | "outline"
+    | "link"
+    | "secondary";
   icon?: LucideIcon;
   /** e.g. "text-red-600 hover:text-red-700 hover:bg-red-50" for delete */
   className?: string;
@@ -90,12 +91,12 @@ export interface DataGridEmptyConfig {
 
 /** Extract filter field names and their value types from filter config. */
 export type DataGridFilterValues<F extends DataGridFilter[]> = {
-  [K in F[number]['name']]: string | undefined;
+  [K in F[number]["name"]]: string | undefined;
 };
 
 export interface DataGridConfig<
   T,
-  F extends DataGridFilter[] = DataGridFilter[],
+  F extends DataGridFilter[] = DataGridFilter[]
   // Params = DataGridParams<DataGridFilterValues<F>>
 > {
   /** Unique SWR key part, e.g. "redirects", "tags". Full key is [swrKey, params]. */
@@ -106,7 +107,7 @@ export interface DataGridConfig<
    * Most list fetchers expect (key) => api(key[1]); if your fetcher expects only params, use (key) => myFetcher(key[1]).
    */
   fetcher: (
-    key: readonly [string, DataGridParams<DataGridFilterValues<F>>],
+    key: readonly [string, DataGridParams<DataGridFilterValues<F>>]
   ) => Promise<DataGridResponse<T>>;
   filters?: F;
   columns: DataGridColumn<T>[];

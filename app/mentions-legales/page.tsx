@@ -1,4 +1,4 @@
-import { Building2, Globe, Mail, Phone, User } from 'lucide-react';
+import { Building2, Globe, Mail, Phone } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import { getDictionary } from '@/locales/dictionaries';

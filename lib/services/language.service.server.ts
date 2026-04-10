@@ -2,15 +2,16 @@
  * Language service - Server-side database operations
  */
 
-import { db } from '@/db';
-import { blog, category, language, translation } from '@/db/schema';
+import { db } from "@/db";
+import { blog, category, language, translation } from "@/db/schema";
 import {
   translateBlogContent,
   translateCategoryContent,
-} from '@/lib/services/ai.service.server';
-import { generateSlug } from '@/utils/utils';
-import { count, eq } from 'drizzle-orm';
-import { z } from 'zod';
+} from "@/lib/services/ai.service.server";
+import { defaultLocale } from "@/locales/i18n";
+import { generateSlug } from "@/utils/utils";
+import { count, eq } from "drizzle-orm";
+import { z } from "zod";
 import type {
   BlogTranslation,
   CategoryTranslation,
@@ -20,11 +21,11 @@ import type {
   LanguageResponse,
   CreateLanguageDto,
   UpdateLanguageDto,
-} from '@/types/entities';
+} from "@/types/entities";
 
 export const languageSchema = z.object({
-  code: z.string().min(1, 'Code is required').max(10),
-  name: z.string().min(1, 'Name is required'),
+  code: z.string().min(1, "Code is required").max(10),
+  name: z.string().min(1, "Name is required"),
 });
 
 export const languageUpdateSchema = z.object({
@@ -33,20 +34,19 @@ export const languageUpdateSchema = z.object({
 });
 
 function pickSourceTranslation<T extends { locale: string }>(
-  translations: T[],
+  translations: T[]
 ) {
   return (
-    translations.find((item) => item.locale === 'fr') ??
-    translations.find((item) => item.locale === 'en') ??
+    translations.find((item) => item.locale === defaultLocale) ??
     translations[0] ??
     null
   );
 }
 
 async function ensureUniqueTranslationSlug(
-  entityType: 'blog' | 'category',
+  entityType: "blog" | "category",
   locale: string,
-  input: string,
+  input: string
 ) {
   const normalizedBase = generateSlug(input) || `${entityType}-${Date.now()}`;
   let candidate = normalizedBase;
@@ -58,7 +58,7 @@ async function ensureUniqueTranslationSlug(
         a(
           e(t.entityType, entityType),
           e(t.locale, locale),
-          e(t.slug, candidate),
+          e(t.slug, candidate)
         ),
     });
 
@@ -77,7 +77,7 @@ async function backfillBlogTranslations(target: {
 }) {
   const [blogs, blogTranslations] = await Promise.all([
     db.select({ id: blog.id }).from(blog),
-    db.select().from(translation).where(eq(translation.entityType, 'blog')),
+    db.select().from(translation).where(eq(translation.entityType, "blog")),
   ]);
 
   const translationsByBlogId = new Map<string, BlogTranslation[]>();
@@ -100,14 +100,14 @@ async function backfillBlogTranslations(target: {
 
     const source = pickSourceTranslation(
       existingTranslations.filter((item): item is BlogTranslation =>
-        Boolean(item.title && item.content),
-      ),
+        Boolean(item.title && item.content)
+      )
     );
 
     if (!source?.title || !source.content) {
       skippedCount += 1;
       console.warn(
-        `Skipping blog ${currentBlog.id} during language backfill: no usable source translation found`,
+        `Skipping blog ${currentBlog.id} during language backfill: no usable source translation found`
       );
       continue;
     }
@@ -123,13 +123,13 @@ async function backfillBlogTranslations(target: {
     });
 
     const uniqueSlug = await ensureUniqueTranslationSlug(
-      'blog',
+      "blog",
       target.code,
-      localized.slug || localized.title || source.slug,
+      localized.slug || localized.title || source.slug
     );
 
     await db.insert(translation).values({
-      entityType: 'blog',
+      entityType: "blog",
       blogId: currentBlog.id,
       locale: target.code,
       slug: uniqueSlug,
@@ -158,7 +158,7 @@ async function backfillCategoryTranslations(target: {
 }) {
   const [categories, categoryTranslations] = await Promise.all([
     db.select({ id: category.id }).from(category),
-    db.select().from(translation).where(eq(translation.entityType, 'category')),
+    db.select().from(translation).where(eq(translation.entityType, "category")),
   ]);
 
   const translationsByCategoryId = new Map<string, CategoryTranslation[]>();
@@ -183,14 +183,14 @@ async function backfillCategoryTranslations(target: {
 
     const source = pickSourceTranslation(
       existingTranslations.filter((item): item is CategoryTranslation =>
-        Boolean(item.name),
-      ),
+        Boolean(item.name)
+      )
     );
 
     if (!source?.name) {
       skippedCount += 1;
       console.warn(
-        `Skipping category ${currentCategory.id} during language backfill: no usable source translation found`,
+        `Skipping category ${currentCategory.id} during language backfill: no usable source translation found`
       );
       continue;
     }
@@ -205,13 +205,13 @@ async function backfillCategoryTranslations(target: {
     });
 
     const uniqueSlug = await ensureUniqueTranslationSlug(
-      'category',
+      "category",
       target.code,
-      localized.slug || localized.name || source.slug,
+      localized.slug || localized.name || source.slug
     );
 
     await db.insert(translation).values({
-      entityType: 'category',
+      entityType: "category",
       categoryId: currentCategory.id,
       locale: target.code,
       slug: uniqueSlug,
@@ -251,7 +251,7 @@ async function backfillTranslationsForLanguage(target: {
 }
 
 export async function getAllLanguages(
-  params: LanguageListParams = {},
+  params: LanguageListParams = {}
 ): Promise<LanguageListResponse> {
   const { page = 1, limit = 50 } = params;
   const offset = (page - 1) * limit;
@@ -281,12 +281,12 @@ export async function getLanguageById(id: string): Promise<LanguageResponse> {
     where: (l, { eq: e }) => e(l.id, id),
   });
 
-  if (!row) throw new Error('Language not found');
+  if (!row) throw new Error("Language not found");
   return { data: row as Language };
 }
 
 export async function createLanguage(
-  data: CreateLanguageDto,
+  data: CreateLanguageDto
 ): Promise<LanguageResponse> {
   const validated = languageSchema.parse(data);
 
@@ -294,7 +294,7 @@ export async function createLanguage(
     where: (l, { eq: e }) => e(l.code, validated.code),
   });
   if (existing) {
-    throw new Error('Language code already exists');
+    throw new Error("Language code already exists");
   }
 
   const [created] = await db
@@ -318,14 +318,14 @@ export async function createLanguage(
 
 export async function updateLanguage(
   id: string,
-  data: UpdateLanguageDto,
+  data: UpdateLanguageDto
 ): Promise<LanguageResponse> {
   const validated = languageUpdateSchema.parse(data);
 
   const existing = await db.query.language.findFirst({
     where: (l, { eq: e }) => e(l.id, id),
   });
-  if (!existing) throw new Error('Language not found');
+  if (!existing) throw new Error("Language not found");
 
   const newCode = validated.code;
   if (newCode != null && newCode !== existing.code) {
@@ -333,7 +333,7 @@ export async function updateLanguage(
       where: (l, { eq: e }) => e(l.code, newCode),
     });
     if (codeExists) {
-      throw new Error('Language code already exists');
+      throw new Error("Language code already exists");
     }
   }
 
@@ -346,7 +346,7 @@ export async function updateLanguage(
     .where(eq(language.id, id))
     .returning();
 
-  if (!updated) throw new Error('Language not found');
+  if (!updated) throw new Error("Language not found");
   return { data: updated as Language };
 }
 
@@ -356,5 +356,5 @@ export async function deleteLanguage(id: string): Promise<void> {
     .where(eq(language.id, id))
     .returning();
 
-  if (!deleted) throw new Error('Language not found');
+  if (!deleted) throw new Error("Language not found");
 }

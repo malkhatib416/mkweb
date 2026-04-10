@@ -1,24 +1,24 @@
-import en from './dictionaries/service-pages-en.json';
-import fr from './dictionaries/service-pages-fr.json';
-import de from './dictionaries/service-pages-de.json';
-import it from './dictionaries/service-pages-it.json';
-import es from './dictionaries/service-pages-es.json';
-import type { Locale } from './i18n';
+import en from "./dictionaries/service-pages-en.json";
+import fr from "./dictionaries/service-pages-fr.json";
+import de from "./dictionaries/service-pages-de.json";
+import it from "./dictionaries/service-pages-it.json";
+import es from "./dictionaries/service-pages-es.json";
+import type { Locale } from "./i18n";
 
 const dictionaries = { fr, en, de, it, es } as const;
 const pageOrder = [
-  'showcase',
-  'webapp',
-  'mobileapp',
-  'ecommerce',
-  'redesign',
-  'maintenance',
+  "showcase",
+  "webapp",
+  "mobileapp",
+  "ecommerce",
+  "redesign",
+  "maintenance",
 ] as const;
 
 export type ServicePageDictionary = typeof fr;
-export type ServicePageLabels = ServicePageDictionary['labels'];
-export type ServicePageKey = (typeof pageOrder)[number];
-export type ServicePageContent = ServicePageDictionary['pages'][ServicePageKey];
+export type ServicePageLabels = ServicePageDictionary["labels"];
+export type ServicePageKey = typeof pageOrder[number];
+export type ServicePageContent = ServicePageDictionary["pages"][ServicePageKey];
 
 export function getServicePageLabels(locale: Locale) {
   return dictionaries[locale].labels;
@@ -49,6 +49,9 @@ export function getServiceLinks(locale: Locale) {
 
 export function getAllServiceSlugs() {
   return (Object.keys(dictionaries) as Locale[]).flatMap((locale) =>
-    pageOrder.map((key) => ({ locale, slug: dictionaries[locale].pages[key].slug })),
+    pageOrder.map((key) => ({
+      locale,
+      slug: dictionaries[locale].pages[key].slug,
+    }))
   );
 }

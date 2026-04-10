@@ -19,6 +19,7 @@ import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
 import { useBlog } from '@/lib/hooks/use-blog';
 import { blogService } from '@/lib/services/blog.service';
 import { fetcher } from '@/lib/swr-fetcher';
+import { resolveLocale } from '@/locales/i18n';
 import type { CategoryListResponse, Locale, Status } from '@/types/entities';
 import {
   ArrowLeft,
@@ -45,8 +46,9 @@ export default function EditBlogPage() {
   const localeT = t.locale;
   const translationT = t.translation;
 
-  const initialLocale = searchParams.get('locale') ?? undefined;
-  const [locale, setLocale] = useState<Locale | undefined>(initialLocale);
+  const [locale, setLocale] = useState<Locale | undefined>(() =>
+    resolveLocale(searchParams.get('locale')),
+  );
   const { blog, error, isLoading: isFetching } = useBlog(id, locale);
 
   const [title, setTitle] = useState('');
@@ -269,7 +271,10 @@ export default function EditBlogPage() {
                 <Label htmlFor="locale" className="text-sm font-semibold">
                   {t.fields.locale} *
                 </Label>
-                <Select value={locale ?? blog.locale} onValueChange={setLocale}>
+                <Select
+                  value={locale ?? blog.locale}
+                  onValueChange={(value) => setLocale(value as Locale)}
+                >
                   <SelectTrigger id="locale">
                     <SelectValue placeholder={t.fields.locale} />
                   </SelectTrigger>
@@ -465,7 +470,10 @@ export default function EditBlogPage() {
                 <Label className="text-xs font-semibold uppercase tracking-wider opacity-70">
                   {t.fields.locale} *
                 </Label>
-                <Select value={locale} onValueChange={setLocale}>
+                <Select
+                  value={locale}
+                  onValueChange={(value) => setLocale(value as Locale)}
+                >
                   <SelectTrigger className="h-10">
                     <SelectValue />
                   </SelectTrigger>

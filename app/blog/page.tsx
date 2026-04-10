@@ -4,6 +4,7 @@ import { getAllCategories } from '@/lib/services/category.service.server';
 import { getDictionary } from '@/locales/dictionaries';
 import { isValidLocale } from '@/locales/i18n';
 import type { BlogPost } from '@/types';
+// eslint-disable-next-line no-unused-vars
 import type { Blog } from '@/types/entities';
 import BlogPage from './_components/blog-page';
 

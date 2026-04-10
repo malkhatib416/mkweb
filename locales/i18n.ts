@@ -1,9 +1,17 @@
-export const locales = ['fr', 'en', 'de', 'it', 'es'] as const;
-export const defaultLocale = 'fr' as const;
+export const locales = ["fr", "en", "de", "it", "es"] as const;
+export const defaultLocale = "fr" as const;
 
-export type Locale = (typeof locales)[number];
+export type Locale = typeof locales[number];
 
 export function isValidLocale(locale?: string): locale is Locale {
   if (!locale) return false;
   return (locales as readonly string[]).includes(locale);
+}
+
+export function resolveLocale(
+  locale: string | null | undefined,
+  fallback?: Locale
+): Locale | undefined {
+  const candidate = locale ?? undefined;
+  return isValidLocale(candidate) ? candidate : fallback;
 }

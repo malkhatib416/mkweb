@@ -3,28 +3,46 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { isValidLocale } from '@/locales/i18n';
+import { isValidLocale, type Locale } from '@/locales/i18n';
+
+const content: Record<
+  Locale,
+  { title: string; description: string; backHome: string }
+> = {
+  fr: {
+    title: 'Page introuvable',
+    description:
+      "Oups ! La page que vous cherchez n'existe pas ou a été déplacée.",
+    backHome: "Retour à l'accueil",
+  },
+  en: {
+    title: 'Page not found',
+    description:
+      "Oops! The page you're looking for doesn't exist or has been moved.",
+    backHome: 'Back to home',
+  },
+  de: {
+    title: 'Seite nicht gefunden',
+    description: 'Die gesuchte Seite existiert nicht oder wurde verschoben.',
+    backHome: 'Zur Startseite',
+  },
+  it: {
+    title: 'Pagina non trovata',
+    description: 'La pagina che stai cercando non esiste o è stata spostata.',
+    backHome: 'Torna alla home',
+  },
+  es: {
+    title: 'Página no encontrada',
+    description: 'La página que buscas no existe o ha sido movida.',
+    backHome: 'Volver al inicio',
+  },
+};
 
 export default function NotFound() {
   const pathname = usePathname();
   const pathSegments = pathname.split('/').filter(Boolean);
   const localeFromPath = pathSegments[0];
   const currentLocale = isValidLocale(localeFromPath) ? localeFromPath : 'fr';
-
-  const content = {
-    fr: {
-      title: 'Page introuvable',
-      description:
-        "Oups ! La page que vous cherchez n'existe pas ou a été déplacée.",
-      backHome: "Retour à l'accueil",
-    },
-    en: {
-      title: 'Page not found',
-      description:
-        "Oops! The page you're looking for doesn't exist or has been moved.",
-      backHome: 'Back to home',
-    },
-  };
 
   const t = content[currentLocale];
 

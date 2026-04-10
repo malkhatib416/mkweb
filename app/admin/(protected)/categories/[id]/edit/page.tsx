@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useAdminLanguages } from '@/lib/hooks/use-admin-languages';
+import { resolveLocale } from '@/locales/i18n';
 import { categoryService } from '@/lib/services/category.service';
 import { fetcher } from '@/lib/swr-fetcher';
 import type { CategoryResponse, Locale } from '@/types/entities';
@@ -35,8 +36,9 @@ export default function EditCategoryPage() {
   const t = dict.admin.categories;
   const localeT = dict.admin.blogs.locale;
   const translationT = t.translation;
-  const initialLocale = searchParams.get('locale');
-  const [locale, setLocale] = useState<Locale>(initialLocale ?? 'fr');
+  const [locale, setLocale] = useState<Locale>(
+    () => resolveLocale(searchParams.get('locale'), 'fr') ?? 'fr',
+  );
 
   const {
     data,
@@ -169,7 +171,10 @@ export default function EditCategoryPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="locale">{dict.admin.blogs.fields.locale} *</Label>
-              <Select value={locale} onValueChange={setLocale}>
+              <Select
+                value={locale}
+                onValueChange={(value) => setLocale(value as Locale)}
+              >
                 <SelectTrigger id="locale">
                   <SelectValue placeholder={dict.admin.blogs.fields.locale} />
                 </SelectTrigger>

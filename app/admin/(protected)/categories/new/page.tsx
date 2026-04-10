@@ -95,7 +95,10 @@ export default function NewCategoryPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="locale">{dict.admin.blogs.fields.locale} *</Label>
-              <Select value={locale} onValueChange={setLocale}>
+              <Select
+                value={locale}
+                onValueChange={(value) => setLocale(value as Locale)}
+              >
                 <SelectTrigger id="locale">
                   <SelectValue placeholder={dict.admin.blogs.fields.locale} />
                 </SelectTrigger>

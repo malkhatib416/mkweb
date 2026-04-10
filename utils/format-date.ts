@@ -3,14 +3,20 @@
  * Use these helpers instead of custom toLocaleDateString / formatDate logic.
  */
 
-import moment from 'moment';
-import 'moment/locale/fr';
-import 'moment/locale/en-gb';
-import type { Locale } from '@/locales/i18n';
+import moment from "moment";
+import "moment/locale/de";
+import "moment/locale/fr";
+import "moment/locale/en-gb";
+import "moment/locale/es";
+import "moment/locale/it";
+import { defaultLocale, type Locale } from "@/locales/i18n";
 
 const momentLocales: Record<Locale, string> = {
-  fr: 'fr',
-  en: 'en-gb', // moment has no 'en' file; default is en, we use en-gb for consistency
+  fr: "fr",
+  en: "en-gb", // moment has no 'en' file; default is en, we use en-gb for consistency
+  de: "de",
+  it: "it",
+  es: "es",
 };
 
 /**
@@ -19,11 +25,11 @@ const momentLocales: Record<Locale, string> = {
  */
 export function formatDate(
   date: Date | string | number,
-  locale: Locale = 'fr',
+  locale: Locale = defaultLocale
 ): string {
   const m = moment(date);
   m.locale(momentLocales[locale] ?? locale);
-  return m.format('LL');
+  return m.format("LL");
 }
 
 /**
@@ -32,11 +38,11 @@ export function formatDate(
  */
 export function formatDateTime(
   date: Date | string | number,
-  locale: Locale = 'fr',
+  locale: Locale = defaultLocale
 ): string {
   const m = moment(date);
   m.locale(momentLocales[locale] ?? locale);
-  return m.format('L LTS');
+  return m.format("L LTS");
 }
 
 /**
@@ -44,8 +50,8 @@ export function formatDateTime(
  */
 export function formatRelative(
   date: Date | string | number,
-  locale: Locale = 'fr',
-  base?: Date | string | number,
+  locale: Locale = defaultLocale,
+  base?: Date | string | number
 ): string {
   const m = moment(date);
   m.locale(momentLocales[locale] ?? locale);

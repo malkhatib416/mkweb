@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 /**
  * Expose React's JSX namespace globally so libraries like react-markdown
  * (used by @uiw/react-md-editor) can resolve "JSX.IntrinsicElements" when
  * TypeScript uses "jsx": "react-jsx" (React 17+ transform).
  */
-import type React from 'react';
+import type React from "react";
 
 declare global {
   namespace JSX {

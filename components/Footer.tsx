@@ -3,8 +3,11 @@
 import { Button } from '@/components/ui/button';
 import { getServiceLinks } from '@/locales/service-pages';
 import { Input } from '@/components/ui/input';
+import deDict from '@/locales/dictionaries/de.json';
 import enDict from '@/locales/dictionaries/en.json';
+import esDict from '@/locales/dictionaries/es.json';
 import frDict from '@/locales/dictionaries/fr.json';
+import itDict from '@/locales/dictionaries/it.json';
 import { isValidLocale, type Locale } from '@/locales/i18n';
 import { EMAIL, PHONE } from '@/utils/consts';
 import { Linkedin, Mail, Phone } from 'lucide-react';
@@ -18,7 +21,10 @@ import MKWEbLogo from './Icons/MKWebLogo';
 const dictionaries = {
   fr: frDict,
   en: enDict,
-};
+  de: deDict,
+  it: itDict,
+  es: esDict,
+} satisfies Record<Locale, typeof frDict>;
 
 const SubFooter = ({ locale }: { locale: Locale }) => {
   const date = new Date();

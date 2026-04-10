@@ -5,6 +5,7 @@
 
 import { db } from '@/db';
 import { category, translation } from '@/db/schema';
+import { defaultLocale } from '@/locales/i18n';
 import { localeEnum, slugValidator } from '@/lib/validations/entities';
 import type {
   Category,
@@ -18,8 +19,6 @@ import type {
 } from '@/types/entities';
 import { and, count, desc, eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
-
-const DEFAULT_LOCALE: Locale = 'fr';
 
 export const categorySchema = z.object({
   locale: localeEnum,
@@ -45,7 +44,7 @@ function pickCategoryTranslation(
   }
 
   return (
-    translations.find((item) => item.locale === DEFAULT_LOCALE) ??
+    translations.find((item) => item.locale === defaultLocale) ??
     translations[0] ??
     null
   );
@@ -114,7 +113,7 @@ async function assertCategorySlugAvailable(
 export async function getAllCategories(
   params: CategoryListParams = {},
 ): Promise<CategoryListResponse> {
-  const { page = 1, limit = 100, locale = DEFAULT_LOCALE } = params;
+  const { page = 1, limit = 100, locale = defaultLocale } = params;
   const offset = (page - 1) * limit;
 
   const rows = await db

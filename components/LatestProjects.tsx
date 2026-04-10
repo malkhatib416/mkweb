@@ -86,11 +86,8 @@ const getProjects = (dict: Dictionary) => [
   // },
 ];
 
-export default function LatestProjects({
-  dict,
-  locale,
-  dbProjects = [],
-}: Props) {
+export default function LatestProjects(props: Props) {
+  const { dict, dbProjects = [] } = props;
   const staticProjects = getProjects(dict);
   const projects =
     dbProjects.length > 0
@@ -111,12 +108,6 @@ export default function LatestProjects({
           fromDb: true,
         }))
       : staticProjects.map((p) => ({ ...p, fromDb: false as const, slug: '' }));
-
-  const getStatusText = (status: string) => {
-    if (status === 'online') return dict.projects.status.online;
-    if (status === 'development') return dict.projects.status.development;
-    return dict.projects.status.completed;
-  };
 
   return (
     <section
