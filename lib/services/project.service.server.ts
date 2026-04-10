@@ -15,7 +15,12 @@ import {
   statusEnum,
   titleValidator,
 } from '@/lib/validations/entities';
-import { defaultLocale, isValidLocale, locales, type Locale } from '@/locales/i18n';
+import {
+  defaultLocale,
+  isValidLocale,
+  locales,
+  type Locale,
+} from '@/locales/i18n';
 import type {
   CreateProjectDto,
   Project,
@@ -30,9 +35,9 @@ import { z } from 'zod';
 
 const projectLocaleEnum = z.enum(locales);
 
-function hasProjectRelation<T extends { project: typeof project.$inferSelect | null }>(
-  row: T,
-): row is T & { project: typeof project.$inferSelect } {
+function hasProjectRelation<
+  T extends { project: typeof project.$inferSelect | null },
+>(row: T): row is T & { project: typeof project.$inferSelect } {
   return row.project !== null;
 }
 
@@ -82,11 +87,7 @@ class ProjectServiceServer {
               e(t.locale, locale),
               n(t.id, excludeTranslationId),
             )
-          : a(
-              e(t.entityType, 'project'),
-              e(t.slug, slug),
-              e(t.locale, locale),
-            ),
+          : a(e(t.entityType, 'project'), e(t.slug, slug), e(t.locale, locale)),
     });
 
     if (existing) {
@@ -136,7 +137,8 @@ class ProjectServiceServer {
         .filter((row) => (clientId ? row.project.clientId === clientId : true))
         .sort(
           (left, right) =>
-            right.project.createdAt.getTime() - left.project.createdAt.getTime(),
+            right.project.createdAt.getTime() -
+            left.project.createdAt.getTime(),
         );
 
       total = filteredRows.length;
@@ -151,8 +153,7 @@ class ProjectServiceServer {
         );
     } else {
       const rows = await db.query.project.findMany({
-        where:
-          projectWhere.length > 0 ? and(...projectWhere) : undefined,
+        where: projectWhere.length > 0 ? and(...projectWhere) : undefined,
         orderBy: (p, { desc: d }) => [d(p.createdAt)],
         limit,
         offset,
@@ -218,7 +219,9 @@ class ProjectServiceServer {
       };
     }
 
-    return { data: mapProjectFromTranslations(projectItem, translations, locale) };
+    return {
+      data: mapProjectFromTranslations(projectItem, translations, locale),
+    };
   }
 
   /**
@@ -269,7 +272,10 @@ class ProjectServiceServer {
     const projectWithTranslations = await this.getProjectWithTranslations(id);
     const translations =
       (projectWithTranslations?.translations as ProjectTranslation[]) ?? [];
-    const pickedLocale = pickProjectTranslation(translations, undefined)?.locale;
+    const pickedLocale = pickProjectTranslation(
+      translations,
+      undefined,
+    )?.locale;
     const targetLocale: Locale =
       validated.locale ??
       (isValidLocale(pickedLocale) ? pickedLocale : undefined) ??
@@ -295,7 +301,9 @@ class ProjectServiceServer {
           ...(validated.description !== undefined && {
             description: validated.description ?? null,
           }),
-          ...(validated.content !== undefined && { content: validated.content }),
+          ...(validated.content !== undefined && {
+            content: validated.content,
+          }),
           updatedAt: new Date(),
         })
         .where(eq(translation.id, currentTranslation.id));
@@ -319,7 +327,9 @@ class ProjectServiceServer {
       .update(project)
       .set({
         ...(validated.status !== undefined && { status: validated.status }),
-        ...(validated.clientId !== undefined && { clientId: validated.clientId }),
+        ...(validated.clientId !== undefined && {
+          clientId: validated.clientId,
+        }),
         updatedAt: new Date(),
       })
       .where(eq(project.id, id));
@@ -350,11 +360,7 @@ class ProjectServiceServer {
   ): Promise<Project | null> {
     const translationItem = await db.query.translation.findFirst({
       where: (t, { eq: e, and: a }) =>
-        a(
-          e(t.entityType, 'project'),
-          e(t.slug, slug),
-          e(t.locale, locale),
-        ),
+        a(e(t.entityType, 'project'), e(t.slug, slug), e(t.locale, locale)),
       with: {
         project: {
           with: {
@@ -366,7 +372,10 @@ class ProjectServiceServer {
       },
     });
 
-    if (!translationItem?.project || translationItem.project.status !== 'published') {
+    if (
+      !translationItem?.project ||
+      translationItem.project.status !== 'published'
+    ) {
       return null;
     }
 
@@ -404,10 +413,10 @@ class ProjectServiceServer {
       )
       .slice(0, limit)
       .map((row) =>
-      mapProjectFromTranslations(
+        mapProjectFromTranslations(
           row.project,
           row.project.translations as ProjectTranslation[],
-        locale,
+          locale,
         ),
       );
   }

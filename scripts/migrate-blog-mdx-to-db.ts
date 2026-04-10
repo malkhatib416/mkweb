@@ -15,17 +15,17 @@
  * Missing languages/categories are created automatically from the MDX data.
  */
 
-import { eq } from "drizzle-orm";
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-import { db } from "../db";
-import { blog, category, language, translation } from "../db/schema";
-import { CATEGORIES_TO_SEED, LANGUAGES_TO_SEED } from "./consts";
+import { eq } from 'drizzle-orm';
+import fs from 'fs';
+import matter from 'gray-matter';
+import path from 'path';
+import { db } from '../db';
+import { blog, category, language, translation } from '../db/schema';
+import { CATEGORIES_TO_SEED, LANGUAGES_TO_SEED } from './consts';
 
-const CONTENT_DIR = path.join(process.cwd(), "content/blog");
-const LOCALES = ["fr", "en"] as const;
-type Locale = typeof LOCALES[number];
+const CONTENT_DIR = path.join(process.cwd(), 'content/blog');
+const LOCALES = ['fr', 'en'] as const;
+type Locale = (typeof LOCALES)[number];
 
 interface MdxPost {
   slug: string;
@@ -48,7 +48,7 @@ function formatCategoryName(slug: string): string {
     .split(/[-_]/g)
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
+    .join(' ');
 }
 
 function formatCategoryDescription(slug: string, locale: Locale): string {
@@ -57,7 +57,7 @@ function formatCategoryDescription(slug: string, locale: Locale): string {
     return seededCategory.description;
   }
 
-  if (locale === "fr") {
+  if (locale === 'fr') {
     return `Categorie ${formatCategoryName(slug)}`;
   }
 
@@ -71,17 +71,17 @@ function loadMdxPosts(): MdxPost[] {
     const dir = path.join(CONTENT_DIR, locale);
     if (!fs.existsSync(dir)) continue;
 
-    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".mdx"));
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'));
     for (const file of files) {
-      const slug = file.replace(/\.mdx$/, "");
+      const slug = file.replace(/\.mdx$/, '');
       const fullPath = path.join(dir, file);
-      const raw = fs.readFileSync(fullPath, "utf8");
+      const raw = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(raw);
 
       const title = data?.title;
-      if (!title || typeof title !== "string") {
+      if (!title || typeof title !== 'string') {
         console.warn(
-          `⚠️  Skipping ${locale}/${file}: missing or invalid title`
+          `⚠️  Skipping ${locale}/${file}: missing or invalid title`,
         );
         continue;
       }
@@ -99,7 +99,7 @@ function loadMdxPosts(): MdxPost[] {
         description:
           data?.description != null ? String(data.description) : null,
         image: data?.image != null ? String(data.image) : null,
-        content: content?.trim() ?? "",
+        content: content?.trim() ?? '',
         categorySlug: categorySlug || null,
       });
     }
@@ -118,7 +118,7 @@ async function loadCategorySlugToId(): Promise<Map<string, string>> {
     })
     .from(translation)
     .innerJoin(category, eq(translation.categoryId, category.id))
-    .where(eq(translation.entityType, "category"));
+    .where(eq(translation.entityType, 'category'));
   const map = new Map<string, string>();
   for (const row of rows) {
     map.set(`${row.locale}:${row.slug}`, row.id);
@@ -151,12 +151,12 @@ async function ensureLanguages(dryRun: boolean) {
 async function ensureCategoriesForPosts(posts: MdxPost[], dryRun: boolean) {
   const categorySlugToId = await loadCategorySlugToId();
   const requiredSlugs = Array.from(
-    new Set(posts.map((post) => post.categorySlug).filter(Boolean))
+    new Set(posts.map((post) => post.categorySlug).filter(Boolean)),
   ) as string[];
 
   for (const slug of requiredSlugs) {
     const hasAnyLocale = LOCALES.some((locale) =>
-      categorySlugToId.has(`${locale}:${slug}`)
+      categorySlugToId.has(`${locale}:${slug}`),
     );
 
     if (hasAnyLocale) {
@@ -175,13 +175,13 @@ async function ensureCategoriesForPosts(posts: MdxPost[], dryRun: boolean) {
 
     await db.insert(translation).values(
       LOCALES.map((locale) => ({
-        entityType: "category" as const,
+        entityType: 'category' as const,
         categoryId: createdCategory.id,
         locale,
         slug,
         name: formatCategoryName(slug),
         description: formatCategoryDescription(slug, locale),
-      }))
+      })),
     );
 
     for (const locale of LOCALES) {
@@ -196,16 +196,16 @@ async function ensureCategoriesForPosts(posts: MdxPost[], dryRun: boolean) {
 
 async function main() {
   const args = process.argv.slice(2);
-  const dryRun = args.includes("--dry-run");
-  const overwrite = args.includes("--overwrite");
+  const dryRun = args.includes('--dry-run');
+  const overwrite = args.includes('--overwrite');
 
   if (dryRun) {
-    console.log("🔍 Dry run — no changes will be written.\n");
+    console.log('🔍 Dry run — no changes will be written.\n');
   }
 
   const posts = loadMdxPosts();
   if (posts.length === 0) {
-    console.log("No MDX posts found in content/blog/{fr,en}/");
+    console.log('No MDX posts found in content/blog/{fr,en}/');
     process.exit(0);
   }
 
@@ -220,22 +220,22 @@ async function main() {
 
   for (const post of posts) {
     const categoryId = post.categorySlug
-      ? categorySlugToId.get(`${post.locale}:${post.categorySlug}`) ??
+      ? (categorySlugToId.get(`${post.locale}:${post.categorySlug}`) ??
         categorySlugToId.get(`fr:${post.categorySlug}`) ??
-        null
+        null)
       : null;
     if (post.categorySlug && !categoryId) {
       console.warn(
-        `  ⚠️  Category slug "${post.categorySlug}" not found in DB for [${post.locale}] ${post.slug}`
+        `  ⚠️  Category slug "${post.categorySlug}" not found in DB for [${post.locale}] ${post.slug}`,
       );
     }
 
     const existing = await db.query.translation.findFirst({
       where: (t, { eq: e, and: a }) =>
         a(
-          e(t.entityType, "blog"),
+          e(t.entityType, 'blog'),
           e(t.slug, post.slug),
-          e(t.locale, post.locale)
+          e(t.locale, post.locale),
         ),
     });
 
@@ -261,8 +261,8 @@ async function main() {
         updated++;
         console.log(
           `  Updated: [${post.locale}] ${post.slug}${
-            categoryId ? ` (category: ${post.categorySlug})` : ""
-          }`
+            categoryId ? ` (category: ${post.categorySlug})` : ''
+          }`,
         );
       } else {
         skipped++;
@@ -280,12 +280,12 @@ async function main() {
         .insert(blog)
         .values({
           image: post.image,
-          status: "published",
+          status: 'published',
           categoryId,
         })
         .returning();
       await db.insert(translation).values({
-        entityType: "blog",
+        entityType: 'blog',
         blogId: createdBlog.id,
         locale: post.locale,
         slug: post.slug,
@@ -296,34 +296,34 @@ async function main() {
       inserted++;
       console.log(
         `  Inserted: [${post.locale}] ${post.slug}${
-          categoryId ? ` (category: ${post.categorySlug})` : ""
-        }`
+          categoryId ? ` (category: ${post.categorySlug})` : ''
+        }`,
       );
     } else {
       console.log(
         `  Would insert: [${post.locale}] ${post.slug}${
-          categoryId ? ` (category: ${post.categorySlug})` : ""
-        }`
+          categoryId ? ` (category: ${post.categorySlug})` : ''
+        }`,
       );
       inserted++;
     }
   }
 
-  console.log("");
+  console.log('');
   if (dryRun) {
     console.log(
       `Dry run: would insert ${inserted}, ${
-        overwrite ? `update ${updated}, ` : ""
-      }skip ${skipped}`
+        overwrite ? `update ${updated}, ` : ''
+      }skip ${skipped}`,
     );
   } else {
     console.log(
-      `Done: ${inserted} inserted, ${updated} updated, ${skipped} skipped.`
+      `Done: ${inserted} inserted, ${updated} updated, ${skipped} skipped.`,
     );
   }
 }
 
 main().catch((err) => {
-  console.error("Migration failed:", err);
+  console.error('Migration failed:', err);
   process.exit(1);
 });

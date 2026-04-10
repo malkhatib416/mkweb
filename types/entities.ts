@@ -2,7 +2,7 @@
  * Shared entity types inferred from Drizzle schema
  */
 
-import type { Locale } from "@/locales/i18n";
+import type { Locale } from '@/locales/i18n';
 import {
   blog,
   category,
@@ -12,18 +12,18 @@ import {
   project,
   projectReview,
   translation,
-} from "@/db/schema";
-import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
+} from '@/db/schema';
+import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 
-export type * from "./api";
-export type * from "./dto";
-export type { Locale } from "@/locales/i18n";
+export type * from './api';
+export type * from './dto';
+export type { Locale } from '@/locales/i18n';
 
 // Inferred from schema (blog and project share these enums)
-export type Status = InferSelectModel<typeof blog>["status"];
+export type Status = InferSelectModel<typeof blog>['status'];
 export type TranslationEntityType = InferSelectModel<
   typeof translation
->["entityType"];
+>['entityType'];
 
 // Entity types inferred from schema
 export type Language = InferSelectModel<typeof language>;
@@ -35,7 +35,7 @@ export type TranslationInsert = InferInsertModel<typeof translation>;
 export type CategoryBase = InferSelectModel<typeof category>;
 export type BlogBase = InferSelectModel<typeof blog>;
 export type CategoryTranslation = Translation & {
-  entityType: "category";
+  entityType: 'category';
   categoryId: string;
   blogId: null;
   locale: Locale;
@@ -43,7 +43,7 @@ export type CategoryTranslation = Translation & {
   slug: string;
 };
 export type BlogTranslation = Translation & {
-  entityType: "blog";
+  entityType: 'blog';
   blogId: string;
   categoryId: null;
   locale: Locale;
@@ -71,7 +71,7 @@ export type Blog = BlogBase & {
 export type BlogInsert = InferInsertModel<typeof blog>;
 export type ProjectBase = InferSelectModel<typeof project>;
 export type ProjectTranslation = Translation & {
-  entityType: "project";
+  entityType: 'project';
   projectId: string;
   blogId: null;
   categoryId: null;

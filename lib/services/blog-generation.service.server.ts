@@ -1,14 +1,14 @@
-import { generateBlogArticle } from "@/lib/services/ai.service.server";
-import type { Locale } from "@/locales/i18n";
-import { generateAndUploadBlogCoverImage } from "@/lib/services/blog-image.service.server";
-import { blogServiceServer } from "@/lib/services/blog.service.server";
-import { getAllLanguages } from "@/lib/services/language.service.server";
-import { localeEnum } from "@/lib/validations/entities";
-import { estimateReadingTime, generateSlug } from "@/utils/utils";
-import { z } from "zod";
+import { generateBlogArticle } from '@/lib/services/ai.service.server';
+import type { Locale } from '@/locales/i18n';
+import { generateAndUploadBlogCoverImage } from '@/lib/services/blog-image.service.server';
+import { blogServiceServer } from '@/lib/services/blog.service.server';
+import { getAllLanguages } from '@/lib/services/language.service.server';
+import { localeEnum } from '@/lib/validations/entities';
+import { estimateReadingTime, generateSlug } from '@/utils/utils';
+import { z } from 'zod';
 
 const generateDraftBlogSchema = z.object({
-  topic: z.string().trim().min(1, "topic is required"),
+  topic: z.string().trim().min(1, 'topic is required'),
   categoryId: z.string().trim().min(1).optional().nullable(),
 });
 
@@ -31,7 +31,7 @@ async function getSupportedLanguages() {
 
   if (languages.length === 0) {
     throw new Error(
-      "No languages configured. Seed or create at least one language first."
+      'No languages configured. Seed or create at least one language first.',
     );
   }
 
@@ -69,17 +69,17 @@ export async function generateDraftBlogTranslations(payload: unknown) {
 
   if (!firstArticle) {
     throw new Error(
-      "No languages configured. Seed or create at least one language first."
+      'No languages configured. Seed or create at least one language first.',
     );
   }
 
   const sharedImageUrl = await generateAndUploadBlogCoverImage(
     firstArticle.title,
-    firstArticle.description
+    firstArticle.description,
   );
 
   const sharedReadingTime = Math.max(
-    ...generatedArticles.map((article) => estimateReadingTime(article.content))
+    ...generatedArticles.map((article) => estimateReadingTime(article.content)),
   );
 
   const createdBlog = await blogServiceServer.create({
@@ -88,7 +88,7 @@ export async function generateDraftBlogTranslations(payload: unknown) {
     locale: firstArticle.locale,
     description: firstArticle.description,
     content: firstArticle.content,
-    status: "draft",
+    status: 'draft',
     image: sharedImageUrl ?? null,
     categoryId: categoryId ?? null,
     readingTime: sharedReadingTime,

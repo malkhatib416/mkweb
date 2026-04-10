@@ -6,23 +6,23 @@ import type {
   Locale,
   Status,
   ProjectReviewInsert,
-} from "./entities";
+} from './entities';
 
 export type CreateCategoryDto = Omit<
   Category,
-  "id" | "createdAt" | "updatedAt" | "translations"
+  'id' | 'createdAt' | 'updatedAt' | 'translations'
 >;
 export type UpdateCategoryDto = Partial<CreateCategoryDto>;
 
 export type CreateBlogDto = Omit<
   Blog,
-  "id" | "createdAt" | "updatedAt" | "category" | "translations"
+  'id' | 'createdAt' | 'updatedAt' | 'category' | 'translations'
 >;
 export type UpdateBlogDto = Partial<CreateBlogDto>;
 
 export type CreateClientDto = Omit<
   ClientInsert,
-  "id" | "createdAt" | "updatedAt"
+  'id' | 'createdAt' | 'updatedAt'
 >;
 export type UpdateClientDto = Partial<CreateClientDto>;
 
@@ -39,17 +39,17 @@ export type UpdateProjectDto = Partial<CreateProjectDto>;
 
 export type CreateProjectReviewDto = Omit<
   ProjectReviewInsert,
-  "id" | "createdAt" | "updatedAt"
+  'id' | 'createdAt' | 'updatedAt'
 >;
 export type UpdateProjectReviewDto = Partial<
   Omit<
     ProjectReviewInsert,
-    "id" | "projectId" | "clientId" | "token" | "tokenExpiresAt" | "createdAt"
+    'id' | 'projectId' | 'clientId' | 'token' | 'tokenExpiresAt' | 'createdAt'
   >
 >;
 
 export type CreateLanguageDto = Omit<
   LanguageInsert,
-  "id" | "createdAt" | "updatedAt"
+  'id' | 'createdAt' | 'updatedAt'
 >;
 export type UpdateLanguageDto = Partial<CreateLanguageDto>;

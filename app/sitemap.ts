@@ -1,23 +1,23 @@
-import { blogServiceServer } from "@/lib/services/blog.service.server";
-import { getAllServiceSlugs } from "@/locales/service-pages";
-import { projectServiceServer } from "@/lib/services/project.service.server";
-import { locales } from "@/locales/i18n";
-import { APP_URL } from "@/utils/consts";
-import { MetadataRoute } from "next";
+import { blogServiceServer } from '@/lib/services/blog.service.server';
+import { getAllServiceSlugs } from '@/locales/service-pages';
+import { projectServiceServer } from '@/lib/services/project.service.server';
+import { locales } from '@/locales/i18n';
+import { APP_URL } from '@/utils/consts';
+import { MetadataRoute } from 'next';
 
-const baseUrl = APP_URL || "https://mk-web.fr";
+const baseUrl = APP_URL || 'https://mk-web.fr';
 
 /** Public sitemap only. Admin routes (/admin/*) are intentionally excluded. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
-    { path: "", priority: 1, changeFrequency: "yearly" as const },
+    { path: '', priority: 1, changeFrequency: 'yearly' as const },
     {
-      path: "/mentions-legales",
+      path: '/mentions-legales',
       priority: 0.8,
-      changeFrequency: "yearly" as const,
+      changeFrequency: 'yearly' as const,
     },
-    { path: "/blog", priority: 0.9, changeFrequency: "weekly" as const },
-    { path: "/projects", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: '/blog', priority: 0.9, changeFrequency: 'weekly' as const },
+    { path: '/projects', priority: 0.9, changeFrequency: 'weekly' as const },
   ];
 
   const routeEntries = routes.flatMap((route) =>
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: route.changeFrequency,
       priority: route.priority,
-    }))
+    })),
   );
 
   const [blogEntriesArrays, projectSlugsByLocale] = await Promise.all([
@@ -37,11 +37,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         let page = 1;
         let allPosts: Awaited<
           ReturnType<typeof blogServiceServer.getAll>
-        >["data"] = [];
+        >['data'] = [];
         let hasMore = true;
         while (hasMore) {
           const { data: posts, pagination } = await blogServiceServer.getAll({
-            status: "published",
+            status: 'published',
             locale,
             limit,
             page,
@@ -54,10 +54,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return allPosts.map((post) => ({
           url: `${baseUrl}/${locale}/blog/${post.slug}`,
           lastModified: new Date(post.updatedAt),
-          changeFrequency: "monthly" as const,
+          changeFrequency: 'monthly' as const,
           priority: 0.7,
         }));
-      })
+      }),
     ),
     Promise.all(
       locales.map((locale) =>
@@ -65,11 +65,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           projects.map((p) => ({
             url: `${baseUrl}/${locale}/projects/${p.slug}`,
             lastModified: new Date(p.updatedAt),
-            changeFrequency: "monthly" as const,
+            changeFrequency: 'monthly' as const,
             priority: 0.6,
-          }))
-        )
-      )
+          })),
+        ),
+      ),
     ),
   ]);
 
@@ -78,7 +78,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const serviceEntries = getAllServiceSlugs().map(({ locale, slug }) => ({
     url: `${baseUrl}/${locale}/services/${slug}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as const,
+    changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));
 

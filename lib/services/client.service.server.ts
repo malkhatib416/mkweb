@@ -2,10 +2,10 @@
  * Client service - Server-side database operations
  */
 
-import { db } from "@/db";
-import { client } from "@/db/schema";
-import { count, eq } from "drizzle-orm";
-import { z } from "zod";
+import { db } from '@/db';
+import { client } from '@/db/schema';
+import { count, eq } from 'drizzle-orm';
+import { z } from 'zod';
 import type {
   Client,
   ClientListParams,
@@ -13,20 +13,20 @@ import type {
   ClientResponse,
   CreateClientDto,
   UpdateClientDto,
-} from "@/types/entities";
+} from '@/types/entities';
 
 export const clientSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email().optional().or(z.literal("")),
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email().optional().or(z.literal('')),
   company: z.string().optional(),
-  photo: z.string().url().optional().or(z.literal("")),
+  photo: z.string().url().optional().or(z.literal('')),
 });
 
 export const clientUpdateSchema = z.object({
   name: z.string().min(1).optional(),
-  email: z.string().email().optional().or(z.literal("")),
+  email: z.string().email().optional().or(z.literal('')),
   company: z.string().optional(),
-  photo: z.string().url().optional().or(z.literal("")),
+  photo: z.string().url().optional().or(z.literal('')),
 });
 
 class ClientServiceServer {
@@ -59,15 +59,15 @@ class ClientServiceServer {
       where: (t, { eq: e }) => e(t.id, id),
     });
 
-    if (!c) throw new Error("Client not found");
+    if (!c) throw new Error('Client not found');
     return { data: c as Client };
   }
 
   async create(data: CreateClientDto): Promise<ClientResponse> {
     const validated = clientSchema.parse({
       ...data,
-      email: data.email || "",
-      photo: data.photo || "",
+      email: data.email || '',
+      photo: data.photo || '',
     });
 
     const [newClient] = await db
@@ -86,8 +86,8 @@ class ClientServiceServer {
   async update(id: string, data: UpdateClientDto): Promise<ClientResponse> {
     const validated = clientUpdateSchema.parse({
       ...data,
-      email: data.email ?? "",
-      photo: data.photo ?? "",
+      email: data.email ?? '',
+      photo: data.photo ?? '',
     });
 
     const [updated] = await db
@@ -101,7 +101,7 @@ class ClientServiceServer {
       .where(eq(client.id, id))
       .returning();
 
-    if (!updated) throw new Error("Client not found");
+    if (!updated) throw new Error('Client not found');
     return { data: updated as Client };
   }
 
@@ -111,7 +111,7 @@ class ClientServiceServer {
       .where(eq(client.id, id))
       .returning();
 
-    if (!deleted) throw new Error("Client not found");
+    if (!deleted) throw new Error('Client not found');
   }
 }
 

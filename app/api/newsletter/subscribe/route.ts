@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-import { subscribe } from "@/lib/services/newsletter.service.server";
-import { getErrorMessage } from "@/lib/utils/api-error-handler";
-import { localeEnum } from "@/lib/validations/entities";
-import { z } from "zod";
+import { NextRequest, NextResponse } from 'next/server';
+import { subscribe } from '@/lib/services/newsletter.service.server';
+import { getErrorMessage } from '@/lib/utils/api-error-handler';
+import { localeEnum } from '@/lib/validations/entities';
+import { z } from 'zod';
 
 const bodySchema = z.object({
   email: z.string().email(),
-  locale: localeEnum.optional().default("fr"),
+  locale: localeEnum.optional().default('fr'),
 });
 
 export async function POST(request: NextRequest) {
@@ -21,14 +21,14 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Invalid email or locale", details: error.errors },
-        { status: 400 }
+        { error: 'Invalid email or locale', details: error.errors },
+        { status: 400 },
       );
     }
-    console.error("Newsletter subscribe error:", error);
+    console.error('Newsletter subscribe error:', error);
     return NextResponse.json(
-      { error: getErrorMessage(error, "Subscription failed") },
-      { status: 500 }
+      { error: getErrorMessage(error, 'Subscription failed') },
+      { status: 500 },
     );
   }
 }

@@ -1,10 +1,10 @@
-import { project } from "@/db/schema";
-import { defaultLocale } from "@/locales/i18n";
-import type { Locale, Project, ProjectTranslation } from "@/types/entities";
+import { project } from '@/db/schema';
+import { defaultLocale } from '@/locales/i18n';
+import type { Locale, Project, ProjectTranslation } from '@/types/entities';
 
 export function pickProjectTranslation(
   translations: readonly ProjectTranslation[],
-  locale?: Locale
+  locale?: Locale,
 ): ProjectTranslation | null {
   if (locale) {
     const exact = translations.find((item) => item.locale === locale);
@@ -19,7 +19,7 @@ export function pickProjectTranslation(
 }
 
 export function groupProjectTranslationsByProjectId(
-  translations: readonly ProjectTranslation[]
+  translations: readonly ProjectTranslation[],
 ): Map<string, ProjectTranslation[]> {
   const translationMap = new Map<string, ProjectTranslation[]>();
 
@@ -36,11 +36,11 @@ export function groupProjectTranslationsByProjectId(
 export function mapProjectFromTranslations(
   parent: typeof project.$inferSelect,
   translations: readonly ProjectTranslation[],
-  locale?: Locale
+  locale?: Locale,
 ): Project {
   const current = pickProjectTranslation(translations, locale);
   if (!current?.title || !current.content) {
-    throw new Error("Project translation not found");
+    throw new Error('Project translation not found');
   }
 
   return {
@@ -56,7 +56,7 @@ export function mapProjectFromTranslations(
 
 export function buildProjectSummaryMap(
   translations: readonly ProjectTranslation[],
-  locale: Locale = defaultLocale
+  locale: Locale = defaultLocale,
 ): Map<string, { title: string; slug: string }> {
   const grouped = groupProjectTranslationsByProjectId(translations);
   const result = new Map<string, { title: string; slug: string }>();

@@ -16,8 +16,11 @@ type UseAdminLanguagesOptions = {
 };
 
 export function useAdminLanguages(options: UseAdminLanguagesOptions = {}) {
-  const { adminLocaleLabels, fallbackLabels = {}, includeLocales = [] } =
-    options;
+  const {
+    adminLocaleLabels,
+    fallbackLabels = {},
+    includeLocales = [],
+  } = options;
 
   const resolvedFallbackLabels = adminLocaleLabels
     ? {

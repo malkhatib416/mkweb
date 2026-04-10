@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
-"use client";
+'use client';
 
-import { useAdminDictionary } from "@/components/admin/AdminDictionaryProvider";
+import { useAdminDictionary } from '@/components/admin/AdminDictionaryProvider';
 
 type AdminCommonKey =
-  | "common.filter"
-  | "common.search"
-  | "common.columns"
-  | "common.resetColumns"
-  | "common.actions"
-  | "common.emptyState.noResults"
-  | "pagination.pageOf"
-  | "pagination.perPage";
+  | 'common.filter'
+  | 'common.search'
+  | 'common.columns'
+  | 'common.resetColumns'
+  | 'common.actions'
+  | 'common.emptyState.noResults'
+  | 'pagination.pageOf'
+  | 'pagination.perPage';
 
 /**
  * Returns a translation function for admin DataGrid/common keys.
@@ -28,17 +28,17 @@ export function useTranslations(): {
 
   const t = (key: AdminCommonKey, params?: Record<string, string>): string => {
     let out: string;
-    if (key === "pagination.pageOf") {
-      out = common.pagination?.pageOf ?? "Page {current} of {total}";
-    } else if (key === "pagination.perPage") {
-      out = common.pagination?.perPage ?? "per page";
+    if (key === 'pagination.pageOf') {
+      out = common.pagination?.pageOf ?? 'Page {current} of {total}';
+    } else if (key === 'pagination.perPage') {
+      out = common.pagination?.perPage ?? 'per page';
     } else {
-      const parts = key.split(".");
-      if (parts[0] !== "common") return key;
+      const parts = key.split('.');
+      if (parts[0] !== 'common') return key;
       if (parts.length === 2) {
         const v = common[parts[1]];
-        out = typeof v === "string" ? v : key;
-      } else if (parts.length === 3 && parts[1] === "emptyState") {
+        out = typeof v === 'string' ? v : key;
+      } else if (parts.length === 3 && parts[1] === 'emptyState') {
         out = common.emptyState?.noResults ?? key;
       } else {
         out = key;
@@ -47,7 +47,7 @@ export function useTranslations(): {
     if (params) {
       return Object.entries(params).reduce(
         (acc, [k, v]) => acc.replace(`{${k}}`, v),
-        out
+        out,
       );
     }
     return out;

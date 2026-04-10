@@ -12,7 +12,12 @@ import { getBlogImageUrl } from '@/lib/hooks/use-blog';
 import { blogService } from '@/lib/services/blog.service';
 import { fetcher } from '@/lib/swr-fetcher';
 import type { DataGridConfig } from '@/types/data-grid';
-import type { Blog, CategoryListResponse, Locale, Status } from '@/types/entities';
+import type {
+  Blog,
+  CategoryListResponse,
+  Locale,
+  Status,
+} from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
 import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
