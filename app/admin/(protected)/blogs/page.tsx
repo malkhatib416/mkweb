@@ -19,11 +19,12 @@ import type {
   Status,
 } from '@/types/entities';
 import { formatDate } from '@/utils/format-date';
-import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
+import { Edit, Eye, Plus, RefreshCw, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import useSWR from 'swr';
 
 /** Thumbnail or letter placeholder; never shows broken/red image. */
@@ -73,6 +74,11 @@ export default function BlogsPage() {
   const router = useRouter();
   const t = dict.admin.blogs;
   const translationT = t.translation;
+  const [isRefreshingTranslations, setIsRefreshingTranslations] =
+    useState(false);
+  const [gridMutate, setGridMutate] = useState<(() => Promise<unknown>) | null>(
+    null,
+  );
 
   const { data: categoriesData } = useSWR<CategoryListResponse>(
     '/api/admin/categories',
@@ -96,6 +102,32 @@ export default function BlogsPage() {
     successMessage: t.deleteSuccess,
     errorMessage: t.deleteError,
   });
+
+  const handleRefreshTranslations = async () => {
+    try {
+      setIsRefreshingTranslations(true);
+      const result = await blogService.refreshTranslations();
+      const summary = result.data;
+
+      if (summary.createdCount > 0) {
+        toast.success(
+          translationT.refreshSuccess
+            .replace('{count}', String(summary.createdCount))
+            .replace('{languages}', String(summary.languageCount)),
+        );
+      } else {
+        toast.success(translationT.refreshNoChanges);
+      }
+
+      await gridMutate?.();
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : translationT.refreshError,
+      );
+    } finally {
+      setIsRefreshingTranslations(false);
+    }
+  };
 
   const config: DataGridConfig<Blog> = {
     swrKey: 'admin-blogs',
@@ -285,19 +317,43 @@ export default function BlogsPage() {
         title={t.subtitle}
         description={t.title}
         actions={
-          <Link href="/admin/blogs/new">
+          <div className="flex flex-wrap items-center gap-2">
             <Button
+              type="button"
               size="sm"
-              className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+              variant="outline"
+              className="gap-1.5"
+              onClick={handleRefreshTranslations}
+              disabled={isRefreshingTranslations}
             >
-              <Plus className="h-4 w-4" />
-              {t.newBlog}
+              <RefreshCw
+                className={`h-4 w-4 ${isRefreshingTranslations ? 'animate-spin' : ''}`}
+              />
+              {isRefreshingTranslations
+                ? translationT.refreshing
+                : translationT.refreshButton}
             </Button>
-          </Link>
+
+            <Link href="/admin/blogs/new">
+              <Button
+                size="sm"
+                className="gap-1.5 bg-myorange-100 hover:bg-myorange-200"
+              >
+                <Plus className="h-4 w-4" />
+                {t.newBlog}
+              </Button>
+            </Link>
+          </div>
         }
       />
 
-      <DataGrid config={config} onMutateReady={onMutateReady} />
+      <DataGrid
+        config={config}
+        onMutateReady={(mutate) => {
+          onMutateReady(mutate);
+          setGridMutate(() => mutate);
+        }}
+      />
 
       <DeleteConfirmDialog
         open={isDeleteDialogOpen}

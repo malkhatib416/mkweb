@@ -67,6 +67,13 @@ export type CategoryListResponse = ListResponse<Category>;
 export type CategoryResponse = SingleResponse<Category>;
 export type BlogListResponse = ListResponse<Blog>;
 export type BlogResponse = SingleResponse<Blog>;
+export type BlogTranslationRefreshSummary = {
+  languageCount: number;
+  createdCount: number;
+  skippedCount: number;
+};
+export type BlogTranslationRefreshResponse =
+  SingleResponse<BlogTranslationRefreshSummary>;
 export type ProjectListResponse = ListResponse<Project>;
 export type ProjectResponse = SingleResponse<Project>;
 export type ClientListResponse = ListResponse<Client>;

@@ -116,6 +116,16 @@ export type TranslateCategoryContentInput = {
   description?: string | null;
 };
 
+export type TranslateProjectContentInput = {
+  sourceLanguageCode: string;
+  targetLanguageCode: string;
+  targetLanguageName: string;
+  title: string;
+  slug: string;
+  description?: string | null;
+  content: string;
+};
+
 function getCurrentYear() {
   return new Date().getFullYear();
 }
@@ -231,6 +241,41 @@ Description: ${description ?? '(none)'}`,
     name: object.name,
     slug: object.slug,
     description: object.description,
+  };
+}
+
+export async function translateProjectContent(
+  input: TranslateProjectContentInput,
+): Promise<GeneratedArticle> {
+  const {
+    sourceLanguageCode,
+    targetLanguageCode,
+    targetLanguageName,
+    title,
+    slug,
+    description,
+    content,
+  } = input;
+
+  const object = await generateObjectFromAI({
+    schema: translatedBlogSchemaZod,
+    system: `You translate MK-Web project case studies from ${sourceLanguageCode} to ${targetLanguageName} (${targetLanguageCode}). Preserve the original meaning, Markdown structure, and tone. Translate only the human-readable text. Slug must be lowercase and hyphenated.`,
+    prompt: `Translate this project content into ${targetLanguageName} (${targetLanguageCode}). Return only the translated fields.
+
+Source language: ${sourceLanguageCode}
+Title: ${title}
+Slug: ${slug}
+Description: ${description ?? '(none)'}
+
+Markdown content:
+${content}`,
+  });
+
+  return {
+    title: object.title,
+    slug: object.slug,
+    description: object.description ?? '',
+    content: object.content,
   };
 }
 

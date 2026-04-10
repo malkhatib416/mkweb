@@ -6,6 +6,7 @@ import type {
   BlogListParams,
   BlogListResponse,
   BlogResponse,
+  BlogTranslationRefreshResponse,
 } from '@/types/api';
 import type { CreateBlogDto, UpdateBlogDto } from '@/types/dto';
 
@@ -134,6 +135,20 @@ class BlogService {
 
     if (!response.ok) {
       throw new Error(data.error || 'Failed to generate image');
+    }
+
+    return data;
+  }
+
+  async refreshTranslations(): Promise<BlogTranslationRefreshResponse> {
+    const response = await fetch(`${this.baseUrl}/refresh-translations`, {
+      method: 'POST',
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to refresh blog translations');
     }
 
     return data;

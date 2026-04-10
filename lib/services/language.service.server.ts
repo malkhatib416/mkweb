@@ -3,10 +3,11 @@
  */
 
 import { db } from '@/db';
-import { blog, category, language, translation } from '@/db/schema';
+import { blog, category, language, project, translation } from '@/db/schema';
 import {
   translateBlogContent,
   translateCategoryContent,
+  translateProjectContent,
 } from '@/lib/services/ai.service.server';
 import { defaultLocale } from '@/locales/i18n';
 import { generateSlug } from '@/utils/utils';
@@ -20,6 +21,7 @@ import type {
   LanguageListResponse,
   LanguageResponse,
   CreateLanguageDto,
+  ProjectTranslation,
   UpdateLanguageDto,
 } from '@/types/entities';
 
@@ -44,7 +46,7 @@ function pickSourceTranslation<T extends { locale: string }>(
 }
 
 async function ensureUniqueTranslationSlug(
-  entityType: 'blog' | 'category',
+  entityType: 'blog' | 'category' | 'project',
   locale: string,
   input: string,
 ) {
@@ -233,13 +235,97 @@ async function backfillCategoryTranslations(target: {
   };
 }
 
+async function backfillProjectTranslations(target: {
+  code: string;
+  name: string;
+}) {
+  const [projects, projectTranslations] = await Promise.all([
+    db.select({ id: project.id }).from(project),
+    db.select().from(translation).where(eq(translation.entityType, 'project')),
+  ]);
+
+  const translationsByProjectId = new Map<string, ProjectTranslation[]>();
+
+  for (const item of projectTranslations as ProjectTranslation[]) {
+    if (!item.projectId) continue;
+    const list = translationsByProjectId.get(item.projectId) ?? [];
+    list.push(item);
+    translationsByProjectId.set(item.projectId, list);
+  }
+
+  let createdCount = 0;
+  let skippedCount = 0;
+
+  for (const currentProject of projects) {
+    const existingTranslations =
+      translationsByProjectId.get(currentProject.id) ?? [];
+
+    if (existingTranslations.some((item) => item.locale === target.code)) {
+      continue;
+    }
+
+    const source = pickSourceTranslation(
+      existingTranslations.filter((item): item is ProjectTranslation =>
+        Boolean(item.title && item.content),
+      ),
+    );
+
+    if (!source?.title || !source.content) {
+      skippedCount += 1;
+      console.warn(
+        `Skipping project ${currentProject.id} during language backfill: no usable source translation found`,
+      );
+      continue;
+    }
+
+    const localized = await translateProjectContent({
+      sourceLanguageCode: source.locale,
+      targetLanguageCode: target.code,
+      targetLanguageName: target.name,
+      title: source.title,
+      slug: source.slug,
+      description: source.description,
+      content: source.content,
+    });
+
+    const uniqueSlug = await ensureUniqueTranslationSlug(
+      'project',
+      target.code,
+      localized.slug || localized.title || source.slug,
+    );
+
+    await db.insert(translation).values({
+      entityType: 'project',
+      projectId: currentProject.id,
+      locale: target.code,
+      slug: uniqueSlug,
+      title: localized.title,
+      description: localized.description || null,
+      content: localized.content,
+    });
+
+    await db
+      .update(project)
+      .set({ updatedAt: new Date() })
+      .where(eq(project.id, currentProject.id));
+
+    createdCount += 1;
+  }
+
+  return {
+    createdCount,
+    skippedCount,
+  };
+}
+
 async function backfillTranslationsForLanguage(target: {
   code: string;
   name: string;
 }) {
-  const [blogResult, categoryResult] = await Promise.all([
+  const [blogResult, categoryResult, projectResult] = await Promise.all([
     backfillBlogTranslations(target),
     backfillCategoryTranslations(target),
+    backfillProjectTranslations(target),
   ]);
 
   return {
@@ -247,6 +333,29 @@ async function backfillTranslationsForLanguage(target: {
     skippedBlogs: blogResult.skippedCount,
     categoryCount: categoryResult.createdCount,
     skippedCategories: categoryResult.skippedCount,
+    projectCount: projectResult.createdCount,
+    skippedProjects: projectResult.skippedCount,
+  };
+}
+
+export async function refreshBlogTranslationsForLanguages() {
+  const languages = await db.query.language.findMany({
+    orderBy: (l, { asc: a }) => [a(l.code)],
+  });
+
+  let createdCount = 0;
+  let skippedCount = 0;
+
+  for (const currentLanguage of languages as Language[]) {
+    const result = await backfillBlogTranslations(currentLanguage);
+    createdCount += result.createdCount;
+    skippedCount += result.skippedCount;
+  }
+
+  return {
+    languageCount: languages.length,
+    createdCount,
+    skippedCount,
   };
 }
 

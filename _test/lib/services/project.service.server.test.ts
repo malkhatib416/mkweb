@@ -57,6 +57,9 @@ function createMockState(): MockState {
 
 let state = createMockState();
 
+const blogTable = { name: 'blog' };
+const categoryTable = { name: 'category' };
+const languageTable = { name: 'language' };
 const projectTable = { name: 'project' };
 const translationTable = { name: 'translation' };
 
@@ -97,6 +100,9 @@ const db = {
 
 mock.module('@/db', () => ({ db }));
 mock.module('@/db/schema', () => ({
+  blog: blogTable,
+  category: categoryTable,
+  language: languageTable,
   project: projectTable,
   translation: translationTable,
 }));
