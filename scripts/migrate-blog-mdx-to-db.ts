@@ -11,7 +11,8 @@
  * - --dry-run: prints what would be done without writing to the DB.
  *
  * Category: reads frontmatter categories (array of slugs, e.g. ['seo', 'tech']).
- * Uses the first slug to look up category in DB and set categoryId. Run db:seed first for categories.
+ * Uses the first slug to look up category in DB and set categoryId.
+ * Missing languages/categories are created automatically from the MDX data.
  */
 
 import { and, eq } from 'drizzle-orm';
@@ -19,7 +20,8 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 import { db } from '../db';
-import { blog, category, translation } from '../db/schema';
+import { blog, category, language, translation } from '../db/schema';
+import { CATEGORIES_TO_SEED, LANGUAGES_TO_SEED } from './consts';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content/blog');
 const LOCALES = ['fr', 'en'] as const;
@@ -38,6 +40,32 @@ interface MdxPost {
   content: string;
   /** First category slug from frontmatter categories array */
   categorySlug: string | null;
+}
+
+function formatCategoryName(slug: string): string {
+  const seededCategory = CATEGORIES_TO_SEED.find((item) => item.slug === slug);
+  if (seededCategory) {
+    return seededCategory.name;
+  }
+
+  return slug
+    .split(/[-_]/g)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+function formatCategoryDescription(slug: string, locale: Locale): string {
+  const seededCategory = CATEGORIES_TO_SEED.find((item) => item.slug === slug);
+  if (seededCategory) {
+    return seededCategory.description;
+  }
+
+  if (locale === 'fr') {
+    return `Categorie ${formatCategoryName(slug)}`;
+  }
+
+  return `${formatCategoryName(slug)} category`;
 }
 
 function loadMdxPosts(): MdxPost[] {
@@ -102,6 +130,74 @@ async function loadCategorySlugToId(): Promise<Map<string, string>> {
   return map;
 }
 
+async function ensureLanguages(dryRun: boolean) {
+  for (const lang of LANGUAGES_TO_SEED) {
+    const existing = await db
+      .select({ code: language.code })
+      .from(language)
+      .where(eq(language.code, lang.code))
+      .limit(1);
+
+    if (existing.length > 0) {
+      continue;
+    }
+
+    if (dryRun) {
+      console.log(`  Would create language: ${lang.code}`);
+      continue;
+    }
+
+    await db.insert(language).values(lang);
+    console.log(`  Created language: ${lang.code}`);
+  }
+}
+
+async function ensureCategoriesForPosts(posts: MdxPost[], dryRun: boolean) {
+  const categorySlugToId = await loadCategorySlugToId();
+  const requiredSlugs = Array.from(
+    new Set(posts.map((post) => post.categorySlug).filter(Boolean)),
+  ) as string[];
+
+  for (const slug of requiredSlugs) {
+    const hasAnyLocale = LOCALES.some((locale) =>
+      categorySlugToId.has(`${locale}:${slug}`),
+    );
+
+    if (hasAnyLocale) {
+      continue;
+    }
+
+    if (dryRun) {
+      console.log(`  Would create category: ${slug}`);
+      for (const locale of LOCALES) {
+        categorySlugToId.set(`${locale}:${slug}`, `dry-run:${slug}`);
+      }
+      continue;
+    }
+
+    const [createdCategory] = await db.insert(category).values({}).returning();
+
+    await db.insert(translation).values(
+      LOCALES.map((locale) => ({
+        entityType: 'category' as const,
+        categoryId: createdCategory.id,
+        locale,
+        slug,
+        name: formatCategoryName(slug),
+        description: formatCategoryDescription(slug, locale),
+      })),
+    );
+
+    for (const locale of LOCALES) {
+      categorySlugToId.set(`${locale}:${slug}`, createdCategory.id);
+    }
+
+    console.log(`  Created category: ${slug}`);
+  }
+
+  return categorySlugToId;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
@@ -111,18 +207,14 @@ async function main() {
     console.log('🔍 Dry run — no changes will be written.\n');
   }
 
-  const categorySlugToId = await loadCategorySlugToId();
-  if (categorySlugToId.size === 0) {
-    console.warn(
-      '⚠️  No categories in DB. Run bun run db:seed to create categories. categoryId will be null.\n',
-    );
-  }
-
   const posts = loadMdxPosts();
   if (posts.length === 0) {
     console.log('No MDX posts found in content/blog/{fr,en}/');
     process.exit(0);
   }
+
+  await ensureLanguages(dryRun);
+  const categorySlugToId = await ensureCategoriesForPosts(posts, dryRun);
 
   console.log(`Found ${posts.length} MDX post(s) to migrate.\n`);
 

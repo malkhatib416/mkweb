@@ -51,11 +51,14 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
 
   const featuredPost = useMemo(() => filteredPosts[0], [filteredPosts]);
   const secondaryPosts = useMemo(() => filteredPosts.slice(1), [filteredPosts]);
+  const hasEditorialHeader = Boolean(
+    featuredPost && !searchTerm && !selectedCategory,
+  );
 
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950 transition-colors">
       {/* Editorial Header - Featured Post */}
-      {featuredPost && !searchTerm && !selectedCategory && (
+      {hasEditorialHeader && (
         <section className="relative px-6 pt-32 pb-16">
           <div className="max-w-6xl mx-auto">
             <BlogCard
@@ -70,7 +73,11 @@ export default function BlogPage({ dict, locale, posts, categories }: Props) {
       )}
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-20">
+      <main
+        className={`max-w-6xl mx-auto px-6 pb-20 ${
+          hasEditorialHeader ? 'pt-20' : 'pt-36'
+        }`}
+      >
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Sidebar: Navigation & Filters */}
           <aside className="lg:w-1/4 w-full order-2 lg:order-1">
