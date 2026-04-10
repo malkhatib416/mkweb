@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { getServiceLinks } from '@/locales/service-pages';
 import { Input } from '@/components/ui/input';
 import enDict from '@/locales/dictionaries/en.json';
 import frDict from '@/locales/dictionaries/fr.json';
@@ -106,6 +107,7 @@ const Footer = () => {
 
   const dict = dictionaries[locale];
   const t = dict.footer;
+  const serviceLinks = getServiceLinks(locale);
 
   return (
     <React.Fragment>
@@ -173,6 +175,16 @@ const Footer = () => {
                     {t.contact}
                   </Link>
                 </li>
+                {serviceLinks.map((service) => (
+                  <li key={service.href}>
+                    <Link
+                      href={service.href}
+                      className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
+                    >
+                      {service.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="w-full  md:text-left">

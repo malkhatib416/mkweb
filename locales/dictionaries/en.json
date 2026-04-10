@@ -194,7 +194,7 @@
   "services": {
     "badge": "Services",
     "title": "My Services",
-    "subtitle": "I support you at every stage of your digital project: website creation, e-commerce, mobile applications, redesign, maintenance, hosting and innovation.",
+    "subtitle": "I support you with showcase websites, web application & SaaS development, mobile applications, e-commerce, redesign and maintenance.",
     "website": {
       "title": "Website Creation",
       "description": "Design of custom showcase and corporate websites, designed to enhance your image and achieve your goals.",
@@ -236,6 +236,13 @@
       "feature1": "iOS & Android",
       "feature2": "Optimized UX",
       "feature3": "Ongoing support"
+    },
+    "webapp": {
+      "title": "Web Application & SaaS",
+      "description": "Custom web applications, internal tools and SaaS products designed to scale with your business.",
+      "feature1": "Scalable architecture",
+      "feature2": "Clear product UX",
+      "feature3": "Iterative delivery"
     }
   },
   "faq": {

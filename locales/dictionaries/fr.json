@@ -194,7 +194,7 @@
   "services": {
     "badge": "Services",
     "title": "Mes Services",
-    "subtitle": "Je vous accompagne à chaque étape de votre projet digital : création de site, e-commerce, applications mobiles, refonte, maintenance, hébergement et innovation.",
+    "subtitle": "Je vous accompagne sur la création de site vitrine, le développement d’application web & SaaS, les applications mobiles, l’e-commerce, la refonte et la maintenance.",
     "website": {
       "title": "Création de site internet",
       "description": "Conception de sites vitrines et corporate sur-mesure, pensés pour valoriser votre image et atteindre vos objectifs.",
@@ -236,6 +236,13 @@
       "feature1": "iOS & Android",
       "feature2": "UX optimisée",
       "feature3": "Support continu"
+    },
+    "webapp": {
+      "title": "Application web & SaaS",
+      "description": "Développement d’applications web, outils métier et SaaS sur-mesure, pensés pour évoluer avec votre activité.",
+      "feature1": "Architecture scalable",
+      "feature2": "UX produit claire",
+      "feature3": "Développement itératif"
     }
   },
   "faq": {

@@ -41,7 +41,7 @@ export default async function Home() {
       <Hero dict={dict} locale={locale} />
       <About dict={dict} />
       <GradientWrapper />
-      <ServiceShowCase dict={dict} />
+      <ServiceShowCase dict={dict} locale={locale} />
       <GradientWrapper />
       <LatestProjects dict={dict} locale={locale} dbProjects={dbProjects} />
       {reviewItems.length > 0 && (

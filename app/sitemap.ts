@@ -1,4 +1,5 @@
 import { blogServiceServer } from '@/lib/services/blog.service.server';
+import { getAllServiceSlugs } from '@/locales/service-pages';
 import { projectServiceServer } from '@/lib/services/project.service.server';
 import { locales } from '@/locales/i18n';
 import { APP_URL } from '@/utils/consts';
@@ -74,6 +75,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogEntries = blogEntriesArrays.flat();
   const projectEntries = projectSlugsByLocale.flat();
+  const serviceEntries = getAllServiceSlugs().map(({ locale, slug }) => ({
+    url: `${baseUrl}/${locale}/services/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
 
-  return [...routeEntries, ...blogEntries, ...projectEntries];
+  return [...routeEntries, ...serviceEntries, ...blogEntries, ...projectEntries];
 }

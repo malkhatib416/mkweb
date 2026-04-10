@@ -1,0 +1,736 @@
+{
+  "labels": {
+    "heroBadge": "Accompagnement freelance premium",
+    "heroHighlights": [
+      "Cadrage clair",
+      "Execution directe",
+      "Suivi fiable"
+    ],
+    "valueCards": [
+      "Performance",
+      "Clarte produit",
+      "Base solide"
+    ],
+    "territoryLabel": "Zone d'intervention",
+    "territoryValue": "Eure-et-Loir et a distance",
+    "proofLabel": "Points de confiance",
+    "problemSection": "Problemes frequents",
+    "solutionSection": "Approche proposee",
+    "expertiseSection": "Expertise technique",
+    "processSection": "Process",
+    "faqSection": "Questions frequentes",
+    "ctaSection": "Passer a l'action",
+    "whyChooseLabel": "Pourquoi travailler avec moi",
+    "technologiesLabel": "Technologies"
+  },
+  "pages": {
+    "showcase": {
+      "slug": "creation-site-vitrine",
+      "title": "Creation de site vitrine",
+      "metaTitle": "Creation de site vitrine sur-mesure | MK-Web",
+      "metaDescription": "Creation de site vitrine premium pour independants, PME et marques. Base en Eure-et-Loir, je travaille en local comme a distance avec un cadrage clair et une execution soignee.",
+      "heroTitle": "Un site vitrine qui rassure, clarifie votre offre et declenche des prises de contact",
+      "heroSubtitle": "Je conçois des sites vitrines sur-mesure pour entreprises, cabinets et marques qui veulent une presence nette, rapide et credible, en Eure-et-Loir comme a distance.",
+      "primaryCta": "Parler de votre site",
+      "secondaryCta": "Estimer le projet",
+      "problemTitle": "Un site vitrine moyen donne rarement envie de vous contacter",
+      "problemItems": [
+        "Un design generique brouille votre positionnement et banalise votre offre.",
+        "Des pages lentes ou mal structurees font perdre de la visibilite et des demandes.",
+        "Un message flou laisse les visiteurs sans direction ni point de confiance fort.",
+        "Un site difficile a faire evoluer transforme chaque ajustement en mini-projet."
+      ],
+      "solutionTitle": "Un site vitrine pense comme un actif commercial utile",
+      "solutionText": [
+        "Je structure le projet autour de votre offre, de vos preuves et de votre parcours de conversion afin que chaque section serve un objectif clair.",
+        "Le resultat privilegie la lisibilite, la vitesse, le referencement naturel et la simplicite de gestion pour vous laisser un site utile des le premier jour.",
+        "Vous travaillez directement avec le developpeur qui cadre, conçoit et livre le projet, sans dilution entre strategie, design et execution."
+      ],
+      "proofItems": [
+        "Architecture legere, SEO propre et performance prioritaire des la conception.",
+        "Accompagnement direct avec un seul interlocuteur du cadrage a la mise en ligne.",
+        "Collaboration simple en Eure-et-Loir, a Paris ou 100% a distance.",
+        "Base moderne pour faire evoluer le site sans repartir de zero."
+      ],
+      "techTitle": "Ce que j'integre sur ce type de mission",
+      "techItems": [
+        "Pages de presentation, services, contact et contenus optimises SEO.",
+        "Composants sur-mesure, animations sobres et experience fluide sur mobile.",
+        "CMS ou edition simple selon votre niveau d'autonomie apres livraison.",
+        "Mise en ligne propre, suivi analytique et fondations maintenables."
+      ],
+      "processTitle": "Une methode simple pour aller vite sans perdre en qualite",
+      "processSteps": [
+        {
+          "title": "Cadrage",
+          "description": "Nous clarifions vos objectifs, vos cibles, vos contenus et vos contraintes de lancement."
+        },
+        {
+          "title": "Direction",
+          "description": "Je definis la structure des pages, le ton, les priorites SEO et l'orientation visuelle."
+        },
+        {
+          "title": "Production",
+          "description": "Le site est developpe avec attention aux details, aux performances et a la qualite responsive."
+        },
+        {
+          "title": "Mise en ligne",
+          "description": "Je gere les derniers reglages, les verifications et une passation claire pour la suite."
+        }
+      ],
+      "whyChooseTitle": "Un cadre de travail net et exigeant",
+      "whyChooseItems": [
+        "Direction produit et execution technique reunies dans le meme accompagnement.",
+        "Decisions argumentees, priorites explicites et livrables sans surplus inutile.",
+        "Mise en ligne propre avec suivi post-lancement si besoin."
+      ],
+      "technologiesTitle": "Stack frequemment utilisee",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "MDX",
+        "PostgreSQL"
+      ],
+      "faqTitle": "Questions sur la creation de site vitrine",
+      "faqIntro": "Voici les points que l'on aborde le plus souvent avant de lancer ce type de projet.",
+      "faqMain": [
+        {
+          "question": "Combien de temps faut-il pour lancer un site vitrine ?",
+          "answer": "Pour un perimetre bien cadre, la mise en ligne peut se faire en quelques jours a quelques semaines selon le volume de pages, les contenus et les validations."
+        },
+        {
+          "question": "Pouvez-vous rediger ou retravailler les contenus ?",
+          "answer": "Oui. Je peux restructurer vos messages, condenser les informations utiles et vous aider a produire un contenu plus lisible et plus convaincant."
+        },
+        {
+          "question": "Le site sera-t-il optimise pour le SEO ?",
+          "answer": "Oui. Structure, performances, metadonnees et contenus sont penses pour soutenir votre visibilite des la mise en ligne."
+        },
+        {
+          "question": "Puis-je faire evoluer le site plus tard ?",
+          "answer": "Oui. La base est prevue pour accueillir de nouvelles pages, sections ou formulaires sans repartir de zero."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Travaillez-vous seulement avec des clients locaux ?",
+          "answer": "Non. Je peux intervenir en Eure-et-Loir quand cela a du sens, mais une grande partie des projets se gere tres bien a distance avec un process clair."
+        },
+        {
+          "question": "Pouvez-vous reprendre un site existant ?",
+          "answer": "Oui, apres audit rapide. Selon l'etat de la base, je recommande soit une amelioration ciblee, soit une reconstruction plus propre."
+        },
+        {
+          "question": "Le site sera-t-il simple a administrer ?",
+          "answer": "Oui. Quand c'est pertinent, je mets en place une edition simple pour vous laisser autonome sur les contenus utiles."
+        },
+        {
+          "question": "Pouvez-vous aussi gerer l'hebergement ?",
+          "answer": "Oui. Je peux prendre en charge la mise en ligne, les reglages techniques et vous proposer un cadre de maintenance ensuite."
+        },
+        {
+          "question": "Comment se passent les retours pendant le projet ?",
+          "answer": "Les validations sont integrees au process, avec des points simples et reguliers pour eviter les allers-retours flous en fin de mission."
+        },
+        {
+          "question": "Proposez-vous un suivi apres lancement ?",
+          "answer": "Oui. Maintenance, support, optimisations ou evolutions peuvent etre prevus selon votre besoin."
+        }
+      ],
+      "finalCtaTitle": "Vous avez besoin d'un site vitrine plus net, plus rapide et plus credible ?",
+      "finalCtaText": "Je peux vous proposer un cadrage simple, un planning realiste et une execution soignee pour lancer une presence web qui soutient vraiment votre activite."
+    },
+    "webapp": {
+      "slug": "application-web-saas",
+      "title": "Application web & SaaS",
+      "metaTitle": "Developpement application web & SaaS | MK-Web",
+      "metaDescription": "Developpement d'applications web, outils metier et SaaS sur-mesure. J'accompagne les equipes locales et distantes avec une approche produit, technique et evolutive.",
+      "heroTitle": "Des applications web et SaaS penses pour soutenir vos usages reels",
+      "heroSubtitle": "Je developpe des plateformes metier, espaces clients et SaaS sur-mesure avec une logique produit claire, des fondations solides et une execution progressive, en local comme a distance.",
+      "primaryCta": "Discuter du produit",
+      "secondaryCta": "Estimer le projet",
+      "problemTitle": "Un produit web utile ne se limite pas a empiler des fonctionnalites",
+      "problemItems": [
+        "Un MVP mal pense devient vite difficile a faire evoluer.",
+        "Une interface confuse ralentit l'adoption et augmente la charge support.",
+        "Des integrations improvisees rendent le produit fragile et couteux.",
+        "L'absence de priorisation produit disperse le budget et retarde la mise en marche."
+      ],
+      "solutionTitle": "Je construis une base produit exploitable et evolutive",
+      "solutionText": [
+        "Chaque application est concue autour des workflows les plus critiques, avec une priorisation nette entre indispensable, utile et secondaire.",
+        "L'objectif est d'obtenir une version claire, fiable et extensible, capable de servir des usages metier concrets sans complexite gratuite.",
+        "Vous gardez de la visibilite sur les arbitrages, le rythme de livraison et l'etat reel du produit tout au long du projet."
+      ],
+      "proofItems": [
+        "Cadrage fonctionnel, priorisation et choix techniques alignes sur vos usages reels.",
+        "Architecture maintenable pour evoluer sans dette inutile des les premieres versions.",
+        "Collaboration fluide avec fondateurs et equipes, en presentiel ou a distance.",
+        "Livraison par blocs utiles pour eviter les gros tunnels de production."
+      ],
+      "techTitle": "Perimetres frequents sur une application web",
+      "techItems": [
+        "Authentification, gestion de roles, tableaux de bord, espaces clients et back-offices.",
+        "Formulaires metier, automatisations, paiements, notifications et integrations API.",
+        "Suivi analytique, qualite technique et base propre pour les futures iterations.",
+        "Architecture adaptee au niveau de maturite du produit et a vos contraintes."
+      ],
+      "processTitle": "Un process oriente resultat et lisibilite",
+      "processSteps": [
+        {
+          "title": "Scoping",
+          "description": "Nous transformons vos objectifs business en parcours, ecrans et priorites produit."
+        },
+        {
+          "title": "Architecture",
+          "description": "Je pose la structure technique, les modeles de donnees et les integrations necessaires."
+        },
+        {
+          "title": "Livraison iterative",
+          "description": "Le produit avance par lots courts, avec validations regulieres et arbitrages explicites."
+        },
+        {
+          "title": "Consolidation",
+          "description": "Nous stabilisons, documentons et preparons la suite en fonction des usages observes."
+        }
+      ],
+      "whyChooseTitle": "Une approche adaptee aux produits en construction",
+      "whyChooseItems": [
+        "Vision produit et execution technique reunies pour aller plus droit au but.",
+        "Decoupage pragmatique des lots afin de livrer de la valeur sans attendre une version parfaite.",
+        "Documentation et arbitrages clairs pour garder la maitrise du projet."
+      ],
+      "technologiesTitle": "Technologies adaptees aux plateformes web modernes",
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "Drizzle ORM",
+        "REST API"
+      ],
+      "faqTitle": "Questions sur les applications web et SaaS",
+      "faqIntro": "Quelques reponses utiles pour cadrer un produit web sur-mesure.",
+      "faqMain": [
+        {
+          "question": "Intervenez-vous sur un MVP ou seulement sur des produits deja avances ?",
+          "answer": "Les deux. Je peux cadrer une premiere version utile ou reprendre un produit existant pour le fiabiliser, le clarifier et le faire evoluer."
+        },
+        {
+          "question": "Pouvez-vous connecter des services externes ?",
+          "answer": "Oui. Paiement, CRM, emailing, stockage, analytics ou outils internes peuvent etre integres si cela sert un usage reel."
+        },
+        {
+          "question": "Comment estimez-vous le bon perimetre de depart ?",
+          "answer": "En partant des usages critiques, des contraintes metier et du niveau de risque. L'objectif est de livrer ce qui debloque vraiment la valeur."
+        },
+        {
+          "question": "Pouvez-vous reprendre une base existante ?",
+          "answer": "Oui, apres audit. Selon l'etat du produit, je recommande une consolidation de l'existant ou une reprise plus propre sur certaines briques."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Comment gerez-vous les projets avec une equipe a distance ?",
+          "answer": "Avec un decoupage clair, des points de validation reguliers et une documentation legere mais utile. Cela fonctionne tres bien meme quand toutes les parties ne sont pas sur le meme site."
+        },
+        {
+          "question": "Que se passe-t-il apres la premiere livraison ?",
+          "answer": "Je peux rester implique pour le support, les nouvelles iterations, la maintenance ou la consolidation technique selon votre rythme."
+        },
+        {
+          "question": "Pouvez-vous concevoir l'UX produit aussi ?",
+          "answer": "Oui. J'interviens sur la structure des parcours, la hierarchie des ecrans et la clarte des interfaces, pas seulement sur le code."
+        },
+        {
+          "question": "Le projet peut-il etre SEO friendly ?",
+          "answer": "Oui, si certaines pages publiques doivent etre visibles sur Google. Le SEO se traite alors dans l'architecture et le rendu, pas a la fin."
+        },
+        {
+          "question": "Comment traitez-vous la securite ?",
+          "answer": "Validation des donnees, gestion des acces, secrets, mises a jour et deploiement font partie du socle traite des le debut du projet."
+        },
+        {
+          "question": "Pouvez-vous livrer par lots ?",
+          "answer": "Oui. C'est meme le format le plus sain pour garder de la visibilite et corriger vite ce qui doit l'etre."
+        }
+      ],
+      "finalCtaTitle": "Vous voulez structurer un produit web sans partir dans une complexite inutile ?",
+      "finalCtaText": "Je peux vous aider a cadrer une version solide, choisir les bons arbitrages et livrer une application web ou SaaS exploitable rapidement."
+    },
+    "mobileapp": {
+      "slug": "developpement-application-mobile",
+      "title": "Developpement d'application mobile",
+      "metaTitle": "Developpement d'application mobile iOS & Android | MK-Web",
+      "metaDescription": "Developpement d'applications mobiles sur-mesure pour iOS et Android. J'accompagne des projets locaux et distants avec un haut niveau d'exigence sur l'usage, la fluidite et la fiabilite.",
+      "heroTitle": "Une application mobile utile, fluide et prete a vivre dans la duree",
+      "heroSubtitle": "Je conçois des applications mobiles pour iOS et Android avec une attention forte portee a l'experience, aux parcours critiques et a la qualite d'execution, en local comme a distance.",
+      "primaryCta": "Parler de votre app",
+      "secondaryCta": "Estimer le projet",
+      "problemTitle": "Une application mobile ne peut pas se permettre l'approximation",
+      "problemItems": [
+        "Une UX confuse est sanctionnee tres vite par les utilisateurs.",
+        "Des performances mediocres degradent l'usage, la retention et l'image du produit.",
+        "Des choix techniques flous compliquent la maintenance et les futures versions.",
+        "Le pilotage App Store et Play Store devient vite lourd sans process clair."
+      ],
+      "solutionTitle": "Je traite l'application comme un produit, pas comme un simple ecran mobile",
+      "solutionText": [
+        "Je structure d'abord les parcours prioritaires, les contraintes de plateforme et les points de friction pour livrer une experience mobile nette.",
+        "Le developpement se fait avec une logique de fiabilite, de lisibilite et de maintien a long terme, pas uniquement pour sortir une premiere version vite.",
+        "L'objectif est de lancer une application utile aujourd'hui et encore exploitable dans six mois, un an ou davantage."
+      ],
+      "proofItems": [
+        "Travail sur les parcours reels d'usage, pas seulement sur une belle interface.",
+        "Arbitrages explicites entre vitesse de delivery, qualite native et maintenabilite.",
+        "Accompagnement sur la publication, les evolutions et le suivi post-lancement.",
+        "Collaboration possible avec equipes internes, produit ou design, en presentiel ou a distance."
+      ],
+      "techTitle": "Ce que couvre une mission mobile bien cadre",
+      "techItems": [
+        "Applications React Native ou approche adaptee selon les besoins du produit.",
+        "Auth, notifications, formulaires, synchronisation, parcours embarques et APIs.",
+        "Qualite de rendu, tests d'usage et attention aux performances sur appareils reels.",
+        "Preparation a la publication et suivi des contraintes iOS et Android."
+      ],
+      "processTitle": "Un process mobile centre sur l'usage",
+      "processSteps": [
+        {
+          "title": "Cadrage produit",
+          "description": "Nous definissons les usages prioritaires, la cible, le perimetre et les contraintes des stores."
+        },
+        {
+          "title": "UX mobile",
+          "description": "Je structure les ecrans, les transitions et les actions critiques pour garder une app lisible et rapide."
+        },
+        {
+          "title": "Developpement",
+          "description": "L'application est produite avec une attention forte sur la fiabilite, la qualite du rendu et les integrations."
+        },
+        {
+          "title": "Publication",
+          "description": "Je prepare les livrables, les reglages techniques et la mise en ligne sur les stores."
+        }
+      ],
+      "whyChooseTitle": "Une approche adaptee aux apps qui doivent vraiment etre utilisees",
+      "whyChooseItems": [
+        "Priorite a l'experience reelle plutot qu'a la demonstration cosmetique.",
+        "Execution technique propre pour ne pas fragiliser les evolutions futures.",
+        "Cadre de travail direct, lisible et compatible avec le distanciel."
+      ],
+      "technologiesTitle": "Technologies frequemment mobilisees",
+      "technologies": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "REST API",
+        "PostgreSQL",
+        "Push Notifications"
+      ],
+      "faqTitle": "Questions sur le developpement d'application mobile",
+      "faqIntro": "Les points les plus utiles a clarifier avant de lancer une application mobile sur-mesure.",
+      "faqMain": [
+        {
+          "question": "Faut-il viser iOS et Android des le depart ?",
+          "answer": "Pas toujours. Cela depend de vos utilisateurs, de votre budget et de la priorite business. Le bon choix se decide au cadrage."
+        },
+        {
+          "question": "Pouvez-vous intervenir sur une application existante ?",
+          "answer": "Oui, apres audit. Je peux reprendre une base existante, corriger des points critiques ou consolider la structure avant d'ajouter de nouvelles fonctionnalites."
+        },
+        {
+          "question": "Prenez-vous en charge la publication sur les stores ?",
+          "answer": "Oui. Je peux preparer la mise en ligne, verifier les prerequis et vous accompagner sur les etapes de publication."
+        },
+        {
+          "question": "Comment se gere le suivi apres lancement ?",
+          "answer": "Comme pour le web, le plus sain est de prevoir un cadre simple de maintenance et d'evolutions pour garder l'application stable dans le temps."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Pouvez-vous gerer des notifications push ?",
+          "answer": "Oui, si elles servent un usage concret. Elles sont integrees avec une logique produit claire, pas comme une option decorative."
+        },
+        {
+          "question": "L'application peut-elle fonctionner avec une API existante ?",
+          "answer": "Oui. Je peux m'appuyer sur votre socle actuel ou proposer une adaptation si l'interface technique n'est pas assez propre."
+        },
+        {
+          "question": "Comment arbitrez-vous entre natif et cross-platform ?",
+          "answer": "En fonction des usages, du budget, du calendrier et du niveau d'exigence sur les interactions. Le choix doit servir le produit, pas une preference dogmatique."
+        },
+        {
+          "question": "Travaillez-vous a distance sur ce type de mission ?",
+          "answer": "Oui. Le distanciel fonctionne tres bien pour le mobile des lors que le cadrage, les validations et les lots de livraison sont bien poses."
+        },
+        {
+          "question": "Pouvez-vous connecter analytics et tracking ?",
+          "answer": "Oui, afin de suivre adoption, retention et points de friction sans surcharger inutilement le produit."
+        },
+        {
+          "question": "Que se passe-t-il si le perimetre bouge pendant le projet ?",
+          "answer": "Le process est fait pour cela. Nous re-priorisons les lots et gardons la visibilite sur l'impact en delai et en budget."
+        }
+      ],
+      "finalCtaTitle": "Vous avez besoin d'une application mobile serieuse, pas d'un prototype fragile ?",
+      "finalCtaText": "Je peux vous aider a cadrer le bon perimetre, choisir l'approche adaptee et lancer une application mobile utile, fiable et evolutive."
+    },
+    "ecommerce": {
+      "slug": "creation-site-e-commerce",
+      "title": "Creation de site e-commerce",
+      "metaTitle": "Creation de site e-commerce sur-mesure | MK-Web",
+      "metaDescription": "Creation de sites e-commerce rapides, fiables et structures pour mieux vendre. J'interviens en Eure-et-Loir et a distance sur des boutiques pensees pour la conversion et l'exploitation quotidienne.",
+      "heroTitle": "Un e-commerce concu pour vendre plus proprement et se piloter sans friction",
+      "heroSubtitle": "Je developpe des sites e-commerce sur-mesure pour marques et commercants qui ont besoin d'une boutique credible, rapide et plus facile a faire evoluer, en local comme a distance.",
+      "primaryCta": "Parler de votre boutique",
+      "secondaryCta": "Estimer le projet",
+      "problemTitle": "Une boutique en ligne perd vite des ventes quand les fondamentaux sont faibles",
+      "problemItems": [
+        "Un tunnel d'achat confus augmente l'abandon de panier.",
+        "Une performance mediocre sur mobile detruit une partie de la conversion.",
+        "Des fiches produits mal structurees compliquent SEO, confiance et passage a l'acte.",
+        "Un back-office ou des integrations mal penses rendent l'exploitation quotidienne penible."
+      ],
+      "solutionTitle": "Je construis des boutiques plus lisibles, plus rapides et plus exploitables",
+      "solutionText": [
+        "Le travail porte autant sur l'experience d'achat que sur la structure technique et les integrations qui soutiennent votre activite au quotidien.",
+        "L'objectif est de simplifier le parcours, de renforcer la confiance et de poser une base capable de suivre votre catalogue, votre trafic et vos operations.",
+        "Le projet reste cadre autour de ce qui fait vendre et gagner du temps, pas autour d'une accumulation d'options accessoires."
+      ],
+      "proofItems": [
+        "Parcours d'achat clarifies pour reduire la friction au moment critique.",
+        "Priorite aux performances, en particulier sur mobile et sur les pages de vente.",
+        "Integrations choisies pour servir la boutique, pas pour la complexifier.",
+        "Execution compatible avec une collaboration locale ou 100% a distance."
+      ],
+      "techTitle": "Ce que couvre une mission e-commerce bien structuree",
+      "techItems": [
+        "Catalogue, fiches produits, categories, tunnel de commande et contenus utiles.",
+        "Paiement, emails transactionnels, analytics, automatisations et integrations metier.",
+        "Optimisations SEO et performance pour soutenir acquisition et conversion.",
+        "Base propre pour evoluer sans casser l'existant a chaque nouvelle demande."
+      ],
+      "processTitle": "Un process centre sur la vente et la qualite d'exploitation",
+      "processSteps": [
+        {
+          "title": "Audit & cadrage",
+          "description": "Nous clarifions catalogue, priorites business, contraintes techniques et objectifs de conversion."
+        },
+        {
+          "title": "Structure e-commerce",
+          "description": "Je travaille navigation, pages produits, reassurance et tunnel avec une logique de clarte."
+        },
+        {
+          "title": "Developpement",
+          "description": "La boutique est produite avec ses integrations utiles et des fondations fiables."
+        },
+        {
+          "title": "Optimisation",
+          "description": "Je finalise performance, reglages, controle qualite et accompagnement au lancement."
+        }
+      ],
+      "whyChooseTitle": "Une approche e-commerce plus pragmatique que decorative",
+      "whyChooseItems": [
+        "Le projet reste concentre sur conversion, vitesse et simplicite de pilotage.",
+        "Les arbitrages techniques servent la boutique et votre organisation reelle.",
+        "Vous gardez un interlocuteur unique, direct et implique."
+      ],
+      "technologiesTitle": "Technologies frequemment mobilisees",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Stripe",
+        "PostgreSQL",
+        "Analytics",
+        "Transactional Email"
+      ],
+      "faqTitle": "Questions sur la creation de site e-commerce",
+      "faqIntro": "Les principaux sujets a clarifier avant de lancer ou refondre une boutique en ligne.",
+      "faqMain": [
+        {
+          "question": "Quel budget faut-il prevoir pour une boutique sur-mesure ?",
+          "answer": "Cela depend du catalogue, du tunnel, des integrations et du niveau de personnalisation. L'essentiel est de cadrer les priorites avant d'investir."
+        },
+        {
+          "question": "Pouvez-vous reprendre une boutique existante ?",
+          "answer": "Oui. Je peux auditer la base actuelle et recommander une amelioration ciblee ou une refonte plus profonde selon la dette technique et les objectifs."
+        },
+        {
+          "question": "Travaillez-vous aussi le SEO e-commerce ?",
+          "answer": "Oui. Categories, fiches produits, performances et structure de contenus font partie des fondamentaux que j'integre au projet."
+        },
+        {
+          "question": "Le back-office restera-t-il simple ?",
+          "answer": "C'est un point important. Une boutique doit etre vendable cote client mais aussi exploitable simplement cote equipe."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Pouvez-vous connecter paiement, CRM ou emailing ?",
+          "answer": "Oui, si ces integrations servent un usage concret et restent propres dans votre organisation."
+        },
+        {
+          "question": "La boutique sera-t-elle adaptee au mobile ?",
+          "answer": "Oui. C'est un axe prioritaire car une part majeure des achats et de la navigation se fait sur mobile."
+        },
+        {
+          "question": "Comment reduire l'abandon de panier ?",
+          "answer": "En clarifiant le tunnel, en renforcant la reassurance et en eliminant les points de friction inutiles."
+        },
+        {
+          "question": "Pouvez-vous travailler avec une equipe a distance ?",
+          "answer": "Oui. La plupart des projets e-commerce avancent tres bien a distance avec un process de validation propre."
+        },
+        {
+          "question": "Prevoyez-vous un suivi apres lancement ?",
+          "answer": "Oui. Maintenance, optimisations et evolutions peuvent etre planifiees apres mise en ligne."
+        },
+        {
+          "question": "Peut-on faire evoluer la boutique ensuite ?",
+          "answer": "Oui. La base est justement pensee pour supporter de nouvelles categories, contenus, integrations ou parcours."
+        }
+      ],
+      "finalCtaTitle": "Vous voulez une boutique plus solide, plus rapide et plus simple a piloter ?",
+      "finalCtaText": "Je peux vous aider a cadrer une boutique e-commerce sur-mesure qui soutient mieux vos ventes et votre exploitation quotidienne."
+    },
+    "redesign": {
+      "slug": "refonte-audit-site-web",
+      "title": "Refonte & audit de site web",
+      "metaTitle": "Refonte et audit de site web | MK-Web",
+      "metaDescription": "Audit technique, UX et SEO puis refonte de site web sur une base plus propre. J'interviens en Eure-et-Loir et a distance pour remettre un site au niveau de vos objectifs reels.",
+      "heroTitle": "Refondre un site utilement commence par comprendre ce qui bloque vraiment",
+      "heroSubtitle": "J'analyse l'existant, j'isole les vrais points de friction SEO, UX et techniques, puis je propose une refonte proportionnee a vos enjeux, en local comme a distance.",
+      "primaryCta": "Demander un audit",
+      "secondaryCta": "Estimer le projet",
+      "problemTitle": "Refondre sans diagnostic mene souvent a de mauvais arbitrages",
+      "problemItems": [
+        "Un site vieillit mal sans qu'il soit toujours clair de savoir pourquoi.",
+        "Les symptomes visibles masquent parfois un probleme de structure ou de dette technique.",
+        "Une refonte purement visuelle peut laisser intacts les blocages SEO ou de conversion.",
+        "Les migrations mal preparees peuvent casser l'existant au lieu de l'ameliorer."
+      ],
+      "solutionTitle": "Je pars d'un audit utile pour decider proprement de la suite",
+      "solutionText": [
+        "Le travail commence par un diagnostic structure sur les performances, le SEO, l'UX, les contenus et la base technique afin de separer l'essentiel du secondaire.",
+        "Je propose ensuite une refonte proportionnee : ameliorations ciblees, reconstruction partielle ou remise a plat si c'est la voie la plus saine.",
+        "L'objectif est de reconstruire la visibilite, la clarte et la maintenabilite sans engager une depense mal orientee."
+      ],
+      "proofItems": [
+        "Audit lisible, priorise et relie a des impacts concrets sur trafic, conversion et maintenance.",
+        "Refonte guidee par des faits, pas seulement par une envie de moderniser visuellement.",
+        "Attention forte sur la migration pour eviter pertes SEO et regressions evitables.",
+        "Accompagnement possible a distance avec une feuille de route claire."
+      ],
+      "techTitle": "Ce que couvre une refonte serieuse",
+      "techItems": [
+        "Audit performance, SEO technique, structure des pages et lisibilite des parcours.",
+        "Refonte des composants, des contenus et des appels a l'action si necessaire.",
+        "Remise a plat de la base technique quand l'existant freine trop les evolutions.",
+        "Plan de migration et de verification avant mise en production."
+      ],
+      "processTitle": "Une refonte utile suit un ordre simple",
+      "processSteps": [
+        {
+          "title": "Audit",
+          "description": "J'analyse l'existant, ses limites et ses impacts reels sur votre activite."
+        },
+        {
+          "title": "Priorisation",
+          "description": "Je classe les points a traiter selon leur effet et le niveau d'effort necessaire."
+        },
+        {
+          "title": "Refonte",
+          "description": "Je reconstruis les zones prioritaires sur une base plus claire et plus moderne."
+        },
+        {
+          "title": "Bascule",
+          "description": "Je securise la migration, les controles et la mise en ligne."
+        }
+      ],
+      "whyChooseTitle": "Une refonte plus lucide que cosmetique",
+      "whyChooseItems": [
+        "Le diagnostic evite les decisions basees uniquement sur l'intuition ou l'esthetique.",
+        "La priorisation permet d'investir d'abord la ou le gain sera reel.",
+        "Le projet reste cadre, comprehensible et compatible avec une execution par phases."
+      ],
+      "technologiesTitle": "Outils et technologies mobilises",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Lighthouse",
+        "Search Console",
+        "Analytics",
+        "Tailwind CSS"
+      ],
+      "faqTitle": "Questions sur la refonte et l'audit de site web",
+      "faqIntro": "Les sujets les plus utiles a clarifier quand un site ne donne plus les resultats attendus.",
+      "faqMain": [
+        {
+          "question": "Quand faut-il envisager une refonte ?",
+          "answer": "Quand le site n'est plus aligne avec votre positionnement, qu'il freine vos evolutions ou qu'il ne soutient plus correctement visibilite et conversion."
+        },
+        {
+          "question": "Un audit peut-il suffire ?",
+          "answer": "Oui. Dans certains cas, des corrections ciblees apportent plus de valeur qu'une refonte complete."
+        },
+        {
+          "question": "La refonte peut-elle faire perdre du SEO ?",
+          "answer": "Oui si elle est mal geree. C'est pourquoi la structure, les redirections et les controles de migration sont essentiels."
+        },
+        {
+          "question": "Pouvez-vous auditer un site cree par une autre agence ?",
+          "answer": "Oui. L'analyse se base sur les faits techniques et business, pas sur l'origine du site."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Comment decidez-vous entre correction et reconstruction ?",
+          "answer": "Je compare le cout de correction, la dette technique et le niveau d'amelioration possible avant de recommander la voie la plus saine."
+        },
+        {
+          "question": "Le design est-il toujours refait ?",
+          "answer": "Pas necessairement. Parfois le vrai gain vient de la structure, du contenu ou de la base technique."
+        },
+        {
+          "question": "Pouvez-vous ameliorer le SEO local a cette occasion ?",
+          "answer": "Oui. Une refonte est souvent un bon moment pour retravailler structure, contenus et signaux geographiques utiles."
+        },
+        {
+          "question": "Comment se passe la passation ?",
+          "answer": "Avec une synthese claire des choix, des controles realises et de ce qui restera a suivre apres mise en ligne."
+        },
+        {
+          "question": "Travaillez-vous par phases ?",
+          "answer": "Oui. Quand c'est plus pertinent, la refonte peut etre decoupee pour limiter le risque et lisser l'investissement."
+        },
+        {
+          "question": "Pouvez-vous piloter le projet a distance ?",
+          "answer": "Oui. Audit, arbitrages, validation et suivi se gerent tres bien a distance avec une documentation utile et un cadre simple."
+        }
+      ],
+      "finalCtaTitle": "Vous sentez que votre site freine plus qu'il n'aide ?",
+      "finalCtaText": "Je peux vous aider a identifier ce qui bloque vraiment et a choisir une refonte proportionnee, plus saine et plus rentable."
+    },
+    "maintenance": {
+      "slug": "maintenance-support-site-web",
+      "title": "Maintenance & support web",
+      "metaTitle": "Maintenance et support web | MK-Web",
+      "metaDescription": "Maintenance de site web, support technique et evolutions ciblees. J'interviens en Eure-et-Loir et a distance pour garder des plateformes stables, sures et exploitables dans le temps.",
+      "heroTitle": "Un site fiable se maintient dans la duree, pas seulement au lancement",
+      "heroSubtitle": "Je prends en charge maintenance, support et evolutions ciblees pour eviter qu'un site devienne lent, fragile ou bloquant, que vous soyez en Eure-et-Loir ou a distance.",
+      "primaryCta": "Parler maintenance",
+      "secondaryCta": "Estimer le projet",
+      "problemTitle": "Sans suivi, un site accumule vite petits problemes et vraies urgences",
+      "problemItems": [
+        "Les mises a jour sont repoussees jusqu'au moment ou un bug ou une faille apparait.",
+        "Les performances se degradent petit a petit sans etre vraiment surveillees.",
+        "Les petites evolutions deviennent difficiles a cadrer et a traiter vite.",
+        "Chaque incident relance une urgence faute de cadre de support clair."
+      ],
+      "solutionTitle": "Je propose un suivi technique simple, lisible et utile",
+      "solutionText": [
+        "La maintenance couvre ce qui garde votre site sain dans le temps : mises a jour, surveillance, corrections, ameliorations ciblees et support sur les points bloquants.",
+        "L'idee n'est pas d'empiler des heures de support, mais de garder une base propre pour limiter les urgences et accelerer les interventions utiles.",
+        "Vous gardez un interlocuteur direct qui connait la plateforme et peut agir sans periode de re-decouverte a chaque demande."
+      ],
+      "proofItems": [
+        "Support plus direct et plus lisible qu'un fonctionnement au coup par coup.",
+        "Interventions contextualisees par une bonne connaissance de la base technique.",
+        "Maintenance utile sur site vitrine, plateforme metier ou e-commerce.",
+        "Cadre compatible avec une collaboration locale ou a distance."
+      ],
+      "techTitle": "Ce qu'englobe un suivi technique serieux",
+      "techItems": [
+        "Mises a jour, surveillance, corrections et stabilisation des points sensibles.",
+        "Ameliorations ciblees sur performances, UX et base technique.",
+        "Prise en main de projets existants apres une phase de lecture et de securisation.",
+        "Preparation des evolutions futures sur une base plus propre."
+      ],
+      "processTitle": "Un suivi continu plus utile qu'une suite d'urgences",
+      "processSteps": [
+        {
+          "title": "Prise en main",
+          "description": "J'analyse la base, l'hebergement, les risques et les besoins recurrents."
+        },
+        {
+          "title": "Stabilisation",
+          "description": "Je traite d'abord les points urgents ou trop fragiles pour repartir sur de meilleures bases."
+        },
+        {
+          "title": "Suivi",
+          "description": "Je gere les mises a jour, la surveillance et les demandes raisonnables d'evolution."
+        },
+        {
+          "title": "Amelioration",
+          "description": "Je propose des optimisations utiles a mesure que vos priorites changent."
+        }
+      ],
+      "whyChooseTitle": "Un support plus simple, plus direct et plus contextuel",
+      "whyChooseItems": [
+        "Vous evitez de re-expliquer l'historique du site a chaque intervention.",
+        "Les interventions se font dans un cadre lisible plutot qu'en reaction permanente.",
+        "Vous gardez un niveau technique solide sans internaliser toute la charge."
+      ],
+      "technologiesTitle": "Technologies et sujets frequents",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Monitoring",
+        "Deployment",
+        "Backups",
+        "Analytics"
+      ],
+      "faqTitle": "Questions sur la maintenance et le support web",
+      "faqIntro": "Les principaux points a clarifier avant de confier le suivi technique de votre site.",
+      "faqMain": [
+        {
+          "question": "Pouvez-vous maintenir un site que vous n'avez pas developpe ?",
+          "answer": "Oui, apres une phase de prise en main. L'objectif est de comprendre la base avant d'entrer dans un vrai rythme de support."
+        },
+        {
+          "question": "La maintenance inclut-elle des evolutions ?",
+          "answer": "Oui, dans une certaine mesure. Les evolutions plus lourdes demandent ensuite un cadrage dedie."
+        },
+        {
+          "question": "Le suivi peut-il aider le SEO ?",
+          "answer": "Indirectement oui, car un site rapide, stable et techniquement propre soutient mieux sa visibilite."
+        },
+        {
+          "question": "Comment gerez-vous les bugs urgents ?",
+          "answer": "Le cadre de suivi permet justement de traiter plus vite les urgences, car la base est deja connue et mieux surveillee."
+        }
+      ],
+      "faqAdvanced": [
+        {
+          "question": "Faites-vous des sauvegardes et de la surveillance ?",
+          "answer": "Oui, selon l'environnement et les besoins du projet, afin de limiter les risques et reduire le temps de reaction en cas de probleme."
+        },
+        {
+          "question": "Pouvez-vous reprendre un site tres instable ?",
+          "answer": "Oui, mais une phase de stabilisation initiale est souvent necessaire avant une maintenance reguliere."
+        },
+        {
+          "question": "Le support fonctionne-t-il aussi a distance ?",
+          "answer": "Oui. C'est meme le mode le plus courant, avec un suivi simple et des demandes priorisees."
+        },
+        {
+          "question": "Pouvez-vous maintenir un e-commerce comme un site vitrine ?",
+          "answer": "Oui, mais les points de vigilance diffèrent. Un e-commerce demande souvent plus d'attention sur les integrations et la continuité d'exploitation."
+        },
+        {
+          "question": "Comment savoir si mon site a d'abord besoin d'un audit ?",
+          "answer": "Si la base est peu lisible, lente ou pleine d'incertitudes, un audit rapide permet de repartir plus proprement."
+        },
+        {
+          "question": "Pouvez-vous rester disponible sur la duree ?",
+          "answer": "Oui, selon le cadre defini ensemble. L'objectif est d'avoir un suivi coherent avec votre rythme et vos priorites."
+        }
+      ],
+      "finalCtaTitle": "Vous cherchez un support technique plus fiable et moins reactif dans l'urgence ?",
+      "finalCtaText": "Je peux vous aider a remettre le site sur de bonnes bases, puis a le maintenir dans un cadre simple, stable et durable."
+    }
+  }
+}
