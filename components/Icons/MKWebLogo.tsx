@@ -1,24 +1,23 @@
-'use client';
-
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 const MKWEbLogo = () => {
-  const { resolvedTheme } = useTheme();
-
-  // Dark mode: white logo. Light mode: colored logo (logo.png).
-  const isDark = resolvedTheme === 'dark';
-  const imgPath = isDark ? '/logo-white.png' : '/logo.png';
-
   return (
     <span className="flex items-center gap-3 shrink-0">
       <Image
-        src={imgPath}
+        src="/logo.png"
         alt="MK-Web"
         width={80}
         height={80}
         priority
-        className="h-5 w-auto md:h-6 object-contain object-left"
+        className="h-5 w-auto object-contain object-left md:h-6 dark:hidden"
+      />
+      <Image
+        src="/logo-white.png"
+        alt="MK-Web"
+        width={80}
+        height={80}
+        priority
+        className="hidden h-5 w-auto object-contain object-left md:h-6 dark:block"
       />
     </span>
   );
