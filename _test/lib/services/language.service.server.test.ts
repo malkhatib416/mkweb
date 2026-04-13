@@ -186,7 +186,9 @@ const db = {
 const translateBlogContent = mock(
   async (input: { targetLanguageCode: string; title: string }) => ({
     title: `${input.title} ${input.targetLanguageCode}`,
-    slug: `${input.targetLanguageCode}-${input.title.toLowerCase().replace(/\s+/g, '-')}`,
+    slug: `${input.targetLanguageCode}-${input.title
+      .toLowerCase()
+      .replace(/\s+/g, '-')}`,
     description: `Description ${input.targetLanguageCode}`,
     content: `Content ${input.targetLanguageCode}`,
   }),
@@ -201,7 +203,9 @@ const translateCategoryContent = mock(async () => ({
 const translateProjectContent = mock(
   async (input: { targetLanguageCode: string; title: string }) => ({
     title: `${input.title} ${input.targetLanguageCode}`,
-    slug: `${input.targetLanguageCode}-${input.title.toLowerCase().replace(/\s+/g, '-')}`,
+    slug: `${input.targetLanguageCode}-${input.title
+      .toLowerCase()
+      .replace(/\s+/g, '-')}`,
     description: `Project description ${input.targetLanguageCode}`,
     content: `Project content ${input.targetLanguageCode}`,
   }),
