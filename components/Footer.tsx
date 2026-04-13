@@ -125,31 +125,47 @@ const Footer = () => {
                 <Link href={`/${locale}/#main`} aria-label="MK-Web home">
                   <MKWEbLogo />
                 </Link>
-                <Link
-                  href="https://www.linkedin.com/in/mohamad-alkhatib416/"
-                  className="inline-flex items-center justify-center min-w-12 min-h-12 text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#0e76a8] p-3 rounded-md me-2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn profile"
-                >
-                  <Linkedin className="w-6 h-6" aria-hidden />
-                </Link>
 
-                <Link
-                  href="https://www.malt.fr/profile/mohamadalkhatib"
-                  className="inline-flex items-center justify-center min-w-12 min-h-12 text-white hover:text-white/50 transition-all duration-200 ease-in-out mt-4 bg-[#FC5657] p-3 rounded-md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Malt profile"
-                >
-                  <Image
-                    src="/malt.svg"
-                    alt=""
-                    width={24}
-                    height={24}
-                    aria-hidden
-                  />
-                </Link>
+                <div className="flex items-center gap-2 mt-2">
+                  <Link
+                    href="https://www.linkedin.com/in/mohamad-alkhatib416/"
+                    className="inline-flex items-center justify-center   text-white hover:text-white/50 transition-all duration-200 ease-in-out  bg-[#0e76a8] p-2 rounded-md "
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn profile"
+                  >
+                    <Linkedin className="w-6 h-6" aria-hidden />
+                  </Link>
+                  <Link
+                    href="https://www.malt.fr/profile/mohamadalkhatib"
+                    className="inline-flex items-center justify-center   text-white hover:text-white/50 transition-all duration-200 ease-in-out  bg-[#FC5657] p-2 rounded-md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Malt profile"
+                  >
+                    <Image
+                      src="/malt.svg"
+                      alt=""
+                      width={24}
+                      height={24}
+                      aria-hidden
+                    />
+                  </Link>
+                  <Link
+                    href="https://x.com/AlkhatibM804"
+                    className="inline-flex items-center justify-center  text-white hover:text-white/70 transition-all duration-200 ease-in-out  bg-black py-2 px-3 rounded-md "
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X profile"
+                  >
+                    <span
+                      className="text-2xl font-semibold leading-none"
+                      aria-hidden
+                    >
+                      X
+                    </span>
+                  </Link>
+                </div>
               </Suspense>
             </div>
             <div className="w-full  md:text-left">
