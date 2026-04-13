@@ -281,11 +281,17 @@
     "title": "Mes Dernières",
     "titleHighlight": "Réalisations",
     "subtitle": "Découvrez mes projets les plus récents, alliant innovation technique et design moderne pour créer des expériences web exceptionnelles.",
+    "defaultCategory": "Développement",
     "viewProject": "Voir le projet",
     "sourceCode": "Code source",
     "otherProjects": "Autres Projets",
     "demo": "Demo",
     "code": "Code",
+    "labels": {
+      "drawerHint": "Ouvre la fiche projet",
+      "taskTitle": "Tâches réalisées",
+      "aboutLabel": "À propos du projet"
+    },
     "cta": {
       "title": "Prêt à créer votre prochain projet ?",
       "subtitle": "Transformons ensemble vos idées en solutions web innovantes et performantes.",
@@ -301,17 +307,42 @@
       "alertjo": {
         "description": "Application de surveillance des journaux officiels avec scraping automatisé et notifications email en temps réel.",
         "longDescription": "Plateforme complète permettant de surveiller les publications du Journal Officiel français. Extraction automatique des données PDF, recherche avancée et système de notifications personnalisées.",
-        "category": "Application Web"
+        "category": "Application Web",
+        "tasks": [
+          "Automatisation du scraping et de l’analyse des publications officielles",
+          "Moteur de recherche structuré avec suivi des résultats utiles",
+          "Notifications email en temps réel selon les critères métier"
+        ]
       },
       "pcmge": {
         "description": "Migration et refonte d'un site vitrine en CRM interne sur mesure pour une PME.",
         "longDescription": "Projet de migration d'un site existant réalisé en PHP vers Laravel. Développement d'un CRM interne pour gérer les clients et les contacts. Intégration de Bootstrap pour une interface claire et responsive.",
-        "category": "CRM / Application Web"
+        "category": "CRM / Application Web",
+        "tasks": [
+          "Migration progressive d’un site PHP existant vers Laravel",
+          "Conception d’un CRM interne pour les clients et contacts",
+          "Interface responsive pour simplifier les usages quotidiens"
+        ]
       },
       "luxdrive": {
         "description": "Plateforme premium de location de voitures avec système de réservation, tableau de bord d'administration et intégration de paiement Stripe",
         "longDescription": "Plateforme complète de gestion de location de voitures offrant un système de réservation multi-étapes, la disponibilité des véhicules en temps réel, le traitement de paiement via Stripe, ainsi qu'un tableau de bord d'administration pour gérer la flotte et les réservations. Le système inclut le support multilingue (FR/DE), les notifications par email, la vérification de documents et la génération de factures. Développé avec Next.js 15, TypeScript, PostgreSQL et les dernières pratiques React.",
-        "category": "E-Commerce / SaaS Platform"
+        "category": "E-Commerce / SaaS Platform",
+        "tasks": [
+          "Parcours de réservation premium avec disponibilités en temps réel",
+          "Paiement Stripe, facturation et gestion des documents",
+          "Dashboard d’administration pour la flotte et les réservations"
+        ]
+      },
+      "loiselet": {
+        "description": "Refonte complète d’un site e-commerce avec système multilingue automatisé par IA.",
+        "longDescription": "Développement d’une plateforme e-commerce avec un système avancé de gestion multilingue. Une fonctionnalité clé permet de traduire automatiquement l’ensemble du catalogue (produits, variantes, catégories, contenus) via l’IA en un seul clic. Chaque langue est optimisée pour le SEO avec des slugs traduits et la gestion des balises hreflang. Le système permet également de déployer chaque langue sur un nom de domaine distinct, facilitant l’internationalisation et la performance SEO. Un dashboard sur mesure a été développé pour gérer les produits et les langues.",
+        "category": "E-commerce / IA / SaaS-like",
+        "tasks": [
+          "Traduction IA du catalogue e-commerce en un clic",
+          "Déploiement multilingue avec SEO localisé et hreflang",
+          "Dashboard sur mesure pour la gestion des produits et des langues"
+        ]
       }
     }
   },

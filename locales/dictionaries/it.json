@@ -284,11 +284,17 @@
     "title": "Le Mie",
     "titleHighlight": "Ultime Realizzazioni",
     "subtitle": "Scopri i miei progetti più recenti, che uniscono innovazione tecnica e design moderno.",
+    "defaultCategory": "Sviluppo",
     "viewProject": "Vedi il progetto",
     "sourceCode": "Codice sorgente",
     "otherProjects": "Altri Progetti",
     "demo": "Demo",
     "code": "Codice",
+    "labels": {
+      "drawerHint": "Apri i dettagli del progetto",
+      "taskTitle": "Attività realizzate",
+      "aboutLabel": "Sul progetto"
+    },
     "cta": {
       "title": "Pronto a creare il tuo prossimo progetto?",
       "subtitle": "Trasformiamo insieme le tue idee in soluzioni web innovative.",
@@ -304,17 +310,42 @@
       "alertjo": {
         "description": "Applicazione per la sorveglianza dei giornali ufficiali con scraping automatizzato.",
         "longDescription": "Piattaforma completa per monitorare le pubblicazioni della Gazzetta Ufficiale francese.",
-        "category": "Applicazione Web"
+        "category": "Applicazione Web",
+        "tasks": [
+          "Scraping automatizzato e analisi delle pubblicazioni ufficiali",
+          "Ricerca strutturata focalizzata sui risultati più utili",
+          "Notifiche email in tempo reale basate su regole di business"
+        ]
       },
       "pcmge": {
         "description": "Migrazione e redesign di un sito vetrina in un CRM interno su misura.",
         "longDescription": "Migrazione da PHP a Laravel. Sviluppo di un CRM interno per gestire clienti e contatti.",
-        "category": "CRM / Applicazione Web"
+        "category": "CRM / Applicazione Web",
+        "tasks": [
+          "Migrazione progressiva da un sito PHP legacy a Laravel",
+          "CRM interno su misura per clienti e contatti",
+          "Flussi responsive per l’operatività quotidiana"
+        ]
       },
       "luxdrive": {
         "description": "Piattaforma premium di noleggio auto con sistema di prenotazione e integrazione Stripe.",
         "longDescription": "Piattaforma completa di gestione noleggio con prenotazione multi-step e pagamento via Stripe.",
-        "category": "E-Commerce / SaaS Platform"
+        "category": "E-Commerce / SaaS Platform",
+        "tasks": [
+          "Prenotazione premium con disponibilità veicoli in tempo reale",
+          "Pagamenti Stripe, fatturazione e verifica documentale",
+          "Dashboard admin per flotta, prenotazioni e operations"
+        ]
+      },
+      "loiselet": {
+        "description": "Restyling completo di un sito e-commerce con un sistema multilingue automatizzato dall'IA.",
+        "longDescription": "Sviluppo di una piattaforma e-commerce con un sistema avanzato di gestione multilingue. Una funzionalità chiave consente di tradurre automaticamente l'intero catalogo (prodotti, varianti, categorie e contenuti) tramite IA con un solo clic. Ogni lingua è ottimizzata per la SEO con slug tradotti e gestione dei tag hreflang. Il sistema consente inoltre di pubblicare ogni lingua su un dominio distinto, facilitando l'internazionalizzazione e le performance SEO. È stata sviluppata una dashboard su misura per gestire prodotti e lingue.",
+        "category": "E-commerce / IA / SaaS-like",
+        "tasks": [
+          "Workflow IA one-click per tradurre l’intero catalogo",
+          "SEO localizzata con slug tradotti e tag hreflang",
+          "Dashboard su misura per la gestione dei prodotti e delle lingue"
+        ]
       }
     }
   },

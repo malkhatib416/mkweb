@@ -284,11 +284,17 @@
     "title": "Mis Últimas",
     "titleHighlight": "Realizaciones",
     "subtitle": "Descubre mis proyectos más recientes, combinando innovación técnica y diseño moderno.",
+    "defaultCategory": "Desarrollo",
     "viewProject": "Ver el proyecto",
     "sourceCode": "Código fuente",
     "otherProjects": "Otros proyectos",
     "demo": "Demo",
     "code": "Código",
+    "labels": {
+      "drawerHint": "Abrir detalles del proyecto",
+      "taskTitle": "Tareas realizadas",
+      "aboutLabel": "Sobre el proyecto"
+    },
     "cta": {
       "title": "¿Listo para crear tu próximo proyecto?",
       "subtitle": "Transformemos juntos tus ideas en soluciones web innovadoras.",
@@ -304,17 +310,42 @@
       "alertjo": {
         "description": "Aplicación de vigilancia de diarios oficiales con scraping automatizado.",
         "longDescription": "Plataforma completa para monitorear publicaciones del Diario Oficial francés.",
-        "category": "Aplicación Web"
+        "category": "Aplicación Web",
+        "tasks": [
+          "Scraping automatizado y análisis de publicaciones oficiales",
+          "Buscador estructurado centrado en resultados útiles",
+          "Alertas por correo en tiempo real según reglas de negocio"
+        ]
       },
       "pcmge": {
         "description": "Migración y rediseño de un sitio escaparate a un CRM interno personalizado.",
         "longDescription": "Migración de PHP a Laravel. Desarrollo de CRM interno para gestión de clientes.",
-        "category": "CRM / Aplicación Web"
+        "category": "CRM / Aplicación Web",
+        "tasks": [
+          "Migración progresiva de un sitio PHP heredado a Laravel",
+          "CRM interno a medida para clientes y contactos",
+          "Flujos responsive para el uso operativo diario"
+        ]
       },
       "luxdrive": {
         "description": "Plataforma premium de alquiler de coches con sistema de reservas e integración Stripe.",
         "longDescription": "Plataforma completa con reservas paso a paso y pagos via Stripe.",
-        "category": "E-Commerce / SaaS Platform"
+        "category": "E-Commerce / SaaS Platform",
+        "tasks": [
+          "Proceso de reserva premium con disponibilidad en tiempo real",
+          "Pagos con Stripe, facturación y validación documental",
+          "Panel de administración para flota, reservas y operaciones"
+        ]
+      },
+      "loiselet": {
+        "description": "Rediseño completo de un sitio e-commerce con un sistema multilingüe automatizado por IA.",
+        "longDescription": "Desarrollo de una plataforma de e-commerce con un sistema avanzado de gestión multilingüe. Una funcionalidad clave permite traducir automáticamente todo el catálogo (productos, variantes, categorías y contenidos) mediante IA con un solo clic. Cada idioma está optimizado para SEO con slugs traducidos y gestión de etiquetas hreflang. El sistema también permite desplegar cada idioma en un dominio distinto, facilitando la internacionalización y el rendimiento SEO. Se desarrolló un panel de administración a medida para gestionar los productos y los idiomas.",
+        "category": "E-commerce / IA / SaaS-like",
+        "tasks": [
+          "Flujo de traducción con IA en un clic para todo el catálogo",
+          "SEO localizado con slugs traducidos y etiquetas hreflang",
+          "Panel a medida para la gestión de productos e idiomas"
+        ]
       }
     }
   },

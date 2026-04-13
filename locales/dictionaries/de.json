@@ -284,11 +284,17 @@
     "title": "Meine neuesten",
     "titleHighlight": "Realisierungen",
     "subtitle": "Entdecken Sie meine neuesten Projekte, die technische Innovation mit modernem Design verbinden.",
+    "defaultCategory": "Entwicklung",
     "viewProject": "Projekt ansehen",
     "sourceCode": "Quellcode",
     "otherProjects": "Weitere Projekte",
     "demo": "Demo",
     "code": "Code",
+    "labels": {
+      "drawerHint": "Projektdetails öffnen",
+      "taskTitle": "Umgesetzte Aufgaben",
+      "aboutLabel": "Über das Projekt"
+    },
     "cta": {
       "title": "Bereit, Ihr nächstes Projekt zu starten?",
       "subtitle": "Lassen Sie uns Ihre Ideen in innovative Weblösungen verwandeln.",
@@ -304,17 +310,42 @@
       "alertjo": {
         "description": "Überwachungsanwendung für offizielle Mitteilungen.",
         "longDescription": "Vollständige Plattform zur Überwachung des französischen Amtsblatts.",
-        "category": "Webanwendung"
+        "category": "Webanwendung",
+        "tasks": [
+          "Automatisiertes Scraping und Parsing offizieller Veröffentlichungen",
+          "Strukturierte Suche für relevante geschäftliche Treffer",
+          "Echtzeit-E-Mail-Benachrichtigungen nach individuellen Regeln"
+        ]
       },
       "pcmge": {
         "description": "Migration einer Präsentationswebsite zu einem internen CRM.",
         "longDescription": "PHP-zu-Laravel-Migration. Entwicklung eines CRM für die Kunden- und Kontaktverwaltung.",
-        "category": "CRM / Webanwendung"
+        "category": "CRM / Webanwendung",
+        "tasks": [
+          "Schrittweise Migration einer bestehenden PHP-Seite zu Laravel",
+          "Individuelles internes CRM für Kunden- und Kontaktverwaltung",
+          "Responsive Backoffice-Abläufe für die tägliche Nutzung"
+        ]
       },
       "luxdrive": {
         "description": "Premium-Autovermietungsplattform mit Buchungssystem und Stripe-Integration.",
         "longDescription": "Vollständige Mietwagenplattform mit Echtzeit-Verfügbarkeit und Stripe-Zahlung.",
-        "category": "E-Commerce / SaaS-Plattform"
+        "category": "E-Commerce / SaaS-Plattform",
+        "tasks": [
+          "Premium-Buchungsprozess mit Echtzeit-Verfügbarkeit der Fahrzeuge",
+          "Stripe-Zahlungen, Rechnungen und Dokumentenprüfung",
+          "Admin-Dashboard für Flotte, Reservierungen und Betrieb"
+        ]
+      },
+      "loiselet": {
+        "description": "Kompletter Relaunch einer E-Commerce-Website mit KI-gestütztem mehrsprachigem System.",
+        "longDescription": "Entwicklung einer E-Commerce-Plattform mit einem fortschrittlichen System zur Verwaltung mehrerer Sprachen. Eine Schlüsselfunktion ermöglicht es, den gesamten Katalog (Produkte, Varianten, Kategorien und Inhalte) per KI mit einem Klick automatisch zu übersetzen. Jede Sprache ist für SEO optimiert, mit übersetzten Slugs und Verwaltung der hreflang-Tags. Das System erlaubt außerdem, jede Sprache auf einer eigenen Domain bereitzustellen, was die Internationalisierung und die SEO-Performance verbessert. Ein maßgeschneidertes Dashboard wurde entwickelt, um Produkte und Sprachen zu verwalten.",
+        "category": "E-Commerce / KI / SaaS-ähnlich",
+        "tasks": [
+          "KI-gestützter One-Click-Übersetzungsworkflow für den gesamten Katalog",
+          "Lokalisierte SEO-Struktur mit übersetzten Slugs und hreflang",
+          "Maßgeschneidertes Dashboard für Produktverwaltung und Sprachinhalte"
+        ]
       }
     }
   },

@@ -281,11 +281,17 @@
     "title": "My Latest",
     "titleHighlight": "Work",
     "subtitle": "Discover my most recent projects, combining technical innovation and modern design to create exceptional web experiences.",
+    "defaultCategory": "Development",
     "viewProject": "View project",
     "sourceCode": "Source code",
     "otherProjects": "Other Projects",
     "demo": "Demo",
     "code": "Code",
+    "labels": {
+      "drawerHint": "Open project details",
+      "taskTitle": "Tasks delivered",
+      "aboutLabel": "About this project"
+    },
     "cta": {
       "title": "Ready to create your next project?",
       "subtitle": "Let's transform your ideas into innovative and high-performance web solutions together.",
@@ -301,17 +307,42 @@
       "alertjo": {
         "description": "Official gazette monitoring application with automated scraping and real-time email notifications.",
         "longDescription": "Complete platform for monitoring French Official Gazette publications. Automatic PDF data extraction, advanced search and personalized notification system.",
-        "category": "Web Application"
+        "category": "Web Application",
+        "tasks": [
+          "Automated scraping and parsing of official publication feeds",
+          "Structured search experience focused on high-value matches",
+          "Real-time email alerts tailored to business monitoring rules"
+        ]
       },
       "pcmge": {
         "description": "Migration and redesign of a showcase website into a custom internal CRM for an SME.",
         "longDescription": "Migration project of an existing PHP site to Laravel. Development of an internal CRM to manage clients and contacts. Bootstrap integration for a clean and responsive interface.",
-        "category": "CRM / Web Application"
+        "category": "CRM / Web Application",
+        "tasks": [
+          "Progressive migration from a legacy PHP site to Laravel",
+          "Custom internal CRM for client and contact operations",
+          "Responsive back-office flows for day-to-day team usage"
+        ]
       },
       "luxdrive": {
         "description": "Premium car rental platform with reservation system, admin dashboard, and Stripe integration",
         "longDescription": "A comprehensive car rental management platform featuring a multi-step booking system, real-time vehicle availability, Stripe payment processing, admin dashboard for fleet and reservation management, multi-language support (FR/DE), email notifications, document verification, and invoice generation. Built with Next.js 15, TypeScript, PostgreSQL, and modern React patterns.",
-        "category": "E-Commerce / SaaS Platform"
+        "category": "E-Commerce / SaaS Platform",
+        "tasks": [
+          "Premium booking flow with real-time vehicle availability",
+          "Stripe payments, invoicing, and document verification",
+          "Admin dashboard for fleet, reservations, and operations"
+        ]
+      },
+      "loiselet": {
+        "description": "Complete redesign of an e-commerce website with an AI-powered multilingual system.",
+        "longDescription": "Development of an e-commerce platform with an advanced multilingual management system. A key feature allows the entire catalog (products, variants, categories, and content) to be translated automatically via AI in a single click. Each language is optimized for SEO with translated slugs and hreflang tag management. The system also makes it possible to deploy each language on a separate domain name, improving internationalization and SEO performance. A custom dashboard was built to manage products and languages.",
+        "category": "E-commerce / AI / SaaS-like",
+        "tasks": [
+          "One-click AI translation workflow for the full catalog",
+          "Localized SEO setup with translated slugs and hreflang",
+          "Custom dashboard for product management and language content"
+        ]
       }
     }
   },
