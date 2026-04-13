@@ -293,6 +293,11 @@ const suggestTopicsSchemaZod = z.object({
   topics: z
     .array(z.string())
     .describe('Array of suggested blog topic titles or short phrases'),
+  categorySuggestions: z
+    .array(z.string())
+    .describe(
+      'Array of suggested blog category names to organize future content',
+    ),
 });
 
 /**
@@ -301,7 +306,7 @@ const suggestTopicsSchemaZod = z.object({
  */
 export async function suggestArticleTopics(
   input: SuggestArticleTopicsInput,
-): Promise<{ topics: string[] }> {
+): Promise<{ topics: string[]; categorySuggestions: string[] }> {
   const {
     serviceTitles,
     recentArticleTitles,
@@ -338,19 +343,32 @@ ${categoryLine}
       year - 1
     } or ${year - 2} as the current year.
 ${langNote}
-Return only the "topics" array with short, clear topic phrases. Mix evergreen topics (no year) with a few year-specific ones when relevant.`,
+Also suggest 6 to 10 concise blog category ideas that would help organize this content strategy. Category names must be short, reusable labels such as "SEO local", "Refonte", or "Performance web" rather than article titles.
+Return only the "topics" and "categorySuggestions" arrays. Mix evergreen topics (no year) with a few year-specific ones when relevant.`,
     prompt: `Suggest exactly ${count} new blog topic ideas. Current year: ${year}. Services: ${serviceTitles.join(
       ', ',
     )}.${
       categoryNames.length > 0
         ? ` Categories to focus on: ${categoryNames.join(', ')}.`
         : ''
-    } Recent articles to avoid: ${
+    } Also suggest 6 to 10 blog category ideas. Recent articles to avoid: ${
       recentArticleTitles.join(' | ') || 'none'
     }. Only some topics should mention ${year} (e.g. trends or annual guides); most should be evergreen without a year.`,
   });
-  const result = object as { topics: string[] };
+  const result = object as {
+    topics: string[];
+    categorySuggestions: string[];
+  };
   return {
     topics: Array.isArray(result?.topics) ? result.topics.slice(0, count) : [],
+    categorySuggestions: Array.isArray(result?.categorySuggestions)
+      ? Array.from(
+          new Set(
+            result.categorySuggestions
+              .map((item) => item.trim())
+              .filter(Boolean),
+          ),
+        ).slice(0, 10)
+      : [],
   };
 }

@@ -5,6 +5,7 @@ import { getAllCategories } from '@/lib/services/category.service.server';
 import { getErrorMessage, getErrorStatus } from '@/lib/utils/api-error-handler';
 import { getDictionary } from '@/locales/dictionaries';
 import { Locale, defaultLocale } from '@/locales/i18n';
+import { generateSlug } from '@/utils/utils';
 import { NextRequest, NextResponse } from 'next/server';
 
 const SERVICE_KEYS = [
@@ -53,32 +54,42 @@ export async function GET(request: NextRequest) {
     });
     const recentArticleTitles = latestBlogs.map((b) => b.title);
 
+    const { data: allCategories } = await getAllCategories({
+      limit: 100,
+      locale: locale === 'en' ? 'en' : 'fr',
+    });
+    const existingCategoryNames = new Set(
+      allCategories.map((category) => generateSlug(category.name)),
+    );
+
     let categoryNames: string[] = [];
     if (categoryIds.length > 0) {
-      const { data: allCategories } = await getAllCategories({
-        limit: 100,
-        locale: locale === 'en' ? 'en' : 'fr',
-      });
       const selected = allCategories.filter((c) => categoryIds.includes(c.id));
       categoryNames = selected.map((c) => c.name);
     }
 
     const apiKey = process.env.OPENAI_API_KEY;
     let suggestions: string[] = [];
+    let categorySuggestions: string[] = [];
     if (apiKey?.trim()) {
-      const { topics } = await suggestArticleTopics({
-        serviceTitles,
-        recentArticleTitles,
-        count,
-        locale: locale === 'en' ? 'en' : 'fr',
-        ...(categoryNames.length > 0 && { categoryNames }),
-      });
+      const { topics, categorySuggestions: suggestedCategories } =
+        await suggestArticleTopics({
+          serviceTitles,
+          recentArticleTitles,
+          count,
+          locale: locale === 'en' ? 'en' : 'fr',
+          ...(categoryNames.length > 0 && { categoryNames }),
+        });
       suggestions = topics;
+      categorySuggestions = suggestedCategories.filter(
+        (suggestion) => !existingCategoryNames.has(generateSlug(suggestion)),
+      );
     }
 
     return NextResponse.json({
       data: {
         suggestions,
+        categorySuggestions,
         latestArticles: latestBlogs,
         services,
       },

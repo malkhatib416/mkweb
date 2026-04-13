@@ -55,7 +55,10 @@ const categoryState = {
 
 const aiState = {
   suggestCalls: [] as unknown[],
-  suggestResult: { topics: ['Topic 1', 'Topic 2'] },
+  suggestResult: {
+    topics: ['Topic 1', 'Topic 2'],
+    categorySuggestions: ['SEO local', 'Refonte'],
+  },
 };
 
 const dictionaryState = {
@@ -237,7 +240,10 @@ describe('admin misc routes', () => {
       pagination: { page: 1, limit: 10, total: 0, pages: 1 },
     };
     aiState.suggestCalls = [];
-    aiState.suggestResult = { topics: ['Topic 1', 'Topic 2'] };
+    aiState.suggestResult = {
+      topics: ['Topic 1', 'Topic 2'],
+      categorySuggestions: ['SEO local', 'Refonte'],
+    };
     dictionaryState.calls = [];
     dictionaryState.result = {
       admin: { common: { title: 'Admin' } },
@@ -529,11 +535,13 @@ describe('admin misc routes', () => {
       data: [
         { id: 'cat-1', name: 'SEO' },
         { id: 'cat-2', name: 'Performance' },
+        { id: 'cat-3', name: 'SEO Migration' },
       ],
-      pagination: { page: 1, limit: 100, total: 2, pages: 1 },
+      pagination: { page: 1, limit: 100, total: 3, pages: 1 },
     };
     aiState.suggestResult = {
       topics: ['SEO for migration projects', 'Performance quick wins'],
+      categorySuggestions: ['SEO Migration', 'Web Performance'],
     };
 
     const request = new NextRequest(
@@ -568,6 +576,7 @@ describe('admin misc routes', () => {
     expect(json).toEqual({
       data: {
         suggestions: ['SEO for migration projects', 'Performance quick wins'],
+        categorySuggestions: ['Web Performance'],
         latestArticles: [
           {
             id: 'blog-1',
@@ -605,5 +614,6 @@ describe('admin misc routes', () => {
     expect(aiState.suggestCalls).toHaveLength(0);
     expect(response.status).toBe(200);
     expect(json.data.suggestions).toEqual([]);
+    expect(json.data.categorySuggestions).toEqual([]);
   });
 });
