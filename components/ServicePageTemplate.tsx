@@ -298,7 +298,7 @@ export default function ServicePageTemplate({ content, locale }: Props) {
 
       <section className="pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="rounded-[2.5rem] border border-slate-200/70 bg-[radial-gradient(circle_at_top_left,_rgba(255,74,23,0.18),_transparent_30%),linear-gradient(135deg,#020617,#111827)] px-8 py-12 text-white dark:border-slate-800 dark:bg-[radial-gradient(circle_at_top_left,_rgba(255,74,23,0.15),_transparent_28%),linear-gradient(135deg,#ffffff,#f8fafc)] dark:text-slate-950 md:px-12 md:py-16">
+          <div className="rounded-[2.5rem] border border-slate-200/70 bg-[radial-gradient(circle_at_top_left,_rgba(255,74,23,0.18),_transparent_30%),linear-gradient(135deg,#020617,#111827)] px-8 py-12 text-white dark:border-slate-800 dark:bg-[radial-gradient(circle_at_top_left,_rgba(255,74,23,0.18),_transparent_26%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.06),_transparent_24%),linear-gradient(135deg,#020617,#0f172a)] dark:text-white md:px-12 md:py-16">
             <div className="max-w-4xl">
               <p className="mb-4 text-[11px] font-mono uppercase tracking-[0.22em] text-myorange-100">
                 {labels.ctaSection}
@@ -306,7 +306,7 @@ export default function ServicePageTemplate({ content, locale }: Props) {
               <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
                 {content.finalCtaTitle}
               </h2>
-              <p className="mt-5 text-base leading-8 text-slate-300 dark:text-slate-700">
+              <p className="mt-5 text-base leading-8 text-slate-300 dark:text-slate-300">
                 {content.finalCtaText}
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -319,7 +319,7 @@ export default function ServicePageTemplate({ content, locale }: Props) {
                 <Button
                   asChild
                   variant="outline"
-                  className="h-12 rounded-full border-white/20 bg-transparent px-6 text-white hover:bg-white/10 dark:border-slate-300 dark:text-slate-950 dark:hover:bg-slate-100"
+                  className="h-12 rounded-full border-white/20 bg-transparent px-6 text-white hover:bg-white/10 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
                 >
                   <Link href={`/${locale}/estimation`}>
                     {content.secondaryCta}
