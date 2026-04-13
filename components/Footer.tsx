@@ -113,7 +113,7 @@ const Footer = () => {
   const localeFromPath = pathSegments[0];
   const locale: Locale = isValidLocale(localeFromPath) ? localeFromPath : 'fr';
 
-  const dict = dictionaries[locale];
+  const dict: typeof frDict = dictionaries[locale];
   const t = dict.footer;
   const nav = dict.nav;
   const serviceLinks = getServiceLinks(locale);
@@ -210,20 +210,31 @@ const Footer = () => {
                     {t.home}
                   </Link>
                 </li>
+
                 <li>
                   <Link
-                    href={`/${locale}/mentions-legales`}
+                    href={`/${locale}/blog`}
                     className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
-                    {t.legalNotice}
+                    {t.blog}
                   </Link>
                 </li>
+
                 <li>
                   <Link
                     href={`/${locale}#contact`}
                     className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
                   >
                     {t.contact}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href={`/${locale}/mentions-legales`}
+                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out"
+                  >
+                    {t.legalNotice}
                   </Link>
                 </li>
               </ul>
