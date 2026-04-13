@@ -78,7 +78,13 @@ async function backfillBlogTranslations(target: {
   name: string;
 }) {
   const [blogs, blogTranslations] = await Promise.all([
-    db.select({ id: blog.id }).from(blog),
+    db
+      .select({
+        id: blog.id,
+        image: blog.image,
+        categoryId: blog.categoryId,
+      })
+      .from(blog),
     db.select().from(translation).where(eq(translation.entityType, 'blog')),
   ]);
 
@@ -89,6 +95,22 @@ async function backfillBlogTranslations(target: {
     const list = translationsByBlogId.get(item.blogId) ?? [];
     list.push(item);
     translationsByBlogId.set(item.blogId, list);
+  }
+
+  const hasDefaultLocaleSiblingByMetadata = new Map<string, string>();
+
+  for (const currentBlog of blogs) {
+    const existingTranslations = translationsByBlogId.get(currentBlog.id) ?? [];
+    const hasDefaultLocaleSource = existingTranslations.some(
+      (item) => item.locale === defaultLocale && item.title && item.content,
+    );
+
+    if (!hasDefaultLocaleSource || !currentBlog.image) {
+      continue;
+    }
+
+    const key = `${currentBlog.image}::${currentBlog.categoryId ?? 'none'}`;
+    hasDefaultLocaleSiblingByMetadata.set(key, currentBlog.id);
   }
 
   let createdCount = 0;
@@ -110,6 +132,25 @@ async function backfillBlogTranslations(target: {
       skippedCount += 1;
       console.warn(
         `Skipping blog ${currentBlog.id} during language backfill: no usable source translation found`,
+      );
+      continue;
+    }
+
+    const siblingKey = currentBlog.image
+      ? `${currentBlog.image}::${currentBlog.categoryId ?? 'none'}`
+      : null;
+    const preferredBlogId = siblingKey
+      ? hasDefaultLocaleSiblingByMetadata.get(siblingKey)
+      : undefined;
+
+    if (
+      source.locale !== defaultLocale &&
+      preferredBlogId &&
+      preferredBlogId !== currentBlog.id
+    ) {
+      skippedCount += 1;
+      console.warn(
+        `Skipping blog ${currentBlog.id} during language backfill: likely duplicate migrated sibling of ${preferredBlogId}`,
       );
       continue;
     }

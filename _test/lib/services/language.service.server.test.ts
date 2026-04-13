@@ -11,6 +11,8 @@ type LanguageRow = {
 
 type BlogRow = {
   id: string;
+  image?: string | null;
+  categoryId?: string | null;
 };
 
 type CategoryRow = {
@@ -398,6 +400,42 @@ describe('refreshBlogTranslationsForLanguages', () => {
     expect(translateBlogContent).not.toHaveBeenCalled();
     expect(state.insertCalls).toHaveLength(0);
     expect(state.updateCalls).toHaveLength(0);
+  });
+
+  it('skips likely migrated sibling blogs when a default-locale source already exists for the same article metadata', async () => {
+    state.languages = [createLanguageRow('de', 'German')];
+    state.blogRowsQueue.push([
+      { id: 'blog-fr', image: '/shared-cover.png', categoryId: 'category-1' },
+      { id: 'blog-en', image: '/shared-cover.png', categoryId: 'category-1' },
+    ]);
+    state.translationRowsQueue.push([
+      createBlogTranslationRow('blog-fr', 'fr', {
+        slug: 'guide-seo-debutant',
+        title: 'Guide SEO',
+        content: 'Contenu FR',
+      }),
+      createBlogTranslationRow('blog-en', 'en', {
+        slug: 'seo-beginner-guide',
+        title: 'SEO Guide',
+        content: 'Content EN',
+      }),
+    ]);
+    state.translationFindFirstQueue.push(null);
+
+    const result = await refreshBlogTranslationsForLanguages();
+
+    expect(result).toEqual({
+      languageCount: 1,
+      createdCount: 1,
+      skippedCount: 1,
+    });
+    expect(translateBlogContent).toHaveBeenCalledTimes(1);
+    expect(state.insertCalls).toHaveLength(1);
+    expect(state.insertCalls[0]?.values).toMatchObject({
+      entityType: 'blog',
+      blogId: 'blog-fr',
+      locale: 'de',
+    });
   });
 
   it('returns zero counts when there are no configured languages', async () => {
