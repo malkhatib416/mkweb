@@ -42,9 +42,11 @@ const SubFooter = ({ locale }: { locale: Locale }) => {
 const FooterNewsletter = ({
   locale,
   t,
+  className,
 }: {
   locale: Locale;
   t: typeof frDict.footer;
+  className?: string;
 }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -72,7 +74,7 @@ const FooterNewsletter = ({
   };
 
   return (
-    <div className="w-full md:text-left">
+    <div className={className ?? 'w-full md:text-left'}>
       <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
         {t.newsletterTitle}
       </p>
@@ -113,20 +115,47 @@ const Footer = () => {
 
   const dict = dictionaries[locale];
   const t = dict.footer;
+  const nav = dict.nav;
   const serviceLinks = getServiceLinks(locale);
 
   return (
     <React.Fragment>
       <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-600">
         <div className="custom-screen">
-          <div className="py-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4">
+          <div className="grid gap-10 py-16 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.7fr)_minmax(0,0.9fr)_minmax(0,1fr)] md:items-start">
             <div className="w-full hidden md:block">
               <Suspense>
                 <Link href={`/${locale}/#main`} aria-label="MK-Web home">
                   <MKWEbLogo />
                 </Link>
 
-                <div className="flex items-center gap-2 mt-2">
+                <div className="mt-8">
+                  <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
+                    {t.contact}
+                  </p>
+                  <ul className="text-sm mt-4 flex flex-col gap-4">
+                    <li>
+                      <Link
+                        href={`tel:${PHONE}`}
+                        className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center md:justify-start gap-2"
+                      >
+                        <Phone size={16} />
+                        {PHONE}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`mailto:${EMAIL}`}
+                        className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center md:justify-start gap-2"
+                      >
+                        <Mail size={16} />
+                        {EMAIL}
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="flex items-center gap-2 mt-6">
                   <Link
                     href="https://www.linkedin.com/in/mohamad-alkhatib416/"
                     className="inline-flex items-center justify-center   text-white hover:text-white/50 transition-all duration-200 ease-in-out  bg-[#0e76a8] p-2 rounded-md "
@@ -168,7 +197,7 @@ const Footer = () => {
                 </div>
               </Suspense>
             </div>
-            <div className="w-full  md:text-left">
+            <div className="w-full md:text-left">
               <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
                 {t.links}
               </p>
@@ -197,6 +226,13 @@ const Footer = () => {
                     {t.contact}
                   </Link>
                 </li>
+              </ul>
+            </div>
+            <div className="w-full md:text-left">
+              <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
+                {nav.services}
+              </p>
+              <ul className="text-sm mt-4 flex flex-col gap-4">
                 {serviceLinks.map((service) => (
                   <li key={service.href}>
                     <Link
@@ -209,32 +245,13 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-            <div className="w-full  md:text-left">
-              <p className="text-gray-600 dark:text-slate-200 font-bold text-lg mb-4 md:mb-0">
-                {t.contact}
-              </p>
-              <ul className="text-sm mt-4 flex flex-col gap-4">
-                <li>
-                  <Link
-                    href={`tel:${PHONE}`}
-                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
-                  >
-                    <Phone size={16} />
-                    {PHONE}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={`mailto:${EMAIL}`}
-                    className="text-gray-600 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300 transition-all duration-200 ease-in-out flex items-center  md:justify-start gap-2"
-                  >
-                    <Mail size={16} />
-                    {EMAIL}
-                  </Link>
-                </li>
-              </ul>
+            <div className="w-full md:text-left">
+              <FooterNewsletter
+                locale={locale}
+                t={t}
+                className="w-full md:text-left"
+              />
             </div>
-            <FooterNewsletter locale={locale} t={t} />
           </div>
         </div>
       </footer>
