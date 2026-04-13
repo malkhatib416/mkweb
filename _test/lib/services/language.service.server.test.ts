@@ -442,6 +442,30 @@ describe('refreshBlogTranslationsForLanguages', () => {
     });
   });
 
+  it('skips insert when the target blog translation already exists in the database', async () => {
+    state.languages = [createLanguageRow('de', 'German')];
+    state.blogRowsQueue.push([{ id: 'blog-1' }]);
+    state.translationRowsQueue.push([createBlogTranslationRow('blog-1', 'fr')]);
+    state.translationFindFirstQueue.push(
+      null,
+      createBlogTranslationRow('blog-1', 'de', {
+        slug: 'blog-1-de',
+        title: 'Titel de',
+        content: 'Inhalt de',
+      }),
+    );
+
+    const result = await refreshBlogTranslationsForLanguages();
+
+    expect(result).toEqual({
+      languageCount: 1,
+      createdCount: 0,
+      skippedCount: 1,
+    });
+    expect(translateBlogContent).toHaveBeenCalledTimes(1);
+    expect(state.insertCalls).toHaveLength(0);
+  });
+
   it('returns zero counts when there are no configured languages', async () => {
     state.languages = [];
 
@@ -477,27 +501,55 @@ describe('createLanguage', () => {
       [createCategoryTranslationRow('category-1', 'fr')],
       [createProjectTranslationRow('project-1', 'fr')],
     );
-    state.translationFindFirstQueue.push(null, null, null);
+    state.translationFindFirstQueue.push(null, null, null, null);
 
     const result = await createLanguage({ code: 'es', name: 'Spanish' });
 
     expect(result).toEqual({ data: createdLanguage });
     expect(state.insertCalls[0]?.table).toBe(languageTable);
-    expect(state.insertCalls[1]?.values).toMatchObject({
-      entityType: 'blog',
-      blogId: 'blog-1',
-      locale: 'es',
-    });
-    expect(state.insertCalls[2]?.values).toMatchObject({
-      entityType: 'category',
-      categoryId: 'category-1',
-      locale: 'es',
-    });
-    expect(state.insertCalls[3]?.values).toMatchObject({
-      entityType: 'project',
-      projectId: 'project-1',
-      locale: 'es',
-    });
+    expect(
+      state.insertCalls.some(
+        (call) =>
+          call.table === translationTable &&
+          call.values &&
+          typeof call.values === 'object' &&
+          'entityType' in call.values &&
+          'blogId' in call.values &&
+          'locale' in call.values &&
+          (call.values as Record<string, unknown>).entityType === 'blog' &&
+          (call.values as Record<string, unknown>).blogId === 'blog-1' &&
+          (call.values as Record<string, unknown>).locale === 'es',
+      ),
+    ).toBe(true);
+    expect(
+      state.insertCalls.some(
+        (call) =>
+          call.table === translationTable &&
+          call.values &&
+          typeof call.values === 'object' &&
+          'entityType' in call.values &&
+          'categoryId' in call.values &&
+          'locale' in call.values &&
+          (call.values as Record<string, unknown>).entityType === 'category' &&
+          (call.values as Record<string, unknown>).categoryId ===
+            'category-1' &&
+          (call.values as Record<string, unknown>).locale === 'es',
+      ),
+    ).toBe(true);
+    expect(
+      state.insertCalls.some(
+        (call) =>
+          call.table === translationTable &&
+          call.values &&
+          typeof call.values === 'object' &&
+          'entityType' in call.values &&
+          'projectId' in call.values &&
+          'locale' in call.values &&
+          (call.values as Record<string, unknown>).entityType === 'project' &&
+          (call.values as Record<string, unknown>).projectId === 'project-1' &&
+          (call.values as Record<string, unknown>).locale === 'es',
+      ),
+    ).toBe(true);
     expect(translateBlogContent).toHaveBeenCalledTimes(1);
     expect(translateCategoryContent).toHaveBeenCalledTimes(1);
     expect(translateProjectContent).toHaveBeenCalledTimes(1);
@@ -526,7 +578,7 @@ describe('createLanguage', () => {
       [createCategoryTranslationRow('category-1', 'fr')],
       [createProjectTranslationRow('project-1', 'fr')],
     );
-    state.translationFindFirstQueue.push(null, null, null);
+    state.translationFindFirstQueue.push(null, null, null, null);
     translateProjectContent.mockImplementationOnce(async () => {
       throw new Error('project translation failed');
     });

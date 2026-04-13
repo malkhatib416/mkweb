@@ -171,6 +171,20 @@ async function backfillBlogTranslations(target: {
       localized.slug || localized.title || source.slug,
     );
 
+    const existingTargetTranslation = await db.query.translation.findFirst({
+      where: (t, { and: a, eq: e }) =>
+        a(
+          e(t.entityType, 'blog'),
+          e(t.blogId, currentBlog.id),
+          e(t.locale, target.code),
+        ),
+    });
+
+    if (existingTargetTranslation) {
+      skippedCount += 1;
+      continue;
+    }
+
     await db.insert(translation).values({
       entityType: 'blog',
       blogId: currentBlog.id,
